@@ -1,0 +1,1 @@
+<text class="bc-link {{inverse ? 'is-inverse' : ''}}" style="--bc-brand: {{theme.brandPrimary}};" bindtap="onTap">{{text}}</text>

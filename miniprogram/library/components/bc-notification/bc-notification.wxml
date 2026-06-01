@@ -1,0 +1,4 @@
+<view class="bc-note bc-note--{{variant}}" style="--bc-text: {{theme.textPrimary}}; --bc-body: {{theme.textSecondary}}; --bc-active: {{theme.activeFill}}; --bc-warning: {{theme.warning}}; --bc-border: {{theme.borderDefault}};">
+  <view class="bc-note__title">{{title}}</view>
+  <view class="bc-note__msg">{{message}}</view>
+</view>

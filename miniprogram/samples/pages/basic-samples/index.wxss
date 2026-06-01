@@ -1,0 +1,8 @@
+.sample-shell { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+.sample-scroll { flex: 1; height: 0; min-height: 0; }
+.sample-inner { padding: 24rpx 24rpx 40rpx; }
+.sample-title { margin: 28rpx 0 16rpx; font-size: 34rpx; font-weight: 800; }
+.gap { height: 16rpx; }
+.card-title { font-size: 30rpx; font-weight: 800; }
+.card-body { margin-top: 8rpx; font-size: 26rpx; line-height: 1.5; opacity: .8; }
+.chip-row, .icon-row { display: flex; gap: 12rpx; margin-top: 16rpx; flex-wrap: wrap; }

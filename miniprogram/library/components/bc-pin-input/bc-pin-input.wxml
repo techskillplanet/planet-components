@@ -1,0 +1,3 @@
+<view class="bc-pin" style="--bc-fill: {{theme.surfaceRaised}}; --bc-border: {{theme.borderDefault}}; --bc-text: {{theme.textPrimary}};">
+  <view wx:for="{{cells}}" wx:key="index" class="bc-pin__cell">{{secure && item ? '•' : item}}</view>
+</view>

@@ -1,0 +1,58 @@
+import { StyleSheet } from 'react-native';
+import { starPlanetTheme } from '../theme';
+
+export const withTheme = theme => theme || starPlanetTheme;
+export const clamp = (value, min, max) => Math.max(min, Math.min(max, Number(value) || min));
+export const optionText = option => typeof option === 'object' && option !== null ? option.title || option.text || option.label || option.value : option;
+
+export const styles = StyleSheet.create({
+  full: { width: '100%' },
+  button: { height: 51, minWidth: 116 },
+  buttonShadow: { position: 'absolute', left: 0, right: 0, top: 5, bottom: 0, borderRadius: 999 },
+  buttonFace: { height: 46, borderRadius: 999, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
+  buttonText: { fontSize: 15, fontWeight: '800' },
+  disabled: { opacity: 0.45 },
+  card: { width: '100%', borderRadius: 28, borderWidth: 1, padding: 20 },
+  alert: { width: '100%', borderRadius: 18, borderWidth: 1, padding: 14 },
+  strong: { fontWeight: '800' },
+  title: { fontSize: 20, fontWeight: '900' },
+  secondary: { marginTop: 6, fontSize: 13 },
+  badge: { overflow: 'hidden', borderRadius: 999, paddingHorizontal: 10, paddingVertical: 5, fontWeight: '800' },
+  chip: { borderWidth: 1, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 8 },
+  input: { minHeight: 48, borderWidth: 1, borderRadius: 16, paddingHorizontal: 14 },
+  select: { minHeight: 48, borderWidth: 1, borderRadius: 16, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  sheetMask: { flex: 1, backgroundColor: 'rgba(23,58,98,0.32)' },
+  sheetPanel: { borderTopLeftRadius: 24, borderTopRightRadius: 24, borderWidth: 1, paddingBottom: 16 },
+  sheetHeader: { minHeight: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16 },
+  sheetOption: { minHeight: 48, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, borderRadius: 14, marginHorizontal: 10 },
+  inline: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  progress: { height: 10, borderRadius: 999, overflow: 'hidden' },
+  progressFill: { height: 10, borderRadius: 999 },
+  topBar: { minHeight: 56, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', borderBottomWidth: 1 },
+  topBack: { width: 44, minHeight: 44, justifyContent: 'center' },
+  bottomTab: { minHeight: 68, flexDirection: 'row', borderWidth: 1 },
+  bottomItem: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  tabs: { borderWidth: 1, borderRadius: 999, padding: 4 },
+  tabItem: { minHeight: 34, borderRadius: 999, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
+  amount: { flexDirection: 'row', alignItems: 'flex-end' },
+  amountSymbol: { fontSize: 18, fontWeight: '800', marginRight: 4 },
+  amountValue: { fontSize: 30, lineHeight: 32, fontWeight: '900', marginRight: 4 },
+  amountCycle: { fontSize: 13, marginBottom: 2 },
+  iconButton: { width: 44, height: 44, borderRadius: 14, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
+  keyValue: { flexDirection: 'row', justifyContent: 'space-between', gap: 16 },
+  link: { fontWeight: '800' },
+  stepper: { flexDirection: 'row', alignItems: 'center', width: '100%' },
+  step: { width: 32, height: 32, borderRadius: 16, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
+  stepLine: { flex: 1, height: 2 },
+  stickyDemo: { borderWidth: 1, padding: 12 },
+  pinRow: { flexDirection: 'row', gap: 10 },
+  pinCell: { flex: 1, height: 48, borderRadius: 14, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
+  listItem: { minHeight: 64, borderWidth: 1, borderRadius: 18, padding: 14, flexDirection: 'row', alignItems: 'center' },
+  empty: { borderWidth: 1, borderRadius: 22, padding: 24, alignItems: 'center', gap: 8 },
+  emptyMark: { width: 50, height: 50, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  toast: { alignSelf: 'center', borderRadius: 999, paddingHorizontal: 14, paddingVertical: 10 },
+  modalMask: { flex: 1, backgroundColor: 'rgba(23,58,98,0.28)', justifyContent: 'center', padding: 18 },
+  modalPanel: { borderWidth: 1, borderRadius: 24, padding: 22, gap: 14 },
+  modalActions: { flexDirection: 'row', gap: 10 },
+});
+

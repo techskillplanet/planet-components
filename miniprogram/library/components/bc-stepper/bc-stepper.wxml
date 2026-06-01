@@ -1,0 +1,6 @@
+<view class="bc-stepper" style="--bc-brand: {{theme.brandPrimary}}; --bc-success: {{theme.success}}; --bc-fill: {{theme.surfaceRaised}}; --bc-border: {{theme.borderDefault}}; --bc-muted: {{theme.textTertiary}};">
+  <block wx:for="{{steps}}" wx:key="n">
+    <view class="bc-step {{item.done ? 'is-done' : ''}} {{item.active ? 'is-active' : ''}}">{{item.done ? '✓' : item.n}}</view>
+    <view wx:if="{{index < steps.length - 1}}" class="bc-step-line {{item.done ? 'is-done' : ''}}"></view>
+  </block>
+</view>

@@ -1,0 +1,6 @@
+.bc-stepper { display: flex; align-items: center; width: 100%; }
+.bc-step { width: 56rpx; height: 56rpx; border-radius: 999rpx; display: flex; align-items: center; justify-content: center; background: var(--bc-fill); border: 2rpx solid var(--bc-border); color: var(--bc-muted); font-weight: 800; box-sizing: border-box; }
+.bc-step.is-active { background: var(--bc-brand); border-color: var(--bc-brand); color: #fff; }
+.bc-step.is-done { background: var(--bc-success); border-color: var(--bc-success); color: #fff; }
+.bc-step-line { flex: 1; height: 4rpx; background: var(--bc-border); }
+.bc-step-line.is-done { background: var(--bc-success); }

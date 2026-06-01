@@ -1,0 +1,6 @@
+<view class="bc-amount {{strikeThrough ? 'is-strike' : ''}}" style="--bc-text: {{theme.textPrimary}}; --bc-body: {{theme.textSecondary}};">
+  <text wx:if="{{!symbolAfter}}" class="bc-amount__symbol">{{symbol}}</text>
+  <text class="bc-amount__value">{{value}}</text>
+  <text wx:if="{{symbolAfter}}" class="bc-amount__symbol">{{symbol}}</text>
+  <text wx:if="{{cycle}}" class="bc-amount__cycle">/{{cycle}}</text>
+</view>

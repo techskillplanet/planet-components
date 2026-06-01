@@ -1,0 +1,46 @@
+plugins {
+    id "com.android.library"
+    id "maven-publish"
+}
+
+group = "com.techskillplanet"
+version = "0.1.0"
+
+android {
+    namespace "com.techskillplanet.basiccontrols"
+    compileSdk 35
+
+    defaultConfig {
+        minSdk 23
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    sourceSets {
+        main {
+            assets.srcDirs = ["src/main/assets"]
+        }
+        debug {
+            java.srcDirs = ["src/debug/java"]
+        }
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = "com.techskillplanet"
+            artifactId = "basic-controls-android"
+            version = project.version
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+}

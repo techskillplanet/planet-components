@@ -1,0 +1,5 @@
+.bc-amount { display: flex; align-items: flex-end; color: var(--bc-text); }
+.bc-amount__symbol { font-size: 32rpx; font-weight: 700; margin-right: 8rpx; }
+.bc-amount__value { font-size: 56rpx; font-weight: 800; line-height: 1; margin-right: 8rpx; }
+.bc-amount__cycle { font-size: 24rpx; color: var(--bc-body); padding-bottom: 4rpx; }
+.bc-amount.is-strike { text-decoration: line-through; opacity: .7; }

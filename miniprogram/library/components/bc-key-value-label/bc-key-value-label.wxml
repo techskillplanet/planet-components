@@ -1,0 +1,4 @@
+<view class="bc-kv" style="--bc-text: {{theme.textPrimary}}; --bc-body: {{theme.textSecondary}};">
+  <text class="bc-kv__label">{{label}}</text>
+  <text class="bc-kv__value">{{value}}</text>
+</view>

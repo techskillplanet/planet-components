@@ -1,0 +1,2 @@
+.bc-pin { display: flex; gap: 12rpx; width: 100%; }
+.bc-pin__cell { flex: 1; height: 88rpx; border-radius: 24rpx; border: 2rpx solid var(--bc-border); background: var(--bc-fill); color: var(--bc-text); display: flex; align-items: center; justify-content: center; font-size: 34rpx; font-weight: 800; box-sizing: border-box; }

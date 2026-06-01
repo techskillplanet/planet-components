@@ -1,0 +1,7 @@
+<view class="bc-topbar" style="background: {{bgColor}}; color: {{theme.textPrimary}}; padding-top: {{statusBarHeight}}px;">
+  <view class="bc-topbar__row" style="height: {{navBarHeight}}px;">
+    <view class="bc-topbar__back {{showBack ? '' : 'is-hidden'}}" bindtap="onBack">‹</view>
+    <view class="bc-topbar__title">{{title}}</view>
+    <view class="bc-topbar__spacer"></view>
+  </view>
+</view>

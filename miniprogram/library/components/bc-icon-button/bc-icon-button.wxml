@@ -1,0 +1,3 @@
+<view class="bc-icon-btn {{selected ? 'is-selected' : ''}} {{disabled ? 'is-disabled' : ''}}" style="--bc-brand: {{theme.brandPrimary}}; --bc-fill: {{theme.surfaceRaised}}; --bc-active: {{theme.activeFill}}; --bc-text: {{theme.textPrimary}}; --bc-border: {{theme.borderDefault}};" bindtap="onTap">
+  {{icon}}
+</view>

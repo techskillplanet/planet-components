@@ -1,0 +1,3 @@
+<view class="bc-footer {{subtle ? 'is-subtle' : ''}}" style="--bc-fill: {{theme.surfaceRaised}}; --bc-subtle: {{theme.pageEnd}}; --bc-border: {{theme.borderDefault}};">
+  <slot></slot>
+</view>

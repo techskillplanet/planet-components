@@ -1,0 +1,20 @@
+{
+  "usingComponents": {
+    "bc-button": "/basic-controls/components/bc-button/bc-button",
+    "bc-card": "/basic-controls/components/bc-card/bc-card",
+    "bc-alert": "/basic-controls/components/bc-alert/bc-alert",
+    "bc-chip": "/basic-controls/components/bc-chip/bc-chip",
+    "bc-progress": "/basic-controls/components/bc-progress/bc-progress",
+    "bc-top-bar": "/basic-controls/components/bc-top-bar/bc-top-bar",
+    "bc-bottom-tab": "/basic-controls/components/bc-bottom-tab/bc-bottom-tab",
+    "bc-amount": "/basic-controls/components/bc-amount/bc-amount",
+    "bc-icon-button": "/basic-controls/components/bc-icon-button/bc-icon-button",
+    "bc-key-value-label": "/basic-controls/components/bc-key-value-label/bc-key-value-label",
+    "bc-notification": "/basic-controls/components/bc-notification/bc-notification",
+    "bc-text-link": "/basic-controls/components/bc-text-link/bc-text-link",
+    "bc-stepper": "/basic-controls/components/bc-stepper/bc-stepper",
+    "bc-sticky-footer": "/basic-controls/components/bc-sticky-footer/bc-sticky-footer",
+    "bc-pin-input": "/basic-controls/components/bc-pin-input/bc-pin-input"
+  },
+  "navigationStyle": "custom"
+}

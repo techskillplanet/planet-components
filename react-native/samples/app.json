@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "Basic Controls Sample",
+    "slug": "basic-controls-sample",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "android": {
+      "package": "com.techskillplanet.basiccontrols.rn.sample"
+    },
+    "ios": {
+      "bundleIdentifier": "com.techskillplanet.basiccontrols.rn.sample"
+    }
+  }
+}

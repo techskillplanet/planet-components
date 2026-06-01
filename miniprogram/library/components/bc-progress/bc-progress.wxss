@@ -1,0 +1,12 @@
+.bc-progress__track {
+  height: 16rpx;
+  border-radius: 999rpx;
+  background: var(--bc-border);
+  overflow: hidden;
+}
+
+.bc-progress__bar {
+  height: 100%;
+  border-radius: 999rpx;
+  background: linear-gradient(90deg, var(--bc-brand), var(--bc-success));
+}

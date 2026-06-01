@@ -1,0 +1,4 @@
+.bc-note { padding: 28rpx; border-radius: 32rpx; border: 2rpx solid var(--bc-border); background: var(--bc-active); box-sizing: border-box; }
+.bc-note--alert { background: var(--bc-warning); }
+.bc-note__title { color: var(--bc-text); font-size: 30rpx; font-weight: 800; }
+.bc-note__msg { margin-top: 8rpx; color: var(--bc-body); font-size: 26rpx; line-height: 1.45; }

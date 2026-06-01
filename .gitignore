@@ -1,0 +1,15 @@
+.DS_Store
+node_modules/
+build/
+.gradle/
+.idea/
+.dart_tool/
+.build/
+DerivedData/
+*.iml
+*.apk
+*.aar
+*.tgz
+pubspec.lock
+package-lock.json
+

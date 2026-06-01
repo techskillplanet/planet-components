@@ -1,0 +1,13 @@
+{
+  "name": "@techskillplanet/basic-controls-miniprogram",
+  "version": "0.1.0",
+  "description": "TechSkillPlanet themed WeChat Mini Program basic controls library.",
+  "miniprogram": "components",
+  "files": [
+    "components",
+    "theme",
+    "i18n",
+    "README.md"
+  ],
+  "license": "MIT"
+}

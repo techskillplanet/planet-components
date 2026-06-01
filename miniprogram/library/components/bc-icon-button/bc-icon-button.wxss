@@ -1,0 +1,3 @@
+.bc-icon-btn { width: 80rpx; height: 80rpx; border-radius: 999rpx; display: flex; align-items: center; justify-content: center; background: var(--bc-fill); border: 2rpx solid var(--bc-border); color: var(--bc-text); font-size: 34rpx; font-weight: 800; box-sizing: border-box; }
+.bc-icon-btn.is-selected { background: var(--bc-active); color: var(--bc-brand); border-color: var(--bc-brand); }
+.bc-icon-btn.is-disabled { opacity: .45; }

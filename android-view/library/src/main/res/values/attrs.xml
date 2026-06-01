@@ -1,0 +1,22 @@
+<resources>
+    <!--
+        Basic Controls 统一 XML 属性。
+        这些属性故意保持少量且语义化，避免每个组件重复定义一套私有属性。
+    -->
+    <declare-styleable name="BasicView">
+        <!-- 组件视觉变体，例如 primary/default/danger/info/success/warning/error。 -->
+        <attr name="basicVariant" format="string" />
+        <!-- 组件主文案，例如 Button 文案、Badge 文案、Tab 文案。 -->
+        <attr name="basicText" format="string" />
+        <!-- 组件主文案的国际化 key。由 BasicI18nManager 从 assets JSON 中解析。 -->
+        <attr name="basicTextKey" format="string" />
+        <!-- 组件标题，例如 Alert 标题。 -->
+        <attr name="basicTitle" format="string" />
+        <!-- 组件正文消息，例如 Alert 说明。 -->
+        <attr name="basicMessage" format="string" />
+        <!-- 组件是否处于选中态，例如 Tab、Badge 或 Chip。 -->
+        <attr name="basicSelected" format="boolean" />
+        <!-- 组件是否处于禁用态。禁用态会同步影响 enabled、颜色和交互。 -->
+        <attr name="basicDisabled" format="boolean" />
+    </declare-styleable>
+</resources>

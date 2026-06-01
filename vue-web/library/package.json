@@ -1,0 +1,31 @@
+{
+  "name": "@techskillplanet/basic-controls-vue",
+  "version": "0.1.0",
+  "description": "TechSkillPlanet themed Vue basic controls library.",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./theme": "./src/theme.js",
+    "./styles.css": "./src/styles.css"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "sideEffects": [
+    "src/styles.css"
+  ],
+  "peerDependencies": {
+    "vue": ">=3"
+  },
+  "scripts": {
+    "check": "node --check src/index.js",
+    "pack:dry": "npm pack --dry-run"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}

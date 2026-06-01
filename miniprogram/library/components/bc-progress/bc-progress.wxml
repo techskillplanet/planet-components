@@ -1,0 +1,5 @@
+<view class="bc-progress" style="--bc-border: {{theme.borderDefault}}; --bc-brand: {{theme.brandPrimary}}; --bc-success: {{theme.success}};">
+  <view class="bc-progress__track">
+    <view class="bc-progress__bar" style="width: {{percent}}%;"></view>
+  </view>
+</view>

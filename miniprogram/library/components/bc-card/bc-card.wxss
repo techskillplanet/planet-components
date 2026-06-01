@@ -1,0 +1,7 @@
+.bc-card {
+  background: var(--bc-surface);
+  border: 2rpx solid var(--bc-border);
+  border-radius: 28rpx;
+  padding: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(23, 58, 98, 0.06);
+}

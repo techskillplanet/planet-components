@@ -1,0 +1,13 @@
+<view class="bc-tabbar" style="--bc-surface: {{theme.surfaceRaised}}; --bc-border: {{theme.borderDefault}}; --bc-brand: {{theme.brandPrimary}}; --bc-muted: {{theme.textTertiary}};">
+  <view
+    wx:for="{{tabs}}"
+    wx:key="key"
+    class="bc-tabbar__item {{selected === index ? 'is-active' : ''}}"
+    data-index="{{index}}"
+    data-key="{{item.key}}"
+    bindtap="onTap"
+  >
+    <text class="bc-tabbar__icon">{{item.icon}}</text>
+    <text class="bc-tabbar__label">{{item.label}}</text>
+  </view>
+</view>

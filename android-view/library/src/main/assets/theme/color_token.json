@@ -1,0 +1,275 @@
+{
+  "$schema": "https://basic-controls.local/schemas/color-token.schema.json",
+  "meta": {
+    "name": "Basic Controls Sky Planet Color Tokens",
+    "version": "0.1.0",
+    "source": "Migrated from BaseWidget and reskinned with the 技趣星球 blue-sky planet article style.",
+    "themeSwitching": "Swap this file, or swap a theme object under themes, to recolor/reskin the component library.",
+    "naming": {
+      "primitive": "Primitive keys describe the color role in the Sky Planet visual language, such as sky.pageStart, sky.brandPrimary, ink.textPrimary.",
+      "semantic": "Semantic keys describe UI purpose and state, such as brand.primary, background.modalScrim, control.button.primaryBackground."
+    }
+  },
+  "themes": {
+    "sky_planet_day": {
+      "primitive": {
+        "sky": {
+          "pageEnd": "#F9FDFF",
+          "pageMist": "#F4FBFF",
+          "brandSubtle": "#E5F6FF",
+          "pageStart": "#DDF4FF",
+          "borderSoft": "#C8EAFF",
+          "brandHover": "#8BD5FF",
+          "brandPrimary": "#31A8FF",
+          "brandPressed": "#1479D6"
+        },
+        "cloud": {
+          "white": "#FFFFFF",
+          "surface": "#FEFFFF",
+          "soft": "#F6FBFF",
+          "border": "#E4F5FF",
+          "mist": "#D8F0FF"
+        },
+        "sun": {
+          "highlightSoft": "#FFE79A",
+          "highlight": "#FFD166",
+          "soft": "#FFF7D7"
+        },
+        "aurora": {
+          "successHover": "#70E5DE",
+          "success": "#43CFC7",
+          "successPressed": "#16A9A1"
+        },
+        "coral": {
+          "dangerHover": "#FF8A95",
+          "danger": "#FF6B7A",
+          "dangerPressed": "#E24C5C"
+        },
+        "ink": {
+          "textTertiary": "#7895AE",
+          "textSecondary": "#365D82",
+          "textPrimary": "#173A62",
+          "textStrong": "#0F2A49"
+        },
+        "neutral": {
+          "white": "#FFFFFF",
+          "black": "#000000",
+          "scrimBlue": "#173A6259",
+          "transparent": "#00000000"
+        }
+      },
+      "semantic": {
+        "brand": {
+          "primary": "{primitive.sky.brandPrimary}",
+          "primaryHover": "{primitive.sky.brandHover}",
+          "primaryActive": "{primitive.sky.brandPressed}",
+          "primarySubtle": "{primitive.sky.brandSubtle}"
+        },
+        "status": {
+          "success": "{primitive.aurora.success}",
+          "successHover": "{primitive.aurora.successHover}",
+          "successActive": "{primitive.aurora.successPressed}",
+          "warning": "{primitive.sun.highlight}",
+          "warningHover": "{primitive.sun.highlightSoft}",
+          "warningActive": "{primitive.sun.highlight}",
+          "danger": "{primitive.coral.danger}",
+          "dangerHover": "{primitive.coral.dangerHover}",
+          "dangerActive": "{primitive.coral.dangerPressed}"
+        },
+        "text": {
+          "primary": "{primitive.ink.textPrimary}",
+          "secondary": "{primitive.ink.textSecondary}",
+          "tertiary": "{primitive.ink.textTertiary}",
+          "inverse": "{primitive.neutral.white}",
+          "disabled": "{primitive.ink.textTertiary}",
+          "dialogTitle": "{primitive.ink.textPrimary}",
+          "dialogBody": "{primitive.ink.textSecondary}"
+        },
+        "background": {
+          "page": "{primitive.sky.pageStart}",
+          "pageGradientEnd": "{primitive.sky.pageEnd}",
+          "surface": "{primitive.cloud.surface}",
+          "surfaceRaised": "{primitive.cloud.white}",
+          "surfaceSubtle": "{primitive.cloud.soft}",
+          "surfaceDisabled": "{primitive.cloud.border}",
+          "menu": "{primitive.cloud.white}",
+          "modalScrim": "{primitive.neutral.scrimBlue}"
+        },
+        "border": {
+          "default": "{primitive.sky.borderSoft}",
+          "light": "{primitive.cloud.border}",
+          "control": "{primitive.sky.borderSoft}",
+          "focus": "{primitive.sky.brandPrimary}",
+          "warning": "{primitive.sun.highlight}",
+          "danger": "{primitive.coral.danger}"
+        },
+        "control": {
+          "button": {
+            "defaultBackground": "{primitive.cloud.white}",
+            "defaultText": "{primitive.ink.textPrimary}",
+            "primaryBackground": "{primitive.sky.brandPrimary}",
+            "primaryText": "{primitive.neutral.white}",
+            "raisedShadow": "{primitive.sky.borderSoft}"
+          },
+          "checkbox": {
+            "background": "{primitive.cloud.surface}",
+            "checkedBackground": "{primitive.sky.brandPrimary}"
+          },
+          "radio": {
+            "checkedDot": "{primitive.sky.brandPrimary}"
+          },
+          "switch": {
+            "offBackground": "{primitive.cloud.border}",
+            "offBorder": "{primitive.sky.borderSoft}",
+            "offText": "{primitive.ink.textSecondary}",
+            "onBackground": "{primitive.sky.brandHover}",
+            "onBorder": "{primitive.sky.brandPrimary}",
+            "onText": "{primitive.neutral.white}",
+            "handleBackground": "{primitive.cloud.surface}",
+            "handleBorder": "{primitive.sky.borderSoft}",
+            "handleCheckedBorder": "{primitive.sky.brandPrimary}",
+            "loadingSpinner": "{primitive.sky.brandPrimary}"
+          },
+          "select": {
+            "selectedOptionBackground": "{primitive.sky.brandSubtle}"
+          },
+          "loading": {
+            "stripePrimary": "{primitive.sky.brandHover}",
+            "stripeSecondary": "{primitive.aurora.success}",
+            "border": "{primitive.sky.borderSoft}"
+          }
+        }
+      }
+    },
+    "star_planet_night": {
+      "primitive": {
+        "sky": {
+          "pageEnd": "#141E32",
+          "pageMist": "#182238",
+          "brandSubtle": "#1E3A5F",
+          "pageStart": "#0F1A2E",
+          "borderSoft": "#2A3F5C",
+          "brandHover": "#5CB8FF",
+          "brandPrimary": "#31A8FF",
+          "brandPressed": "#1479D6"
+        },
+        "cloud": {
+          "white": "#1E2D45",
+          "surface": "#182438",
+          "soft": "#22324A",
+          "border": "#2E4460",
+          "mist": "#1A2840"
+        },
+        "sun": {
+          "highlightSoft": "#FFE79A",
+          "highlight": "#FFD166",
+          "soft": "#3D3520"
+        },
+        "aurora": {
+          "successHover": "#70E5DE",
+          "success": "#43CFC7",
+          "successPressed": "#16A9A1"
+        },
+        "coral": {
+          "dangerHover": "#FF8A95",
+          "danger": "#FF6B7A",
+          "dangerPressed": "#E24C5C"
+        },
+        "ink": {
+          "textTertiary": "#7A94B0",
+          "textSecondary": "#B8D0E8",
+          "textPrimary": "#E8F4FF",
+          "textStrong": "#FFFFFF"
+        },
+        "neutral": {
+          "white": "#FFFFFF",
+          "black": "#000000",
+          "scrimBlue": "#00000099",
+          "transparent": "#00000000"
+        }
+      },
+      "semantic": {
+        "brand": {
+          "primary": "{primitive.sky.brandPrimary}",
+          "primaryHover": "{primitive.sky.brandHover}",
+          "primaryActive": "{primitive.sky.brandPressed}",
+          "primarySubtle": "{primitive.sky.brandSubtle}"
+        },
+        "status": {
+          "success": "{primitive.aurora.success}",
+          "successHover": "{primitive.aurora.successHover}",
+          "successActive": "{primitive.aurora.successPressed}",
+          "warning": "{primitive.sun.highlight}",
+          "warningHover": "{primitive.sun.highlightSoft}",
+          "warningActive": "{primitive.sun.highlight}",
+          "danger": "{primitive.coral.danger}",
+          "dangerHover": "{primitive.coral.dangerHover}",
+          "dangerActive": "{primitive.coral.dangerPressed}"
+        },
+        "text": {
+          "primary": "{primitive.ink.textPrimary}",
+          "secondary": "{primitive.ink.textSecondary}",
+          "tertiary": "{primitive.ink.textTertiary}",
+          "inverse": "{primitive.neutral.white}",
+          "disabled": "{primitive.ink.textTertiary}",
+          "dialogTitle": "{primitive.ink.textPrimary}",
+          "dialogBody": "{primitive.ink.textSecondary}"
+        },
+        "background": {
+          "page": "{primitive.sky.pageStart}",
+          "pageGradientEnd": "{primitive.sky.pageEnd}",
+          "surface": "{primitive.cloud.surface}",
+          "surfaceRaised": "{primitive.cloud.white}",
+          "surfaceSubtle": "{primitive.cloud.soft}",
+          "surfaceDisabled": "{primitive.cloud.border}",
+          "menu": "{primitive.cloud.white}",
+          "modalScrim": "{primitive.neutral.scrimBlue}"
+        },
+        "border": {
+          "default": "{primitive.sky.borderSoft}",
+          "light": "{primitive.cloud.border}",
+          "control": "{primitive.sky.borderSoft}",
+          "focus": "{primitive.sky.brandPrimary}",
+          "warning": "{primitive.sun.highlight}",
+          "danger": "{primitive.coral.danger}"
+        },
+        "control": {
+          "button": {
+            "defaultBackground": "{primitive.cloud.white}",
+            "defaultText": "{primitive.ink.textPrimary}",
+            "primaryBackground": "{primitive.sky.brandPrimary}",
+            "primaryText": "{primitive.neutral.white}",
+            "raisedShadow": "{primitive.sky.borderSoft}"
+          },
+          "checkbox": {
+            "background": "{primitive.cloud.surface}",
+            "checkedBackground": "{primitive.sky.brandPrimary}"
+          },
+          "radio": {
+            "checkedDot": "{primitive.sky.brandPrimary}"
+          },
+          "switch": {
+            "offBackground": "{primitive.cloud.border}",
+            "offBorder": "{primitive.sky.borderSoft}",
+            "offText": "{primitive.ink.textSecondary}",
+            "onBackground": "{primitive.sky.brandHover}",
+            "onBorder": "{primitive.sky.brandPrimary}",
+            "onText": "{primitive.neutral.white}",
+            "handleBackground": "{primitive.cloud.surface}",
+            "handleBorder": "{primitive.sky.borderSoft}",
+            "handleCheckedBorder": "{primitive.sky.brandPrimary}",
+            "loadingSpinner": "{primitive.sky.brandPrimary}"
+          },
+          "select": {
+            "selectedOptionBackground": "{primitive.sky.brandSubtle}"
+          },
+          "loading": {
+            "stripePrimary": "{primitive.sky.brandHover}",
+            "stripeSecondary": "{primitive.aurora.success}",
+            "border": "{primitive.sky.borderSoft}"
+          }
+        }
+      }
+    }
+  }
+}

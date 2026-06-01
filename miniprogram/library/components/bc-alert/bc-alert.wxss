@@ -1,0 +1,19 @@
+.bc-alert {
+  border-radius: 20rpx;
+  padding: 20rpx;
+  border: 2rpx solid rgba(67, 207, 199, 0.35);
+  background: rgba(67, 207, 199, 0.12);
+}
+
+.bc-alert__title {
+  color: var(--bc-text);
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.bc-alert__msg {
+  margin-top: 8rpx;
+  color: var(--bc-body);
+  font-size: 26rpx;
+  line-height: 1.5;
+}

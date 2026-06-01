@@ -1,0 +1,360 @@
+{
+  "$schema": "https://basic-controls.local/schemas/style-token.schema.json",
+  "meta": {
+    "name": "Basic Controls Sky Planet Style Tokens",
+    "version": "0.1.0",
+    "unit": "dp/sp for Android; px-equivalent for Figma; duration in ms.",
+    "themeSwitching": "Keep token keys stable. Reskin by changing values, not component code.",
+    "naming": {
+      "global": "Global keys describe reusable scale concepts, such as radius.lg, space.4, font.size.md.",
+      "component": "Component keys describe the component and property, such as size.table.rowHeight, padding.banner.horizontal, shadow.controlIslandLift."
+    }
+  },
+  "font": {
+    "family": {
+      "latin": "Nunito",
+      "cjk": "HarmonyOS Sans SC",
+      "fallback": "sans-serif",
+      "androidView": "sans-serif"
+    },
+    "weight": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800
+    },
+    "size": {
+      "xs": 11,
+      "sm": 12,
+      "md": 14,
+      "lg": 16,
+      "xl": 18,
+      "title": 20,
+      "dialogTitle": 28,
+      "display": 32
+    },
+    "lineHeight": {
+      "compact": 1,
+      "tight": 1.25,
+      "normal": 1.57,
+      "relaxed": 1.85
+    },
+    "letterSpacing": {
+      "none": 0,
+      "button": 0
+    }
+  },
+  "space": {
+    "0": 0,
+    "1": 4,
+    "2": 8,
+    "3": 12,
+    "4": 16,
+    "5": 20,
+    "6": 24,
+    "8": 32,
+    "10": 40,
+    "12": 48,
+    "16": 64
+  },
+  "radius": {
+    "none": 0,
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 18,
+    "xl": 24,
+    "xxl": 30,
+    "menu": 28,
+    "cardOrganic": 28,
+    "dialogOrganic": 36,
+    "controlIsland": 22,
+    "pill": 999,
+    "circle": 999
+  },
+  "border": {
+    "width": {
+      "none": 0,
+      "hairline": 1,
+      "default": 2,
+      "strong": 2,
+      "focus": 2,
+      "loading": 4,
+      "switch": 2.5
+    },
+    "style": {
+      "solid": "solid",
+      "dashed": "dashed"
+    }
+  },
+  "size": {
+    "controlHeight": {
+      "sm": 32,
+      "md": 40,
+      "buttonMedium": 45,
+      "lg": 48
+    },
+    "buttonMinWidth": {
+      "sm": 72,
+      "md": 88,
+      "lg": 104
+    },
+    "icon": {
+      "xs": 12,
+      "sm": 16,
+      "md": 20,
+      "lg": 24,
+      "xl": 28,
+      "close": 32
+    },
+    "checkbox": {
+      "sm": 18,
+      "md": 22,
+      "lg": 28,
+      "indicatorSm": 10,
+      "indicatorMd": 12,
+      "indicatorLg": 16
+    },
+    "switch": {
+      "sm": {
+        "width": 38,
+        "height": 20,
+        "handle": 14,
+        "innerText": 9
+      },
+      "md": {
+        "width": 52,
+        "height": 28,
+        "handle": 21,
+        "innerText": 11
+      }
+    },
+    "select": {
+      "minWidth": 140,
+      "menuMinWidth": 160,
+      "pillHeight": 28
+    },
+    "modal": {
+      "minWidth": 320,
+      "defaultWidth": 560,
+      "maxWidthInset": 32,
+      "maxHeightInset": 64,
+      "paddingTop": 48,
+      "paddingHorizontal": 48,
+      "paddingBottom": 32,
+      "headerBottom": 15,
+      "bodyBottom": 20
+    },
+    "collapse": {
+      "icon": 28
+    },
+    "badge": {
+      "height": 20,
+      "minWidth": 20
+    },
+    "tag": {
+      "height": 28
+    },
+    "chip": {
+      "height": 32,
+      "closeIcon": 16
+    },
+    "toast": {
+      "minHeight": 44,
+      "maxWidth": 320
+    },
+    "navigation": {
+      "headerHeight": 56,
+      "bottomHeight": 64,
+      "tabHeight": 40,
+      "breadcrumbHeight": 32
+    },
+    "drawer": {
+      "minHeight": 240,
+      "cornerRadiusTop": 30
+    },
+    "table": {
+      "headerHeight": 44,
+      "rowHeight": 52,
+      "cellMinWidth": 96
+    },
+    "upload": {
+      "dropzoneHeight": 128
+    },
+    "banner": {
+      "height": 160,
+      "heroHeight": 220
+    },
+    "avatar": {
+      "sm": 32,
+      "md": 44,
+      "lg": 64
+    },
+    "rating": {
+      "star": 20
+    }
+  },
+  "padding": {
+    "button": {
+      "smHorizontal": 16,
+      "mdHorizontal": 20,
+      "lgHorizontal": 32
+    },
+    "input": {
+      "smHorizontal": 12,
+      "mdHorizontal": 16,
+      "lgHorizontal": 20
+    },
+    "selectTrigger": {
+      "vertical": 8,
+      "horizontal": 13
+    },
+    "selectOption": {
+      "top": 10,
+      "right": 18,
+      "bottom": 10,
+      "left": 18
+    },
+    "card": {
+      "default": 24,
+      "compact": 16
+    },
+    "collapseHeader": {
+      "vertical": 16,
+      "horizontal": 24
+    },
+    "alert": {
+      "vertical": 14,
+      "horizontal": 16
+    },
+    "badge": {
+      "horizontal": 6
+    },
+    "chip": {
+      "horizontal": 12
+    },
+    "listItem": {
+      "vertical": 12,
+      "horizontal": 16
+    },
+    "tableCell": {
+      "vertical": 12,
+      "horizontal": 14
+    },
+    "drawer": {
+      "top": 24,
+      "horizontal": 24,
+      "bottom": 32
+    },
+    "banner": {
+      "vertical": 20,
+      "horizontal": 24
+    }
+  },
+  "gap": {
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24
+  },
+  "shadow": {
+    "sm": {
+      "x": 0,
+      "y": 2,
+      "blur": 6,
+      "spread": 0,
+      "color": "rgba(49,168,255,0.06)"
+    },
+    "md": {
+      "x": 0,
+      "y": 12,
+      "blur": 28,
+      "spread": 0,
+      "color": "rgba(49,168,255,0.08)"
+    },
+    "lg": {
+      "x": 0,
+      "y": 18,
+      "blur": 42,
+      "spread": 0,
+      "color": "rgba(49,168,255,0.12)"
+    },
+    "buttonRaisedRest": {
+      "x": 0,
+      "y": 4,
+      "blur": 0,
+      "spread": 0,
+      "colorToken": "control.button.raisedShadow"
+    },
+    "surfaceCloudLift": {
+      "x": 0,
+      "y": 6,
+      "blur": 0,
+      "spread": 0,
+      "color": "rgba(200,234,255,0.72)"
+    },
+    "controlIslandLift": {
+      "x": 0,
+      "y": 5,
+      "blur": 0,
+      "spread": 0,
+      "color": "rgba(143,205,235,0.72)"
+    },
+    "controlPressed": {
+      "x": 0,
+      "y": 2,
+      "blur": 0,
+      "spread": 0,
+      "color": "rgba(143,205,235,0.9)"
+    }
+  },
+  "motion": {
+    "duration": {
+      "fast": 150,
+      "base": 250,
+      "slow": 350,
+      "modalEnter": 300,
+      "loadingLoop": 1000
+    },
+    "easing": {
+      "standard": "cubic-bezier(0.4,0,0.2,1)",
+      "easeOut": "cubic-bezier(0,0,0.2,1)",
+      "springLike": "cubic-bezier(0.34,1.56,0.64,1)"
+    },
+    "interaction": {
+      "hoverLiftY": -1,
+      "pressedDropY": 2,
+      "modalEnterScaleFrom": 0.94
+    },
+    "switch": {
+      "duration": 180
+    }
+  },
+  "opacity": {
+    "switch": {
+      "enabled": 1,
+      "loading": 0.7,
+      "disabled": 0.5
+    }
+  },
+  "islandStyle": {
+    "source": "animal-island-ui shape language, recolored with Sky Planet tokens",
+    "rules": {
+      "buttonShape": "pill",
+      "controlShape": "controlIsland",
+      "cardShape": "cardOrganic",
+      "dialogShape": "dialogOrganic",
+      "clickableShadow": "controlIslandLift",
+      "pressedShadow": "controlPressed"
+    }
+  },
+  "shape": {
+    "modal": {
+      "type": "rounded_cloud_card",
+      "figmaNote": "Use a 30-36px rounded white card with light blue border and soft sky shadow.",
+      "cornerFallback": 36
+    }
+  }
+}

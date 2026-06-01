@@ -1,0 +1,50 @@
+<view class="sample-shell" style="background: {{theme.pageStart}}; color: {{theme.textPrimary}};">
+  <bc-top-bar title="Basic Samples" showBack="{{true}}" theme="{{theme}}" bind:back="onBack" />
+  <scroll-view scroll-y class="sample-scroll">
+    <view class="sample-inner">
+      <view class="sample-title">Buttons</view>
+      <bc-button text="Primary" variant="primary" theme="{{theme}}" bind:tap="onTap" />
+      <view class="gap"></view>
+      <bc-button text="Default" variant="default" theme="{{theme}}" bind:tap="onTap" />
+      <view class="gap"></view>
+      <bc-button text="Danger" variant="danger" theme="{{theme}}" bind:tap="onTap" />
+
+      <view class="sample-title">Cards / Alerts / Chips</view>
+      <bc-card theme="{{theme}}">
+        <view class="card-title">云朵卡片</view>
+        <view class="card-body">用于保持 Android、Kuikly、小程序、Flutter、iOS、RN 的视觉一致。</view>
+      </bc-card>
+      <view class="gap"></view>
+      <bc-alert title="Success" message="星球主题已接入" variant="success" theme="{{theme}}" />
+      <view class="chip-row">
+        <bc-chip text="primary" variant="primary" selected="{{true}}" theme="{{theme}}" />
+        <bc-chip text="warning" variant="warning" theme="{{theme}}" />
+        <bc-chip text="danger" variant="danger" theme="{{theme}}" />
+      </view>
+
+      <view class="sample-title">RN Parity</view>
+      <bc-amount symbol="$" value="128.80" cycle="month" theme="{{theme}}" />
+      <view class="icon-row">
+        <bc-icon-button icon="‹" theme="{{theme}}" bind:tap="onTap" />
+        <bc-icon-button icon="✓" selected="{{true}}" theme="{{theme}}" bind:tap="onTap" />
+        <bc-icon-button icon="×" disabled="{{true}}" theme="{{theme}}" />
+      </view>
+      <bc-key-value-label label="当前主题" value="Sky Planet" theme="{{theme}}" />
+      <bc-notification title="API 已对齐" message="同一套语义覆盖多端 samples。" theme="{{theme}}" />
+      <view class="gap"></view>
+      <bc-notification title="注意" message="平台能力组件继续按端深化。" variant="alert" theme="{{theme}}" />
+      <view class="gap"></view>
+      <bc-text-link text="查看组件契约" theme="{{theme}}" bind:tap="onTap" />
+      <view class="gap"></view>
+      <bc-stepper stepCount="{{5}}" currentStep="{{3}}" theme="{{theme}}" />
+      <view class="gap"></view>
+      <bc-pin-input value="2468" cellCount="{{6}}" secure="{{false}}" theme="{{theme}}" />
+      <view class="sample-title">Progress</view>
+      <bc-progress value="{{0.68}}" theme="{{theme}}" />
+    </view>
+  </scroll-view>
+  <bc-sticky-footer theme="{{theme}}">
+    <bc-button text="Sticky Footer Action" variant="primary" theme="{{theme}}" bind:tap="onTap" />
+  </bc-sticky-footer>
+  <bc-bottom-tab tabs="{{tabs}}" selected="{{0}}" theme="{{theme}}" />
+</view>

@@ -1,0 +1,36 @@
+.bc-topbar {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+.bc-topbar__row {
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+.bc-topbar__back {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 52rpx;
+  line-height: 1;
+}
+
+.bc-topbar__back.is-hidden {
+  visibility: hidden;
+}
+
+.bc-topbar__title {
+  flex: 1;
+  text-align: center;
+  font-size: 34rpx;
+}
+
+.bc-topbar__spacer {
+  width: 64rpx;
+}

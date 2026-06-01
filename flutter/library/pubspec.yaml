@@ -1,0 +1,21 @@
+name: tech_skill_planet_basic_controls
+description: TechSkillPlanet themed cross-platform basic controls library.
+version: 0.1.0
+publish_to: https://pub.dev
+repository: https://github.com/techskillplanet/basic-controls
+homepage: https://github.com/techskillplanet/basic-controls
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

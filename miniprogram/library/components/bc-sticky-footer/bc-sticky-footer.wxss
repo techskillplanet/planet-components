@@ -1,0 +1,2 @@
+.bc-footer { padding: 20rpx 32rpx calc(24rpx + env(safe-area-inset-bottom)); background: var(--bc-fill); border-top: 2rpx solid var(--bc-border); box-sizing: border-box; }
+.bc-footer.is-subtle { background: var(--bc-subtle); }

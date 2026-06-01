@@ -1,0 +1,3 @@
+.bc-kv { display: flex; align-items: center; padding: 16rpx 0; }
+.bc-kv__label { flex: 1; min-width: 0; color: var(--bc-body); font-size: 28rpx; }
+.bc-kv__value { color: var(--bc-text); font-size: 28rpx; font-weight: 700; }

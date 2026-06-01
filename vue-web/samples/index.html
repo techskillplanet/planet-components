@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Controls Vue Sample</title>
+    <link rel="stylesheet" href="../library/src/styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://esm.sh/vue@3"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import { createApp } from 'vue';
+      const mod = await import('../library/src/index.js');
+      createApp(mod.BasicControlsSample).mount('#app');
+    </script>
+  </body>
+</html>
