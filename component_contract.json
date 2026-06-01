@@ -1,0 +1,158 @@
+{
+  "theme": {
+    "name": "star_planet",
+    "tokens": [
+      "pageStart",
+      "pageEnd",
+      "textPrimary",
+      "textSecondary",
+      "textTertiary",
+      "surfaceRaised",
+      "borderDefault",
+      "brandPrimary",
+      "brandDark",
+      "success",
+      "warning",
+      "danger",
+      "selectedFill",
+      "activeFill"
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "variants": ["primary", "default", "danger", "text", "link"],
+      "props": ["text", "variant", "disabled", "fullWidth", "onTap"]
+    },
+    {
+      "name": "Card",
+      "variants": ["default", "subtle", "selected", "disabled"],
+      "props": ["variant", "selected", "disabled", "content"]
+    },
+    {
+      "name": "Alert",
+      "variants": ["info", "success", "warning", "error"],
+      "props": ["title", "message", "variant"]
+    },
+    {
+      "name": "Badge",
+      "variants": ["default", "primary", "success", "warning", "danger"],
+      "props": ["text", "variant", "disabled"]
+    },
+    {
+      "name": "Chip",
+      "variants": ["default", "primary", "success", "warning", "danger"],
+      "props": ["text", "variant", "selected", "disabled", "onTap"]
+    },
+    {
+      "name": "Input",
+      "variants": ["default", "error", "disabled"],
+      "props": ["value", "placeholder", "variant", "disabled", "onChange"]
+    },
+    {
+      "name": "Select",
+      "variants": ["default", "disabled"],
+      "props": ["options", "selectedIndex", "disabled", "onSelect"]
+    },
+    {
+      "name": "OptionSheet",
+      "variants": ["default", "mobile"],
+      "props": ["title", "options", "selectedIndex", "visible", "onSelect", "onCancel"]
+    },
+    {
+      "name": "Switch",
+      "variants": ["md", "sm", "loading", "disabled"],
+      "props": ["text", "checked", "checkedText", "uncheckedText", "loading", "disabled", "onChange"]
+    },
+    {
+      "name": "Progress",
+      "variants": ["primary", "warning", "success", "danger"],
+      "props": ["progress", "variant"]
+    },
+    {
+      "name": "TopBar",
+      "variants": ["default"],
+      "props": ["title", "showBack", "backgroundColor", "onBack"]
+    },
+    {
+      "name": "BottomTab",
+      "variants": ["default"],
+      "props": ["tabs", "selectedKey", "onSelect"]
+    },
+    {
+      "name": "Tabs",
+      "variants": ["default"],
+      "props": ["tabs", "selectedIndex", "onSelect"]
+    },
+    {
+      "name": "Amount",
+      "variants": ["symbolBefore", "symbolAfter", "strikeThrough"],
+      "props": ["symbol", "value", "cycle", "symbolAfter", "strikeThrough"]
+    },
+    {
+      "name": "IconButton",
+      "variants": ["default", "primary", "selected", "disabled"],
+      "props": ["icon", "selected", "disabled", "onTap"]
+    },
+    {
+      "name": "KeyValueLabel",
+      "variants": ["default"],
+      "props": ["label", "value"]
+    },
+    {
+      "name": "Notification",
+      "variants": ["info", "alert"],
+      "props": ["title", "message", "variant"]
+    },
+    {
+      "name": "TextLink",
+      "variants": ["default", "inverse"],
+      "props": ["text", "inverse", "onTap"]
+    },
+    {
+      "name": "Stepper",
+      "variants": ["3steps", "4steps", "5steps"],
+      "props": ["stepCount", "currentStep"]
+    },
+    {
+      "name": "StickyFooter",
+      "variants": ["default", "subtle"],
+      "props": ["content"]
+    },
+    {
+      "name": "PinInput",
+      "variants": ["4cells", "6cells", "secure"],
+      "props": ["value", "cellCount", "secure", "onComplete"]
+    },
+    {
+      "name": "ListItem",
+      "variants": ["default", "selected", "disabled"],
+      "props": ["title", "message", "trailing", "selected", "disabled", "onTap"]
+    },
+    {
+      "name": "Empty",
+      "variants": ["default"],
+      "props": ["title", "message", "actionText", "onAction"]
+    },
+    {
+      "name": "Toast",
+      "variants": ["info", "success", "warning", "error"],
+      "props": ["message", "variant", "duration"]
+    },
+    {
+      "name": "Modal",
+      "variants": ["confirm"],
+      "props": ["title", "message", "confirmText", "cancelText", "onConfirm", "onCancel"]
+    },
+    {
+      "name": "RefreshLayout",
+      "variants": ["refreshing", "loadingMore", "disabled"],
+      "props": ["refreshing", "loadingMore", "onRefresh", "onLoadMore"]
+    },
+    {
+      "name": "LoadingDialog",
+      "variants": ["default", "compact"],
+      "props": ["visible", "message", "dismissible"]
+    }
+  ]
+}

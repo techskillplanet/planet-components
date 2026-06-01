@@ -22,6 +22,17 @@ Every technology stack is kept at the same level. Each stack contains:
 
 Shared design tokens are under `design/tokens`.
 
+## Reusable Agent Context
+
+The accumulated implementation rules have been migrated into this repository:
+
+- `AGENTS.md`: high-level repository context and engineering rules.
+- `.agents/skills/build-planet-components/SKILL.md`: cross-platform component library workflow.
+- `.agents/skills/build-android-view-ui/SKILL.md`: Android View Java/XML workflow.
+- `docs/PLATFORM_STRUCTURE.md`: one-component-one-file, one-page-one-file, routing, and sample rules.
+- `docs/COMPONENT_CONTRACT.md`: human-readable component API and variant contract.
+- `component_contract.json`: machine-readable component API and variant contract.
+
 ## Rules
 
 - One component per source file where the platform implementation has been split.
