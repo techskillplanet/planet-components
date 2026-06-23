@@ -1,0 +1,1 @@
+React 18+ with ESM modules; Vitest + jsdom + Testing Library for unit testing.

@@ -1,0 +1,4 @@
+- Entry point `src/index.js` exports all components from `src/components/index.js`, the theme system from `src/theme.js`, and a `BasicControlsSample` demo application.
+- Components in `src/components/` are implemented as Vue 3 functional-style `defineComponent` definitions, importing shared utilities (`h`, `cx`, `themed`) from `_shared.js`.
+- The theme system (`theme.js`) defines color palettes (`starPlanetThemes`) and style profiles (`starPlanetStyleProfiles`), exposing CSS variables via `themeVars()` for dynamic styling.
+- `package.json` configures the module as an ES module (`type: "module"`) with explicit exports for the main bundle, theme, and styles.

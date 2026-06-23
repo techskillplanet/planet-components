@@ -1,5 +1,18 @@
 import { React, h, cx, clamp, optionText, themed, starPlanetTheme } from './_shared.js';
 
+/**
+ * TspBottomTab – Primary page bottom tab bar.
+ *
+ * Renders 3-5 tab entries with icon and title.
+ *
+ * @param {Object} props
+ * @param {Array<{key:string, title:string, icon?:string}>} [props.tabs=[]] - Tab entries.
+ * @param {string} props.selectedKey - Key of the active tab.
+ * @param {Object} [props.theme] - Theme object.
+ * @param {Function} [props.onSelect] - Callback (key, tab) => void.
+ * @returns {React.ReactElement} A <nav> element.
+ */
+
 export function TspBottomTab({ tabs = [], selectedKey, theme = starPlanetTheme, onSelect }) {
   return h(
     'nav',

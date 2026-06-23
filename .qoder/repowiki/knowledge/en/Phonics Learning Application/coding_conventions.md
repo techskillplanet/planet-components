@@ -1,0 +1,3 @@
+- Platform-dependent services (Audio, Storage, Recorder) are defined as Kotlin interfaces in `commonMain` to allow platform-specific implementations while keeping business logic shared.
+- UI components and pages use Jetpack Compose annotations (`@Composable`) and Kuikly-specific modifiers, adhering to a declarative UI pattern.
+- Static data (phonemes, words) is encapsulated in singleton objects or repositories (e.g., `PhonemeRepository`) within the `data` package for easy access across the shared module.

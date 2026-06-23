@@ -1,5 +1,5 @@
-const { getTheme } = require('./basic-controls/theme/theme');
-const i18n = require('./basic-controls/i18n/i18n');
+const { getTheme } = require('./planet-components/theme/theme');
+const i18n = require('./planet-components/i18n/i18n');
 const storage = require('./utils/storage');
 
 App({

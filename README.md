@@ -11,7 +11,7 @@ Every technology stack is kept at the same level. Each stack contains:
 
 | Platform | Library | Runnable samples | Future package target |
 | --- | --- | --- | --- |
-| Android View | `android-view/library` | `android-view/samples` | Maven / Gradle |
+| Android View | `android/library` | `android/samples` | Maven / Gradle |
 | React Native | `react-native/library` | `react-native/samples` | npm |
 | React Web | `react-web/library` | `react-web/samples` | npm |
 | Vue Web | `vue-web/library` | `vue-web/samples` | npm |
@@ -21,6 +21,10 @@ Every technology stack is kept at the same level. Each stack contains:
 | Kuikly | `kuikly/library` | `kuikly/samples` | Maven / internal Kuikly package |
 
 Shared design tokens are under `design/tokens`.
+
+## License
+
+[MIT License](LICENSE)
 
 ## Reusable Agent Context
 
@@ -50,7 +54,7 @@ node tools/check-structure.cjs
 Platform-specific checks:
 
 ```bash
-cd android-view && ./gradlew :library:assembleRelease :samples:assembleDebug
+cd android && ./gradlew :library:assembleRelease :samples:assembleDebug
 cd react-native/library && npm run pack:dry
 cd react-native/samples && npm install && npm run check
 cd react-web/library && npm run check && npm run pack:dry
@@ -59,6 +63,6 @@ cd flutter/library && flutter analyze
 cd flutter/samples && flutter analyze
 cd ios-swiftui/library && swift build
 cd ios-swiftui/samples && swift build
-cd miniprogram && node -e "const fs=require('fs'); JSON.parse(fs.readFileSync('samples/app.json','utf8')); if(!fs.lstatSync('samples/basic-controls').isSymbolicLink()) throw new Error('samples/basic-controls should be a symlink')"
+cd miniprogram && node -e "const fs=require('fs'); JSON.parse(fs.readFileSync('samples/app.json','utf8')); if(!fs.lstatSync('samples/planet-components').isSymbolicLink()) throw new Error('samples/planet-components should be a symlink')"
 cd kuikly && ./gradlew :shared:compileKotlinJs :miniApp:compileKotlinJs :shared:compileDebugKotlinAndroid
 ```

@@ -33,6 +33,7 @@ import com.tencent.kuikly.compose.foundation.layout.fillMaxSize
 import com.tencent.kuikly.compose.foundation.layout.fillMaxWidth
 import com.tencent.kuikly.compose.foundation.layout.height
 import com.tencent.kuikly.compose.foundation.layout.padding
+import com.tencent.kuikly.compose.foundation.lazy.LazyColumn
 import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
@@ -59,6 +60,7 @@ private val componentDocs = listOf(
     ComponentDoc("Notification", "Feedback", "通知卡片，用于强调当前任务或状态提醒。"),
     ComponentDoc("Toast", "Feedback", "轻提示，用于短时反馈。"),
     ComponentDoc("Modal", "Feedback", "确认弹窗，支持确认和取消按钮。"),
+    ComponentDoc("LoadingDialog", "Feedback", "加载弹窗，用于阻塞式等待、紧凑加载和可取消提示。"),
     ComponentDoc("Input", "Inputs", "单行输入框，支持错误态、禁用态和受控输入。"),
     ComponentDoc("Select", "Inputs", "选择入口，移动端默认打开底部 OptionSheet。"),
     ComponentDoc("OptionSheet", "Inputs", "移动端底部选择弹窗，和 Select 共用选项渲染逻辑。"),
@@ -71,6 +73,7 @@ private val componentDocs = listOf(
     ComponentDoc("Amount", "Data", "金额或数值展示，支持币种前后置、周期和删除线。"),
     ComponentDoc("KeyValueLabel", "Data", "键值对展示，用于摘要信息和表单确认。"),
     ComponentDoc("Stepper", "Data", "步骤进度，支持 3 到 5 步。"),
+    ComponentDoc("RefreshLayout", "Data", "下拉刷新和加载更多容器，用于长列表数据刷新。"),
 )
 
 @Composable
@@ -97,18 +100,33 @@ fun BasicControlsSample() {
         PhonicsTopBar(title = title, theme = theme, showBack = selectedDoc.value != null) {
             selectedDoc.value = null
         }
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .weight(1f)
                 .padding(18.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
             when {
-                selectedDoc.value != null -> ComponentDetail(selectedDoc.value!!, theme)
-                tab.value == "settings" -> SettingsList(theme, themeKey.value, languageKey.value) { key, type ->
-                    if (type == "theme") themeKey.value = key else languageKey.value = key
+                selectedDoc.value != null -> item {
+                    ComponentDetail(selectedDoc.value!!, theme)
                 }
-                else -> ComponentList(theme) { doc -> selectedDoc.value = doc }
+                tab.value == "settings" -> item {
+                    SettingsList(theme, themeKey.value, languageKey.value) { key, type ->
+                        if (type == "theme") themeKey.value = key else languageKey.value = key
+                    }
+                }
+                else -> componentDocs.groupBy { it.category }.forEach { (category, docs) ->
+                    item {
+                        Text(text = category, color = Color(theme.textSecondary), fontWeight = FontWeight.Bold)
+                    }
+                    docs.forEach { doc ->
+                        item {
+                            SampleListItem(title = "Tsp${doc.name}", message = doc.description, theme = theme) {
+                                selectedDoc.value = doc
+                            }
+                        }
+                    }
+                }
             }
         }
         if (selectedDoc.value == null) {
@@ -155,19 +173,6 @@ private fun SettingsList(
                 ) {
                     onSelect(item.first, "language")
                 }
-            }
-        }
-    }
-}
-
-@Composable
-private fun ComponentList(theme: PhonicsColors, onSelect: (ComponentDoc) -> Unit) {
-    // Keep this grouped list consistent with the other platform samples.
-    componentDocs.groupBy { it.category }.forEach { (category, docs) ->
-        Text(text = category, color = Color(theme.textSecondary), fontWeight = FontWeight.Bold)
-        docs.forEach { doc ->
-            SampleListItem(title = "Tsp${doc.name}", message = doc.description, theme = theme) {
-                onSelect(doc)
             }
         }
     }

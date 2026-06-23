@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: android_view
+title: Token-Driven Basic UI Component Library
+scope:
+    - android/
+source_files: []
+depends_on: []
+related_to:
+    - path: flutter
+    - path: ios_swiftui

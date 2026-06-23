@@ -1,0 +1,3 @@
+- Library packaging can be dry-run via `npm pack --dry-run` in the `library/` directory.
+- Sample app runs via Expo CLI commands: `expo start`, `expo run:android`, `expo run:ios`.
+- A structure check script is available via `node scripts/check-structure.cjs` in the samples directory.

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Basic Controls Sample",
-    "slug": "basic-controls-sample",
+    "slug": "planet-components-sample",
     "version": "0.1.0",
     "orientation": "portrait",
     "platforms": [
@@ -10,10 +10,16 @@
       "web"
     ],
     "android": {
-      "package": "com.techskillplanet.basiccontrols.rn.sample"
+      "package": "com.techskillplanet.basiccontrols.rn.sample",
+      "softwareKeyboardLayoutMode": "resize"
     },
     "ios": {
-      "bundleIdentifier": "com.techskillplanet.basiccontrols.rn.sample"
+      "bundleIdentifier": "com.techskillplanet.basiccontrols.rn.sample",
+      "supportsTablet": false
+    },
+    "androidStatusBar": {
+      "translucent": true,
+      "backgroundColor": "#00000000"
     }
   }
 }

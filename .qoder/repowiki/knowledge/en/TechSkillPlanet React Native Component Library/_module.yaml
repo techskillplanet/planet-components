@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: react_native
+title: TechSkillPlanet React Native Component Library
+scope:
+    - react-native/
+source_files: []
+depends_on: []
+related_to:
+    - path: flutter

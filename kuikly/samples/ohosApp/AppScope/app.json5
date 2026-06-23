@@ -1,0 +1,8 @@
+{
+  "app": {
+    "bundleName": "com.techskillplanet.phonics.kuikly",
+    "vendor": "techskillplanet",
+    "versionCode": 1,
+    "versionName": "1.0.0"
+  }
+}

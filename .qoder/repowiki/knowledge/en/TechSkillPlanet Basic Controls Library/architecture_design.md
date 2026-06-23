@@ -1,0 +1,4 @@
+- Single-file architecture: All components and theme definitions are consolidated in `lib/tech_skill_planet_components.dart`, serving as the sole public API entry point.
+- Theme-driven design: Components rely on the `StarPlanetTheme` class (with predefined `sky`, `night`, and `mint` variants) for consistent styling, allowing runtime theme switching without rebuilding component logic.
+- Stateless composition: Most widgets (e.g., `TspButton`, `TspCard`, `TspAlert`) are implemented as `StatelessWidget`s that accept configuration via constructor parameters, delegating state management to parent widgets or the sample app.
+- Sample integration: The `samples/` module acts as a living documentation and testing ground, importing the library via local path dependency (`path: ../library`) in `pubspec.yaml` to demonstrate all components across different themes and states.

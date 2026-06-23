@@ -1,4 +1,4 @@
-name: tech_skill_planet_basic_controls_example
+name: tech_skill_planet_components_example
 publish_to: none
 version: 0.1.0+1
 
@@ -8,7 +8,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  tech_skill_planet_basic_controls:
+  tech_skill_planet_components:
     path: ../library
 
 dev_dependencies:

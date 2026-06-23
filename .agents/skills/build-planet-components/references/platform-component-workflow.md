@@ -7,7 +7,7 @@ planet-components/
 ├── design/tokens/
 │   ├── color_token.json
 │   └── style_token.json
-├── android-view/
+├── android/
 │   ├── library/
 │   └── samples/
 ├── react-native/

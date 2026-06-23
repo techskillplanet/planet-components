@@ -94,17 +94,30 @@ project.afterEvaluate {
         from(Paths.get(project.rootDir.absolutePath, businessPathName, "src/commonMain/assets").toFile())
         into("$projectDir/dist/assets")
         include("**/**")
+        exclude("audio/**")
+    }
+
+    tasks.register<Copy>("syncMiniAppShell") {
+        group = "kuikly"
+        description = "Copy WeChat Mini Program shell files into dist."
+        from("$projectDir/template")
+        into("$projectDir/dist")
+        include("**/*")
     }
 
     tasks.register("jsMiniAppDevelopmentWebpack") {
         group = "kuikly"
-        dependsOn("jsBrowserDevelopmentWebpack")
-        copyLocalJSBundle("developmentExecutable")
+        dependsOn("syncMiniAppShell", "jsBrowserDevelopmentWebpack", ":shared:jsBrowserDevelopmentExecutableDistribution")
+        doLast {
+            copyLocalJSBundle("developmentExecutable")
+        }
     }
 
     tasks.register("jsMiniAppProductionWebpack") {
         group = "kuikly"
-        dependsOn("jsBrowserProductionWebpack")
-        copyLocalJSBundle("productionExecutable")
+        dependsOn("syncMiniAppShell", "jsBrowserProductionWebpack", ":shared:jsBrowserDistribution")
+        doLast {
+            copyLocalJSBundle("productionExecutable")
+        }
     }
 }

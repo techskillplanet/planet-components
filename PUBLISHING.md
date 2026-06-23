@@ -4,13 +4,13 @@ Each `library` directory is intended to become an independently published open-s
 
 | Platform | Package manager | Current package identity |
 | --- | --- | --- |
-| Android View | Maven Central / GitHub Packages | `com.techskillplanet:basic-controls-android` |
-| React Native | npm | `@techskillplanet/basic-controls-react-native` |
-| React Web | npm | `@techskillplanet/basic-controls-react` |
-| Vue Web | npm | `@techskillplanet/basic-controls-vue` |
-| Flutter | pub.dev | `tech_skill_planet_basic_controls` |
+| Android View | Maven Central / GitHub Packages | `io.github.techskillplanet:planet-components-android` |
+| React Native | npm | `@techskillplanet/planet-components-react-native` |
+| React Web | npm | `@techskillplanet/planet-components-react` |
+| Vue Web | npm | `@techskillplanet/planet-components-vue` |
+| Flutter | pub.dev | `tech_skill_planet_components` |
 | iOS SwiftUI | Swift Package Manager | `TechSkillPlanetBasicControls` |
-| WeChat Mini Program | npm / miniprogram package | `@techskillplanet/basic-controls-miniprogram` |
+| WeChat Mini Program | npm / miniprogram package | `@techskillplanet/planet-components-miniprogram` |
 | Kuikly | Maven / internal Kuikly package | `com.techskillplanet:planet-components-kuikly` |
 
 Before publishing a library:

@@ -1,0 +1,5 @@
+- Entry point: `src/index.js` exports all UI components, theme system (`starPlanetTheme`, `resolveTheme`), and shared utilities.
+- Theming layer: `src/theme.js` defines color palettes (sky, night, mint, sunrise) and style profiles (island_raised, island_flat), exposing CSS custom properties via `themeVars()`.
+- Component layer: Flat structure in `src/components/` where each `Tsp*.js` file is a self-contained functional component using `h()` (React.createElement) and consuming theme tokens via the `themed()` helper from `_shared.js`.
+- Shared utilities: `_shared.js` provides `cx` (classname joining), `clamp`, `optionText`, and `themed` (merging theme vars with inline styles), imported by every component to ensure consistent styling and behavior.
+- Styling: Relies on CSS variables injected into component `style` props, paired with a global `styles.css` for base class definitions (BEM-like naming: `bc-button`, `bc-card`).

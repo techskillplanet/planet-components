@@ -14,7 +14,7 @@ function files(dir, matcher) {
 }
 
 const checks = [
-  ['android-view', exists('android-view/library/build.gradle') && exists('android-view/samples/build.gradle')],
+  ['android', exists('android/library/build.gradle') && exists('android/samples/build.gradle') && exists('android/samples/src/main/java/com/techskillplanet/basiccontrols/samples/navigation/SampleRouter.java')],
   ['react-native', files('react-native/library/src/starPlanet/components', f => /^Tsp.+\.js$/.test(f)).length >= 25 && exists('react-native/samples/src/navigation/AppRouter.js')],
   ['react-web', exists('react-web/library/package.json') && exists('react-web/samples/index.html')],
   ['vue-web', exists('vue-web/library/package.json') && exists('vue-web/samples/index.html')],

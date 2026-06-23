@@ -15,7 +15,13 @@ export const TspButton = defineComponent({
     return () => h('button', {
       type: 'button',
       disabled: props.disabled,
-      class: cx('bc-button', `bc-button--${props.variant}`, props.fullWidth && 'bc-full', props.disabled && 'bc-disabled'),
+      class: cx(
+        'bc-button',
+        `bc-button--${props.variant}`,
+        props.fullWidth && 'bc-full',
+        props.disabled && 'bc-disabled',
+        props.theme.buttonRaisedShadowEnabled === false && 'bc-button--flat'
+      ),
       style: themed(props.theme),
       onClick: props.disabled ? undefined : () => emit('tap')
     }, [h('span', { class: 'bc-button__shadow' }), h('span', { class: 'bc-button__face' }, childrenOr(slots, props.text))]);

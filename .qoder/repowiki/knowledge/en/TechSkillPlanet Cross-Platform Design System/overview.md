@@ -1,0 +1,1 @@
+Orchestrates a unified UI component library across eight technology stacks by enforcing a shared design token contract and consistent API surface.

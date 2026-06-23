@@ -1,0 +1,4 @@
+- Components expose a `refreshTheme()` method that reads from `BasicThemeManager` static accessors to allow dynamic runtime theme switching without recreating views.
+- Composite widgets (e.g., Button, Input) typically extend `FrameLayout` to separate structural layers (such as shadow bases or background containers) from interactive content views.
+- All components consume a shared set of XML attributes defined in the `BasicView` styleable (e.g., `basicVariant`, `basicDisabled`) rather than defining component-specific custom attributes.
+- Visual state changes (pressed, disabled, focused) are handled by updating `Drawable` backgrounds via `BasicDrawableFactory` instead of using XML selector resources.

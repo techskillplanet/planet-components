@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { TspListItem } from '/basic-controls-react-native';
+import { TspListItem } from '@techskillplanet/planet-components-react-native';
 import { componentDescriptions, componentGroups } from '../data/componentDocs';
 
 export function HomePage({ theme, onOpenComponent }) {

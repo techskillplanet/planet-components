@@ -187,13 +187,17 @@ body {
 .bc-button {
   position: relative;
   min-width: 116px;
-  height: 51px;
+  height: var(--bc-button-height, 51px);
   padding: 0;
   border: 0;
   color: var(--bc-text-primary);
   background: transparent;
   cursor: pointer;
   font: inherit;
+}
+
+.bc-button--flat {
+  height: var(--bc-button-face-height, 46px);
 }
 
 .bc-button__shadow,
@@ -205,20 +209,26 @@ body {
 }
 
 .bc-button__shadow {
-  top: 5px;
+  top: var(--bc-shadow-control-island-lift-y, 5px);
   bottom: 0;
+  display: var(--bc-button-raised-shadow-display, block);
   background: var(--bc-border-default);
 }
 
 .bc-button__face {
   top: 0;
   display: flex;
-  height: 46px;
+  height: var(--bc-button-face-height, 46px);
   align-items: center;
   justify-content: center;
   border: 1px solid var(--bc-border-default);
   background: var(--bc-surface-raised);
   font-weight: 800;
+  transition: transform 120ms ease;
+}
+
+.bc-button:active:not(.bc-disabled):not(.bc-button--flat) .bc-button__face {
+  transform: translateY(var(--bc-pressed-drop-y, 2px));
 }
 
 .bc-button--primary .bc-button__face {
@@ -529,13 +539,14 @@ body {
   top: 0;
   z-index: 2;
   display: flex;
-  min-height: 56px;
+  min-height: calc(56px + env(safe-area-inset-top, 0px));
   width: 100%;
-  max-width: 430px;
+  max-width: none;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  background: var(--bc-page-start);
+  padding-top: env(safe-area-inset-top, 0px);
+  margin: 0;
+  background: var(--bc-surface-raised, var(--bc-page-start));
   border-bottom: 1px solid color-mix(in srgb, var(--bc-border-default) 70%, transparent);
 }
 
@@ -559,19 +570,19 @@ body {
 .bc-bottom-tab,
 .bc-sticky-footer {
   position: fixed;
-  right: auto;
-  left: 50%;
-  width: var(--bc-shell-width);
+  right: 0;
+  left: 0;
+  width: 100%;
   z-index: 3;
-  transform: translateX(-50%);
+  transform: none;
   background: var(--bc-surface-raised);
 }
 
 .bc-bottom-tab {
   bottom: 0;
   display: flex;
-  min-height: calc(68px + env(safe-area-inset-bottom));
-  padding-bottom: env(safe-area-inset-bottom);
+  min-height: calc(68px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   border-top: 1px solid var(--bc-border-default);
 }
 

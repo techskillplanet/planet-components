@@ -1,0 +1,19 @@
+schema_version: 1
+module_path: ""
+title: TechSkillPlanet Cross-Platform Design System
+scope:
+    - README.md
+    - CONTRIBUTING.md
+    - PUBLISHING.md
+    - AGENTS.md
+    - .gitignore
+    - component_contract.json
+    - design/
+    - docs/
+    - tools/
+    - .agents/
+    - .claude/
+    - LICENSE
+source_files: []
+depends_on: []
+related_to: []

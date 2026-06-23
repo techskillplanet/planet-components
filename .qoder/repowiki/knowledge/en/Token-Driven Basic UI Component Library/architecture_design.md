@@ -1,0 +1,5 @@
+- **Entry Point**: `BasicThemeManager` initializes the library by parsing `color_token.json` and `style_token.json` from assets into static `BasicColors` and `BasicStyle` singletons.
+- **Theming Layer**: `BasicTokenResolver` handles JSON path traversal, reference resolution (e.g., `{primitive.sky.brandPrimary}`), and unit conversion (dp/sp to px) for the theme layer.
+- **Component Layer**: Widgets (e.g., `BasicButton`, `BasicInputView`) extend standard Android Views (often `FrameLayout` for composite structures) and rely on `BasicThemeManager` for styling.
+- **Rendering Utility**: `BasicDrawableFactory` centralizes the creation of `GradientDrawable` and `StateListDrawable` instances, ensuring consistent rounded corners, strokes, and state handling across all components.
+- **Configuration**: A unified `BasicView` styleable in `attrs.xml` defines common XML attributes (`basicVariant`, `basicText`, `basicDisabled`) consumed by all components.

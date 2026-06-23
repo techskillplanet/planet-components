@@ -1,4 +1,4 @@
-const { getTheme } = require('../../basic-controls/theme/theme');
+const { getTheme } = require('../../planet-components/theme/theme');
 
 Page({
   data: {

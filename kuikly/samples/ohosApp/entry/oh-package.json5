@@ -1,0 +1,7 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "HarmonyOS entry module for the Kuikly sample host.",
+  "main": "index.ets",
+  "dependencies": {}
+}

@@ -1,0 +1,1 @@
+SwiftUI framework with Swift 5.9 tooling, targeting iOS 15+ and macOS 13+.

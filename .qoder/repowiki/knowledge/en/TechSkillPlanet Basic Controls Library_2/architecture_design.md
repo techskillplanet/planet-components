@@ -1,0 +1,4 @@
+- The module is structured as a Swift Package (`TechSkillPlanetBasicControls`) containing the core component library.
+- Components are defined as public `struct`s conforming to the `View` protocol in `BasicControls.swift`, ensuring a declarative API.
+- Theming is decoupled via the `StarPlanetTheme` struct, which defines color palettes (e.g., `sky`, `night`, `mint`) injected into components.
+- A separate sample package (`TechSkillPlanetBasicControlsSamples`) depends on the library to provide interactive documentation and usage examples.

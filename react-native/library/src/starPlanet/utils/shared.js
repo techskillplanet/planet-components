@@ -1,15 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { starPlanetTheme } from '../theme';
+import { resolveTheme } from '../theme';
 
-export const withTheme = theme => theme || starPlanetTheme;
+export const withTheme = theme => theme || resolveTheme();
+
 export const clamp = (value, min, max) => Math.max(min, Math.min(max, Number(value) || min));
 export const optionText = option => typeof option === 'object' && option !== null ? option.title || option.text || option.label || option.value : option;
 
 export const styles = StyleSheet.create({
   full: { width: '100%' },
-  button: { height: 51, minWidth: 116 },
-  buttonShadow: { position: 'absolute', left: 0, right: 0, top: 5, bottom: 0, borderRadius: 999 },
-  buttonFace: { height: 46, borderRadius: 999, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
+  button: { minWidth: 116, position: 'relative' },
+  buttonShadow: { position: 'absolute', left: 0, right: 0, bottom: 0, borderRadius: 999 },
+  buttonFace: { borderRadius: 999, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
   buttonText: { fontSize: 15, fontWeight: '800' },
   disabled: { opacity: 0.45 },
   card: { width: '100%', borderRadius: 28, borderWidth: 1, padding: 20 },
@@ -28,7 +29,7 @@ export const styles = StyleSheet.create({
   inline: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   progress: { height: 10, borderRadius: 999, overflow: 'hidden' },
   progressFill: { height: 10, borderRadius: 999 },
-  topBar: { minHeight: 56, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', borderBottomWidth: 1 },
+  topBar: { minHeight: 56, width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', borderBottomWidth: 1 },
   topBack: { width: 44, minHeight: 44, justifyContent: 'center' },
   bottomTab: { minHeight: 68, flexDirection: 'row', borderWidth: 1 },
   bottomItem: { flex: 1, alignItems: 'center', justifyContent: 'center' },
@@ -55,4 +56,3 @@ export const styles = StyleSheet.create({
   modalPanel: { borderWidth: 1, borderRadius: 24, padding: 22, gap: 14 },
   modalActions: { flexDirection: 'row', gap: 10 },
 });
-

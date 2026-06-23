@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "基础组件",
+  "disableScroll": false,
+  "usingComponents": {
+    "custom-wrapper": "../../custom-wrapper",
+    "comp": "../../comp"
+  }
+}

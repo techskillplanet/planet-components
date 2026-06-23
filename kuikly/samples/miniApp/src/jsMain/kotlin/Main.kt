@@ -34,8 +34,18 @@ fun renderView(json: dynamic) {
         size = SizeI(json.width.unsafeCast<Int>(), json.height.unsafeCast<Int>())
     }
 
-    // Pass raw json object directly to initPage, which will wrap it in FastMutableMap internally
-    MiniDocument.initPage(json) { pageId: Int, pageName: String, paramsMap: FastMutableMap<String, Any> ->
+    val options = FastMutableMap<String, Any>(mutableMapOf<String, Any>())
+    if (json.pageName != null) {
+        options["pageName"] = json.pageName.unsafeCast<String>()
+    }
+    if (json.width != null) {
+        options["width"] = json.width.unsafeCast<Int>()
+    }
+    if (json.height != null) {
+        options["height"] = json.height.unsafeCast<Int>()
+    }
+
+    MiniDocument.initPage(options) { pageId: Int, pageName: String, paramsMap: FastMutableMap<String, Any> ->
         val systemInfo = NativeApi.plat.getSystemInfoSync()
         val isAndroid = systemInfo.platform == "android"
         val params = paramsMap["param"].unsafeCast<FastMutableMap<String, Any>>()
@@ -64,5 +74,3 @@ fun renderView(json: dynamic) {
 fun initApp(options: dynamic = js("{}")) {
     App.initApp(options)
 }
-
-

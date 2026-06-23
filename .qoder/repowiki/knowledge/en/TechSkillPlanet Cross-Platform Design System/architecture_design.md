@@ -1,0 +1,4 @@
+- Centralized Contract: `component_contract.json` and `design/tokens/` define the single source of truth for component APIs, variants, and semantic theme tokens (e.g., `brandPrimary`, `surfaceRaised`).
+- Structural Parity: Every child module adheres to a strict `library` (publishable artifact) and `samples` (integration test) directory split, verified by `tools/check-structure.cjs`.
+- Token-Driven Implementation: Children consume shared JSON tokens to ensure visual consistency (Sky Planet theme) while maintaining platform-native rendering engines (Android View, SwiftUI, Flutter, etc.).
+- Agent-Governed Workflow: `.agents/skills/` and `AGENTS.md` enforce cross-stack engineering rules, such as one-component-per-file and centralized routing in samples.

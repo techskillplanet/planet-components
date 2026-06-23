@@ -1,5 +1,5 @@
 {
-  "$schema": "https://basic-controls.local/schemas/color-token.schema.json",
+  "$schema": "https://planet-components.local/schemas/color-token.schema.json",
   "meta": {
     "name": "Basic Controls Sky Planet Color Tokens",
     "version": "0.1.0",
@@ -55,6 +55,266 @@
           "white": "#FFFFFF",
           "black": "#000000",
           "scrimBlue": "#173A6259",
+          "transparent": "#00000000"
+        }
+      },
+      "semantic": {
+        "brand": {
+          "primary": "{primitive.sky.brandPrimary}",
+          "primaryHover": "{primitive.sky.brandHover}",
+          "primaryActive": "{primitive.sky.brandPressed}",
+          "primarySubtle": "{primitive.sky.brandSubtle}"
+        },
+        "status": {
+          "success": "{primitive.aurora.success}",
+          "successHover": "{primitive.aurora.successHover}",
+          "successActive": "{primitive.aurora.successPressed}",
+          "warning": "{primitive.sun.highlight}",
+          "warningHover": "{primitive.sun.highlightSoft}",
+          "warningActive": "{primitive.sun.highlight}",
+          "danger": "{primitive.coral.danger}",
+          "dangerHover": "{primitive.coral.dangerHover}",
+          "dangerActive": "{primitive.coral.dangerPressed}"
+        },
+        "text": {
+          "primary": "{primitive.ink.textPrimary}",
+          "secondary": "{primitive.ink.textSecondary}",
+          "tertiary": "{primitive.ink.textTertiary}",
+          "inverse": "{primitive.neutral.white}",
+          "disabled": "{primitive.ink.textTertiary}",
+          "dialogTitle": "{primitive.ink.textPrimary}",
+          "dialogBody": "{primitive.ink.textSecondary}"
+        },
+        "background": {
+          "page": "{primitive.sky.pageStart}",
+          "pageGradientEnd": "{primitive.sky.pageEnd}",
+          "surface": "{primitive.cloud.surface}",
+          "surfaceRaised": "{primitive.cloud.white}",
+          "surfaceSubtle": "{primitive.cloud.soft}",
+          "surfaceDisabled": "{primitive.cloud.border}",
+          "menu": "{primitive.cloud.white}",
+          "modalScrim": "{primitive.neutral.scrimBlue}"
+        },
+        "border": {
+          "default": "{primitive.sky.borderSoft}",
+          "light": "{primitive.cloud.border}",
+          "control": "{primitive.sky.borderSoft}",
+          "focus": "{primitive.sky.brandPrimary}",
+          "warning": "{primitive.sun.highlight}",
+          "danger": "{primitive.coral.danger}"
+        },
+        "control": {
+          "button": {
+            "defaultBackground": "{primitive.cloud.white}",
+            "defaultText": "{primitive.ink.textPrimary}",
+            "primaryBackground": "{primitive.sky.brandPrimary}",
+            "primaryText": "{primitive.neutral.white}",
+            "raisedShadow": "{primitive.sky.borderSoft}"
+          },
+          "checkbox": {
+            "background": "{primitive.cloud.surface}",
+            "checkedBackground": "{primitive.sky.brandPrimary}"
+          },
+          "radio": {
+            "checkedDot": "{primitive.sky.brandPrimary}"
+          },
+          "switch": {
+            "offBackground": "{primitive.cloud.border}",
+            "offBorder": "{primitive.sky.borderSoft}",
+            "offText": "{primitive.ink.textSecondary}",
+            "onBackground": "{primitive.sky.brandHover}",
+            "onBorder": "{primitive.sky.brandPrimary}",
+            "onText": "{primitive.neutral.white}",
+            "handleBackground": "{primitive.cloud.surface}",
+            "handleBorder": "{primitive.sky.borderSoft}",
+            "handleCheckedBorder": "{primitive.sky.brandPrimary}",
+            "loadingSpinner": "{primitive.sky.brandPrimary}"
+          },
+          "select": {
+            "selectedOptionBackground": "{primitive.sky.brandSubtle}"
+          },
+          "loading": {
+            "stripePrimary": "{primitive.sky.brandHover}",
+            "stripeSecondary": "{primitive.aurora.success}",
+            "border": "{primitive.sky.borderSoft}"
+          }
+        }
+      }
+    },
+    "star_planet_night": {
+      "primitive": {
+        "sky": {
+          "pageEnd": "#141E32",
+          "pageMist": "#182238",
+          "brandSubtle": "#1E3A5F",
+          "pageStart": "#0F1A2E",
+          "borderSoft": "#2A3F5C",
+          "brandHover": "#5CB8FF",
+          "brandPrimary": "#31A8FF",
+          "brandPressed": "#1479D6"
+        },
+        "cloud": {
+          "white": "#1E2D45",
+          "surface": "#182438",
+          "soft": "#22324A",
+          "border": "#2E4460",
+          "mist": "#1A2840"
+        },
+        "sun": {
+          "highlightSoft": "#FFE79A",
+          "highlight": "#FFD166",
+          "soft": "#3D3520"
+        },
+        "aurora": {
+          "successHover": "#70E5DE",
+          "success": "#43CFC7",
+          "successPressed": "#16A9A1"
+        },
+        "coral": {
+          "dangerHover": "#FF8A95",
+          "danger": "#FF6B7A",
+          "dangerPressed": "#E24C5C"
+        },
+        "ink": {
+          "textTertiary": "#7A94B0",
+          "textSecondary": "#B8D0E8",
+          "textPrimary": "#E8F4FF",
+          "textStrong": "#FFFFFF"
+        },
+        "neutral": {
+          "white": "#FFFFFF",
+          "black": "#000000",
+          "scrimBlue": "#00000099",
+          "transparent": "#00000000"
+        }
+      },
+      "semantic": {
+        "brand": {
+          "primary": "{primitive.sky.brandPrimary}",
+          "primaryHover": "{primitive.sky.brandHover}",
+          "primaryActive": "{primitive.sky.brandPressed}",
+          "primarySubtle": "{primitive.sky.brandSubtle}"
+        },
+        "status": {
+          "success": "{primitive.aurora.success}",
+          "successHover": "{primitive.aurora.successHover}",
+          "successActive": "{primitive.aurora.successPressed}",
+          "warning": "{primitive.sun.highlight}",
+          "warningHover": "{primitive.sun.highlightSoft}",
+          "warningActive": "{primitive.sun.highlight}",
+          "danger": "{primitive.coral.danger}",
+          "dangerHover": "{primitive.coral.dangerHover}",
+          "dangerActive": "{primitive.coral.dangerPressed}"
+        },
+        "text": {
+          "primary": "{primitive.ink.textPrimary}",
+          "secondary": "{primitive.ink.textSecondary}",
+          "tertiary": "{primitive.ink.textTertiary}",
+          "inverse": "{primitive.neutral.white}",
+          "disabled": "{primitive.ink.textTertiary}",
+          "dialogTitle": "{primitive.ink.textPrimary}",
+          "dialogBody": "{primitive.ink.textSecondary}"
+        },
+        "background": {
+          "page": "{primitive.sky.pageStart}",
+          "pageGradientEnd": "{primitive.sky.pageEnd}",
+          "surface": "{primitive.cloud.surface}",
+          "surfaceRaised": "{primitive.cloud.white}",
+          "surfaceSubtle": "{primitive.cloud.soft}",
+          "surfaceDisabled": "{primitive.cloud.border}",
+          "menu": "{primitive.cloud.white}",
+          "modalScrim": "{primitive.neutral.scrimBlue}"
+        },
+        "border": {
+          "default": "{primitive.sky.borderSoft}",
+          "light": "{primitive.cloud.border}",
+          "control": "{primitive.sky.borderSoft}",
+          "focus": "{primitive.sky.brandPrimary}",
+          "warning": "{primitive.sun.highlight}",
+          "danger": "{primitive.coral.danger}"
+        },
+        "control": {
+          "button": {
+            "defaultBackground": "{primitive.cloud.white}",
+            "defaultText": "{primitive.ink.textPrimary}",
+            "primaryBackground": "{primitive.sky.brandPrimary}",
+            "primaryText": "{primitive.neutral.white}",
+            "raisedShadow": "{primitive.sky.borderSoft}"
+          },
+          "checkbox": {
+            "background": "{primitive.cloud.surface}",
+            "checkedBackground": "{primitive.sky.brandPrimary}"
+          },
+          "radio": {
+            "checkedDot": "{primitive.sky.brandPrimary}"
+          },
+          "switch": {
+            "offBackground": "{primitive.cloud.border}",
+            "offBorder": "{primitive.sky.borderSoft}",
+            "offText": "{primitive.ink.textSecondary}",
+            "onBackground": "{primitive.sky.brandHover}",
+            "onBorder": "{primitive.sky.brandPrimary}",
+            "onText": "{primitive.neutral.white}",
+            "handleBackground": "{primitive.cloud.surface}",
+            "handleBorder": "{primitive.sky.borderSoft}",
+            "handleCheckedBorder": "{primitive.sky.brandPrimary}",
+            "loadingSpinner": "{primitive.sky.brandPrimary}"
+          },
+          "select": {
+            "selectedOptionBackground": "{primitive.sky.brandSubtle}"
+          },
+          "loading": {
+            "stripePrimary": "{primitive.sky.brandHover}",
+            "stripeSecondary": "{primitive.aurora.success}",
+            "border": "{primitive.sky.borderSoft}"
+          }
+        }
+      }
+    },
+    "mint_planet_day": {
+      "primitive": {
+        "sky": {
+          "pageEnd": "#F8FFFC",
+          "pageMist": "#F0FDF9",
+          "brandSubtle": "#E6FFF4",
+          "pageStart": "#DFFAF2",
+          "borderSoft": "#BDEFE2",
+          "brandHover": "#4FD4C0",
+          "brandPrimary": "#20BFA9",
+          "brandPressed": "#0C8F7E"
+        },
+        "cloud": {
+          "white": "#FFFFFF",
+          "surface": "#FEFFFD",
+          "soft": "#F3FFFA",
+          "border": "#D7F5EC",
+          "mist": "#C8EFE4"
+        },
+        "sun": {
+          "highlightSoft": "#FFE79A",
+          "highlight": "#FFD166",
+          "soft": "#FFF7D7"
+        },
+        "aurora": {
+          "successHover": "#5FD9A8",
+          "success": "#35C58B",
+          "successPressed": "#1F9E6C"
+        },
+        "coral": {
+          "dangerHover": "#FF8A95",
+          "danger": "#FF6B7A",
+          "dangerPressed": "#E24C5C"
+        },
+        "ink": {
+          "textTertiary": "#6C938D",
+          "textSecondary": "#2F6B63",
+          "textPrimary": "#123F3A",
+          "textStrong": "#0A2E2A"
+        },
+        "neutral": {
+          "white": "#FFFFFF",
+          "black": "#000000",
+          "scrimBlue": "#123F3A59",
           "transparent": "#00000000"
         }
       },

@@ -1,0 +1,1 @@
+Vue 3 (peer dependency >=3) using Composition API and render functions (no SFCs). Published as `@techskillplanet/planet-components-vue` via npm.

@@ -1,0 +1,3 @@
+- Components accept a `theme` property of type Object to receive design tokens from the parent context or global state.
+- Component logic is encapsulated in `.js` files using the `Component({})` constructor, separating behavior from WXML templates and WXSS styles.
+- Theme definitions are centralized in `theme.js` as constant objects with consistent token keys (e.g., `textPrimary`, `brandPrimary`) across different visual themes.

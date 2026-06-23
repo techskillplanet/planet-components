@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: react_web
+title: Star Planet Design System Components
+scope:
+    - react-web/
+source_files: []
+depends_on: []
+related_to:
+    - path: vue_web
+    - path: miniprogram

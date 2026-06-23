@@ -18,7 +18,7 @@ Load [references/token-view-workflow.md](references/token-view-workflow.md) when
 
 ## Workflow
 
-1. Inspect `android-view/library` and `android-view/samples` before writing code.
+1. Inspect `android/library` and `android/samples` before writing code.
    - Find Gradle structure, package names, SDK versions, token files, and existing sample coverage.
    - Preserve conventions and avoid unrelated refactors.
 
@@ -43,7 +43,7 @@ Load [references/token-view-workflow.md](references/token-view-workflow.md) when
    - Prefer token additions over one-off Java constants when a visual value is themeable.
 
 5. Add or update runnable samples.
-   - Samples must depend on `android-view/library`.
+   - Samples must depend on `android/library`.
    - Samples should cover all component states.
    - Include real scenarios: default, selected, disabled, loading, error, success, warning, empty, refresh/load-more.
 
@@ -89,7 +89,7 @@ When referencing animal-island-ui:
 
 ```bash
 node -e "JSON.parse(require('fs').readFileSync('design/tokens/color_token.json','utf8')); JSON.parse(require('fs').readFileSync('design/tokens/style_token.json','utf8')); console.log('token json ok')"
-cd android-view && ./gradlew :library:assembleRelease :samples:assembleDebug
-rg -n "Compose|compose|kotlin|org.jetbrains|androidx.appcompat|material" android-view -g '!**/build/**' -g '!**/.gradle/**'
+cd android && ./gradlew :library:assembleRelease :samples:assembleDebug
+rg -n "Compose|compose|kotlin|org.jetbrains|androidx.appcompat|material" android -g '!**/build/**' -g '!**/.gradle/**'
 ```
 

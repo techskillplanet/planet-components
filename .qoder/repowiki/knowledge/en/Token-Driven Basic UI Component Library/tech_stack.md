@@ -1,0 +1,1 @@
+Traditional Android View system (Java) with a custom JSON-based design token engine; no third-party UI or JSON libraries are used (relies on `org.json` and `android.graphics.drawable`).

@@ -1,0 +1,1 @@
+Shared JSON-based design token system (`color_token.json`, `style_token.json`) and machine-readable component contract (`component_contract.json`) consumed by all eight platform-specific implementations.

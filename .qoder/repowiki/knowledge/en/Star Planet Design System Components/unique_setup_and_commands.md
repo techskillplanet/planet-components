@@ -1,0 +1,3 @@
+- `npm run test`: Executes Vitest suite in jsdom environment.
+- `npm run pack:dry`: Dry-run for npm packaging to verify included files.
+- `npm run check`: Syntax check for entry point.

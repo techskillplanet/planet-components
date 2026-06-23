@@ -1,0 +1,4 @@
+- The module is split into a publishable library (`library/`) and a sample app (`samples/`).
+- The library exports components via `src/starPlanet/index.js`, which re-exports from `components/index.js` and theme utilities from `theme.js`.
+- Components consume a shared theme system (`resolveTheme`) and base styles defined in `utils/shared.js`.
+- The sample app uses Expo, linking to the local library via `file:../library`, and demonstrates navigation using custom top/bottom bars from the library.

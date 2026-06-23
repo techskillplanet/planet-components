@@ -1,0 +1,112 @@
+# 知识卡导出索引文件
+schema_version: 1
+locale: en-US
+branch: main
+exported_at: "2026-06-10T02:50:41Z"
+modules:
+    "":
+        dir_name: TechSkillPlanet Cross-Platform Design System
+        title: TechSkillPlanet Cross-Platform Design System
+        scope:
+            - README.md
+            - CONTRIBUTING.md
+            - PUBLISHING.md
+            - AGENTS.md
+            - .gitignore
+            - component_contract.json
+            - design/
+            - docs/
+            - tools/
+            - .agents/
+            - .claude/
+            - LICENSE
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    android_view:
+        dir_name: Token-Driven Basic UI Component Library
+        title: Token-Driven Basic UI Component Library
+        scope:
+            - android/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: flutter
+            - path: ios_swiftui
+    flutter:
+        dir_name: TechSkillPlanet Basic Controls Library
+        title: TechSkillPlanet Basic Controls Library
+        scope:
+            - flutter/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: android_view
+            - path: ios_swiftui
+            - path: react_native
+            - path: kuikly
+    ios_swiftui:
+        dir_name: TechSkillPlanet Basic Controls Library_2
+        title: TechSkillPlanet Basic Controls Library
+        scope:
+            - ios-swiftui/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: android_view
+            - path: flutter
+    kuikly:
+        dir_name: Phonics Learning Application
+        title: Phonics Learning Application
+        scope:
+            - kuikly/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: flutter
+    miniprogram:
+        dir_name: WeChat Mini Program UI Component Library
+        title: WeChat Mini Program UI Component Library
+        scope:
+            - miniprogram/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: react_web
+    react_native:
+        dir_name: TechSkillPlanet React Native Component Library
+        title: TechSkillPlanet React Native Component Library
+        scope:
+            - react-native/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: flutter
+    react_web:
+        dir_name: Star Planet Design System Components
+        title: Star Planet Design System Components
+        scope:
+            - react-web/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: vue_web
+            - path: miniprogram
+    vue_web:
+        dir_name: Vue Component Library & Theme System
+        title: Vue Component Library & Theme System
+        scope:
+            - vue-web/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: react_web

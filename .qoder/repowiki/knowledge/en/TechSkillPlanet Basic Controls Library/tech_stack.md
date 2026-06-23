@@ -1,0 +1,1 @@
+Flutter SDK (>=3.3.0 <4.0.0) with Material Design foundation, using `flutter_lints` for code quality enforcement.

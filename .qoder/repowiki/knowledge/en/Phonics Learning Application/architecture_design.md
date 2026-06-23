@@ -1,0 +1,4 @@
+- Built as a Kotlin Multiplatform library (`library/shared`) targeting Android, iOS, and JS (MiniApp) using the Kuikly framework for UI rendering.
+- Follows a layered architecture: `data` (static `PhonemeRepository`), `modules` (abstract interfaces for Audio, Recorder, Storage), `pages` (Compose UI screens like `LearnPage`, `MapPage`), and `controls` (reusable UI components).
+- State management is centralized in `PhonicsAppState`, which coordinates between the UI and platform-specific module implementations.
+- Platform-specific entry points are provided in `samples/miniApp` (JS/Kotlin) and `samples/ios` (Swift), delegating rendering to the shared Kuikly engine.

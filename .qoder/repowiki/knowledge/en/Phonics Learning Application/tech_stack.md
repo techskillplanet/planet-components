@@ -1,0 +1,1 @@
+Kotlin Multiplatform (KMP) with JetBrains Compose for UI, Kuikly Open SDK (v2.4.0) for cross-platform rendering and bridge capabilities, and Gradle with KSP for build and code generation.

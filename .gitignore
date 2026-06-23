@@ -1,15 +1,55 @@
+# OS
 .DS_Store
+Thumbs.db
+
+# Dependencies
 node_modules/
+
+# Build outputs
 build/
 .gradle/
+.cxx/
+dist/
+*.apk
+*.aab
+*.aar
+*.ipa
+*.tgz
+
+# IDE / editor
 .idea/
+*.iml
+.vscode/
+.cursor/
+
+# Flutter / Dart
 .dart_tool/
+.packages
+pubspec.lock
+
+# iOS / Swift
 .build/
 DerivedData/
-*.iml
-*.apk
-*.aar
-*.tgz
-pubspec.lock
-package-lock.json
+*.xcuserstate
+xcuserdata/
 
+# Android SDK path (machine-local; never commit)
+local.properties
+**/local.properties
+
+# Secrets and credentials
+*.jks
+*.keystore
+*.p12
+.env
+.env.*
+android/gradle.properties
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Lock files (install locally in samples; not part of library surface)
+package-lock.json

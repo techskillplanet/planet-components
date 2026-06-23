@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/BasicControlsSample/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#DDF4FF",
+    "navigationBarTitleText": "技趣星球基础组件",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#DDF4FF",
+    "enablePullDownRefresh": false
+  },
+  "permission": {
+    "scope.record": {
+      "desc": "用于组件库录音相关能力预览"
+    }
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

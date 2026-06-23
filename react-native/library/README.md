@@ -9,7 +9,14 @@ React Native implementation for the Star Planet basic controls library.
 - `src/starPlanet/components/*.js`
 - `src/starPlanet/utils/shared.js`
 
-Package name: `@techskillplanet/basic-controls-react-native`.
+Package name: `@techskillplanet/planet-components-react-native`.
+
+Theme API (aligned with Android `style_token.json` / `color_token.json`):
+
+- `starPlanetThemes`: color presets (`sky`, `night`, `mint`)
+- `starPlanetStyleProfiles`: style presets (`island_raised`, `island_flat`)
+- `builtInThemePresets`: 6 sample presets
+- `resolveTheme(colorKey, styleProfile)`: merged runtime theme object
 
 ## Component File Rule
 

@@ -1,0 +1,9 @@
+{
+  "desc": "Kuikly sample sitemap",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}

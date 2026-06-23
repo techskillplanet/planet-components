@@ -1,0 +1,4 @@
+- All components import shared utilities (React, h, cx, themed, starPlanetTheme) from a single `_shared.js` module rather than individual imports.
+- Components accept a `theme` prop defaulting to `starPlanetTheme` and apply it via the `themed()` helper to inject CSS custom properties into the root element's style.
+- Class names follow a BEM-like convention prefixed with `bc-` (e.g., `bc-button--primary`, `bc-card--selected`) managed by the `cx` utility.
+- Functional components use `h()` (alias for `React.createElement`) instead of JSX syntax for element creation.

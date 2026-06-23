@@ -1,5 +1,5 @@
 {
-  "name": "@techskillplanet/basic-controls-react-native",
+  "name": "@techskillplanet/planet-components-react-native",
   "version": "0.1.0",
   "description": "TechSkillPlanet themed React Native basic controls library.",
   "main": "src/starPlanet/index.js",

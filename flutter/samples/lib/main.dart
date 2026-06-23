@@ -1,4 +1,4 @@
-import 'package:tech_skill_planet_basic_controls/tech_skill_planet_basic_controls.dart';
+import 'package:tech_skill_planet_components/tech_skill_planet_components.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const BasicControlsExampleApp());
@@ -70,26 +70,27 @@ class _BasicControlsExampleAppState extends State<BasicControlsExampleApp> {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: theme.pageStart,
-        body: SafeArea(
-          child: Column(children: [
-            TspTopBar(title: title, showBack: selectedDoc != null, theme: theme, onBack: () => setState(() => selectedDoc = null)),
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.fromLTRB(18, 18, 18, selectedDoc == null ? 96 : 18),
-                children: selectedDoc == null
-                    ? (tab == 'settings' ? _settings(theme) : _componentList(theme))
-                    : _componentDetail(selectedDoc!, theme),
-              ),
+        body: Column(children: [
+          TspTopBar(title: title, showBack: selectedDoc != null, theme: theme, onBack: () => setState(() => selectedDoc = null)),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.fromLTRB(18, 18, 18, selectedDoc == null ? 96 : 18),
+              children: selectedDoc == null
+                  ? (tab == 'settings' ? _settings(theme) : _componentList(theme))
+                  : _componentDetail(selectedDoc!, theme),
             ),
-            if (selectedDoc == null)
-              TspBottomTab(
+          ),
+          if (selectedDoc == null)
+            SafeArea(
+              top: false,
+              child: TspBottomTab(
                 tabs: const [TspTabItem(key: 'learn', icon: Icons.home_outlined, title: '学习'), TspTabItem(key: 'settings', icon: Icons.settings_outlined, title: '设置')],
                 selectedKey: tab,
                 theme: theme,
                 onSelect: (value) => setState(() => tab = value),
               ),
-          ]),
-        ),
+            ),
+        ]),
       ),
     );
   }

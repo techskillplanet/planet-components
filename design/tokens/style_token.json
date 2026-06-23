@@ -1,5 +1,5 @@
 {
-  "$schema": "https://basic-controls.local/schemas/style-token.schema.json",
+  "$schema": "https://planet-components.local/schemas/style-token.schema.json",
   "meta": {
     "name": "Basic Controls Sky Planet Style Tokens",
     "version": "0.1.0",
@@ -347,7 +347,8 @@
       "cardShape": "cardOrganic",
       "dialogShape": "dialogOrganic",
       "clickableShadow": "controlIslandLift",
-      "pressedShadow": "controlPressed"
+      "pressedShadow": "controlPressed",
+      "buttonRaisedShadowEnabled": true
     }
   },
   "shape": {
@@ -355,6 +356,36 @@
       "type": "rounded_cloud_card",
       "figmaNote": "Use a 30-36px rounded white card with light blue border and soft sky shadow.",
       "cornerFallback": 36
+    }
+  },
+  "themes": {
+    "island_raised": {
+      "islandStyle": {
+        "rules": {
+          "buttonRaisedShadowEnabled": true
+        }
+      },
+      "shadow": {
+        "controlIslandLift": { "y": 5 },
+        "controlPressed": { "y": 2 }
+      },
+      "motion": {
+        "interaction": { "pressedDropY": 2 }
+      }
+    },
+    "island_flat": {
+      "islandStyle": {
+        "rules": {
+          "buttonRaisedShadowEnabled": false
+        }
+      },
+      "shadow": {
+        "controlIslandLift": { "y": 0 },
+        "controlPressed": { "y": 0 }
+      },
+      "motion": {
+        "interaction": { "pressedDropY": 0 }
+      }
     }
   }
 }

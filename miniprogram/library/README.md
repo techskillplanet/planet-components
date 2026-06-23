@@ -1,6 +1,6 @@
 # TechSkillPlanet Basic Controls · 微信小程序版
 
-Package name: `@techskillplanet/basic-controls-miniprogram`.
+Package name: `@techskillplanet/planet-components-miniprogram`.
 
 本目录是可独立分发的小程序组件库；业务示例在外层 `pages/basic-samples`，不要把音标业务页面放进组件库目录。
 

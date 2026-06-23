@@ -10,12 +10,52 @@ Runnable Expo sample project for the React Native Basic Controls package.
 - `src/pages/ComponentDetailPage.js`: one detail/demo page component for component previews.
 - `src/pages/SettingsPage.js`: theme and language settings page.
 - `src/data/componentDocs.js`: grouped component metadata.
+- `android/`: native Android project for `expo run:android`.
+- `ios/`: native iOS project for `expo run:ios`.
 
 ## Run
 
 ```bash
 npm install
 npm run start
+```
+
+### Android
+
+Requires Android SDK and a device/emulator.
+
+```bash
+npm run android
+```
+
+Or build the native project directly:
+
+```bash
+cd android && ./gradlew :app:assembleDebug
+```
+
+### iOS
+
+Requires Xcode and CocoaPods on macOS.
+
+```bash
+cd ios && pod install
+npm run ios
+```
+
+## Theme Switch
+
+Settings tab exposes 6 built-in presets aligned with Android View:
+
+- Sky / Star / Mint color themes
+- `island_raised` (button raised shadow) or `island_flat` (flat, no shadow)
+
+Library API:
+
+```javascript
+import { resolveTheme, builtInThemePresets } from '@techskillplanet/planet-components-react-native';
+
+const theme = resolveTheme('sky', 'island_flat');
 ```
 
 ## Structure Check

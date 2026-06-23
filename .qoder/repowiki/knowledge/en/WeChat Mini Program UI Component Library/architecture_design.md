@@ -1,0 +1,5 @@
+- The module is structured as a standalone npm package (`@techskillplanet/planet-components-miniprogram`) with `components/`, `theme/`, and `i18n/` subdirectories.
+- Components (e.g., `bc-button`, `bc-alert`) follow the standard WeChat Mini Program structure (`.js`, `.json`, `.wxml`, `.wxss`) and accept a `theme` object via properties for dynamic styling.
+- `theme/theme.js` exports multiple design token sets (sky, night, mint, sunrise) and helper functions, serving as the central styling authority.
+- `i18n/i18n.js` provides localization services, relying on an external `data/local.js` file for translation dictionaries.
+- The `samples/` directory acts as a consumer application, demonstrating how to inject global theme and i18n state from `app.js` into individual pages and components.

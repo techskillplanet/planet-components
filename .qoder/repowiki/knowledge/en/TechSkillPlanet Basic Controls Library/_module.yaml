@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: flutter
+title: TechSkillPlanet Basic Controls Library
+scope:
+    - flutter/
+source_files: []
+depends_on: []
+related_to:
+    - path: android_view
+    - path: ios_swiftui
+    - path: react_native
+    - path: kuikly

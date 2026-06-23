@@ -3,7 +3,7 @@
 ## Target Structure
 
 ```text
-android-view/
+android/
 ├── settings.gradle
 ├── build.gradle
 ├── library/

@@ -1,0 +1,3 @@
+- All public components use the 'Tsp' prefix (e.g., TspButton, TspCard) to namespace the library's API.
+- Components accept an optional `theme: StarPlanetTheme` parameter with a default value (typically `.sky`) to support consistent styling without mandatory configuration.
+- Interactive components like buttons and chips implement a `disabled` state that reduces opacity to 0.45 and prevents action execution.

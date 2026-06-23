@@ -1,0 +1,1 @@
+Provides a suite of traditional Android View components styled via JSON design tokens, supporting dynamic theming and consistent interaction patterns.

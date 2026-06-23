@@ -1,0 +1,3 @@
+- Components accept a `theme` prop defaulting to `starPlanetTheme` and apply styles via the `themed()` helper which maps theme tokens to CSS variables.
+- Class names follow a BEM-like pattern with a `bc-` prefix (e.g., `bc-button`, `bc-button--primary`) managed by the `cx()` utility.
+- All components import `h` and shared utilities from `./_shared.js` rather than directly from `vue` or `../theme.js`.

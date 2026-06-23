@@ -1,0 +1,1 @@
+A cross-platform phonics learning application providing interactive lessons, audio playback, and progress tracking for English pronunciation.

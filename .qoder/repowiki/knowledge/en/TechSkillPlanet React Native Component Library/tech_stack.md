@@ -1,0 +1,1 @@
+Uses Expo SDK ~52.0.0 and React Native 0.76.5 for the sample application, with the library targeting React Native >=0.72 as a peer dependency.

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { TspAlert, TspAmount, TspBadge, TspBottomTab, TspButton, TspCard, TspChip, TspEmpty, TspIconButton, TspInput, TspKeyValueLabel, TspListItem, TspModal, TspNotification, TspOptionSheet, TspPinInput, TspProgress, TspSelect, TspStepper, TspStickyFooter, TspSwitch, TspTabs, TspTextLink, TspToast, TspTopBar } from '/basic-controls-react-native';
+import { TspAlert, TspAmount, TspBadge, TspBottomTab, TspButton, TspCard, TspChip, TspEmpty, TspIconButton, TspInput, TspKeyValueLabel, TspListItem, TspModal, TspNotification, TspOptionSheet, TspPinInput, TspProgress, TspSelect, TspStepper, TspStickyFooter, TspSwitch, TspTabs, TspTextLink, TspToast, TspTopBar } from '@techskillplanet/planet-components-react-native';
 import { categoryOf, componentDescriptions } from '../data/componentDocs';
 
 export function ComponentDetailPage({ name, theme }) {
@@ -27,7 +27,7 @@ function preview(name, theme, s) {
     case 'OptionSheet': return <><TspButton text="Open OptionSheet" variant="primary" onPress={() => s.setShowSheet(true)} theme={theme} /><TspOptionSheet visible={s.showSheet} options={['A', 'B', 'C']} selectedIndex={s.selectedOption} theme={theme} onCancel={() => s.setShowSheet(false)} onSelect={index => { s.setSelectedOption(index); s.setShowSheet(false); }} /></>;
     case 'Switch': return <View style={{ gap: 10 }}><TspSwitch text="Switch" checked={s.checked} onChange={s.setChecked} theme={theme} /><TspSwitch text="Loading" checked loading theme={theme} /></View>;
     case 'Progress': return <View style={{ gap: 10 }}><TspProgress progress={38} theme={theme} /><TspProgress progress={68} variant="success" theme={theme} /><TspProgress progress={82} variant="danger" theme={theme} /></View>;
-    case 'TopBar': return <TspTopBar title="基础组件" showBack theme={theme} />;
+    case 'TopBar': return <TspTopBar title="基础组件" showBack theme={theme} immersive={false} />;
     case 'BottomTab': return <TspBottomTab tabs={[{ key: 'learn', title: '学习', icon: '⌂' }, { key: 'settings', title: '设置', icon: '⚙' }]} selectedKey="learn" theme={theme} />;
     case 'Tabs': return <TspTabs tabs={['全部', '已学', '未学']} selectedIndex={s.selectedTab} onSelect={s.setSelectedTab} theme={theme} />;
     case 'Amount': return <View style={{ gap: 10 }}><TspAmount symbol="$" value="128.80" cycle="month" theme={theme} /><TspAmount symbol="$" value="199.00" strikeThrough theme={theme} /></View>;

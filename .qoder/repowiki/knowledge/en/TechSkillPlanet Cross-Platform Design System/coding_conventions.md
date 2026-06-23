@@ -1,0 +1,4 @@
+- One component per source file and one sample page per file across all platforms.
+- Samples must depend on the local library artifact rather than duplicating implementation code.
+- Barrel/index files are restricted to exporting public APIs only.
+- Component props consistently include `variant`, `disabled`, and state indicators like `selected` or `checked`.

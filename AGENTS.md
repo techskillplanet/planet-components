@@ -24,7 +24,7 @@ This repository contains cross-platform basic component libraries for TechSkillP
 
 | Stack | Directory | Package target |
 | --- | --- | --- |
-| Android View | `android-view/` | Maven / Gradle |
+| Android View | `android/` | Maven / Gradle |
 | React Native | `react-native/` | npm |
 | React Web | `react-web/` | npm |
 | Vue Web | `vue-web/` | npm |

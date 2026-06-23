@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tech_skill_planet_basic_controls_example/main.dart';
+import 'package:tech_skill_planet_components_example/main.dart';
 
 void main() {
   testWidgets('基础组件示例工程可以渲染组件列表', (WidgetTester tester) async {

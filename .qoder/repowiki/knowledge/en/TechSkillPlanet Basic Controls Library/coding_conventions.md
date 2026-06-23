@@ -1,0 +1,3 @@
+- Components use the 'Tsp' prefix (e.g., TspButton, TspCard) to namespace the library's widgets and avoid conflicts with standard Flutter Material widgets.
+- All interactive components accept an optional `theme` parameter defaulting to `StarPlanetTheme.sky`, enabling consistent visual customization across the entire component set.
+- Disabled states are handled uniformly by wrapping the primary widget in an `Opacity` widget with reduced opacity (e.g., 0.45 or 0.55) rather than altering internal colors directly.

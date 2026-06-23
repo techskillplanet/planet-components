@@ -2,7 +2,7 @@
 
 Vue 3 Web implementation of the Star Planet base component contract.
 
-Package name: `@techskillplanet/basic-controls-vue`.
+Package name: `@techskillplanet/planet-components-vue`.
 
 Library code lives in `src/`; the runnable visual sample lives in `sample/` and imports the local source directly.
 

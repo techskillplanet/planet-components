@@ -17,6 +17,18 @@ val kuiklyVersion = "2.4.0-2.0.21"
 kotlin {
     androidTarget()
 
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64(),
+    ).forEach { target ->
+        target.binaries.framework {
+            baseName = "PhonicsPlanetKuiklyShared"
+            isStatic = true
+            binaryOption("bundleId", "com.techskillplanet.phonics.kuikly.shared")
+        }
+    }
+
     js(IR) {
         moduleName = "nativevue2"
         browser {

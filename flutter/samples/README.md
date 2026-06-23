@@ -1,4 +1,4 @@
-# tech_skill_planet_basic_controls_example
+# tech_skill_planet_components_example
 
 A new Flutter project.
 

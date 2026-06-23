@@ -1,5 +1,5 @@
 {
-  "name": "@techskillplanet/basic-controls-miniprogram",
+  "name": "@techskillplanet/planet-components-miniprogram",
   "version": "0.1.0",
   "description": "TechSkillPlanet themed WeChat Mini Program basic controls library.",
   "miniprogram": "components",
