@@ -1,6 +1,6 @@
 {
   "name": "@techskillplanet/planet-components-react-native",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TechSkillPlanet themed React Native basic controls library.",
   "main": "src/starPlanet/index.js",
   "files": [
