@@ -16,5 +16,5 @@ android {
 }
 
 dependencies {
-    implementation project(":library")
+    implementation "io.github.techskillplanet:planet-components-android:0.2.0"
 }

@@ -1,9 +1,13 @@
 {
   "name": "@techskillplanet/planet-components-vue-samples",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "npx --yes esbuild preview-entry.js --bundle --format=iife --outfile=dist/preview.js --alias:vue=./vendor/vue.esm-browser.js --platform=browser && cp ../library/src/styles.css dist/styles.css",
+    "build": "npx --yes esbuild preview-entry.js --bundle --format=iife --outfile=dist/preview.js --alias:vue=./vendor/vue.esm-browser.js --platform=browser && cp node_modules/@techskillplanet/planet-components-vue/src/styles.css dist/styles.css",
     "preview": "npm run build && python3 -m http.server 5174 --bind 127.0.0.1",
     "vendor:vue": "mkdir -p vendor && curl -fsSL https://unpkg.com/vue@3.5.13/dist/vue.esm-browser.js -o vendor/vue.esm-browser.js"
+  },
+  "dependencies": {
+    "@techskillplanet/planet-components-vue": "0.1.2"
   }
 }

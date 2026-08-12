@@ -10,7 +10,7 @@ import {
   TspEmpty, TspIconButton, TspInput, TspKeyValueLabel, TspListItem, TspModal,
   TspNotification, TspOptionSheet, TspPinInput, TspProgress, TspSelect,
   TspStepper, TspStickyFooter, TspSwitch, TspTabs, TspTextLink, TspToast, TspTopBar
-} from '../library/src/index.js';
+} from '@techskillplanet/planet-components-react';
 
 const h = React.createElement;
 const themed = (theme, style) => ({ ...themeVars(theme), ...style });

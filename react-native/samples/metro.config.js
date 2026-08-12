@@ -2,15 +2,11 @@ const { getDefaultConfig } = require('expo/metro-config');
 const path = require('path');
 
 const projectRoot = __dirname;
-const libraryRoot = path.resolve(projectRoot, '../library');
 const sampleModules = path.resolve(projectRoot, 'node_modules');
 
 const config = getDefaultConfig(projectRoot);
 
-// Local library is watched for live edits, but React must stay a singleton.
-// Without this, Metro can resolve `react` from `../library/node_modules`
-// (test install) and crash with: Cannot read property 'useState' of null.
-config.watchFolders = [libraryRoot];
+// Keep a single React / RN copy even when the published package pulls peers in.
 config.resolver.nodeModulesPaths = [sampleModules];
 config.resolver.disableHierarchicalLookup = true;
 config.resolver.extraNodeModules = {

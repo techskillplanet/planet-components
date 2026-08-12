@@ -6,12 +6,12 @@ import { defineComponent, h, onBeforeUnmount, onMounted, ref } from 'vue';
 import { componentCategories, componentDocs } from '../shared/componentDocs.js';
 import {
   starPlanetThemes,
+  themed,
   TspAlert, TspAmount, TspBadge, TspBottomTab, TspButton, TspCard, TspChip,
   TspEmpty, TspIconButton, TspInput, TspKeyValueLabel, TspListItem, TspModal,
   TspNotification, TspOptionSheet, TspPinInput, TspProgress, TspSelect,
   TspStepper, TspSwitch, TspTabs, TspTextLink, TspToast, TspTopBar
-} from '../library/src/index.js';
-import { themed } from '../library/src/components/_shared.js';
+} from '@techskillplanet/planet-components-vue';
 
 const sampleLocales = {
   'zh-CN': {
