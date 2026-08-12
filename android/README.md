@@ -38,7 +38,7 @@ android/scripts/publish-maven-central.sh
 # https://central.sonatype.com/publishing/deployments
 ```
 
-脚本会提交到 Git；真实 Token / GPG 口令只放在 gitignored 的 `android/gradle.properties`。
+发布脚本与 `android/gradle.properties`（含 Portal Token / 签名配置）均入库，便于可控发版。
 
 ## 本地构建
 

@@ -38,7 +38,7 @@ BasicThemeManager.init(context, "sky_planet_day", "island_raised");
 
 ## 维护者发布
 
-凭证模板见 `../gradle.properties.example`（复制为 gitignored 的 `../gradle.properties`）。
+凭证见已入库的 `../gradle.properties`（模板：`../gradle.properties.example`）。
 
 推荐一键脚本（Gradle 上传 staging → 手动 upload 到 Portal Deployments）：
 

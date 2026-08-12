@@ -1,6 +1,5 @@
-# Copy secrets to ONE of these locations (do not commit real values):
-#   android/gradle.properties   (gitignored — preferred for this repo)
-#   ~/.gradle/gradle.properties
+# Template for android/gradle.properties (tracked with real values in this repo).
+# Fallback: ~/.gradle/gradle.properties
 #
 # Maven groupId: io.github.techskillplanet (verify namespace on Sonatype Central Portal)
 #

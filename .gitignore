@@ -46,7 +46,6 @@ local.properties
 !.env.example
 .npmrc
 !**/.npmrc.example
-android/gradle.properties
 
 # Logs
 *.log
