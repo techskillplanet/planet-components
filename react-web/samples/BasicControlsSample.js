@@ -27,8 +27,9 @@ const sampleLocales = {
     listItem: '列表项', selectedState: '选中状态', empty: '空状态',
     emptyBody: '暂无记录。', action: '操作', showToast: '显示 Toast',
     openModal: '打开弹窗', stickyFooter: '底部固定操作', modalTitle: '确认',
+    platformSwitch: '平台预览', platformHint: '切换手机 / 桌面布局，验证全场景展示。',
     modalBody: '弹窗遵循同一套组件契约，并验证移动端高度、滚动和底部按钮完整显示。',
-    cancel: '取消', ok: '确定'
+    cancel: '取消', ok: '确定', auto: '自动', mobile: '手机', desktop: '桌面'
   },
   en: {
     title: 'Basic Controls', themeSwitch: 'Theme Switch', languageSwitch: 'Language Switch',
@@ -41,8 +42,9 @@ const sampleLocales = {
     selectedState: 'Selected state', empty: 'Empty', emptyBody: 'No records yet.',
     action: 'Action', showToast: 'Show Toast', openModal: 'Open Modal',
     stickyFooter: 'Sticky Footer', modalTitle: 'Confirm',
+    platformSwitch: 'Platform Preview', platformHint: 'Switch mobile / desktop layout for full coverage.',
     modalBody: 'The modal follows the same contract and verifies mobile height, scrolling and visible actions.',
-    cancel: 'Cancel', ok: 'OK'
+    cancel: 'Cancel', ok: 'OK', auto: 'Auto', mobile: 'Mobile', desktop: 'Desktop'
   },
   ja: {
     title: '基本コンポーネント', themeSwitch: 'テーマ切替', languageSwitch: '言語切替',
@@ -56,37 +58,43 @@ const sampleLocales = {
     selectedState: '選択状態', empty: '空状態', emptyBody: '記録はありません。',
     action: '操作', showToast: 'Toast 表示', openModal: 'モーダルを開く',
     stickyFooter: '固定フッター', modalTitle: '確認',
+    platformSwitch: 'プラットフォーム', platformHint: 'モバイル / デスクトップ表示を切替えて検証します。',
     modalBody: 'モーダルは同じ契約に従い、モバイル高さとスクロールを検証します。',
-    cancel: '取消', ok: 'OK'
+    cancel: '取消', ok: 'OK', auto: '自動', mobile: 'モバイル', desktop: 'デスクトップ'
   }
 };
 
+function detectPlatform() {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return 'mobile';
+  return window.matchMedia('(min-width: 1024px)').matches ? 'desktop' : 'mobile';
+}
+
 function TspDocPreview({ name, theme, state }) {
   const common = { theme };
-  const example = (title, node) => h('div', { className: 'bc-example-item' }, h('div', { className: 'bc-example-title' }, title), node);
+  const example = (title, node) => h('div', { key: title, className: 'bc-example-item' }, h('div', { className: 'bc-example-title' }, title), node);
   switch (name) {
     case 'Button': return h('div', { className: 'bc-example-stack' }, ['primary', 'default', 'danger', 'text'].map((variant) => example(variant, h(TspButton, { text: variant, variant, ...common }))));
-    case 'Card': return h('div', { className: 'bc-example-stack' }, example('default', h(TspCard, common, h('strong', null, 'Card'), h('p', null, 'Star Planet card.'))), example('selected', h(TspCard, { selected: true, ...common }, 'Selected card')));
+    case 'Card': return h('div', { className: 'bc-example-stack' }, [example('default', h(TspCard, common, h('strong', null, 'Card'), h('p', null, 'Star Planet card.'))), example('selected', h(TspCard, { selected: true, ...common }, 'Selected card'))]);
     case 'Alert': return h('div', { className: 'bc-example-stack' }, ['info', 'success', 'warning', 'error'].map((variant) => example(variant, h(TspAlert, { title: variant, message: 'Theme is applied.', variant, ...common }))));
     case 'Badge': return h('div', { className: 'bc-row' }, ['default', 'primary', 'success', 'warning', 'danger'].map((variant) => h(TspBadge, { key: variant, text: variant, variant, ...common })));
-    case 'Chip': return h('div', { className: 'bc-row' }, h(TspChip, { text: 'Default', ...common }), h(TspChip, { text: 'Selected', selected: true, ...common }), h(TspChip, { text: 'Disabled', disabled: true, ...common }));
-    case 'Input': return h('div', { className: 'bc-example-stack' }, example('default', h(TspInput, { value: state.inputValue, placeholder: 'Input', onChange: state.setInputValue, ...common })), example('error', h(TspInput, { value: '', placeholder: 'Required', variant: 'error', ...common })));
+    case 'Chip': return h('div', { className: 'bc-row' }, [h(TspChip, { key: 'default', text: 'Default', ...common }), h(TspChip, { key: 'selected', text: 'Selected', selected: true, ...common }), h(TspChip, { key: 'disabled', text: 'Disabled', disabled: true, ...common })]);
+    case 'Input': return h('div', { className: 'bc-example-stack' }, [example('default', h(TspInput, { value: state.inputValue, placeholder: 'Input', onChange: state.setInputValue, ...common })), example('error', h(TspInput, { value: '', placeholder: 'Required', variant: 'error', ...common }))]);
     case 'Select': return h(TspSelect, { options: ['A', 'B', 'C'], selectedIndex: state.selectedOption, onSelect: state.setSelectedOption, ...common });
     case 'OptionSheet': return h(TspButton, { text: 'Open OptionSheet', variant: 'primary', onTap: () => state.setShowSheet(true), ...common });
-    case 'Switch': return h('div', { className: 'bc-example-stack' }, example('checked', h(TspSwitch, { text: 'Switch', checked: state.checked, onChange: state.setChecked, ...common })), example('loading', h(TspSwitch, { text: 'Loading', checked: true, loading: true, ...common })));
+    case 'Switch': return h('div', { className: 'bc-example-stack' }, [example('checked', h(TspSwitch, { text: 'Switch', checked: state.checked, onChange: state.setChecked, ...common })), example('loading', h(TspSwitch, { text: 'Loading', checked: true, loading: true, ...common }))]);
     case 'Progress': return h('div', { className: 'bc-example-stack' }, ['primary', 'success', 'warning', 'danger'].map((variant, index) => example(variant, h(TspProgress, { progress: [38, 68, 52, 82][index], variant, ...common }))));
     case 'TopBar': return h(TspTopBar, { title: '基础组件', showBack: true, ...common });
     case 'BottomTab': return h('div', { className: 'bc-doc-sticky-demo' }, h(TspBottomTab, { tabs: state.tabs, selectedKey: state.tab, onSelect: state.setTab, ...common }));
     case 'Tabs': return h(TspTabs, { tabs: ['全部', '已学', '未学'], selectedIndex: state.selectedTab, onSelect: state.setSelectedTab, ...common });
-    case 'Amount': return h('div', { className: 'bc-example-stack' }, example('monthly', h(TspAmount, { symbol: '$', value: '128.80', cycle: 'month', ...common })), example('strike', h(TspAmount, { symbol: '$', value: '199.00', strikeThrough: true, ...common })));
-    case 'IconButton': return h('div', { className: 'bc-row' }, h(TspIconButton, { icon: '♪', selected: true, ...common }), h(TspIconButton, { icon: '✓', variant: 'primary', ...common }), h(TspIconButton, { icon: '×', disabled: true, ...common }));
+    case 'Amount': return h('div', { className: 'bc-example-stack' }, [example('monthly', h(TspAmount, { symbol: '$', value: '128.80', cycle: 'month', ...common })), example('strike', h(TspAmount, { symbol: '$', value: '199.00', strikeThrough: true, ...common }))]);
+    case 'IconButton': return h('div', { className: 'bc-row' }, [h(TspIconButton, { key: 'selected', icon: '♪', selected: true, ...common }), h(TspIconButton, { key: 'primary', icon: '✓', variant: 'primary', ...common }), h(TspIconButton, { key: 'disabled', icon: '×', disabled: true, ...common })]);
     case 'KeyValueLabel': return h(TspKeyValueLabel, { label: 'Progress', value: '12/48', ...common });
-    case 'Notification': return h('div', { className: 'bc-example-stack' }, example('info', h(TspNotification, { title: '通知', message: '继续学习。', ...common })), example('alert', h(TspNotification, { title: '提醒', message: '今日任务未完成。', variant: 'alert', ...common })));
-    case 'TextLink': return h('div', { className: 'bc-row' }, h(TspTextLink, { text: 'Text Link', ...common }), h(TspTextLink, { text: 'Inverse', inverse: true, ...common }));
-    case 'Stepper': return h('div', { className: 'bc-example-stack' }, example('3 steps', h(TspStepper, { stepCount: 3, currentStep: 2, ...common })), example('5 steps', h(TspStepper, { stepCount: 5, currentStep: 3, ...common })));
+    case 'Notification': return h('div', { className: 'bc-example-stack' }, [example('info', h(TspNotification, { title: '通知', message: '继续学习。', ...common })), example('alert', h(TspNotification, { title: '提醒', message: '今日任务未完成。', variant: 'alert', ...common }))]);
+    case 'TextLink': return h('div', { className: 'bc-row' }, [h(TspTextLink, { key: 'default', text: 'Text Link', ...common }), h(TspTextLink, { key: 'inverse', text: 'Inverse', inverse: true, ...common })]);
+    case 'Stepper': return h('div', { className: 'bc-example-stack' }, [example('3 steps', h(TspStepper, { stepCount: 3, currentStep: 2, ...common })), example('5 steps', h(TspStepper, { stepCount: 5, currentStep: 3, ...common }))]);
     case 'StickyFooter': return h('div', { className: 'bc-doc-sticky-demo' }, h(TspButton, { text: 'Sticky Footer', variant: 'primary', ...common }));
-    case 'PinInput': return h('div', { className: 'bc-example-stack' }, example('secure', h(TspPinInput, { value: state.pinValue, cellCount: 4, secure: true, onChange: state.setPinValue, ...common })), example('6 cells', h(TspPinInput, { value: '123', cellCount: 6, ...common })));
-    case 'ListItem': return h('div', { className: 'bc-example-stack' }, example('selected', h(TspListItem, { title: '列表项', message: '选中状态', trailing: '›', selected: true, ...common })), example('disabled', h(TspListItem, { title: '不可点击', message: '禁用状态', disabled: true, ...common })));
+    case 'PinInput': return h('div', { className: 'bc-example-stack' }, [example('secure', h(TspPinInput, { value: state.pinValue, cellCount: 4, secure: true, onChange: state.setPinValue, ...common })), example('6 cells', h(TspPinInput, { value: '123', cellCount: 6, ...common }))]);
+    case 'ListItem': return h('div', { className: 'bc-example-stack' }, [example('selected', h(TspListItem, { title: '列表项', message: '选中状态', trailing: '›', selected: true, ...common })), example('disabled', h(TspListItem, { title: '不可点击', message: '禁用状态', disabled: true, ...common }))]);
     case 'Empty': return h(TspEmpty, { title: '空状态', message: '暂无记录。', actionText: '操作', ...common });
     case 'Toast': return h(TspButton, { text: 'Show Toast', variant: 'primary', onTap: () => state.showToast('已保存', 'success'), ...common });
     case 'Modal': return h(TspButton, { text: 'Open Modal', onTap: () => state.setShowModal(true), ...common });
@@ -94,9 +102,13 @@ function TspDocPreview({ name, theme, state }) {
   }
 }
 
-function ComponentDocPage({ doc, theme, state, onBack }) {
+function ComponentDocPage({ doc, theme, state, onBack, layoutClass }) {
   return h(
-    'main', { className: 'bc-sample', style: themed(theme) },
+    'main', {
+      className: `bc-sample ${layoutClass}`,
+      style: themed(theme),
+      'data-platform': layoutClass.includes('desktop') ? 'desktop' : 'mobile'
+    },
     h(TspTopBar, { title: doc.component, showBack: true, theme, onBack }),
     h('section', { className: 'bc-sample__grid bc-doc-page' },
       h(TspCard, { theme },
@@ -136,8 +148,13 @@ export function BasicControlsSample() {
   ], []);
   const [themeKey, setThemeKey] = useState('sky');
   const [locale, setLocale] = useState('zh-CN');
+  const [platformMode, setPlatformMode] = useState('auto');
+  const [autoPlatform, setAutoPlatform] = useState(() => detectPlatform());
   const theme = starPlanetThemes[themeKey];
   const t = (key) => sampleLocales[locale][key] ?? sampleLocales.en[key] ?? key;
+  const platformOptions = useMemo(() => [
+    { key: 'auto', title: t('auto') }, { key: 'mobile', title: t('mobile') }, { key: 'desktop', title: t('desktop') }
+  ], [locale]);
   const [checked, setChecked] = useState(true);
   const [tab, setTab] = useState('learn');
   const [selectedTab, setSelectedTab] = useState(0);
@@ -157,16 +174,25 @@ export function BasicControlsSample() {
   useEffect(() => {
     const syncFromHash = () => setSelectedDocName(window.location.hash.replace(/^#/, ''));
     window.addEventListener('hashchange', syncFromHash);
-    return () => window.removeEventListener('hashchange', syncFromHash);
+    const mediaQuery = typeof window.matchMedia === 'function' ? window.matchMedia('(min-width: 1024px)') : null;
+    const syncPlatform = () => setAutoPlatform(detectPlatform());
+    mediaQuery?.addEventListener('change', syncPlatform);
+    return () => {
+      window.removeEventListener('hashchange', syncFromHash);
+      mediaQuery?.removeEventListener('change', syncPlatform);
+    };
   }, []);
   const openDoc = (name) => { window.location.hash = name; setSelectedDocName(name); };
   const closeDoc = () => { history.pushState('', document.title, window.location.pathname + window.location.search); setSelectedDocName(''); };
   const selectedDoc = componentDocs.find((doc) => doc.name === selectedDocName);
   const previewState = { checked, setChecked, inputValue, setInputValue, selectedOption, setSelectedOption, selectedTab, setSelectedTab, pinValue, setPinValue, showSheet, setShowSheet, showModal, setShowModal, toast, tabs, tab, setTab, showToast };
+  const resolvedPlatform = platformMode === 'auto' ? autoPlatform : platformMode;
+  const layoutClass = resolvedPlatform === 'desktop' ? 'bc-sample--force-desktop' : 'bc-sample--force-mobile';
   if (selectedDoc) {
-    return h(ComponentDocPage, { doc: selectedDoc, theme, state: previewState, onBack: closeDoc });
+    return h(ComponentDocPage, { doc: selectedDoc, theme, state: previewState, onBack: closeDoc, layoutClass });
   }
   const settingsPage = h(React.Fragment, null,
+    h(TspCard, { theme }, h('strong', null, t('platformSwitch')), h('p', null, t('platformHint')), h(TspSelect, { options: platformOptions, selectedIndex: platformOptions.findIndex((item) => item.key === platformMode), theme, onSelect: (_, option) => setPlatformMode(option.key) })),
     h(TspCard, { theme }, h('strong', null, t('themeSwitch')), h('p', null, t('themeHint')), h(TspSelect, { options: themeOptions, selectedIndex: themeOptions.findIndex((item) => item.key === themeKey), theme, onSelect: (_, option) => setThemeKey(option.key) })),
     h(TspCard, { theme }, h('strong', null, t('languageSwitch')), h('p', null, t('languageHint')), h(TspSelect, { options: languageOptions, selectedIndex: languageOptions.findIndex((item) => item.key === locale), theme, onSelect: (_, option) => setLocale(option.key) }))
   );
@@ -177,7 +203,11 @@ export function BasicControlsSample() {
     )
   ));
   return h(
-    'main', { className: 'bc-sample', style: themed(theme) },
+    'main', {
+      className: `bc-sample ${layoutClass}`,
+      style: themed(theme),
+      'data-platform': resolvedPlatform
+    },
     h(TspTopBar, { title: t('title'), showBack: true, theme }),
     h('section', { className: 'bc-sample__grid' }, tab === 'settings' ? settingsPage : learnPage),
     toast && h('div', { className: 'bc-toast-layer', key: toast.id }, h(TspToast, { message: toast.message, variant: toast.variant, theme })),

@@ -1,0 +1,8 @@
+{
+  "name": "@techskillplanet/planet-components-react-samples",
+  "private": true,
+  "scripts": {
+    "build": "cd ../library && npx --yes esbuild ../samples/preview-entry.js --bundle --format=iife --outfile=../samples/dist/preview.js --platform=browser --alias:react=./node_modules/react/index.js --alias:react-dom=./node_modules/react-dom/index.js --alias:react-dom/client=./node_modules/react-dom/client.js && cp src/styles.css ../samples/dist/styles.css",
+    "preview": "npm run build && python3 -m http.server 5173 --bind 127.0.0.1"
+  }
+}

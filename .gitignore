@@ -43,6 +43,9 @@ local.properties
 *.p12
 .env
 .env.*
+!.env.example
+.npmrc
+!**/.npmrc.example
 android/gradle.properties
 
 # Logs

@@ -12,7 +12,8 @@
   },
   "files": [
     "src",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "sideEffects": [
     "src/styles.css"
@@ -20,12 +21,26 @@
   "peerDependencies": {
     "vue": ">=3"
   },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.0",
+    "@vue/test-utils": "^2.4.0",
+    "jsdom": "^24.0.0",
+    "vitest": "^1.6.0",
+    "vue": "^3.4.0"
+  },
   "scripts": {
     "check": "node --check src/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "pack:dry": "npm pack --dry-run"
   },
   "publishConfig": {
     "access": "public"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techskillplanet/planet-components.git"
+  },
+  "author": "TechSkillPlanet"
 }

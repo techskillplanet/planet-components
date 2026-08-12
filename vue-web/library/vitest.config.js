@@ -7,9 +7,7 @@ const root = dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   resolve: {
     alias: {
-      react: resolve(root, 'node_modules/react'),
-      'react-dom/client': resolve(root, 'node_modules/react-dom/client'),
-      'react/jsx-runtime': resolve(root, 'node_modules/react/jsx-runtime.js')
+      vue: resolve(root, 'node_modules/vue')
     }
   },
   server: {
