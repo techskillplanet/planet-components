@@ -56,19 +56,24 @@ if [[ -z "${NPM_TOKEN:-}" ]]; then
   exit 1
 fi
 
-npm config set "//registry.npmjs.org/:_authToken" "$NPM_TOKEN"
-npm config set registry "$OFFICIAL_REGISTRY"
-
-restore_registry() {
+# Isolated userconfig avoids ~/.npmrc session/old tokens overriding Bypass-2FA tokens.
+USERCONFIG="$(mktemp)"
+cleanup() {
+  rm -f "$USERCONFIG"
   local target="${PREV_REGISTRY:-$COMPANY_REGISTRY}"
   if [[ -n "$target" && "$target" != "null" ]]; then
     npm config set registry "$target" >/dev/null 2>&1 || true
   fi
 }
-trap restore_registry EXIT
+trap cleanup EXIT
+
+cat > "$USERCONFIG" <<EOF
+registry=${OFFICIAL_REGISTRY}
+//registry.npmjs.org/:_authToken=${NPM_TOKEN}
+EOF
 
 echo "==> npm whoami"
-npm whoami --registry "$OFFICIAL_REGISTRY"
+npm whoami --registry "$OFFICIAL_REGISTRY" --userconfig "$USERCONFIG"
 
 publish_one() {
   local name="$1"
@@ -82,10 +87,10 @@ publish_one() {
     npm run pack:dry
     if [[ "$DRY_RUN" -eq 1 ]]; then
       echo "==> [$name] dry-run publish"
-      npm publish --access public --dry-run
+      npm publish --access public --dry-run --userconfig "$USERCONFIG"
     else
       echo "==> [$name] publish"
-      npm publish --access public
+      npm publish --access public --userconfig "$USERCONFIG"
     fi
   )
 }

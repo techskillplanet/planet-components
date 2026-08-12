@@ -2,6 +2,12 @@
 
 Runnable Expo sample project for the React Native Basic Controls package.
 
+## Runtime
+
+- Expo SDK 57
+- React Native 0.86
+- React 19.2
+
 ## Structure
 
 - `App.js`: application entry.
@@ -16,7 +22,7 @@ Runnable Expo sample project for the React Native Basic Controls package.
 ## Run
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 npm run start
 ```
 

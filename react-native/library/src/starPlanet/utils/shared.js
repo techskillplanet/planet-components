@@ -55,4 +55,7 @@ export const styles = StyleSheet.create({
   modalMask: { flex: 1, backgroundColor: 'rgba(23,58,98,0.28)', justifyContent: 'center', padding: 18 },
   modalPanel: { borderWidth: 1, borderRadius: 24, padding: 22, gap: 14 },
   modalActions: { flexDirection: 'row', gap: 10 },
+  loadingPanel: { alignSelf: 'center', minWidth: 148, borderWidth: 1, borderRadius: 24, paddingHorizontal: 28, paddingVertical: 22, alignItems: 'center' },
+  loadingPanelCompact: { minWidth: 112, borderRadius: 18, paddingHorizontal: 18, paddingVertical: 14 },
+  refreshFooter: { minHeight: 56, marginTop: 8, marginBottom: 16, borderWidth: 1, borderRadius: 16, alignItems: 'center', justifyContent: 'center', gap: 8, flexDirection: 'row' },
 });

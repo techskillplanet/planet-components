@@ -1,7 +1,7 @@
 export const componentGroups = [
   ['Actions', ['Button', 'Chip', 'IconButton', 'TextLink']],
-  ['Surfaces', ['Card', 'ListItem', 'Empty']],
-  ['Feedback', ['Alert', 'Badge', 'Progress', 'Notification', 'Toast', 'Modal']],
+  ['Surfaces', ['Card', 'ListItem', 'Empty', 'RefreshLayout']],
+  ['Feedback', ['Alert', 'Badge', 'Progress', 'Notification', 'Toast', 'Modal', 'LoadingDialog']],
   ['Inputs', ['Input', 'Select', 'OptionSheet', 'Switch', 'PinInput']],
   ['Navigation', ['TopBar', 'BottomTab', 'Tabs', 'StickyFooter']],
   ['Data', ['Amount', 'KeyValueLabel', 'Stepper']],
@@ -33,6 +33,8 @@ export const componentDescriptions = {
   Empty: '空状态展示，支持说明文案和操作按钮。',
   Toast: '轻提示，用于短时反馈。',
   Modal: '确认弹窗，支持确认和取消按钮。',
+  RefreshLayout: '下拉刷新与上拉加载容器，适合列表与滚动内容。',
+  LoadingDialog: '阻塞式加载弹窗，适合提交与同步等待。',
 };
 
 export function categoryOf(name) {
