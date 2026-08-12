@@ -44,6 +44,9 @@ local.properties
 .env
 .env.*
 !.env.example
+*.env
+!*.env.example
+tools/publish-npm-web.env
 .npmrc
 !**/.npmrc.example
 
