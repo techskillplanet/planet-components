@@ -39,17 +39,18 @@ if [[ ${#TARGETS[@]} -eq 0 ]]; then
   TARGETS=(all)
 fi
 
-if [[ -f "$ROOT/tools/publish-npm-web.env" ]]; then
-  # shellcheck disable=SC1091
-  set -a
-  source "$ROOT/tools/publish-npm-web.env"
-  set +a
-fi
-
 if [[ -f "$ROOT/.env" ]]; then
   # shellcheck disable=SC1091
   set -a
   source "$ROOT/.env"
+  set +a
+fi
+
+if [[ -f "$ROOT/tools/publish-npm-web.env" ]]; then
+  # Prefer dedicated publish env over root .env (avoids stale/non-bypass tokens).
+  # shellcheck disable=SC1091
+  set -a
+  source "$ROOT/tools/publish-npm-web.env"
   set +a
 fi
 

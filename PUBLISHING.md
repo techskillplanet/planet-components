@@ -60,9 +60,9 @@ cp tools/publish-npm-web.env.example tools/publish-npm-web.env
 
 鉴权优先级（脚本读取顺序）：
 
-1. `tools/publish-npm-web.env`
+1. 环境变量 `NPM_TOKEN`（若进入脚本前已导出，仍可能被下方文件覆盖）
 2. 仓库根目录 `.env`
-3. 环境变量 `NPM_TOKEN`
+3. `tools/publish-npm-web.env`（**最终优先**，避免根目录旧 token 覆盖 Bypass-2FA 凭证）
 
 建议 token 类型：npmjs **Automation**，或带 **Bypass 2FA** 的 Granular Access Token。  
 创建/轮换：https://www.npmjs.com/settings/~/tokens
