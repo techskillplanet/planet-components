@@ -1,12 +1,16 @@
 # Copy secrets to ONE of these locations (do not commit real values):
+#   android/gradle.properties   (gitignored — preferred for this repo)
 #   ~/.gradle/gradle.properties
-#   android/gradle.properties   (gitignored)
 #
 # Maven groupId: io.github.techskillplanet (verify namespace on Sonatype Central Portal)
 #
-# Then publish with:
-#   cd android
-#   ./gradlew :library:publishReleasePublicationToMavenCentralRepository
+# Controllable publish (Gradle staging + Portal upload):
+#   android/scripts/publish-maven-central.sh
+#   android/scripts/publish-maven-central.sh --dry-run
+#   android/scripts/publish-maven-central.sh --list
+#   android/scripts/publish-maven-central.sh --upload-only
+#
+# Then open https://central.sonatype.com/publishing/deployments and Publish.
 
 # --- Sonatype Central Portal (https://central.sonatype.com → Account → Generate User Token)
 ossrhUsername=YOUR_SONATYPE_TOKEN_USERNAME

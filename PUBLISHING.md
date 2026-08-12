@@ -4,7 +4,7 @@ Each `library` directory is intended to become an independently published open-s
 
 | Platform | Package manager | Current package identity |
 | --- | --- | --- |
-| Android View | Maven Central / GitHub Packages | `io.github.techskillplanet:planet-components-android` |
+| Android View | Maven Central / GitHub Packages | `io.github.techskillplanet:planet-components-android:0.2.0`（脚本：`android/scripts/publish-maven-central.sh`） |
 | React Native | npm | `@techskillplanet/planet-components-react-native` |
 | React Web | npm | `@techskillplanet/planet-components-react` |
 | Vue Web | npm | `@techskillplanet/planet-components-vue` |

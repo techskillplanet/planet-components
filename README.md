@@ -9,9 +9,9 @@ Every technology stack is kept at the same level. Each stack contains:
 
 ## Platform Layout
 
-| Platform | Library | Runnable samples | Future package target |
+| Platform | Library | Runnable samples | Package target |
 | --- | --- | --- | --- |
-| Android View | `android/library` | `android/samples` | Maven / Gradle |
+| Android View | `android/library` | `android/samples` | Maven Central |
 | React Native | `react-native/library` | `react-native/samples` | npm |
 | React Web | `react-web/library` | `react-web/samples` | npm |
 | Vue Web | `vue-web/library` | `vue-web/samples` | npm |
@@ -21,6 +21,20 @@ Every technology stack is kept at the same level. Each stack contains:
 | Kuikly | `kuikly/library` | `kuikly/samples` | Maven / internal Kuikly package |
 
 Shared design tokens are under `design/tokens`.
+
+## Android（Maven）
+
+当前库版本 **0.2.0**（坐标已从 `basic-controls-android` 更名）：
+
+```gradle
+implementation "io.github.techskillplanet:planet-components-android:0.2.0"
+```
+
+- Maven Central：https://central.sonatype.com/artifact/io.github.techskillplanet/planet-components-android
+- 源码：https://github.com/techskillplanet/planet-components/tree/main/android/library
+- 说明：[`android/library/README.md`](android/library/README.md)
+
+历史坐标 `io.github.techskillplanet:basic-controls-android:0.1.0` 已停用；`0.2.0` 需按 [`PUBLISHING.md`](PUBLISHING.md) / [`android/library/README.md`](android/library/README.md) 发布到 Central。
 
 ## License
 

@@ -2,11 +2,21 @@
 
 TechSkillPlanet 基础组件库（Planet Components）的 Android View 实现：Java + 传统 View，无 Compose / androidx 依赖。
 
+## 开源与发布地址
+
+| 类型 | 地址 |
+| --- | --- |
+| 源码 | https://github.com/techskillplanet/planet-components |
+| Maven Central（当前坐标） | https://central.sonatype.com/artifact/io.github.techskillplanet/planet-components-android |
+| Maven 仓库目录 | https://repo1.maven.org/maven2/io/github/techskillplanet/planet-components-android/ |
+
 Maven 坐标：
 
 ```text
-io.github.techskillplanet:planet-components-android:0.1.0
+io.github.techskillplanet:planet-components-android:0.2.0
 ```
+
+> 历史包名：`io.github.techskillplanet:basic-controls-android:0.1.0`（已停用，请迁移到上方新坐标）。
 
 ## Gradle 依赖
 
@@ -16,7 +26,7 @@ repositories {
 }
 
 dependencies {
-    implementation "io.github.techskillplanet:planet-components-android:0.1.0"
+    implementation "io.github.techskillplanet:planet-components-android:0.2.0"
 }
 ```
 
@@ -28,14 +38,21 @@ BasicThemeManager.init(context, "sky_planet_day", "island_raised");
 
 ## 维护者发布
 
-凭证模板见 `../gradle.properties.example`。配置完成后：
+凭证模板见 `../gradle.properties.example`（复制为 gitignored 的 `../gradle.properties`）。
+
+推荐一键脚本（Gradle 上传 staging → 手动 upload 到 Portal Deployments）：
 
 ```bash
-cd android
-./gradlew :library:publishReleasePublicationToMavenCentralRepository
+# 仓库根目录或 android/ 下均可
+android/scripts/publish-maven-central.sh --dry-run
+android/scripts/publish-maven-central.sh
+android/scripts/publish-maven-central.sh --list
+android/scripts/publish-maven-central.sh --upload-only
 ```
 
-然后在 [Sonatype Central Portal](https://central.sonatype.com) 的 Deployments 中 Publish。
+脚本成功后，在 [Sonatype Central Portal Deployments](https://central.sonatype.com/publishing/deployments) 点 **Publish**。
+
+> 仅跑 `./gradlew :library:publishReleasePublicationToMavenCentralRepository` 时，包会停在 staging，**不会**出现在 Deployments；需再执行脚本的 upload 步骤。
 
 ## 目录
 
