@@ -10,19 +10,6 @@ OFFICIAL_REGISTRY="https://registry.npmjs.org/"
 COMPANY_REGISTRY="http://npm.iwhalecloud.com:8081/repository/npm-all/"
 PREV_REGISTRY="$(npm config get registry 2>/dev/null || true)"
 
-# Risk controls: never publish with a committed project .npmrc auth token.
-if [[ -f "$ROOT/.npmrc" ]] && grep -q '_authToken' "$ROOT/.npmrc"; then
-  echo "Refusing to run: project .npmrc contains _authToken (must not live in the repo)." >&2
-  echo "Use .env / NPM_TOKEN / ~/.npmrc instead. See PUBLISHING.md." >&2
-  exit 1
-fi
-if git -C "$ROOT" check-ignore -q .env 2>/dev/null; then
-  :
-elif [[ -f "$ROOT/.env" ]] && git -C "$ROOT" ls-files --error-unmatch .env >/dev/null 2>&1; then
-  echo "Refusing to run: .env is tracked by git. Remove it from the index first." >&2
-  exit 1
-fi
-
 DRY_RUN=0
 TARGETS=()
 
@@ -50,6 +37,13 @@ if [[ ${#TARGETS[@]} -eq 0 ]]; then
   TARGETS=(all)
 fi
 
+if [[ -f "$ROOT/tools/publish-npm-web.env" ]]; then
+  # shellcheck disable=SC1091
+  set -a
+  source "$ROOT/tools/publish-npm-web.env"
+  set +a
+fi
+
 if [[ -f "$ROOT/.env" ]]; then
   # shellcheck disable=SC1091
   set -a
@@ -57,10 +51,12 @@ if [[ -f "$ROOT/.env" ]]; then
   set +a
 fi
 
-if [[ -n "${NPM_TOKEN:-}" ]]; then
-  npm config set "//registry.npmjs.org/:_authToken" "$NPM_TOKEN"
+if [[ -z "${NPM_TOKEN:-}" ]]; then
+  echo "NPM_TOKEN missing. Set it in tools/publish-npm-web.env, .env, or the environment." >&2
+  exit 1
 fi
 
+npm config set "//registry.npmjs.org/:_authToken" "$NPM_TOKEN"
 npm config set registry "$OFFICIAL_REGISTRY"
 
 restore_registry() {

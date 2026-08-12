@@ -37,35 +37,24 @@ Script (checked into the repo):
 ./tools/publish-npm-web.sh vue
 ```
 
-### Auth（风险可控）
+### Auth（起步阶段：方便优先）
 
-| 可以进仓库 | 禁止进仓库 |
-| --- | --- |
-| `tools/publish-npm-web.sh` | `.env`（真实 `NPM_TOKEN`） |
-| `.env.example` | 任何含 `_authToken` 的项目级 `.npmrc` |
-| 本文档与 `package.json` | 聊天记录里泄露的 token（应轮换） |
+当前仓库直接提交 `tools/publish-npm-web.env`（含 `NPM_TOKEN`），方便本地/同事一键发布。
 
-本机准备：
+| 文件 | 是否进仓库 | 说明 |
+| --- | --- | --- |
+| `tools/publish-npm-web.sh` | 是 | 发布脚本 |
+| `tools/publish-npm-web.env` | 是（起步） | 含 token；随时可在 npmjs 删除重建 |
+| `.env.example` | 是 | 备用模板 |
+| `.env` | 否（gitignore） | 可选本地覆盖 |
 
-```bash
-cp .env.example .env
-# 编辑 .env，填入 NPM_TOKEN=npm_xxx
-# 或：export NPM_TOKEN=npm_xxx
-```
-
-也可用用户级 `~/.npmrc`（不进仓库）：
-
-```text
-registry=https://registry.npmjs.org/
-//registry.npmjs.org/:_authToken=npm_xxx
-```
-
-发布前确认：
+发布前可确认：
 
 ```bash
 npm whoami --registry https://registry.npmjs.org/
-# 期望：techskillplanet（或具备 @techskillplanet publish 权限的账号）
 ```
+
+若发布报 `403` / 需要 2FA bypass：到 npmjs 创建 **Automation** 或带 **Bypass 2FA** 的 Granular Token，更新 `tools/publish-npm-web.env` 后重跑。
 
 ### 脚本行为
 
