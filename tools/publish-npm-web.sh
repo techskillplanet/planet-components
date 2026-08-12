@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Publish React Web + Vue Web packages to npmjs.org.
-# Auth: NPM_TOKEN env, or project .env, or ~/.npmrc auth for registry.npmjs.org.
+# Publish npm packages to npmjs.org (React Web / Vue Web / React Native).
+# Auth: NPM_TOKEN env, or project .env, or tools/publish-npm-web.env.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -15,11 +15,13 @@ TARGETS=()
 
 usage() {
   cat <<'EOF'
-Usage: tools/publish-npm-web.sh [--dry-run] [react|vue|all]
+Usage: tools/publish-npm-web.sh [--dry-run] [react|vue|rn|all]
 
 Examples:
   tools/publish-npm-web.sh --dry-run all
+  tools/publish-npm-web.sh rn
   tools/publish-npm-web.sh react
+  tools/publish-npm-web.sh vue
   tools/publish-npm-web.sh all
 EOF
 }
@@ -28,7 +30,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run) DRY_RUN=1; shift ;;
     -h|--help) usage; exit 0 ;;
-    react|vue|all) TARGETS+=("$1"); shift ;;
+    react|vue|rn|all) TARGETS+=("$1"); shift ;;
     *) echo "Unknown arg: $1" >&2; usage; exit 1 ;;
   esac
 done
@@ -82,8 +84,8 @@ publish_one() {
   echo "==> [$name] check / test / pack"
   (
     cd "$dir"
-    npm run check
-    npm test
+    npm run check --if-present
+    npm run test --if-present
     npm run pack:dry
     if [[ "$DRY_RUN" -eq 1 ]]; then
       echo "==> [$name] dry-run publish"
@@ -99,9 +101,11 @@ for target in "${TARGETS[@]}"; do
   case "$target" in
     react) publish_one "react" "$ROOT/react-web/library" ;;
     vue) publish_one "vue" "$ROOT/vue-web/library" ;;
+    rn) publish_one "react-native" "$ROOT/react-native/library" ;;
     all)
       publish_one "react" "$ROOT/react-web/library"
       publish_one "vue" "$ROOT/vue-web/library"
+      publish_one "react-native" "$ROOT/react-native/library"
       ;;
   esac
 done

@@ -21,12 +21,13 @@ Before publishing a library:
 4. Confirm build caches are not included.
 5. Confirm package metadata points to `techskillplanet/planet-components`.
 
-## npm：React Web / Vue Web
+## npm：React Web / Vue Web / React Native
 
 Packages:
 
 - `@techskillplanet/planet-components-react` → `react-web/library`
 - `@techskillplanet/planet-components-vue` → `vue-web/library`
+- `@techskillplanet/planet-components-react-native` → `react-native/library`
 
 Script (checked into the repo):
 
@@ -35,6 +36,7 @@ Script (checked into the repo):
 ./tools/publish-npm-web.sh all
 ./tools/publish-npm-web.sh react
 ./tools/publish-npm-web.sh vue
+./tools/publish-npm-web.sh rn
 ```
 
 ### Auth（本地凭证，禁止入库）

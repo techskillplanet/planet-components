@@ -8,10 +8,12 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "check": "node scripts/check-structure.cjs"
+    "check": "node scripts/check-structure.cjs",
+    "test": "vitest run"
   },
   "dependencies": {
     "@expo/metro-runtime": "~57.0.9",
+    "@expo/vector-icons": "^15.0.2",
     "@techskillplanet/planet-components-react-native": "file:../library",
     "expo": "~57.0.12",
     "expo-asset": "~57.0.10",
@@ -24,5 +26,8 @@
     "react-native": "0.86.2",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-web": "~0.21.0"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.1"
   }
 }

@@ -14,8 +14,14 @@
     "react": ">=19",
     "react-native": ">=0.86"
   },
+  "devDependencies": {
+    "react": "19.2.3",
+    "react-test-renderer": "19.2.3",
+    "vitest": "^1.6.0"
+  },
   "scripts": {
-    "pack:dry": "npm pack --dry-run"
+    "pack:dry": "npm pack --dry-run",
+    "test": "vitest run"
   },
   "publishConfig": {
     "access": "public"

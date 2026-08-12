@@ -23,8 +23,14 @@ Runnable Expo sample project for the React Native Basic Controls package.
 
 ```bash
 npm install --legacy-peer-deps
+npm test
 npm run start
 ```
+
+> Metro must resolve a **single** `react` copy for `../library`.
+> The sample `metro.config.js` forces `extraNodeModules` + `disableHierarchicalLookup`.
+> If `../library/node_modules/react` exists (from library unit-test installs) and Metro is not configured,
+> opening component detail pages crashes with `Cannot read property 'useState' of null`.
 
 ### Android
 

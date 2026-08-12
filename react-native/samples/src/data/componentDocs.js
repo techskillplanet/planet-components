@@ -41,3 +41,6 @@ export function categoryOf(name) {
   return componentGroups.find(([, names]) => names.includes(name))?.[0] || '';
 }
 
+export function descriptionKeyOf(name) {
+  return `sample/component/${String(name).toLowerCase()}/desc`;
+}

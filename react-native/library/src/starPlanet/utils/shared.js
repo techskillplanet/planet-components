@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { resolveTheme } from '../theme';
 
 export const withTheme = theme => theme || resolveTheme();
@@ -6,19 +6,58 @@ export const withTheme = theme => theme || resolveTheme();
 export const clamp = (value, min, max) => Math.max(min, Math.min(max, Number(value) || min));
 export const optionText = option => typeof option === 'object' && option !== null ? option.title || option.text || option.label || option.value : option;
 
+/** Bold glyphs on Android often sit optically high after includeFontPadding is disabled. */
+const androidOpticalNudge = Platform.OS === 'android' ? 1 : 0;
+
 export const styles = StyleSheet.create({
   full: { width: '100%' },
   button: { minWidth: 116, position: 'relative' },
   buttonShadow: { position: 'absolute', left: 0, right: 0, bottom: 0, borderRadius: 999 },
-  buttonFace: { borderRadius: 999, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
-  buttonText: { fontSize: 15, fontWeight: '800' },
+  buttonFace: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    width: '100%',
+    borderRadius: 999,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: androidOpticalNudge,
+  },
+  buttonText: {
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: '800',
+    textAlign: 'center',
+    includeFontPadding: false,
+    textAlignVertical: 'center',
+  },
   disabled: { opacity: 0.45 },
   card: { width: '100%', borderRadius: 28, borderWidth: 1, padding: 20 },
   alert: { width: '100%', borderRadius: 18, borderWidth: 1, padding: 14 },
   strong: { fontWeight: '800' },
   title: { fontSize: 20, fontWeight: '900' },
   secondary: { marginTop: 6, fontSize: 13 },
-  badge: { overflow: 'hidden', borderRadius: 999, paddingHorizontal: 10, paddingVertical: 5, fontWeight: '800' },
+  badge: {
+    overflow: 'hidden',
+    borderRadius: 999,
+    minHeight: 28,
+    paddingHorizontal: 10,
+    paddingTop: 5 + androidOpticalNudge,
+    paddingBottom: 5,
+    alignSelf: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeText: {
+    fontSize: 13,
+    fontWeight: '800',
+    lineHeight: 16,
+    textAlign: 'center',
+    includeFontPadding: false,
+    textAlignVertical: 'center',
+  },
   chip: { borderWidth: 1, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 8 },
   input: { minHeight: 48, borderWidth: 1, borderRadius: 16, paddingHorizontal: 14 },
   select: { minHeight: 48, borderWidth: 1, borderRadius: 16, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
@@ -29,10 +68,27 @@ export const styles = StyleSheet.create({
   inline: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   progress: { height: 10, borderRadius: 999, overflow: 'hidden' },
   progressFill: { height: 10, borderRadius: 999 },
-  topBar: { minHeight: 56, width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', borderBottomWidth: 1 },
-  topBack: { width: 44, minHeight: 44, justifyContent: 'center' },
-  bottomTab: { minHeight: 68, flexDirection: 'row', borderWidth: 1 },
-  bottomItem: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  topBarShell: { width: '100%', borderBottomWidth: 1 },
+  topBar: { position: 'relative', height: 56, width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
+  topBack: { position: 'absolute', left: 0, top: 0, bottom: 0, width: 44, alignItems: 'center', justifyContent: 'center', zIndex: 1 },
+  bottomTab: { width: '100%', borderTopWidth: 1 },
+  /** Content row above safe-area; top/bottom padding matches Android spaceSm + 52dp item. */
+  bottomTabContent: {
+    minHeight: 52,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingHorizontal: 12,
+  },
+  bottomItem: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 2 },
+  bottomTabLabel: {
+    fontSize: 11,
+    fontWeight: '800',
+    lineHeight: 14,
+    textAlign: 'center',
+    includeFontPadding: false,
+  },
   tabs: { borderWidth: 1, borderRadius: 999, padding: 4 },
   tabItem: { minHeight: 34, borderRadius: 999, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
   amount: { flexDirection: 'row', alignItems: 'flex-end' },
@@ -53,8 +109,9 @@ export const styles = StyleSheet.create({
   emptyMark: { width: 50, height: 50, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   toast: { alignSelf: 'center', borderRadius: 999, paddingHorizontal: 14, paddingVertical: 10 },
   modalMask: { flex: 1, backgroundColor: 'rgba(23,58,98,0.28)', justifyContent: 'center', padding: 18 },
-  modalPanel: { borderWidth: 1, borderRadius: 24, padding: 22, gap: 14 },
-  modalActions: { flexDirection: 'row', gap: 10 },
+  modalPanel: { borderWidth: 1, borderRadius: 24, padding: 22, gap: 14, overflow: 'hidden' },
+  modalActions: { flexDirection: 'row', gap: 10, alignItems: 'stretch' },
+  modalActionItem: { flex: 1, minWidth: 0 },
   loadingPanel: { alignSelf: 'center', minWidth: 148, borderWidth: 1, borderRadius: 24, paddingHorizontal: 28, paddingVertical: 22, alignItems: 'center' },
   loadingPanelCompact: { minWidth: 112, borderRadius: 18, paddingHorizontal: 18, paddingVertical: 14 },
   refreshFooter: { minHeight: 56, marginTop: 8, marginBottom: 16, borderWidth: 1, borderRadius: 16, alignItems: 'center', justifyContent: 'center', gap: 8, flexDirection: 'row' },

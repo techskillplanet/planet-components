@@ -1,0 +1,4 @@
+.expo/
+.run-evidence*.png
+node_modules/
+*.tgz

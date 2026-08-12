@@ -1,6 +1,6 @@
 {
   "name": "@techskillplanet/planet-components-react",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "TechSkillPlanet themed React basic controls library with Star Planet design language.",
   "type": "module",
   "main": "src/index.js",

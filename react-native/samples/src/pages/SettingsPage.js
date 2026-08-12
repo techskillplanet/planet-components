@@ -2,26 +2,38 @@ import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { TspButton, TspCard, builtInThemePresets } from '@techskillplanet/planet-components-react-native';
 
-export function SettingsPage({ theme, themePresetKey, setThemePresetKey, languageKey, setLanguageKey }) {
-  const activePreset = builtInThemePresets.find(preset => `${preset.colorKey}:${preset.styleProfile}` === themePresetKey);
+const themeLabelKeys = {
+  'sky:island_raised': 'sample/theme/sky_raised',
+  'sky:island_flat': 'sample/theme/sky_flat',
+  'night:island_raised': 'sample/theme/star_raised',
+  'night:island_flat': 'sample/theme/star_flat',
+  'mint:island_raised': 'sample/theme/mint_raised',
+  'mint:island_flat': 'sample/theme/mint_flat',
+};
+
+export function SettingsPage({ theme, themePresetKey, setThemePresetKey, languageKey, setLanguageKey, t }) {
+  const translate = t || (key => key);
+  const activeLabel = translate(themeLabelKeys[themePresetKey] || themePresetKey);
 
   return (
     <ScrollView contentContainerStyle={{ padding: 18, gap: 14, paddingBottom: 96 }}>
       <TspCard theme={theme}>
-        <Text style={{ color: theme.textPrimary, fontWeight: '800' }}>Theme Switch</Text>
+        <Text style={{ color: theme.textPrimary, fontWeight: '800' }}>{translate('sample/settings/theme/title')}</Text>
         <Text style={{ marginTop: 6, color: theme.textSecondary, fontSize: 13 }}>
-          当前：{activePreset?.label || themePresetKey}
+          {translate('sample/settings/theme/current', activeLabel)}
         </Text>
         <Text style={{ marginTop: 4, color: theme.textTertiary, fontSize: 12 }}>
-          6 套内置主题：Sky / Star / Mint × 岛屿阴影 / 扁平无影
+          {translate('sample/settings/theme/hint')}
         </Text>
-        <TspButton text="Primary island preview" variant="primary" theme={theme} />
+        <View style={{ marginTop: 10 }}>
+          <TspButton text={translate('sample/settings/theme/preview_button')} variant="primary" theme={theme} />
+        </View>
         {builtInThemePresets.map(preset => {
           const key = `${preset.colorKey}:${preset.styleProfile}`;
           return (
             <View key={key} style={{ marginTop: 8 }}>
               <TspButton
-                text={preset.label}
+                text={translate(themeLabelKeys[key] || preset.label)}
                 variant={key === themePresetKey ? 'primary' : 'default'}
                 theme={theme}
                 onPress={() => setThemePresetKey(key)}
@@ -31,11 +43,17 @@ export function SettingsPage({ theme, themePresetKey, setThemePresetKey, languag
         })}
       </TspCard>
       <TspCard theme={theme}>
-        <Text style={{ color: theme.textPrimary, fontWeight: '800' }}>Language Switch</Text>
-        {[['zh-CN', '简体中文'], ['en', 'English'], ['ja', '日本語']].map(([key, label]) => (
+        <Text style={{ color: theme.textPrimary, fontWeight: '800' }}>{translate('sample/settings/language/title')}</Text>
+        <Text style={{ marginTop: 6, color: theme.textSecondary, fontSize: 13 }}>
+          {translate('sample/settings/language/current', translate(`sample/lang/${languageKey}`))}
+        </Text>
+        <Text style={{ marginTop: 4, color: theme.textTertiary, fontSize: 12 }}>
+          {translate('sample/settings/language/hint')}
+        </Text>
+        {[['zh-CN', 'sample/lang/zh-CN'], ['en', 'sample/lang/en'], ['ja', 'sample/lang/ja']].map(([key, labelKey]) => (
           <View key={key} style={{ marginTop: 8 }}>
             <TspButton
-              text={label}
+              text={translate(labelKey)}
               variant={key === languageKey ? 'primary' : 'default'}
               theme={theme}
               onPress={() => setLanguageKey(key)}
