@@ -185,23 +185,41 @@ describe('TspSwitch', () => {
   it('renders and toggles', () => {
     const fn = vi.fn();
     render(React.createElement(TspSwitch, { checked: false, onChange: fn }));
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(screen.getByRole('switch'));
     expect(fn).toHaveBeenCalledWith(true);
   });
   it('applies checked class', () => {
     const { container } = render(React.createElement(TspSwitch, { checked: true }));
     expect(container.querySelector('.bc-checked')).toBeTruthy();
   });
+  it('renders flat hierarchy without inner ON/OFF text', () => {
+    const { container } = render(React.createElement(TspSwitch, { text: 'Label', checked: false }));
+    expect(container.querySelector('.bc-switch__label')?.textContent).toBe('Label');
+    expect(container.querySelector('.bc-switch__control')).toBeTruthy();
+    expect(container.querySelector('.bc-switch__track')).toBeTruthy();
+    expect(container.querySelector('.bc-switch__inner-text')).toBeNull();
+    expect(container.querySelector('.bc-switch__thumb')).toBeTruthy();
+    expect(container.querySelector('.bc-switch--md')).toBeTruthy();
+  });
+  it('applies sm flat sizes class', () => {
+    const { container } = render(React.createElement(TspSwitch, { checked: false, variant: 'sm' }));
+    expect(container.querySelector('.bc-switch--sm')).toBeTruthy();
+  });
+  it('shows spinner when loading', () => {
+    const { container } = render(React.createElement(TspSwitch, { checked: true, loading: true }));
+    expect(container.querySelector('.bc-switch__spinner')).toBeTruthy();
+    expect(container.querySelector('.bc-loading')).toBeTruthy();
+  });
   it('disabled does not toggle', () => {
     const fn = vi.fn();
     render(React.createElement(TspSwitch, { checked: false, disabled: true, onChange: fn }));
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(screen.getByRole('switch'));
     expect(fn).not.toHaveBeenCalled();
   });
   it('loading disables interaction', () => {
     const fn = vi.fn();
     render(React.createElement(TspSwitch, { checked: true, loading: true, onChange: fn }));
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(screen.getByRole('switch'));
     expect(fn).not.toHaveBeenCalled();
   });
 });

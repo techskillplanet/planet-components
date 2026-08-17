@@ -16,8 +16,8 @@ import com.techskillplanet.basiccontrols.theme.BasicThemeManager;
 /**
  * 基础徽标组件。
  *
- * <p>适合状态标签、数量徽标和轻量提示。组件继承 TextView，因此可以直接使用
- * TextView 的 setText、setMaxLines 等能力。</p>
+ * <p>对齐 RN TspBadge：minHeight 28、水平内边距 10、字号 13sp 加粗；
+ * primary/success/danger 实心底白字，default 使用 pageEnd 底 + textPrimary。</p>
  */
 public class BasicBadgeView extends android.widget.TextView {
     /** 当前状态变体，例如 default/primary/success/warning/danger。 */
@@ -37,7 +37,8 @@ public class BasicBadgeView extends android.widget.TextView {
         super(context, attrs, defStyleAttr);
         setGravity(Gravity.CENTER);
         setSingleLine(true);
-        setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        setTypeface(Typeface.DEFAULT_BOLD);
+        setIncludeFontPadding(false);
         readAttrs(attrs);
         refreshTheme();
     }
@@ -70,8 +71,8 @@ public class BasicBadgeView extends android.widget.TextView {
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
-        int fill = colors.backgroundSurfaceSubtle;
-        int text = colors.textSecondary;
+        int fill = colors.backgroundPageGradientEnd;
+        int text = colors.textPrimary;
         if (isSelected() || "primary".equals(variant)) {
             fill = colors.brandPrimary;
             text = colors.textInverse;
@@ -90,11 +91,16 @@ public class BasicBadgeView extends android.widget.TextView {
             text = colors.textDisabled;
         }
         setTextColor(text);
-        setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textSm);
+        setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+        setTypeface(Typeface.DEFAULT_BOLD);
         setMinHeight(Math.round(style.badgeHeight));
-        setMinWidth(Math.round(style.badgeHeight));
-        setPadding(Math.round(style.spaceSm), 0, Math.round(style.spaceSm), 0);
+        int padH = Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 10f, getResources().getDisplayMetrics()));
+        int padV = Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 5f, getResources().getDisplayMetrics()));
+        setPadding(padH, padV, padH, padV);
         setBackground(BasicDrawableFactory.roundedFill(fill, style.radiusPill));
+        setAlpha(basicDisabled || !isEnabled() ? 0.45f : 1f);
     }
 
     /** 从 XML 读取通用 BasicView 属性。 */

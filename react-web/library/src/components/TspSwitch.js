@@ -1,43 +1,66 @@
-import { React, h, cx, clamp, optionText, themed, starPlanetTheme } from './_shared.js';
+import { React, h, cx, themed, starPlanetTheme } from './_shared.js';
 
 /**
- * TspSwitch – Toggle switch with loading and disabled states.
+ * TspSwitch – Flat conventional toggle (no track-inner ON/OFF).
  *
- * Binary on/off control with optional label text.
+ * Hierarchy: Label? + Control > Track > Thumb > Spinner?
  *
  * @param {Object} props
- * @param {string} [props.text] - Label text displayed beside the switch.
+ * @param {string} [props.text=''] - Outer label on the left.
  * @param {boolean} [props.checked=false] - Whether the switch is on.
- * @param {string} [props.checkedText=''] - Text shown when checked.
- * @param {string} [props.uncheckedText=''] - Text shown when unchecked.
- * @param {boolean} [props.loading=false] - Show loading state (disables interaction).
+ * @param {string} [props.checkedText='ON'] - Kept for API compat; not rendered.
+ * @param {string} [props.uncheckedText='OFF'] - Kept for API compat; not rendered.
+ * @param {boolean} [props.loading=false] - Show spinner in thumb; blocks interaction.
  * @param {boolean} [props.disabled=false] - Disable the switch.
+ * @param {'md'|'sm'} [props.variant='md'] - Size variant.
  * @param {Object} [props.theme] - Theme object.
  * @param {Function} [props.onChange] - Callback with new boolean value.
- * @returns {React.ReactElement} A styled <button> element with track/thumb.
+ * @returns {React.ReactElement}
  */
 
 export function TspSwitch({
-  text,
+  text = '',
   checked = false,
-  checkedText = '',
-  uncheckedText = '',
+  checkedText: _checkedText = 'ON',
+  uncheckedText: _uncheckedText = 'OFF',
   loading = false,
   disabled = false,
+  variant = 'md',
   theme = starPlanetTheme,
   onChange
 }) {
-  const label = checked ? checkedText : uncheckedText;
+  const size = variant === 'sm' ? 'sm' : 'md';
+  const blocked = disabled || loading;
   return h(
     'button',
     {
       type: 'button',
-      disabled: disabled || loading,
-      className: cx('bc-switch', checked && 'bc-checked', loading && 'bc-loading', disabled && 'bc-disabled'),
+      role: 'switch',
+      'aria-checked': checked,
+      disabled: blocked,
+      className: cx(
+        'bc-switch',
+        `bc-switch--${size}`,
+        checked && 'bc-checked',
+        loading && 'bc-loading',
+        disabled && 'bc-disabled'
+      ),
       style: themed(theme),
-      onClick: disabled || loading ? undefined : () => onChange?.(!checked)
+      onClick: blocked ? undefined : () => onChange?.(!checked)
     },
-    h('span', { className: 'bc-switch__track' }, h('span', { className: 'bc-switch__thumb' })),
-    (text || label) && h('span', { className: 'bc-switch__text' }, text || label)
+    text ? h('span', { className: 'bc-switch__label' }, text) : null,
+    h(
+      'span',
+      { className: 'bc-switch__control' },
+      h(
+        'span',
+        { className: 'bc-switch__track' },
+        h(
+          'span',
+          { className: 'bc-switch__thumb' },
+          loading ? h('span', { className: 'bc-switch__spinner', 'aria-hidden': true }) : null
+        )
+      )
+    )
   );
 }

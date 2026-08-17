@@ -10,7 +10,6 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
-
 import android.widget.TextView;
 
 import com.techskillplanet.basiccontrols.R;
@@ -20,7 +19,7 @@ import com.techskillplanet.basiccontrols.theme.BasicStyle;
 import com.techskillplanet.basiccontrols.theme.BasicThemeManager;
 
 /**
- * RN IconButton 的轻量 Android 实现，图标可直接传入 glyph 或短字符。
+ * RN IconButton 的轻量 Android 实现：44×44、圆角 14、1px 边框；选中为 brandPrimary 实心 + 白图标。
  */
 public class BasicIconButtonView extends TextView {
     private String variant = "default";
@@ -63,22 +62,41 @@ public class BasicIconButtonView extends TextView {
         refreshTheme();
     }
 
+    @Override
+    public void setSelected(boolean selected) {
+        super.setSelected(selected);
+        refreshTheme();
+    }
+
+    public void setSelectedState(boolean selected) {
+        setSelected(selected);
+    }
+
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
-        int fill = "primary".equals(variant) ? colors.brandPrimarySubtle : colors.backgroundSurfaceRaised;
-        int text = "primary".equals(variant) ? colors.brandPrimary : colors.textPrimary;
+        boolean selected = isSelected() || "primary".equals(variant);
+        int fill = selected ? colors.brandPrimary : colors.backgroundSurfaceRaised;
+        int text = selected ? colors.textInverse : colors.textPrimary;
         setTextColor(text);
         if (iconResId != 0) {
             setTextSize(TypedValue.COMPLEX_UNIT_PX, 0);
             applyIconDrawable(text);
         } else {
             setCompoundDrawablesRelative(null, null, null, null);
-            setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textTitle);
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         }
-        setBackground(BasicDrawableFactory.roundedFill(fill, style.radiusPill));
-        int padding = Math.round(style.spaceSm);
-        setPadding(padding, padding, padding, padding);
+        setBackground(BasicDrawableFactory.roundedFillStroke(
+                fill,
+                colors.borderDefault,
+                style.borderHairline,
+                dp(14)
+        ));
+        int size = dp(44);
+        setMinWidth(size);
+        setMinHeight(size);
+        setPadding(0, 0, 0, 0);
+        setAlpha(isEnabled() ? 1f : 0.45f);
     }
 
     private void applyIconDrawable(int tintColor) {
@@ -99,13 +117,15 @@ public class BasicIconButtonView extends TextView {
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int size = dp(44);
+        setMeasuredDimension(size, size);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         if (iconDrawable != null && iconResId != 0) {
-            int size = Math.round(TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP,
-                    22f,
-                    getResources().getDisplayMetrics()
-            ));
+            int size = dp(22);
             int left = (getWidth() - size) / 2;
             int top = (getHeight() - size) / 2;
             iconDrawable.setBounds(left, top, left + size, top + size);
@@ -130,6 +150,14 @@ public class BasicIconButtonView extends TextView {
         return super.onTouchEvent(event);
     }
 
+    private int dp(float value) {
+        return Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                value,
+                getResources().getDisplayMetrics()
+        ));
+    }
+
     private Drawable loadDrawable(int resId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return getContext().getDrawable(resId);
@@ -146,6 +174,7 @@ public class BasicIconButtonView extends TextView {
             String xmlVariant = array.getString(R.styleable.BasicView_basicVariant);
             String xmlText = array.getString(R.styleable.BasicView_basicText);
             variant = xmlVariant == null ? "default" : xmlVariant;
+            setSelected(array.getBoolean(R.styleable.BasicView_basicSelected, false));
             if (xmlText != null) {
                 setText(xmlText);
             }

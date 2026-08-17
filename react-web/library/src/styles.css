@@ -536,9 +536,10 @@ body {
 
 .bc-switch {
   display: inline-flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
   border: 0;
+  padding: 0;
   background: transparent;
   color: var(--bc-text-primary);
   cursor: pointer;
@@ -546,31 +547,108 @@ body {
   font-weight: 800;
 }
 
-.bc-switch__track {
-  position: relative;
-  width: 52px;
-  height: 30px;
-  border-radius: 999px;
-  background: var(--bc-border-default);
+.bc-switch.bc-disabled {
+  cursor: not-allowed;
 }
 
-.bc-switch__thumb {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #fff;
-  transition: transform .18s ease;
+.bc-switch__label {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--bc-text-primary);
+}
+
+.bc-switch__control {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.bc-switch.bc-loading .bc-switch__control {
+  opacity: 0.7;
+}
+
+.bc-switch.bc-disabled .bc-switch__control {
+  opacity: 0.5;
+}
+
+.bc-switch__track {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 52px;
+  height: 28px;
+  border-radius: 999px;
+  border: 0;
+  box-shadow: none;
+  background: var(--bc-switch-off-bg);
+  transition: background 180ms ease;
 }
 
 .bc-switch.bc-checked .bc-switch__track {
-  background: var(--bc-brand-primary);
+  background: var(--bc-switch-on-bg);
+}
+
+.bc-switch__thumb {
+  box-sizing: border-box;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 0;
+  box-shadow: none;
+  background: var(--bc-switch-handle-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 180ms ease;
 }
 
 .bc-switch.bc-checked .bc-switch__thumb {
-  transform: translateX(22px);
+  transform: translateX(24px);
+}
+
+.bc-switch__spinner {
+  box-sizing: border-box;
+  width: 55%;
+  height: 55%;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--bc-brand-dark);
+  animation: bc-switch-spin 0.7s linear infinite;
+}
+
+.bc-switch.bc-checked .bc-switch__spinner {
+  border-top-color: #ffffff;
+}
+
+.bc-switch--sm .bc-switch__track {
+  width: 40px;
+  height: 22px;
+}
+
+.bc-switch--sm .bc-switch__thumb {
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+}
+
+.bc-switch--sm.bc-checked .bc-switch__thumb {
+  transform: translateX(18px);
+}
+
+.bc-switch--sm .bc-switch__spinner {
+  border-width: 1.5px;
+}
+
+@keyframes bc-switch-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .bc-progress {

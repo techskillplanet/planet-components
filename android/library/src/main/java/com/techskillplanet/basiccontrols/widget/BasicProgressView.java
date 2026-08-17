@@ -5,17 +5,16 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 
 import com.techskillplanet.basiccontrols.theme.BasicColors;
-import com.techskillplanet.basiccontrols.theme.BasicStyle;
 import com.techskillplanet.basiccontrols.theme.BasicThemeManager;
 
 /**
  * 基础进度条组件。
  *
- * <p>用于上传、下载、文章生成进度等确定性进度场景。绘制逻辑直接使用 Canvas，
- * 避免引入 ProgressBar 默认样式带来的主题不可控问题。</p>
+ * <p>对齐 RN TspProgress：高度 10dp，轨道 borderDefault，主填充 brandPrimary。</p>
  */
 public class BasicProgressView extends View {
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -72,8 +71,7 @@ public class BasicProgressView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        BasicStyle style = BasicThemeManager.style();
-        int desiredHeight = Math.round(style.spaceMd);
+        int desiredHeight = dp(10);
         setMeasuredDimension(
                 resolveSize(getSuggestedMinimumWidth(), widthMeasureSpec),
                 resolveSize(desiredHeight, heightMeasureSpec)
@@ -84,27 +82,19 @@ public class BasicProgressView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         BasicColors colors = BasicThemeManager.colors();
-        BasicStyle style = BasicThemeManager.style();
         float radius = getHeight() / 2f;
         rect.set(0, 0, getWidth(), getHeight());
-        paint.setColor(colors.loadingStripeSecondary);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(colors.borderDefault);
         canvas.drawRoundRect(rect, radius, radius, paint);
 
         rect.set(0, 0, getWidth() * progress, getHeight());
         paint.setColor(resolveFill(colors));
-        // 进度宽度为 0 时不绘制前景，避免圆角在左侧挤出一个小点。
         if (rect.width() > 0f) {
             canvas.drawRoundRect(rect, radius, radius, paint);
         }
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(style.borderHairline);
-        paint.setColor(colors.loadingBorder);
-        rect.set(0, 0, getWidth(), getHeight());
-        canvas.drawRoundRect(rect, radius, radius, paint);
-        paint.setStyle(Paint.Style.FILL);
     }
 
-    /** 根据 variant 选择语义进度色。 */
     private int resolveFill(BasicColors colors) {
         if (!isEnabled()) {
             return colors.textDisabled;
@@ -118,6 +108,14 @@ public class BasicProgressView extends View {
         if ("danger".equals(variant) || "error".equals(variant)) {
             return colors.statusDanger;
         }
-        return colors.loadingStripePrimary;
+        return colors.brandPrimary;
+    }
+
+    private int dp(float value) {
+        return Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                value,
+                getResources().getDisplayMetrics()
+        ));
     }
 }

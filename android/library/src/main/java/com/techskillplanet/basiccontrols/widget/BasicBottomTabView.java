@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.techskillplanet.basiccontrols.drawable.BasicDrawableFactory;
 import com.techskillplanet.basiccontrols.i18n.BasicI18nManager;
 import com.techskillplanet.basiccontrols.system.BasicEdgeToEdgeHelper;
 import com.techskillplanet.basiccontrols.theme.BasicColors;
@@ -23,13 +22,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 常见移动 App 底部 Tab 容器，适合 3-5 个一级页面，也兼容 MVP 阶段的 2 个页面。
+ * 底部 Tab，对齐 RN TspBottomTab：顶部分割线、无选中 pill、选中色 brandPrimary、标签始终加粗。
  */
 public class BasicBottomTabView extends LinearLayout {
     public interface OnTabSelectedListener {
         void onTabSelected(BasicBottomTabView view, int index, String key);
     }
 
+    private final View topBorder;
+    private final LinearLayout contentRow;
     private final List<Tab> tabs = new ArrayList<>();
     private int selectedIndex;
     private int navigationBarInset;
@@ -45,8 +46,13 @@ public class BasicBottomTabView extends LinearLayout {
 
     public BasicBottomTabView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setOrientation(HORIZONTAL);
-        setGravity(Gravity.CENTER);
+        setOrientation(VERTICAL);
+        topBorder = new View(context);
+        contentRow = new LinearLayout(context);
+        contentRow.setOrientation(HORIZONTAL);
+        contentRow.setGravity(Gravity.CENTER);
+        addView(topBorder, new LayoutParams(LayoutParams.MATCH_PARENT, dp(1)));
+        addView(contentRow, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         refreshTheme();
     }
 
@@ -84,12 +90,14 @@ public class BasicBottomTabView extends LinearLayout {
         if (style == null) {
             return;
         }
-        setPadding(
+        contentRow.setPadding(
                 Math.round(style.spaceMd),
-                Math.round(style.spaceSm),
+                dp(8),
                 Math.round(style.spaceMd),
-                Math.round(style.spaceSm) + navigationBarInset
+                dp(8)
         );
+        contentRow.setMinimumHeight(dp(52));
+        setPadding(0, 0, 0, navigationBarInset);
     }
 
     public void setTabs(List<Tab> items) {
@@ -119,13 +127,13 @@ public class BasicBottomTabView extends LinearLayout {
         }
         BasicColors colors = BasicThemeManager.colors();
         setBackgroundColor(colors.backgroundSurfaceRaised);
+        topBorder.setBackgroundColor(colors.borderDefault);
         render();
     }
 
     private void render() {
-        removeAllViews();
+        contentRow.removeAllViews();
         applyContainerPadding();
-        BasicStyle style = BasicThemeManager.style();
         for (int i = 0; i < tabs.size(); i++) {
             final int index = i;
             Tab tab = tabs.get(i);
@@ -134,6 +142,7 @@ public class BasicBottomTabView extends LinearLayout {
             item.setGravity(Gravity.CENTER);
             item.setClickable(true);
             item.setFocusable(true);
+            item.setBackgroundColor(android.graphics.Color.TRANSPARENT);
             item.setOnClickListener(view -> {
                 if (selectedIndex != index) {
                     selectedIndex = index;
@@ -166,42 +175,36 @@ public class BasicBottomTabView extends LinearLayout {
             label.setGravity(Gravity.CENTER);
             label.setSingleLine(true);
             label.setIncludeFontPadding(false);
+            label.setTypeface(Typeface.DEFAULT_BOLD);
             label.setText(BasicI18nManager.text(tab.textKey, tab.fallback));
-            item.addView(label, new LayoutParams(LayoutParams.MATCH_PARENT, dp(22)));
+            item.addView(label, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
-            LayoutParams params = new LayoutParams(0, dp(52), 1f);
-            params.setMargins(dp(3), 0, dp(3), 0);
-            addView(item, params);
+            contentRow.addView(item, new LayoutParams(0, LayoutParams.MATCH_PARENT, 1f));
         }
         refreshSelection();
     }
 
     private void refreshSelection() {
         BasicColors colors = BasicThemeManager.colors();
-        BasicStyle style = BasicThemeManager.style();
-        for (int i = 0; i < getChildCount(); i++) {
-            View child = getChildAt(i);
+        for (int i = 0; i < contentRow.getChildCount(); i++) {
+            View child = contentRow.getChildAt(i);
             boolean selected = i == selectedIndex;
             child.setSelected(selected);
-            child.setBackground(BasicDrawableFactory.roundedFill(
-                    selected ? colors.brandPrimarySubtle : android.graphics.Color.TRANSPARENT,
-                    style.radiusLg
-            ));
+            child.setBackgroundColor(android.graphics.Color.TRANSPARENT);
             LinearLayout item = (LinearLayout) child;
             View icon = item.getChildAt(0);
             TextView label = (TextView) item.getChildAt(1);
-            int textColor = selected ? colors.brandPrimaryActive : colors.textTertiary;
+            int textColor = selected ? colors.brandPrimary : colors.textTertiary;
             if (icon instanceof TextView) {
                 TextView iconText = (TextView) icon;
                 iconText.setTextColor(textColor);
                 iconText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
             } else if (icon instanceof ImageView) {
-                Drawable drawable = ((ImageView) icon).getDrawable();
-                tintDrawable(drawable, textColor);
+                tintDrawable(((ImageView) icon).getDrawable(), textColor);
             }
             label.setTextColor(textColor);
             label.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
-            label.setTypeface(Typeface.DEFAULT, selected ? Typeface.BOLD : Typeface.NORMAL);
+            label.setTypeface(Typeface.DEFAULT_BOLD);
         }
     }
 

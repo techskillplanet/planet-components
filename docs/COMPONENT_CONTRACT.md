@@ -35,7 +35,7 @@ Core semantic colors:
 | Input | `default`, `error`, `disabled` | `value`, `placeholder`, `variant`, `disabled`, `onChange` |
 | Select | `default`, `disabled` | `options`, `selectedIndex`, `disabled`, `onSelect` |
 | OptionSheet | `default`, `mobile` | `title`, `options`, `selectedIndex`, `visible`, `onSelect`, `onCancel` |
-| Switch | `md`, `sm`, `loading`, `disabled` | `text`, `checked`, `checkedText`, `uncheckedText`, `loading`, `disabled`, `onChange` |
+| Switch | `md`, `sm`, `loading`, `disabled` | `text`, `checked`, `checkedText`, `uncheckedText`, `loading`, `disabled`, `variant`, `onChange`（**扁平常规 UI**，见 `docs/prds/cross-platform-ui-parity/specs/05-switch-contract.md`；禁止系统 Switch / 岛屿轨内字） |
 | Progress | `primary`, `warning`, `success`, `danger` | `progress`, `variant` |
 | TopBar | `default` | `title`, `showBack`, `backgroundColor`, `onBack` |
 | BottomTab | `default` | `tabs`, `selectedKey`, `onSelect` |

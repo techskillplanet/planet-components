@@ -15,6 +15,8 @@ public final class BasicColors {
     public final int brandPrimaryActive;
     /** 品牌浅底色，用于选项选中背景、弱提示背景。 */
     public final int brandPrimarySubtle;
+    /** 品牌深色，用于 Toast info 等强调填充。 */
+    public final int brandDark;
 
     /** 主文字颜色。 */
     public final int textPrimary;
@@ -43,6 +45,10 @@ public final class BasicColors {
     public final int backgroundMenu;
     /** 弹窗遮罩颜色。 */
     public final int backgroundModalScrim;
+    /** 选中态浅绿填充，用于 Chip/Card/ListItem。 */
+    public final int selectedFill;
+    /** 激活态浅黄填充，用于 Alert warning / Notification alert。 */
+    public final int activeFill;
 
     /** 默认边框颜色。 */
     public final int borderDefault;
@@ -117,6 +123,7 @@ public final class BasicColors {
             int brandPrimaryHover,
             int brandPrimaryActive,
             int brandPrimarySubtle,
+            int brandDark,
             int textPrimary,
             int textSecondary,
             int textTertiary,
@@ -130,6 +137,8 @@ public final class BasicColors {
             int backgroundSurfaceDisabled,
             int backgroundMenu,
             int backgroundModalScrim,
+            int selectedFill,
+            int activeFill,
             int borderDefault,
             int borderLight,
             int borderDivider,
@@ -167,6 +176,7 @@ public final class BasicColors {
         this.brandPrimaryHover = brandPrimaryHover;
         this.brandPrimaryActive = brandPrimaryActive;
         this.brandPrimarySubtle = brandPrimarySubtle;
+        this.brandDark = brandDark;
         this.textPrimary = textPrimary;
         this.textSecondary = textSecondary;
         this.textTertiary = textTertiary;
@@ -180,6 +190,8 @@ public final class BasicColors {
         this.backgroundSurfaceDisabled = backgroundSurfaceDisabled;
         this.backgroundMenu = backgroundMenu;
         this.backgroundModalScrim = backgroundModalScrim;
+        this.selectedFill = selectedFill;
+        this.activeFill = activeFill;
         this.borderDefault = borderDefault;
         this.borderLight = borderLight;
         this.borderDivider = borderDivider;

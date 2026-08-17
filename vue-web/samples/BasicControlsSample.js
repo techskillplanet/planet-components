@@ -79,7 +79,12 @@ function renderVueDocPreview(name, theme, state) {
     case 'Input': return h('div', { class: 'bc-example-stack' }, [example('default', h(TspInput, { value: state.inputValue.value, placeholder: 'Input', onChange: (value) => { state.inputValue.value = value; }, ...common })), example('error', h(TspInput, { value: '', placeholder: 'Required', variant: 'error', ...common }))]);
     case 'Select': return h(TspSelect, { options: ['A', 'B', 'C'], selectedIndex: state.selectedOption.value, onSelect: (index) => { state.selectedOption.value = index; }, ...common });
     case 'OptionSheet': return h(TspButton, { text: 'Open OptionSheet', variant: 'primary', onTap: () => { state.showSheet.value = true; }, ...common });
-    case 'Switch': return h('div', { class: 'bc-example-stack' }, [example('checked', h(TspSwitch, { text: 'Switch', checked: state.checked.value, onChange: (value) => { state.checked.value = value; }, ...common })), example('loading', h(TspSwitch, { text: 'Loading', checked: true, loading: true, ...common }))]);
+    case 'Switch': return h('div', { class: 'bc-example-stack' }, [
+      example('md', h(TspSwitch, { text: 'Switch', checked: state.checked.value, onChange: (value) => { state.checked.value = value; }, ...common })),
+      example('sm', h(TspSwitch, { text: 'Small', checked: state.checked.value, onChange: (value) => { state.checked.value = value; }, variant: 'sm', ...common })),
+      example('loading', h(TspSwitch, { text: 'Loading', checked: true, loading: true, ...common })),
+      example('disabled', h(TspSwitch, { text: 'Disabled', checked: false, disabled: true, ...common }))
+    ]);
     case 'Progress': return h('div', { class: 'bc-example-stack' }, ['primary', 'success', 'warning', 'danger'].map((variant, index) => example(variant, h(TspProgress, { progress: [38, 68, 52, 82][index], variant, ...common }))));
     case 'TopBar': return h(TspTopBar, { title: '基础组件', showBack: true, ...common });
     case 'BottomTab': return h('div', { class: 'bc-doc-sticky-demo' }, h(TspBottomTab, { tabs: state.tabs, selectedKey: state.tab.value, onSelect: (key) => { state.tab.value = key; }, ...common }));

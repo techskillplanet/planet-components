@@ -126,6 +126,7 @@ public class BasicButton extends FrameLayout {
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
+        boolean flatVariant = VARIANT_TEXT.equals(variant) || VARIANT_LINK.equals(variant);
         int fill;
         int text;
         int stroke;
@@ -133,11 +134,6 @@ public class BasicButton extends FrameLayout {
             int gradientStart = colors.brandPrimary;
             int gradientEnd = colors.brandPrimaryHover;
             text = colors.textInverse;
-            if (basicDisabled || !isEnabled()) {
-                gradientStart = colors.backgroundSurfaceDisabled;
-                gradientEnd = colors.backgroundSurfaceDisabled;
-                text = colors.textDisabled;
-            }
             labelView.setBackground(BasicDrawableFactory.roundedGradientFill(
                     gradientStart,
                     gradientEnd,
@@ -146,6 +142,7 @@ public class BasicButton extends FrameLayout {
             shadowLayer.setVisibility(GONE);
             labelView.setTextColor(text);
             labelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
+            setAlpha(basicDisabled || !isEnabled() ? 0.45f : 1f);
             requestLayout();
             return;
         }
@@ -157,16 +154,16 @@ public class BasicButton extends FrameLayout {
             fill = colors.statusDanger;
             text = colors.textInverse;
             stroke = colors.statusDanger;
-        } else if (VARIANT_TEXT.equals(variant) || VARIANT_LINK.equals(variant)) {
-            fill = colors.backgroundSurface;
+        } else if (flatVariant) {
+            fill = android.graphics.Color.TRANSPARENT;
             text = colors.brandPrimary;
-            stroke = colors.backgroundSurface;
+            stroke = android.graphics.Color.TRANSPARENT;
         } else {
             fill = colors.buttonDefaultBackground;
             text = colors.buttonDefaultText;
             stroke = colors.borderControl;
         }
-        if (basicDisabled || !isEnabled()) {
+        if ((basicDisabled || !isEnabled()) && !flatVariant) {
             fill = colors.backgroundSurfaceDisabled;
             text = colors.textDisabled;
             stroke = colors.borderLight;
@@ -177,10 +174,10 @@ public class BasicButton extends FrameLayout {
         labelView.setBackground(BasicDrawableFactory.roundedFillStroke(
                 fill,
                 stroke,
-                style.borderDefault,
+                flatVariant ? 0f : style.borderDefault,
                 style.radiusPill
         ));
-        boolean showRaisedShadow = style.buttonRaisedShadowEnabled;
+        boolean showRaisedShadow = style.buttonRaisedShadowEnabled && !flatVariant;
         shadowLayer.setVisibility(showRaisedShadow ? VISIBLE : GONE);
         if (showRaisedShadow) {
             shadowLayer.setBackground(BasicDrawableFactory.roundedFill(
@@ -188,6 +185,7 @@ public class BasicButton extends FrameLayout {
                     style.radiusPill
             ));
         }
+        setAlpha(basicDisabled || !isEnabled() ? 0.45f : 1f);
         requestLayout();
     }
 
@@ -222,7 +220,8 @@ public class BasicButton extends FrameLayout {
                 88,
                 getResources().getDisplayMetrics()
         ));
-        int lift = style.buttonRaisedShadowEnabled
+        boolean flatVariant = VARIANT_TEXT.equals(variant) || VARIANT_LINK.equals(variant);
+        int lift = style.buttonRaisedShadowEnabled && !flatVariant
                 ? Math.round(style.shadowControlIslandLiftY)
                 : 0;
         int desiredHeight = Math.round(style.controlHeightButtonMedium + lift);
@@ -232,7 +231,7 @@ public class BasicButton extends FrameLayout {
         int exactWidth = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
         int exactChildHeight = MeasureSpec.makeMeasureSpec(childHeight, MeasureSpec.EXACTLY);
         labelView.measure(exactWidth, exactChildHeight);
-        if (style.buttonRaisedShadowEnabled) {
+        if (style.buttonRaisedShadowEnabled && !flatVariant) {
             shadowLayer.measure(exactWidth, exactChildHeight);
         }
         setMeasuredDimension(width, height);
@@ -241,13 +240,14 @@ public class BasicButton extends FrameLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         BasicStyle style = BasicThemeManager.style();
+        boolean flatVariant = VARIANT_TEXT.equals(variant) || VARIANT_LINK.equals(variant);
         int width = right - left;
         int height = bottom - top;
-        int lift = style.buttonRaisedShadowEnabled
+        int lift = style.buttonRaisedShadowEnabled && !flatVariant
                 ? Math.round(style.shadowControlIslandLiftY)
                 : 0;
         int contentHeight = Math.max(0, height - lift);
-        if (style.buttonRaisedShadowEnabled) {
+        if (style.buttonRaisedShadowEnabled && !flatVariant) {
             shadowLayer.layout(0, lift, width, lift + contentHeight);
         }
         labelView.layout(0, 0, width, contentHeight);

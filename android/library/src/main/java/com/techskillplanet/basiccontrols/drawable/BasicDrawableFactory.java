@@ -51,6 +51,31 @@ public final class BasicDrawableFactory {
     }
 
     /**
+     * 创建四角可独立设置的圆角填充 + 边框 Drawable。
+     */
+    public static GradientDrawable roundedFillStroke(
+            int fillColor,
+            int strokeColor,
+            float strokeWidthPx,
+            float topLeft,
+            float topRight,
+            float bottomRight,
+            float bottomLeft
+    ) {
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.RECTANGLE);
+        drawable.setColor(fillColor);
+        drawable.setCornerRadii(new float[]{
+                topLeft, topLeft,
+                topRight, topRight,
+                bottomRight, bottomRight,
+                bottomLeft, bottomLeft
+        });
+        drawable.setStroke(Math.round(strokeWidthPx), strokeColor);
+        return drawable;
+    }
+
+    /**
      * 创建水平渐变圆角 Drawable，用于分段选择器等选中态。
      */
     public static GradientDrawable roundedGradientFill(

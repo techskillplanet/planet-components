@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>技趣星球 · TechSkillPlanet</title>
+    <meta
+      name="description"
+      content="技趣星球 TechSkillPlanet — 用技术创造乐趣。跨平台基础控件与 Sky Planet 设计语言。"
+    />
+    <meta name="theme-color" content="#31A8FF" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="sky" aria-hidden="true">
+      <span class="cloud c1"></span>
+      <span class="cloud c2"></span>
+      <span class="cloud c3"></span>
+      <span class="orb"></span>
+    </div>
+
+    <main class="hero">
+      <p class="eyebrow">TechSkillPlanet</p>
+      <h1 class="brand">技趣星球</h1>
+      <p class="slogan">用技术创造乐趣</p>
+      <p class="lead">
+        跨平台基础控件库 · Sky Planet 设计语言 · 开源组件供开发者直接使用
+      </p>
+
+      <div class="cta">
+        <a
+          class="btn primary"
+          href="https://github.com/techskillplanet/planet-components"
+          rel="noopener noreferrer"
+          >GitHub 仓库</a
+        >
+        <a
+          class="btn ghost"
+          href="https://pub.dev/publishers"
+          rel="noopener noreferrer"
+          >pub.dev 发布</a
+        >
+      </div>
+    </main>
+
+    <footer class="foot">
+      <span>© <span id="y"></span> TechSkillPlanet</span>
+      <span class="sep">·</span>
+      <a href="https://github.com/techskillplanet/planet-components"
+        >planet-components</a
+      >
+    </footer>
+
+    <script>
+      document.getElementById("y").textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>

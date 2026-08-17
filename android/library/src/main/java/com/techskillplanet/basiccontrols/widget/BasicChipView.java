@@ -16,8 +16,8 @@ import com.techskillplanet.basiccontrols.theme.BasicThemeManager;
 /**
  * 技趣星球主题胶囊标签。
  *
- * <p>Chip 常用于筛选条件、兴趣标签、步骤状态和轻量分类。组件继承 TextView，
- * 保留原生文本能力，同时把选中态、禁用态和 variant 统一交给 token 管理。</p>
+ * <p>Chip 常用于筛选条件、兴趣标签、步骤状态和轻量分类。选中态对齐 RN starPlanet：
+ * selectedFill 底 + success 边 + textPrimary，而非品牌实心白字。</p>
  */
 public class BasicChipView extends android.widget.TextView {
     private String variant = "default";
@@ -51,7 +51,7 @@ public class BasicChipView extends android.widget.TextView {
         setText(text);
     }
 
-    /** 设置选中态，选中时使用品牌主色背景。 */
+    /** 设置选中态，选中时使用 selectedFill + success 边框。 */
     public void setSelectedState(boolean selected) {
         setSelected(selected);
         refreshTheme();
@@ -68,10 +68,14 @@ public class BasicChipView extends android.widget.TextView {
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
-        int fill = colors.backgroundSurface;
-        int stroke = colors.borderControl;
-        int text = colors.textSecondary;
-        if (isSelected() || "primary".equals(variant)) {
+        int fill = colors.backgroundSurfaceRaised;
+        int stroke = colors.borderDefault;
+        int text = colors.textPrimary;
+        if (isSelected()) {
+            fill = colors.selectedFill;
+            stroke = colors.statusSuccess;
+            text = colors.textPrimary;
+        } else if ("primary".equals(variant)) {
             fill = colors.brandPrimary;
             stroke = colors.brandPrimary;
             text = colors.textInverse;
@@ -100,6 +104,7 @@ public class BasicChipView extends android.widget.TextView {
         setPadding(padH, 0, padH, 0);
         setIncludeFontPadding(false);
         setBackground(BasicDrawableFactory.roundedFillStroke(fill, stroke, style.borderHairline, style.radiusPill));
+        setAlpha(basicDisabled || !isEnabled() ? 0.45f : 1f);
     }
 
     /** 从 XML 读取 BasicView 通用属性。 */

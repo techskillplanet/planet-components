@@ -16,6 +16,8 @@ import com.techskillplanet.basiccontrols.theme.BasicThemeManager;
 
 /**
  * RN Notification 的星球主题通知条。
+ *
+ * <p>info 使用 pageEnd，alert/warning 使用 activeFill + warning 边。</p>
  */
 public class BasicNotificationView extends LinearLayout {
     private final TextView titleView;
@@ -54,10 +56,11 @@ public class BasicNotificationView extends LinearLayout {
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
-        int fill = "alert".equals(variant) || "warning".equals(variant) ? colors.statusWarning : colors.brandPrimarySubtle;
-        int stroke = "alert".equals(variant) || "warning".equals(variant) ? colors.borderWarning : colors.borderDefault;
-        setBackground(BasicDrawableFactory.roundedFillStroke(fill, stroke, style.borderHairline, style.radiusLg));
-        int paddingH = Math.round(style.spaceLg);
+        boolean alert = "alert".equals(variant) || "warning".equals(variant);
+        int fill = alert ? colors.activeFill : colors.backgroundPageGradientEnd;
+        int stroke = alert ? colors.statusWarning : colors.borderDefault;
+        setBackground(BasicDrawableFactory.roundedFillStroke(fill, stroke, style.borderHairline, dp(18)));
+        int paddingH = Math.round(style.spaceMd);
         int paddingV = Math.round(style.spaceMd);
         setPadding(paddingH, paddingV, paddingH, paddingV);
         titleView.setTextColor(colors.textPrimary);
@@ -65,7 +68,15 @@ public class BasicNotificationView extends LinearLayout {
         titleView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         messageView.setTextColor(colors.textSecondary);
         messageView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textSm);
-        messageView.setPadding(0, Math.round(style.spaceSm), 0, 0);
+        messageView.setPadding(0, dp(6), 0, 0);
+    }
+
+    private int dp(float value) {
+        return Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                value,
+                getResources().getDisplayMetrics()
+        ));
     }
 
     private void readAttrs(AttributeSet attrs) {

@@ -98,26 +98,40 @@ public class BasicListItemView extends LinearLayout {
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
-        int fill = isSelected() || "selected".equals(variant)
-                ? colors.selectSelectedOptionBackground
-                : colors.backgroundSurfaceRaised;
+        boolean selected = isSelected() || "selected".equals(variant);
+        int fill = selected ? colors.selectedFill : colors.backgroundSurfaceRaised;
+        int stroke = selected ? colors.statusSuccess : colors.borderDefault;
         int title = basicDisabled || !isEnabled() ? colors.textDisabled : colors.textPrimary;
         int message = basicDisabled || !isEnabled() ? colors.textDisabled : colors.textSecondary;
+        int trailing = basicDisabled || !isEnabled() ? colors.textDisabled : colors.textTertiary;
 
-        setBackground(BasicDrawableFactory.roundedFillStroke(fill, colors.borderLight, style.borderHairline, style.radiusControlIsland));
+        setMinimumHeight(dp(64));
+        setBackground(BasicDrawableFactory.roundedFillStroke(fill, stroke, style.borderHairline, dp(18)));
         setPadding(Math.round(style.spaceMd), Math.round(style.spaceMd), Math.round(style.spaceMd), Math.round(style.spaceMd));
+        setAlpha(basicDisabled || !isEnabled() ? 0.45f : 1f);
         titleView.setTextColor(title);
         titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
         messageView.setTextColor(message);
         messageView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textSm);
-        trailingView.setTextColor(message);
-        trailingView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textSm);
+        if (messageView.getText() != null && messageView.getText().length() > 0) {
+            messageView.setPadding(0, dp(4), 0, 0);
+        }
+        trailingView.setTextColor(trailing);
+        trailingView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
         LinearLayout textColumn = (LinearLayout) titleView.getParent();
         LayoutParams textParams = new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f);
         textParams.setMargins(0, 0, Math.round(style.spaceMd), 0);
         textColumn.setLayoutParams(textParams);
         trailingView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+    }
+
+    private int dp(float value) {
+        return Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                value,
+                getResources().getDisplayMetrics()
+        ));
     }
 
     /** 从 XML 读取标题、描述、选中态和禁用态。 */

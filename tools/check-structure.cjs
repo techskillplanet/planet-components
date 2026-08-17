@@ -18,7 +18,7 @@ const checks = [
   ['react-native', files('react-native/library/src/starPlanet/components', f => /^Tsp.+\.js$/.test(f)).length >= 25 && exists('react-native/samples/src/navigation/AppRouter.js')],
   ['react-web', exists('react-web/library/package.json') && exists('react-web/samples/index.html')],
   ['vue-web', exists('vue-web/library/package.json') && exists('vue-web/samples/index.html')],
-  ['flutter', exists('flutter/library/pubspec.yaml') && fs.readFileSync(path.join(root, 'flutter/samples/pubspec.yaml'), 'utf8').includes('path: ../library')],
+  ['flutter', exists('flutter/library/pubspec.yaml') && exists('flutter/samples/pubspec.yaml') && fs.readFileSync(path.join(root, 'flutter/samples/pubspec.yaml'), 'utf8').includes('tech_skill_planet_components')],
   ['ios-swiftui', exists('ios-swiftui/library/Package.swift') && exists('ios-swiftui/samples/Package.swift')],
   ['miniprogram', exists('miniprogram/library/package.json') && exists('miniprogram/samples/pages/basic-samples/index.js')],
   ['kuikly', exists('kuikly/library/shared/build.gradle.kts') && exists('kuikly/samples/miniApp/build.gradle.kts')],

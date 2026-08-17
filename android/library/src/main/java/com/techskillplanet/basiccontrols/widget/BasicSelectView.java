@@ -3,13 +3,9 @@ package com.techskillplanet.basiccontrols.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.techskillplanet.basiccontrols.R;
@@ -25,8 +21,8 @@ import java.util.List;
 /**
  * 基础下拉选择组件。
  *
- * <p>参考 animal-island-ui Select 的圆角触发器和浮层菜单。Android 端使用
- * PopupWindow 实现，不依赖 AppCompat Spinner，便于完整接入 token 主题。</p>
+ * <p>对齐 RN TspSelect：点击触发器打开底部 {@link BasicOptionSheet}，
+ * 不再使用 PopupWindow 下拉菜单。</p>
  */
 public class BasicSelectView extends TextView {
     /** 选项变化回调。 */
@@ -60,7 +56,7 @@ public class BasicSelectView extends TextView {
         }
         setOnClickListener(view -> {
             if (isEnabled()) {
-                showMenu();
+                showSheet();
             }
         });
         refreshTheme();
@@ -126,59 +122,41 @@ public class BasicSelectView extends TextView {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
         String label = options.isEmpty() ? "请选择" : options.get(selectedIndex);
-        setText(label + "  ▾");
+        setText(label + "  ⌄");
         setTextColor(basicDisabled || !isEnabled() ? colors.textDisabled : colors.textPrimary);
         setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
         setMinHeight(Math.round(style.controlHeightLg));
         setPadding(Math.round(style.spaceMd), 0, Math.round(style.spaceMd), 0);
         setBackground(BasicDrawableFactory.roundedFillStroke(
                 basicDisabled ? colors.backgroundSurfaceDisabled : colors.backgroundSurfaceRaised,
-                colors.borderControl,
-                style.borderDefault,
-                style.radiusControlIsland
+                colors.borderDefault,
+                style.borderHairline,
+                style.radiusControlIsland > 0 ? Math.min(style.radiusControlIsland, dp(16)) : dp(16)
         ));
+        setAlpha(basicDisabled || !isEnabled() ? 0.45f : 1f);
     }
 
-    /** 展示下拉菜单。 */
-    private void showMenu() {
-        BasicColors colors = BasicThemeManager.colors();
-        BasicStyle style = BasicThemeManager.style();
-        LinearLayout menu = new LinearLayout(getContext());
-        menu.setOrientation(LinearLayout.VERTICAL);
-        menu.setPadding(Math.round(style.spaceSm), Math.round(style.spaceSm),
-                Math.round(style.spaceSm), Math.round(style.spaceSm));
-        menu.setBackground(BasicDrawableFactory.roundedFillStroke(
-                colors.backgroundMenu,
-                colors.borderLight,
-                style.borderHairline,
-                style.radiusControlIsland
+    /** 展示底部选项面板。 */
+    private void showSheet() {
+        BasicOptionSheet sheet = new BasicOptionSheet(getContext());
+        sheet.setTitleText("请选择");
+        sheet.setOptions(new ArrayList<>(options), selectedIndex);
+        sheet.setOnOptionSelectedListener((index, option) -> {
+            selectedIndex = index;
+            refreshTheme();
+            if (listener != null) {
+                listener.onOptionSelected(index, option);
+            }
+        });
+        sheet.show();
+    }
+
+    private int dp(float value) {
+        return Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                value,
+                getResources().getDisplayMetrics()
         ));
-        PopupWindow popup = new PopupWindow(menu, Math.max(getWidth(), Math.round(style.controlHeightLg * 4f)),
-                ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        popup.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        for (int i = 0; i < options.size(); i++) {
-            final int index = i;
-            TextView item = new TextView(getContext());
-            item.setText(options.get(i));
-            item.setGravity(Gravity.CENTER_VERTICAL);
-            item.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
-            item.setTextColor(colors.textPrimary);
-            item.setPadding(Math.round(style.spaceMd), 0, Math.round(style.spaceMd), 0);
-            item.setMinHeight(Math.round(style.controlHeightMd));
-            item.setBackground(BasicDrawableFactory.roundedFill(
-                    index == selectedIndex ? colors.selectSelectedOptionBackground : colors.backgroundMenu,
-                    style.radiusMd
-            ));
-            item.setOnClickListener(view -> {
-                setSelectedIndex(index);
-                popup.dismiss();
-            });
-            menu.addView(item, new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-            ));
-        }
-        popup.showAsDropDown(this, 0, Math.round(style.spaceSm));
     }
 
     /** 从 XML 读取选项和状态。 */

@@ -1,12 +1,13 @@
 name: tech_skill_planet_components
-description: TechSkillPlanet themed cross-platform basic controls library.
+description: TechSkillPlanet themed Flutter basic controls with Sky Planet design language.
 version: 0.1.0
-publish_to: https://pub.dev
 repository: https://github.com/techskillplanet/planet-components
 homepage: https://github.com/techskillplanet/planet-components
+issue_tracker: https://github.com/techskillplanet/planet-components/issues
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
 
 dependencies:
   flutter:
@@ -16,6 +17,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+
+topics:
+  - ui
+  - widgets
+  - design-system
+  - flutter
 
 flutter:
   uses-material-design: true

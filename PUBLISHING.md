@@ -8,7 +8,7 @@ Each `library` directory is intended to become an independently published open-s
 | React Native | npm | `@techskillplanet/planet-components-react-native` |
 | React Web | npm | `@techskillplanet/planet-components-react` |
 | Vue Web | npm | `@techskillplanet/planet-components-vue` |
-| Flutter | pub.dev | `tech_skill_planet_components` |
+| Flutter | pub.dev | `tech_skill_planet_components`（脚本：`tools/verify-flutter-sample.sh`；发布：`cd flutter/library && dart pub publish`） |
 | iOS SwiftUI | Swift Package Manager | `TechSkillPlanetBasicControls` |
 | WeChat Mini Program | npm / miniprogram package | `@techskillplanet/planet-components-miniprogram` |
 | Kuikly | Maven / internal Kuikly package | `com.techskillplanet:planet-components-kuikly` |
@@ -95,3 +95,30 @@ npm whoami --registry https://registry.npmjs.org/
 4. 退出时恢复进入脚本前的 registry（例如公司源）
 
 同一版本号不可重复发布；升版请改对应 `library/package.json` 的 `version`。
+
+## Flutter：pub.dev
+
+Package: `tech_skill_planet_components` → `flutter/library`
+
+```bash
+# 本地/路径依赖验证
+./tools/verify-flutter-sample.sh path
+
+# 发布到 pub.dev（需能访问 Google；本机有 Clash 时走代理）
+cd flutter/library
+unset DART_PUB_TOKEN
+export http_proxy=http://127.0.0.1:7897 https_proxy=http://127.0.0.1:7897
+export no_proxy=localhost,127.0.0.1
+PUB_HOSTED_URL=https://pub.dev dart pub publish --dry-run
+PUB_HOSTED_URL=https://pub.dev dart pub publish --force
+
+# 发布后：Sample 改用 hosted 动态依赖再验
+./tools/verify-flutter-sample.sh hosted
+```
+
+Sample 动态依赖示例：
+
+```yaml
+dependencies:
+  tech_skill_planet_components: ^0.1.0
+```

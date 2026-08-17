@@ -18,8 +18,8 @@ import com.techskillplanet.basiccontrols.theme.BasicThemeManager;
 /**
  * 技趣星球空状态组件。
  *
- * <p>用于搜索无结果、任务列表为空、工具箱未创建内容等场景。组件用轻量星球符号
- * 做品牌化视觉，同时保留标题、描述和行动按钮。</p>
+ * <p>对齐 RN TspEmpty：50×50 / radius 18 品牌标记 + ○，容器 radius 22 / pad 24，
+ * 行动按钮非全宽。</p>
  */
 public class BasicEmptyView extends LinearLayout {
     private final TextView iconView;
@@ -39,9 +39,10 @@ public class BasicEmptyView extends LinearLayout {
     public BasicEmptyView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setOrientation(VERTICAL);
-        setGravity(Gravity.CENTER);
+        setGravity(Gravity.CENTER_HORIZONTAL);
         iconView = new TextView(context);
         iconView.setGravity(Gravity.CENTER);
+        iconView.setTypeface(Typeface.DEFAULT_BOLD);
         titleView = new TextView(context);
         titleView.setGravity(Gravity.CENTER);
         titleView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
@@ -80,6 +81,7 @@ public class BasicEmptyView extends LinearLayout {
     /** 设置行动按钮文字。 */
     public void setActionText(CharSequence actionText) {
         actionButton.setBasicText(actionText);
+        actionButton.setVisibility(actionText == null || actionText.length() == 0 ? GONE : VISIBLE);
     }
 
     /** 返回行动按钮，方便业务绑定点击事件。 */
@@ -104,28 +106,43 @@ public class BasicEmptyView extends LinearLayout {
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
+        int pad = dp(24);
         setBackground(BasicDrawableFactory.roundedFillStroke(
                 colors.backgroundSurfaceRaised,
-                colors.borderLight,
+                colors.borderDefault,
                 style.borderHairline,
-                style.radiusCardOrganic
+                dp(22)
         ));
-        setPadding(Math.round(style.spaceXl), Math.round(style.spaceXl), Math.round(style.spaceXl), Math.round(style.spaceXl));
-        iconView.setText("✦");
-        iconView.setTextColor(basicDisabled || !isEnabled() ? colors.textDisabled : colors.brandPrimary);
-        iconView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textDialogTitle);
+        setPadding(pad, pad, pad, pad);
+
+        int mark = dp(50);
+        iconView.setText("○");
+        iconView.setTextColor(colors.textInverse);
+        iconView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+        iconView.setBackground(BasicDrawableFactory.roundedFill(colors.brandPrimary, dp(18)));
+        LayoutParams iconParams = new LayoutParams(mark, mark);
+        iconParams.setMargins(0, 0, 0, Math.round(style.spaceSm));
+        iconView.setLayoutParams(iconParams);
+
         titleView.setTextColor(basicDisabled || !isEnabled() ? colors.textDisabled : colors.textPrimary);
-        titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textLg);
+        titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
         messageView.setTextColor(basicDisabled || !isEnabled() ? colors.textDisabled : colors.textSecondary);
         messageView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
 
-        LayoutParams iconParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        iconParams.setMargins(0, 0, 0, Math.round(style.spaceSm));
-        iconView.setLayoutParams(iconParams);
-        LayoutParams messageParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        messageParams.setMargins(0, Math.round(style.spaceSm), 0, Math.round(style.spaceMd));
+        LayoutParams messageParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        messageParams.setMargins(0, Math.round(style.spaceSm), 0, Math.round(style.spaceSm));
         messageView.setLayoutParams(messageParams);
-        actionButton.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        LayoutParams actionParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        actionParams.gravity = Gravity.CENTER_HORIZONTAL;
+        actionButton.setLayoutParams(actionParams);
+    }
+
+    private int dp(float value) {
+        return Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                value,
+                getResources().getDisplayMetrics()
+        ));
     }
 
     /** 从 XML 读取标题、描述和禁用态。 */
@@ -133,7 +150,7 @@ public class BasicEmptyView extends LinearLayout {
         if (attrs == null) {
             titleView.setText("暂无内容");
             messageView.setText("技趣星球正在为你准备新的工具。");
-            actionButton.setBasicText("去创建");
+            setActionText("去创建");
             return;
         }
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.BasicView);
@@ -143,7 +160,7 @@ public class BasicEmptyView extends LinearLayout {
             String text = array.getString(R.styleable.BasicView_basicText);
             titleView.setText(title == null ? (text == null ? "暂无内容" : text) : title);
             messageView.setText(message == null ? "技趣星球正在为你准备新的工具。" : message);
-            actionButton.setBasicText("去创建");
+            setActionText("去创建");
             basicDisabled = array.getBoolean(R.styleable.BasicView_basicDisabled, false);
             setEnabled(!basicDisabled);
             actionButton.setBasicDisabled(basicDisabled);

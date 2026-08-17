@@ -182,6 +182,24 @@ describe('TspSwitch', () => {
     const wrapper = mount(TspSwitch, { props: { checked: true } });
     expect(wrapper.find('.bc-checked').exists()).toBe(true);
   });
+  it('renders flat hierarchy without inner ON/OFF text', () => {
+    const wrapper = mount(TspSwitch, { props: { text: 'Label', checked: false } });
+    expect(wrapper.find('.bc-switch__label').text()).toBe('Label');
+    expect(wrapper.find('.bc-switch__control').exists()).toBe(true);
+    expect(wrapper.find('.bc-switch__track').exists()).toBe(true);
+    expect(wrapper.find('.bc-switch__inner-text').exists()).toBe(false);
+    expect(wrapper.find('.bc-switch__thumb').exists()).toBe(true);
+    expect(wrapper.find('.bc-switch--md').exists()).toBe(true);
+  });
+  it('applies sm flat sizes class', () => {
+    const wrapper = mount(TspSwitch, { props: { checked: false, variant: 'sm' } });
+    expect(wrapper.find('.bc-switch--sm').exists()).toBe(true);
+  });
+  it('shows spinner when loading', () => {
+    const wrapper = mount(TspSwitch, { props: { checked: true, loading: true } });
+    expect(wrapper.find('.bc-switch__spinner').exists()).toBe(true);
+    expect(wrapper.find('.bc-loading').exists()).toBe(true);
+  });
   it('disabled does not toggle', async () => {
     const wrapper = mount(TspSwitch, { props: { checked: false, disabled: true } });
     await wrapper.find('button').trigger('click');

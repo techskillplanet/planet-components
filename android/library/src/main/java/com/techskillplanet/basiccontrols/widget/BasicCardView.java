@@ -66,11 +66,14 @@ public class BasicCardView extends FrameLayout {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
         int fill = basicDisabled ? colors.backgroundSurfaceDisabled : colors.backgroundSurfaceRaised;
-        int stroke = isSelected() ? colors.brandPrimary : colors.borderDefault;
-        if ("subtle".equals(variant)) {
+        int stroke = colors.borderDefault;
+        if (isSelected()) {
+            fill = colors.selectedFill;
+            stroke = colors.statusSuccess;
+        } else if ("subtle".equals(variant)) {
             fill = colors.backgroundSurfaceSubtle;
         }
-        if ("elevated".equals(variant)) {
+        if ("elevated".equals(variant) && !isSelected()) {
             setBackgroundResource(R.drawable.bg_basic_elevated_surface);
         } else {
             setBackground(BasicDrawableFactory.roundedFillStroke(
@@ -86,6 +89,7 @@ public class BasicCardView extends FrameLayout {
                 Math.round(style.spaceLg),
                 Math.round(style.spaceLg)
         );
+        setAlpha(basicDisabled || !isEnabled() ? 0.45f : 1f);
     }
 
     /** 从 XML 中读取通用属性。 */

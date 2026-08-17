@@ -32,8 +32,14 @@ import com.techskillplanet.basiccontrols.theme.BasicThemeManager;
  * token 文件即可。</p>
  */
 public class BasicSwitchView extends LinearLayout {
+    /** @deprecated Prefer {@link #VARIANT_SM}. */
     public static final String SIZE_SMALL = "small";
+    /** @deprecated Prefer {@link #VARIANT_MD}. */
     public static final String SIZE_DEFAULT = "default";
+    /** Contract variant md (52×28). */
+    public static final String VARIANT_MD = "md";
+    /** Contract variant sm (38×20). */
+    public static final String VARIANT_SM = "sm";
 
     /** Switch 选中状态变化回调，对齐 animal-island-ui 的 onChange 语义。 */
     public interface OnCheckedChangeListener {
@@ -83,6 +89,7 @@ public class BasicSwitchView extends LinearLayout {
         innerTextView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         switchFrame.addView(innerTextView);
         switchFrame.addView(handleView);
+        innerTextView.setVisibility(GONE);
         addView(labelView);
         addView(switchFrame);
 
@@ -99,10 +106,14 @@ public class BasicSwitchView extends LinearLayout {
     /**
      * 设置尺寸变体。
      *
-     * <p>支持 default 与 small，对应 style token 中的 size.switch.md/sm。</p>
+     * <p>契约值：{@code md}/{@code sm}。兼容历史 {@code default}/{@code small}。</p>
      */
     public void setVariant(String variant) {
-        size = SIZE_SMALL.equals(variant) ? SIZE_SMALL : SIZE_DEFAULT;
+        if (SIZE_SMALL.equals(variant) || VARIANT_SM.equals(variant)) {
+            size = SIZE_SMALL;
+        } else {
+            size = SIZE_DEFAULT;
+        }
         refreshTheme();
     }
 
@@ -163,10 +174,7 @@ public class BasicSwitchView extends LinearLayout {
     }
 
     /**
-     * 按当前 token 和状态刷新视觉。
-     *
-     * <p>状态顺序为 disabled > loading > checked/default。disabled 会降低文字和边框，
-     * loading 保持当前 checked 值但阻止点击。</p>
+     * 按当前 token 和状态刷新视觉（扁平常规 UI：无轨内文案、无厚边框）。
      */
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
@@ -174,63 +182,37 @@ public class BasicSwitchView extends LinearLayout {
         SwitchMetrics metrics = metrics(style);
         boolean checked = isSelected();
 
-        int trackFill = checked ? colors.switchOnBackground : colors.switchOffBackground;
-        int trackBorder = checked ? colors.switchOnBorder : colors.switchOffBorder;
-        int innerText = checked ? colors.switchOnText : colors.switchOffText;
+        // Flat: off=borderDefault, on=brandPrimary; no stroke.
+        int trackFill = checked ? colors.brandPrimary : colors.borderDefault;
         int labelText = colors.textPrimary;
-        int handleBorder = checked ? colors.switchHandleCheckedBorder : colors.switchHandleBorder;
         if (basicDisabled || !isEnabled()) {
             trackFill = colors.backgroundSurfaceDisabled;
-            trackBorder = colors.borderLight;
-            innerText = colors.textDisabled;
             labelText = colors.textDisabled;
-            handleBorder = colors.borderLight;
-        } else if (hasFocus()) {
-            // Android 没有 Web 的 focus-visible，这里用焦点边框提供键盘/遥控器场景反馈。
-            trackBorder = colors.borderFocus;
         }
 
         labelView.setTextColor(labelText);
         labelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
-        switchFrame.setBackground(BasicDrawableFactory.roundedFillStroke(
-                trackFill,
-                trackBorder,
-                style.borderSwitch,
-                style.radiusPill
-        ));
+        switchFrame.setBackground(BasicDrawableFactory.roundedFill(trackFill, style.radiusPill));
         switchFrame.setAlpha(basicDisabled || !isEnabled()
                 ? style.switchOpacityDisabled
                 : (loading ? style.switchOpacityLoading : style.switchOpacityEnabled));
 
-        innerTextView.setText(checked ? checkedText : uncheckedText);
-        innerTextView.setTextColor(innerText);
-        innerTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, metrics.innerTextSize);
-        int leftPadding = checked ? Math.round(style.spaceSm) : metrics.handle + Math.round(style.spaceSm);
-        int rightPadding = checked ? metrics.handle + Math.round(style.spaceSm) : Math.round(style.spaceSm);
-        // 内文案 padding 要和 handle 位置互斥，否则 ON/OFF 会被圆点遮挡。
-        innerTextView.setPadding(leftPadding, 0, rightPadding, 0);
+        innerTextView.setVisibility(GONE);
 
-        handleView.setSpinnerColor(checked ? colors.switchLoadingSpinner : colors.switchOffBorder);
-        handleView.setBackground(BasicDrawableFactory.ovalFillStroke(
-                colors.switchHandleBackground,
-                handleBorder,
-                style.borderSwitch
-        ));
+        handleView.setSpinnerColor(checked ? colors.textInverse : colors.brandDark);
+        handleView.setBackground(BasicDrawableFactory.roundedFill(colors.switchHandleBackground, metrics.handle / 2f));
 
         LayoutParams labelParams = new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f);
         labelParams.setMargins(0, 0, Math.round(style.spaceMd), 0);
         labelView.setLayoutParams(labelParams);
+        labelView.setVisibility(labelView.getText() == null || labelView.getText().length() == 0 ? GONE : VISIBLE);
         switchFrame.setLayoutParams(new LayoutParams(metrics.width, metrics.height));
-        innerTextView.setLayoutParams(new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT
-        ));
 
         FrameLayout.LayoutParams handleParams = new FrameLayout.LayoutParams(metrics.handle, metrics.handle);
         handleParams.gravity = Gravity.LEFT | Gravity.CENTER_VERTICAL;
         handleParams.leftMargin = metrics.handleMargin;
         handleView.setLayoutParams(handleParams);
-        handleView.setAlpha((basicDisabled || !isEnabled()) ? 0.65f : 1f);
+        handleView.setAlpha(1f);
         float targetTranslation = checked ? metrics.width - metrics.handle - metrics.handleMargin * 2f : 0f;
         moveHandle(targetTranslation, style.switchMotionDuration);
     }
@@ -254,7 +236,7 @@ public class BasicSwitchView extends LinearLayout {
         try {
             String text = array.getString(R.styleable.BasicView_basicText);
             String xmlVariant = array.getString(R.styleable.BasicView_basicVariant);
-            size = SIZE_SMALL.equals(xmlVariant) ? SIZE_SMALL : SIZE_DEFAULT;
+            size = (SIZE_SMALL.equals(xmlVariant) || VARIANT_SM.equals(xmlVariant)) ? SIZE_SMALL : SIZE_DEFAULT;
             basicDisabled = array.getBoolean(R.styleable.BasicView_basicDisabled, false);
             setSelected(array.getBoolean(R.styleable.BasicView_basicSelected, false));
             labelView.setText(text == null ? "" : text);
@@ -264,22 +246,28 @@ public class BasicSwitchView extends LinearLayout {
         }
     }
 
-    /** 根据 size token 计算当前尺寸。 */
+    /** 根据 size token 计算当前尺寸（扁平：inset=2）。 */
     private SwitchMetrics metrics(BasicStyle style) {
         if (SIZE_SMALL.equals(size)) {
+            int handle = Math.round(style.switchSmHandle);
+            int height = Math.round(style.switchSmHeight);
+            int margin = Math.max(2, Math.round((height - handle) / 2f));
             return new SwitchMetrics(
                     Math.round(style.switchSmWidth),
-                    Math.round(style.switchSmHeight),
-                    Math.round(style.switchSmHandle),
-                    Math.max(1, Math.round((style.switchSmHeight - style.switchSmHandle) / 2f)),
+                    height,
+                    handle,
+                    margin,
                     style.switchSmInnerText
             );
         }
+        int handle = Math.round(style.switchMdHandle);
+        int height = Math.round(style.switchMdHeight);
+        int margin = Math.max(2, Math.round((height - handle) / 2f));
         return new SwitchMetrics(
                 Math.round(style.switchMdWidth),
-                Math.round(style.switchMdHeight),
-                Math.round(style.switchMdHandle),
-                Math.max(1, Math.round((style.switchMdHeight - style.switchMdHandle) / 2f)),
+                height,
+                handle,
+                margin,
                 style.switchMdInnerText
         );
     }

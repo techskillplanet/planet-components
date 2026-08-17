@@ -54,7 +54,6 @@ class _BasicControlsExampleAppState extends State<BasicControlsExampleApp> {
   int selectedTab = 0;
   String tab = 'learn';
   bool checked = true;
-  bool showToast = false;
   ComponentDoc? selectedDoc;
 
   @override
@@ -68,6 +67,15 @@ class _BasicControlsExampleAppState extends State<BasicControlsExampleApp> {
     final theme = themes[themeIndex].$2;
     final title = selectedDoc == null ? languages[languageIndex].$3 : 'Tsp${selectedDoc!.name}';
     return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: theme.brandPrimary,
+          primary: theme.brandPrimary,
+          surface: theme.surfaceRaised,
+        ),
+        fontFamily: 'Roboto',
+      ),
       home: Scaffold(
         backgroundColor: theme.pageStart,
         body: Column(children: [
@@ -173,9 +181,30 @@ class _BasicControlsExampleAppState extends State<BasicControlsExampleApp> {
       case 'Select':
         return TspSelect(options: const ['A', 'B', 'C'], selectedIndex: selectedIndex, theme: theme, onSelect: (value) => setState(() => selectedIndex = value));
       case 'OptionSheet':
-        return TspOptionSheet(options: const ['A', 'B', 'C'], selectedIndex: selectedIndex, theme: theme, onSelect: (value) => setState(() => selectedIndex = value));
+        return Builder(
+          builder: (context) => TspButton(
+            text: 'Open OptionSheet',
+            variant: TspButtonVariant.primary,
+            theme: theme,
+            onTap: () => TspOptionSheet.show(
+              context,
+              options: const ['A', 'B', 'C'],
+              selectedIndex: selectedIndex,
+              theme: theme,
+              onSelect: (value) => setState(() => selectedIndex = value),
+            ),
+          ),
+        );
       case 'Switch':
-        return TspSwitch(text: 'Switch', checked: checked, theme: theme, onChanged: (value) => setState(() => checked = value));
+        return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          TspSwitch(text: 'Publish', checked: checked, theme: theme, onChanged: (value) => setState(() => checked = value)),
+          const SizedBox(height: 12),
+          TspSwitch(text: 'Small', checked: checked, variant: 'sm', theme: theme, onChanged: (value) => setState(() => checked = value)),
+          const SizedBox(height: 12),
+          TspSwitch(text: 'Loading', checked: true, loading: true, theme: theme),
+          const SizedBox(height: 12),
+          const TspSwitch(text: 'Disabled', checked: false, disabled: true),
+        ]);
       case 'Progress':
         return Column(children: [TspProgress(progress: 38, theme: theme), const SizedBox(height: 10), TspProgress(progress: 68, variant: 'success', theme: theme), const SizedBox(height: 10), TspProgress(progress: 82, variant: 'danger', theme: theme)]);
       case 'TopBar':
@@ -205,7 +234,14 @@ class _BasicControlsExampleAppState extends State<BasicControlsExampleApp> {
       case 'Empty':
         return TspEmpty(title: '空状态', message: '暂无记录。', actionText: '操作', theme: theme);
       case 'Toast':
-        return Stack(children: [TspButton(text: 'Show Toast', variant: TspButtonVariant.primary, theme: theme, onTap: () => setState(() => showToast = !showToast)), if (showToast) Positioned.fill(child: TspToast(message: '已保存', variant: 'success', theme: theme))]);
+        return Builder(
+          builder: (context) => TspButton(
+            text: 'Show Toast',
+            variant: TspButtonVariant.primary,
+            theme: theme,
+            onTap: () => TspToast.show(context, message: '已保存', variant: 'success', theme: theme),
+          ),
+        );
       case 'Modal':
         return TspModalButton(theme: theme);
       default:

@@ -58,7 +58,14 @@ function preview(name, theme, s, translate) {
     case 'Input': return <View style={{ gap: 10 }}><TspInput value={s.inputValue} placeholder="Input" onChange={s.setInputValue} theme={theme} /><TspInput placeholder="Required" variant="error" theme={theme} /></View>;
     case 'Select': return <TspSelect options={['A', 'B', 'C']} selectedIndex={s.selectedOption} onSelect={s.setSelectedOption} theme={theme} />;
     case 'OptionSheet': return <><TspButton text="Open OptionSheet" variant="primary" onPress={() => s.setShowSheet(true)} theme={theme} /><TspOptionSheet visible={s.showSheet} options={['A', 'B', 'C']} selectedIndex={s.selectedOption} theme={theme} onCancel={() => s.setShowSheet(false)} onSelect={index => { s.setSelectedOption(index); s.setShowSheet(false); }} /></>;
-    case 'Switch': return <View style={{ gap: 10 }}><TspSwitch text="Switch" checked={s.checked} onChange={s.setChecked} theme={theme} /><TspSwitch text="Loading" checked loading theme={theme} /></View>;
+    case 'Switch': return (
+      <View style={{ gap: 10 }}>
+        <TspSwitch text="Switch" checked={s.checked} onChange={s.setChecked} theme={theme} />
+        <TspSwitch text="Small" checked={s.checked} onChange={s.setChecked} variant="sm" theme={theme} />
+        <TspSwitch text="Loading" checked loading theme={theme} />
+        <TspSwitch text="Disabled" checked={false} disabled theme={theme} />
+      </View>
+    );
     case 'Progress': return <View style={{ gap: 10 }}><TspProgress progress={38} theme={theme} /><TspProgress progress={68} variant="success" theme={theme} /><TspProgress progress={82} variant="danger" theme={theme} /></View>;
     case 'TopBar': return <TspTopBar title={translate('sample/app/title')} showBack backIcon={<PlanetIcon name="back" />} theme={theme} immersive={false} />;
     case 'BottomTab': return <TspBottomTab tabs={[{ key: 'learn', title: translate('sample/tab/home'), icon: <PlanetIcon name="home" /> }, { key: 'settings', title: translate('sample/tab/settings'), icon: <PlanetIcon name="settings" /> }]} selectedKey="learn" theme={theme} />;

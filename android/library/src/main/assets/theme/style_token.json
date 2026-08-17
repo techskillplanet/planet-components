@@ -68,7 +68,7 @@
     "xxl": 30,
     "menu": 28,
     "cardOrganic": 28,
-    "dialogOrganic": 36,
+    "dialogOrganic": 24,
     "controlIsland": 22,
     "pill": 999,
     "circle": 999
@@ -81,7 +81,7 @@
       "strong": 2,
       "focus": 2,
       "loading": 4,
-      "switch": 2.5
+      "switch": 0
     },
     "style": {
       "solid": "solid",
@@ -92,7 +92,7 @@
     "controlHeight": {
       "sm": 32,
       "md": 40,
-      "buttonMedium": 45,
+      "buttonMedium": 46,
       "lg": 48
     },
     "buttonMinWidth": {
@@ -118,16 +118,16 @@
     },
     "switch": {
       "sm": {
-        "width": 38,
-        "height": 20,
-        "handle": 14,
+        "width": 40,
+        "height": 22,
+        "handle": 18,
         "innerText": 9
       },
       "md": {
-        "width": 60,
+        "width": 52,
         "height": 28,
-        "handle": 21,
-        "innerText": 10
+        "handle": 24,
+        "innerText": 11
       }
     },
     "select": {
@@ -150,21 +150,15 @@
       "icon": 28
     },
     "badge": {
-      "height": 20,
-      "minWidth": 20
+      "height": 28,
+      "minWidth": 28
     },
     "tag": {
       "height": 28
     },
     "chip": {
       "height": 32,
-      "closeIcon": 16,
-      "gap": 8
-    },
-    "searchBar": {
-      "height": 48,
-      "iconWidth": 40,
-      "iconSize": 20
+      "closeIcon": 16
     },
     "toast": {
       "minHeight": 44,
@@ -372,11 +366,17 @@
         }
       },
       "shadow": {
-        "controlIslandLift": { "y": 5 },
-        "controlPressed": { "y": 2 }
+        "controlIslandLift": {
+          "y": 5
+        },
+        "controlPressed": {
+          "y": 2
+        }
       },
       "motion": {
-        "interaction": { "pressedDropY": 2 }
+        "interaction": {
+          "pressedDropY": 2
+        }
       }
     },
     "island_flat": {
@@ -386,11 +386,17 @@
         }
       },
       "shadow": {
-        "controlIslandLift": { "y": 0 },
-        "controlPressed": { "y": 0 }
+        "controlIslandLift": {
+          "y": 0
+        },
+        "controlPressed": {
+          "y": 0
+        }
       },
       "motion": {
-        "interaction": { "pressedDropY": 0 }
+        "interaction": {
+          "pressedDropY": 0
+        }
       }
     }
   }

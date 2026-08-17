@@ -62,6 +62,6 @@ public final class BasicToast {
         if ("danger".equals(variant) || "error".equals(variant)) {
             return colors.statusDanger;
         }
-        return colors.brandPrimary;
+        return colors.brandDark;
     }
 }

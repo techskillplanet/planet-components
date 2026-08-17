@@ -12,7 +12,17 @@ export const starPlanetTheme = {
   warning: '#FFD166',
   selectedFill: '#E8FDF7',
   activeFill: '#FFF7D7',
-  danger: '#FF6B7A'
+  danger: '#FF6B7A',
+  switchOffBg: '#C8EAFF',
+  switchOffBorder: '#C8EAFF',
+  switchOffText: '#365D82',
+  switchOnBg: '#31A8FF',
+  switchOnBorder: '#31A8FF',
+  switchOnText: '#FFFFFF',
+  switchHandleBg: '#FFFFFF',
+  switchHandleBorder: '#C8EAFF',
+  switchHandleCheckedBorder: '#31A8FF',
+  switchSpinner: '#FFFFFF'
 };
 
 export const starPlanetThemes = {
@@ -31,7 +41,17 @@ export const starPlanetThemes = {
     warning: '#FFD166',
     selectedFill: '#1E3A52',
     activeFill: '#3A3020',
-    danger: '#FF6B7A'
+    danger: '#FF6B7A',
+    switchOffBg: '#2A3F5C',
+    switchOffBorder: '#2A3F5C',
+    switchOffText: '#B8D0E8',
+    switchOnBg: '#31A8FF',
+    switchOnBorder: '#31A8FF',
+    switchOnText: '#FFFFFF',
+    switchHandleBg: '#FFFFFF',
+    switchHandleBorder: '#2A3F5C',
+    switchHandleCheckedBorder: '#31A8FF',
+    switchSpinner: '#FFFFFF'
   },
   mint: {
     pageStart: '#DFFAF2',
@@ -47,7 +67,17 @@ export const starPlanetThemes = {
     warning: '#FFD166',
     selectedFill: '#E6FFF4',
     activeFill: '#FFF7D7',
-    danger: '#FF6B7A'
+    danger: '#FF6B7A',
+    switchOffBg: '#BDEFE2',
+    switchOffBorder: '#BDEFE2',
+    switchOffText: '#2F6B63',
+    switchOnBg: '#20BFA9',
+    switchOnBorder: '#20BFA9',
+    switchOnText: '#FFFFFF',
+    switchHandleBg: '#FFFFFF',
+    switchHandleBorder: '#BDEFE2',
+    switchHandleCheckedBorder: '#20BFA9',
+    switchSpinner: '#FFFFFF'
   },
   sunrise: {
     pageStart: '#FFE8D6',
@@ -63,7 +93,17 @@ export const starPlanetThemes = {
     warning: '#FFD166',
     selectedFill: '#FFF1E7',
     activeFill: '#FFF7D7',
-    danger: '#E24C5C'
+    danger: '#E24C5C',
+    switchOffBg: '#FFD1AD',
+    switchOffBorder: '#FFD1AD',
+    switchOffText: '#80523A',
+    switchOnBg: '#FF8A3D',
+    switchOnBorder: '#FF8A3D',
+    switchOnText: '#FFFFFF',
+    switchHandleBg: '#FFFFFF',
+    switchHandleBorder: '#FFD1AD',
+    switchHandleCheckedBorder: '#FF8A3D',
+    switchSpinner: '#FFFFFF'
   }
 };
 
@@ -121,6 +161,16 @@ export function themeVars(theme = starPlanetTheme) {
     '--bc-selected-fill': theme.selectedFill,
     '--bc-active-fill': theme.activeFill,
     '--bc-danger': theme.danger,
+    '--bc-switch-off-bg': theme.switchOffBg ?? '#C8EAFF',
+    '--bc-switch-off-border': theme.switchOffBorder ?? '#C8EAFF',
+    '--bc-switch-off-text': theme.switchOffText ?? '#365D82',
+    '--bc-switch-on-bg': theme.switchOnBg ?? '#31A8FF',
+    '--bc-switch-on-border': theme.switchOnBorder ?? '#31A8FF',
+    '--bc-switch-on-text': theme.switchOnText ?? '#FFFFFF',
+    '--bc-switch-handle-bg': theme.switchHandleBg ?? '#FFFFFF',
+    '--bc-switch-handle-border': theme.switchHandleBorder ?? '#C8EAFF',
+    '--bc-switch-handle-checked-border': theme.switchHandleCheckedBorder ?? '#31A8FF',
+    '--bc-switch-spinner': theme.switchSpinner ?? '#FFFFFF',
     '--bc-shadow-control-island-lift-y': `${theme.shadowControlIslandLiftY ?? 5}px`,
     '--bc-button-face-height': `${theme.buttonFaceHeight ?? 46}px`,
     '--bc-button-height': `${(theme.buttonFaceHeight ?? 46) + (theme.shadowControlIslandLiftY ?? 5)}px`,

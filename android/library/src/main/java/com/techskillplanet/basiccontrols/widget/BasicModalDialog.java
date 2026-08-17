@@ -3,6 +3,7 @@ package com.techskillplanet.basiccontrols.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -23,8 +24,7 @@ import com.techskillplanet.basiccontrols.theme.BasicThemeManager;
 /**
  * 基础模态弹窗。
  *
- * <p>参考 animal-island-ui Modal 的圆角面板、遮罩和标题/正文/操作区结构。
- * 适合确认框、说明弹窗和轻量表单容器。</p>
+ * <p>对齐 RN TspModal：圆角 24、遮罩约 0.28、标题/正文左对齐、内边距约 22。</p>
  */
 public class BasicModalDialog extends Dialog {
     private CharSequence title;
@@ -80,7 +80,7 @@ public class BasicModalDialog extends Dialog {
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             WindowManager.LayoutParams params = window.getAttributes();
-            params.dimAmount = 0.36f;
+            params.dimAmount = 0.28f;
             window.setAttributes(params);
             window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         }
@@ -96,10 +96,9 @@ public class BasicModalDialog extends Dialog {
         }
     }
 
-  /** 根容器：左右留出常规边距，避免弹窗贴边。 */
+    /** 根容器：左右留出常规边距，避免弹窗贴边。 */
     private FrameLayout createRoot() {
-        BasicStyle style = BasicThemeManager.style();
-        int horizontalMargin = Math.round(style.spaceXl);
+        int horizontalMargin = dp(18);
         FrameLayout root = new FrameLayout(getContext());
         LinearLayout panel = createPanel();
         FrameLayout.LayoutParams panelParams = new FrameLayout.LayoutParams(
@@ -116,34 +115,35 @@ public class BasicModalDialog extends Dialog {
     private LinearLayout createPanel() {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
+        int pad = dp(22);
         LinearLayout panel = new LinearLayout(getContext());
         panel.setOrientation(LinearLayout.VERTICAL);
-        panel.setPadding(Math.round(style.spaceXl), Math.round(style.spaceXl),
-                Math.round(style.spaceXl), Math.round(style.spaceLg));
+        panel.setPadding(pad, pad, pad, pad);
         panel.setBackground(BasicDrawableFactory.roundedFillStroke(
                 colors.backgroundSurfaceRaised,
-                colors.borderDivider,
+                colors.borderDefault,
                 style.borderHairline,
-                style.radiusDialogOrganic
+                dp(24)
         ));
 
         TextView titleView = new TextView(getContext());
         titleView.setText(title);
         titleView.setTextColor(colors.textPrimary);
-        titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textTitle);
-        titleView.setGravity(Gravity.CENTER);
+        titleView.setTypeface(Typeface.DEFAULT_BOLD);
+        titleView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        titleView.setGravity(Gravity.START);
         panel.addView(titleView);
 
         TextView messageView = new TextView(getContext());
         messageView.setText(message);
         messageView.setTextColor(colors.textSecondary);
         messageView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
-        messageView.setGravity(Gravity.CENTER);
+        messageView.setGravity(Gravity.START);
         LinearLayout.LayoutParams messageParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
-        messageParams.setMargins(0, Math.round(style.spaceMd), 0, Math.round(style.spaceLg));
+        messageParams.setMargins(0, dp(6), 0, dp(14));
         panel.addView(messageView, messageParams);
 
         LinearLayout actions = new LinearLayout(getContext());
@@ -164,9 +164,17 @@ public class BasicModalDialog extends Dialog {
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
         actions.addView(cancel, buttonParams);
         LinearLayout.LayoutParams confirmParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-        confirmParams.setMargins(Math.round(style.spaceMd), 0, 0, 0);
+        confirmParams.setMargins(dp(10), 0, 0, 0);
         actions.addView(confirm, confirmParams);
         panel.addView(actions);
         return panel;
+    }
+
+    private int dp(float value) {
+        return Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                value,
+                getContext().getResources().getDisplayMetrics()
+        ));
     }
 }

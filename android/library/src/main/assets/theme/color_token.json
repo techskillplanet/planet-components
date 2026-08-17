@@ -38,7 +38,8 @@
         "aurora": {
           "successHover": "#70E5DE",
           "success": "#43CFC7",
-          "successPressed": "#16A9A1"
+          "successPressed": "#16A9A1",
+          "selectedFill": "#E8FDF7"
         },
         "coral": {
           "dangerHover": "#FF8A95",
@@ -55,13 +56,7 @@
           "white": "#FFFFFF",
           "black": "#000000",
           "scrimBlue": "#173A6259",
-          "transparent": "#00000000",
-          "divider": "#E2E8F0"
-        },
-        "scan": {
-          "generatePage": "#F2F3FF",
-          "historyPage": "#FAF8FF",
-          "settingsPage": "#FFFFFF"
+          "transparent": "#00000000"
         }
       },
       "semantic": {
@@ -69,7 +64,8 @@
           "primary": "{primitive.sky.brandPrimary}",
           "primaryHover": "{primitive.sky.brandHover}",
           "primaryActive": "{primitive.sky.brandPressed}",
-          "primarySubtle": "{primitive.sky.brandSubtle}"
+          "primarySubtle": "{primitive.sky.brandSubtle}",
+          "dark": "{primitive.sky.brandPressed}"
         },
         "status": {
           "success": "{primitive.aurora.success}",
@@ -100,14 +96,12 @@
           "surfaceDisabled": "{primitive.cloud.border}",
           "menu": "{primitive.cloud.white}",
           "modalScrim": "{primitive.neutral.scrimBlue}",
-          "scanGenerate": "{primitive.scan.generatePage}",
-          "scanHistory": "{primitive.scan.historyPage}",
-          "scanSettings": "{primitive.scan.settingsPage}"
+          "selectedFill": "{primitive.aurora.selectedFill}",
+          "activeFill": "{primitive.sun.soft}"
         },
         "border": {
           "default": "{primitive.sky.borderSoft}",
           "light": "{primitive.cloud.border}",
-          "divider": "{primitive.neutral.divider}",
           "control": "{primitive.sky.borderSoft}",
           "focus": "{primitive.sky.brandPrimary}",
           "warning": "{primitive.sun.highlight}",
@@ -129,10 +123,10 @@
             "checkedDot": "{primitive.sky.brandPrimary}"
           },
           "switch": {
-            "offBackground": "{primitive.cloud.border}",
+            "offBackground": "{primitive.sky.borderSoft}",
             "offBorder": "{primitive.sky.borderSoft}",
             "offText": "{primitive.ink.textSecondary}",
-            "onBackground": "{primitive.sky.brandHover}",
+            "onBackground": "{primitive.sky.brandPrimary}",
             "onBorder": "{primitive.sky.brandPrimary}",
             "onText": "{primitive.neutral.white}",
             "handleBackground": "{primitive.cloud.surface}",
@@ -141,7 +135,7 @@
             "loadingSpinner": "{primitive.sky.brandPrimary}"
           },
           "select": {
-            "selectedOptionBackground": "{primitive.sky.brandSubtle}"
+            "selectedOptionBackground": "{primitive.aurora.selectedFill}"
           },
           "loading": {
             "stripePrimary": "{primitive.sky.brandHover}",
@@ -178,7 +172,8 @@
         "aurora": {
           "successHover": "#70E5DE",
           "success": "#43CFC7",
-          "successPressed": "#16A9A1"
+          "successPressed": "#16A9A1",
+          "selectedFill": "#1E3A52"
         },
         "coral": {
           "dangerHover": "#FF8A95",
@@ -195,13 +190,7 @@
           "white": "#FFFFFF",
           "black": "#000000",
           "scrimBlue": "#00000099",
-          "transparent": "#00000000",
-          "divider": "#334155"
-        },
-        "scan": {
-          "generatePage": "{primitive.sky.pageStart}",
-          "historyPage": "{primitive.cloud.surface}",
-          "settingsPage": "{primitive.cloud.surface}"
+          "transparent": "#00000000"
         }
       },
       "semantic": {
@@ -209,7 +198,8 @@
           "primary": "{primitive.sky.brandPrimary}",
           "primaryHover": "{primitive.sky.brandHover}",
           "primaryActive": "{primitive.sky.brandPressed}",
-          "primarySubtle": "{primitive.sky.brandSubtle}"
+          "primarySubtle": "{primitive.sky.brandSubtle}",
+          "dark": "{primitive.sky.brandPressed}"
         },
         "status": {
           "success": "{primitive.aurora.success}",
@@ -223,12 +213,12 @@
           "dangerActive": "{primitive.coral.dangerPressed}"
         },
         "text": {
-          "primary": "{primitive.ink.textStrong}",
+          "primary": "{primitive.ink.textPrimary}",
           "secondary": "{primitive.ink.textSecondary}",
           "tertiary": "{primitive.ink.textTertiary}",
           "inverse": "{primitive.neutral.white}",
           "disabled": "{primitive.ink.textTertiary}",
-          "dialogTitle": "{primitive.ink.textStrong}",
+          "dialogTitle": "{primitive.ink.textPrimary}",
           "dialogBody": "{primitive.ink.textSecondary}"
         },
         "background": {
@@ -240,14 +230,12 @@
           "surfaceDisabled": "{primitive.cloud.border}",
           "menu": "{primitive.cloud.white}",
           "modalScrim": "{primitive.neutral.scrimBlue}",
-          "scanGenerate": "{primitive.scan.generatePage}",
-          "scanHistory": "{primitive.scan.historyPage}",
-          "scanSettings": "{primitive.scan.settingsPage}"
+          "selectedFill": "{primitive.aurora.selectedFill}",
+          "activeFill": "{primitive.sun.soft}"
         },
         "border": {
           "default": "{primitive.sky.borderSoft}",
           "light": "{primitive.cloud.border}",
-          "divider": "{primitive.neutral.divider}",
           "control": "{primitive.sky.borderSoft}",
           "focus": "{primitive.sky.brandPrimary}",
           "warning": "{primitive.sun.highlight}",
@@ -269,10 +257,10 @@
             "checkedDot": "{primitive.sky.brandPrimary}"
           },
           "switch": {
-            "offBackground": "{primitive.cloud.border}",
+            "offBackground": "{primitive.sky.borderSoft}",
             "offBorder": "{primitive.sky.borderSoft}",
             "offText": "{primitive.ink.textSecondary}",
-            "onBackground": "{primitive.sky.brandHover}",
+            "onBackground": "{primitive.sky.brandPrimary}",
             "onBorder": "{primitive.sky.brandPrimary}",
             "onText": "{primitive.neutral.white}",
             "handleBackground": "{primitive.cloud.surface}",
@@ -281,7 +269,7 @@
             "loadingSpinner": "{primitive.sky.brandPrimary}"
           },
           "select": {
-            "selectedOptionBackground": "{primitive.sky.brandSubtle}"
+            "selectedOptionBackground": "{primitive.aurora.selectedFill}"
           },
           "loading": {
             "stripePrimary": "{primitive.sky.brandHover}",
@@ -318,7 +306,8 @@
         "aurora": {
           "successHover": "#5FD9A8",
           "success": "#35C58B",
-          "successPressed": "#1F9E6C"
+          "successPressed": "#1F9E6C",
+          "selectedFill": "#E6FFF4"
         },
         "coral": {
           "dangerHover": "#FF8A95",
@@ -335,13 +324,7 @@
           "white": "#FFFFFF",
           "black": "#000000",
           "scrimBlue": "#123F3A59",
-          "transparent": "#00000000",
-          "divider": "#E2E8F0"
-        },
-        "scan": {
-          "generatePage": "#F2F3FF",
-          "historyPage": "#FAF8FF",
-          "settingsPage": "#FFFFFF"
+          "transparent": "#00000000"
         }
       },
       "semantic": {
@@ -349,7 +332,8 @@
           "primary": "{primitive.sky.brandPrimary}",
           "primaryHover": "{primitive.sky.brandHover}",
           "primaryActive": "{primitive.sky.brandPressed}",
-          "primarySubtle": "{primitive.sky.brandSubtle}"
+          "primarySubtle": "{primitive.sky.brandSubtle}",
+          "dark": "{primitive.sky.brandPressed}"
         },
         "status": {
           "success": "{primitive.aurora.success}",
@@ -380,14 +364,12 @@
           "surfaceDisabled": "{primitive.cloud.border}",
           "menu": "{primitive.cloud.white}",
           "modalScrim": "{primitive.neutral.scrimBlue}",
-          "scanGenerate": "{primitive.scan.generatePage}",
-          "scanHistory": "{primitive.scan.historyPage}",
-          "scanSettings": "{primitive.scan.settingsPage}"
+          "selectedFill": "{primitive.aurora.selectedFill}",
+          "activeFill": "{primitive.sun.soft}"
         },
         "border": {
           "default": "{primitive.sky.borderSoft}",
           "light": "{primitive.cloud.border}",
-          "divider": "{primitive.neutral.divider}",
           "control": "{primitive.sky.borderSoft}",
           "focus": "{primitive.sky.brandPrimary}",
           "warning": "{primitive.sun.highlight}",
@@ -409,10 +391,10 @@
             "checkedDot": "{primitive.sky.brandPrimary}"
           },
           "switch": {
-            "offBackground": "{primitive.cloud.border}",
+            "offBackground": "{primitive.sky.borderSoft}",
             "offBorder": "{primitive.sky.borderSoft}",
             "offText": "{primitive.ink.textSecondary}",
-            "onBackground": "{primitive.sky.brandHover}",
+            "onBackground": "{primitive.sky.brandPrimary}",
             "onBorder": "{primitive.sky.brandPrimary}",
             "onText": "{primitive.neutral.white}",
             "handleBackground": "{primitive.cloud.surface}",
@@ -421,7 +403,7 @@
             "loadingSpinner": "{primitive.sky.brandPrimary}"
           },
           "select": {
-            "selectedOptionBackground": "{primitive.sky.brandSubtle}"
+            "selectedOptionBackground": "{primitive.aurora.selectedFill}"
           },
           "loading": {
             "stripePrimary": "{primitive.sky.brandHover}",
