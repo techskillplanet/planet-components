@@ -21,6 +21,7 @@ import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
 import com.tencent.kuikly.compose.ui.unit.dp
+import com.tencent.kuikly.compose.ui.unit.sp
 import com.techskillplanet.phonics.theme.PhonicsColors
 
 @Composable
@@ -29,19 +30,30 @@ fun TspIconButton(
     theme: PhonicsColors,
     modifier: Modifier = Modifier,
     selected: Boolean = false,
+    disabled: Boolean = false,
+    primary: Boolean = false,
     onClick: () -> Unit,
 ) {
+    val fill = when {
+        disabled -> theme.surfaceMuted
+        selected -> theme.activeFill
+        primary -> theme.brandPrimary
+        else -> theme.surfaceRaised
+    }
+    val color = when {
+        disabled -> theme.textTertiary
+        primary && !selected -> 0xFFFFFFFFL
+        selected || primary -> theme.brandPrimary
+        else -> theme.textPrimary
+    }
     Box(
         modifier = modifier
             .size(40.dp)
-            .background(
-                Color(if (selected) theme.activeFill else theme.surfaceRaised),
-                RoundedCornerShape(999.dp),
-            )
+            .background(Color(fill), RoundedCornerShape(999.dp))
             .border(1.dp, Color(theme.borderDefault), RoundedCornerShape(999.dp))
-            .clickable { onClick() },
+            .clickable(enabled = !disabled) { onClick() },
         contentAlignment = Alignment.Center,
     ) {
-        Text(text = icon, color = Color(if (selected) theme.brandPrimary else theme.textPrimary), fontWeight = FontWeight.Bold)
+        Text(text = icon, color = Color(color), fontWeight = FontWeight.Bold, fontSize = 12.sp)
     }
 }

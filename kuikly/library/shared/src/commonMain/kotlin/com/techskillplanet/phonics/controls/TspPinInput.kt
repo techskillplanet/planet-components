@@ -23,12 +23,15 @@ import com.tencent.kuikly.compose.ui.text.font.FontWeight
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.techskillplanet.phonics.theme.PhonicsColors
 
+@Suppress("UNUSED_PARAMETER")
 @Composable
 fun TspPinInput(
     value: String,
     theme: PhonicsColors,
     modifier: Modifier = Modifier,
     cellCount: Int = 6,
+    secure: Boolean = false,
+    onComplete: (String) -> Unit = {},
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -43,8 +46,9 @@ fun TspPinInput(
                     .border(1.dp, Color(theme.borderDefault), RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center,
             ) {
+                val char = value.getOrNull(index)?.toString().orEmpty()
                 Text(
-                    text = value.getOrNull(index)?.toString() ?: "",
+                    text = if (secure && char.isNotEmpty()) "•" else char,
                     color = Color(theme.textPrimary),
                     fontWeight = FontWeight.Bold,
                 )

@@ -10,6 +10,7 @@ import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
+import com.tencent.kuikly.compose.ui.text.style.TextAlign
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.techskillplanet.phonics.theme.PhonicsColors
 
@@ -44,6 +45,7 @@ fun TspBadge(
             text = text,
             color = if (disabled) Color(theme.textTertiary) else color,
             fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
         )
     }
 }

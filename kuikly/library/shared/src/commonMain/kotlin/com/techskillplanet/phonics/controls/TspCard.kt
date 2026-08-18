@@ -12,22 +12,28 @@ import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.techskillplanet.phonics.theme.PhonicsColors
 
+enum class TspCardVariant { Default, Subtle, Selected, Disabled }
+
 @Composable
 fun TspCard(
     theme: PhonicsColors,
     modifier: Modifier = Modifier,
+    variant: TspCardVariant = TspCardVariant.Default,
     selected: Boolean = false,
     disabled: Boolean = false,
     content: @Composable () -> Unit,
 ) {
+    val isSelected = selected || variant == TspCardVariant.Selected
+    val isDisabled = disabled || variant == TspCardVariant.Disabled
     val fill = when {
-        disabled -> Color(theme.surfaceMuted)
-        selected -> Color(theme.selectedFill)
+        isDisabled -> Color(theme.surfaceMuted)
+        isSelected -> Color(theme.selectedFill)
+        variant == TspCardVariant.Subtle -> Color(theme.surfaceMuted)
         else -> Color(theme.surfaceRaised)
     }
     val stroke = when {
-        disabled -> Color(theme.borderDefault)
-        selected -> Color(theme.success)
+        isDisabled -> Color(theme.borderDefault)
+        isSelected -> Color(theme.success)
         else -> Color(theme.borderDefault)
     }
     Column(

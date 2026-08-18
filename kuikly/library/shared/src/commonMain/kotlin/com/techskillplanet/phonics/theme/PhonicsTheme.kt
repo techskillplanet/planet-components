@@ -21,6 +21,9 @@ data class PhonicsColors(
     val switchOnBackground: Long get() = brandPrimary
     val switchOffBackground: Long get() = borderDefault
     val switchHandleBackground: Long get() = 0xFFFFFFFF
+    val surfaceMuted: Long get() = if (dark) 0xFF24364F else 0xFFF4FAFE
+    val brandSoft: Long get() = if (dark) 0xFF1A3348 else 0xFFE3F4FF
+    val dangerSoft: Long get() = if (dark) 0xFF3A2430 else 0xFFFFF0F2
 }
 
 object PhonicsTheme {

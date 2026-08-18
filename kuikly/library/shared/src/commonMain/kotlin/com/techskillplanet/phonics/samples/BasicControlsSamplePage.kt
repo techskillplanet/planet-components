@@ -5,23 +5,39 @@ import com.tencent.kuikly.compose.setContent
 import com.tencent.kuikly.core.annotations.Page
 
 /**
- * 基础组件小程序预览页。
+ * 基础组件预览页。
  *
- * 这个页面把 Compose DSL 写成的 `BasicControlsSample` 注册成 Kuikly 页面，
- * 微信小程序壳通过 pageName=BasicControlsSample 找到该页面并完成渲染。
+ * 安全区只消费一次：优先用 Android 宿主传入的 dp，
+ * 不再把 Kuikly 的 navigationBarHeight（应用顶栏高度）当成系统底栏。
  */
 @Page("BasicControlsSample")
 class BasicControlsSamplePage : ComposeContainer() {
 
-    /**
-     * Kuikly 页面初始化回调。
-     *
-     * 在这里挂载 Compose 内容，避免小程序侧只生成 JS 包但没有可路由页面。
-     */
     override fun willInit() {
         super.willInit()
         setContent {
-            BasicControlsSample()
+            BasicControlsSample(
+                statusBarHeight = resolveTopInset(),
+                navigationBarHeight = resolveBottomInset(),
+                initialComponent = pageData.params.optString("openComponent"),
+                initialTab = pageData.params.optString("openTab"),
+            )
         }
+    }
+
+    private fun resolveTopInset(): Float {
+        val host = pageData.params.optDouble("hostStatusBarDp", 0.0).toFloat()
+        if (host > 0f) return host.coerceIn(0f, 64f)
+        val safe = pageData.safeAreaInsets.top
+        if (safe > 0f) return safe.coerceIn(0f, 64f)
+        return pageData.statusBarHeight.coerceIn(0f, 64f)
+    }
+
+    private fun resolveBottomInset(): Float {
+        val host = pageData.params.optDouble("hostNavBarDp", 0.0).toFloat()
+        if (host > 0f) return host.coerceIn(0f, 16f)
+        val safe = pageData.safeAreaInsets.bottom
+        if (safe > 0f) return safe.coerceIn(0f, 16f)
+        return pageData.androidBottomBavBarHeight.coerceIn(0f, 16f)
     }
 }

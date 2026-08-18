@@ -1,5 +1,5 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BasicControlsSample } from './BasicControlsSample.js';
+import { HomePage } from './HomePage.js';
 
-createRoot(document.getElementById('root')).render(React.createElement(BasicControlsSample));
+createRoot(document.getElementById('root')).render(React.createElement(HomePage));

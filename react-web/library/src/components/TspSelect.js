@@ -12,7 +12,7 @@ const { useState } = React;
  * @param {Object} [props.theme] - Theme object for CSS variable injection.
  * @param {Function} [props.onSelect] - Callback (index, option) => void.
  */
-export function TspSelect({ options = [], selectedIndex = 0, disabled = false, theme = starPlanetTheme, onSelect }) {
+export function TspSelect({ options = [], selectedIndex = 0, disabled = false, theme = starPlanetTheme, onSelect, title = '请选择' }) {
   const [open, setOpen] = useState(false);
   const selected = options[selectedIndex];
   return h(
@@ -31,7 +31,7 @@ export function TspSelect({ options = [], selectedIndex = 0, disabled = false, t
       h('span', { className: 'bc-select__chevron' }, '⌄')
     ),
     h(TspOptionSheet, {
-      title: '请选择',
+      title,
       options,
       selectedIndex,
       visible: open,

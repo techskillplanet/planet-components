@@ -64,6 +64,4 @@ private class ThreadAdapter : IKRThreadAdapter {
     override fun executeOnSubThread(task: () -> Unit) {
         executor.execute(task)
     }
-
-    override fun stackSize(): Long = 8L * 1024L * 1024L
 }

@@ -7,6 +7,7 @@ import com.tencent.kuikly.compose.foundation.layout.Arrangement
 import com.tencent.kuikly.compose.foundation.layout.Box
 import com.tencent.kuikly.compose.foundation.layout.Row
 import com.tencent.kuikly.compose.foundation.layout.Spacer
+import com.tencent.kuikly.compose.foundation.layout.fillMaxWidth
 import com.tencent.kuikly.compose.foundation.layout.height
 import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.layout.size
@@ -43,7 +44,9 @@ fun TspSwitch(
     val blocked = disabled || loading
     val trackColor = if (checked) theme.switchOnBackground else theme.switchOffBackground
     Row(
-        modifier = modifier.clickable(enabled = !blocked) { onChange(!checked) },
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable(enabled = !blocked) { onChange(!checked) },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
@@ -74,10 +77,9 @@ fun TspSwitch(
                     contentAlignment = Alignment.Center,
                 ) {
                     if (loading) {
-                        Text(
-                            text = "…",
-                            color = Color(if (checked) 0xFFFFFFFF else theme.brandDark),
-                            fontWeight = FontWeight.Bold,
+                        TspSpinnerMark(
+                            color = Color(if (checked) theme.brandPrimary else theme.brandDark),
+                            iconSize = if (isSm) 10.dp else 12.dp,
                         )
                     }
                 }

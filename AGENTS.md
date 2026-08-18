@@ -64,3 +64,9 @@ node tools/check-structure.cjs
 
 Run platform checks for changed stacks. Current expected commands are documented in `README.md` and `docs/PLATFORM_STRUCTURE.md`.
 
+## Agent plugin and skills
+
+- Consuming the published library in an app: `.agents/skills/use-planet-components/SKILL.md`
+- Extending this repo's libraries: `.agents/skills/build-planet-components/SKILL.md`
+- Install for Cursor / Claude / Codex: `docs/AI_PLUGIN.md` and `./tools/install-ai-plugin.sh`
+

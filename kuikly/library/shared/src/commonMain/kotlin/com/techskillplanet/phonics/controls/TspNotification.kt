@@ -33,7 +33,7 @@ fun TspNotification(
     modifier: Modifier = Modifier,
     variant: TspNotificationVariant = TspNotificationVariant.Info,
 ) {
-    val fill = if (variant == TspNotificationVariant.Alert) theme.warning else theme.activeFill
+    val fill = if (variant == TspNotificationVariant.Alert) theme.activeFill else theme.pageEnd
     val stroke = if (variant == TspNotificationVariant.Alert) theme.warning else theme.borderDefault
     Column(
         modifier = modifier

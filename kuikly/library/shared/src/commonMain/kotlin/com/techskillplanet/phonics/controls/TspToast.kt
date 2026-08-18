@@ -15,12 +15,14 @@ import com.techskillplanet.phonics.theme.PhonicsColors
 
 enum class TspToastVariant { Info, Success, Warning, Error }
 
+@Suppress("UNUSED_PARAMETER")
 @Composable
 fun TspToast(
     message: String,
     theme: PhonicsColors,
     modifier: Modifier = Modifier,
     variant: TspToastVariant = TspToastVariant.Info,
+    duration: Int = 1600,
 ) {
     val fill = when (variant) {
         TspToastVariant.Success -> theme.success

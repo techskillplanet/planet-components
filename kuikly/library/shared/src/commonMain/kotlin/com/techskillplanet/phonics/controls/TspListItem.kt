@@ -56,7 +56,9 @@ fun TspListItem(
                 Text(text = message, color = Color(theme.textSecondary))
             }
         }
-        if (trailing.isNotEmpty()) {
+        if (trailing == "›" || trailing == ">") {
+            TspChevronRight(color = Color(theme.textTertiary))
+        } else if (trailing.isNotEmpty()) {
             Text(text = trailing, color = Color(theme.textTertiary))
         }
     }

@@ -968,6 +968,8 @@ body {
 
 .bc-list-item__body {
   display: grid;
+  flex: 1;
+  min-width: 0;
   gap: 4px;
 }
 

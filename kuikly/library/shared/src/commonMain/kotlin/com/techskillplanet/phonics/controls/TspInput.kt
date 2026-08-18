@@ -31,29 +31,31 @@ fun TspInput(
     onChange: (String) -> Unit = {},
 ) {
     val borderColor = if (variant == TspInputVariant.Error) theme.danger else theme.borderDefault
-    val fieldModifier = modifier
-        .fillMaxWidth()
-        .height(48.dp)
-        .background(Color(theme.surfaceRaised), RoundedCornerShape(14.dp))
-        .border(1.dp, Color(borderColor), RoundedCornerShape(14.dp))
-        .padding(horizontal = 14.dp, vertical = 12.dp)
-    BasicTextField(
-        value = value,
-        onValueChange = { next -> if (!disabled) onChange(next) },
-        enabled = !disabled,
-        singleLine = true,
-        textStyle = TextStyle(
-            color = if (disabled) Color(theme.textTertiary) else Color(theme.textPrimary),
-            fontWeight = FontWeight.Bold,
-        ),
-        modifier = fieldModifier,
-        decorationBox = { inner ->
-            Box(contentAlignment = Alignment.CenterStart) {
-                if (value.isEmpty() && placeholder.isNotEmpty()) {
-                    Text(text = placeholder, color = Color(theme.textTertiary))
-                }
-                inner()
-            }
-        },
-    )
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(48.dp)
+            .background(
+                Color(if (disabled) theme.surfaceMuted else theme.surfaceRaised),
+                RoundedCornerShape(14.dp),
+            )
+            .border(1.dp, Color(borderColor), RoundedCornerShape(14.dp))
+            .padding(horizontal = 14.dp),
+        contentAlignment = Alignment.CenterStart,
+    ) {
+        if (value.isEmpty() && placeholder.isNotEmpty()) {
+            Text(text = placeholder, color = Color(theme.textTertiary))
+        }
+        BasicTextField(
+            value = value,
+            onValueChange = { next -> if (!disabled) onChange(next) },
+            enabled = !disabled,
+            singleLine = true,
+            textStyle = TextStyle(
+                color = if (disabled) Color(theme.textTertiary) else Color(theme.textPrimary),
+                fontWeight = FontWeight.Bold,
+            ),
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
 }

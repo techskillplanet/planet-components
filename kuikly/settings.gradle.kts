@@ -1,13 +1,13 @@
 pluginManagement {
     repositories {
+        maven { url = uri("https://maven.aliyun.com/repository/google") }
+        maven { url = uri("https://maven.aliyun.com/repository/central") }
+        maven { url = uri("https://maven.aliyun.com/repository/public") }
+        maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
+        maven { url = uri("https://mirrors.tencent.com/repository/maven-tencent/") }
+        maven { url = uri("https://mirrors.tencent.com/nexus/repository/gradle-plugins/") }
         mavenCentral()
         google()
-        maven {
-            url = uri("https://mirrors.tencent.com/repository/maven-tencent/")
-        }
-        maven {
-            url = uri("https://mirrors.tencent.com/nexus/repository/gradle-plugins/")
-        }
         gradlePluginPortal()
     }
 }
@@ -15,11 +15,12 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
+        maven { url = uri("https://maven.aliyun.com/repository/google") }
+        maven { url = uri("https://maven.aliyun.com/repository/central") }
+        maven { url = uri("https://maven.aliyun.com/repository/public") }
+        maven { url = uri("https://mirrors.tencent.com/repository/maven-tencent/") }
         google()
         mavenCentral()
-        maven {
-            url = uri("https://mirrors.tencent.com/repository/maven-tencent/")
-        }
     }
 }
 

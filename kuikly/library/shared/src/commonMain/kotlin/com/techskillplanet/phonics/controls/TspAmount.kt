@@ -20,6 +20,7 @@ import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
+import com.tencent.kuikly.compose.ui.text.style.TextDecoration
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.techskillplanet.phonics.theme.PhonicsColors
 
@@ -31,6 +32,7 @@ fun TspAmount(
     symbol: String = "¥",
     cycle: String = "",
     symbolAfter: Boolean = false,
+    strikeThrough: Boolean = false,
 ) {
     Row(
         modifier = modifier,
@@ -40,7 +42,12 @@ fun TspAmount(
             Text(text = symbol, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.width(4.dp))
         }
-        Text(text = value, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
+        Text(
+            text = value,
+            color = Color(if (strikeThrough) theme.textTertiary else theme.textPrimary),
+            fontWeight = FontWeight.Bold,
+            textDecoration = if (strikeThrough) TextDecoration.LineThrough else TextDecoration.None,
+        )
         if (symbolAfter) {
             Spacer(modifier = Modifier.width(4.dp))
             Text(text = symbol, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)

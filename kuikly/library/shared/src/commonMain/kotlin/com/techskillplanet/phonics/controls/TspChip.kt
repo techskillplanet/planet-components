@@ -8,12 +8,14 @@ import com.tencent.kuikly.compose.foundation.layout.Box
 import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
 import com.tencent.kuikly.compose.material3.Text
+import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
+import com.tencent.kuikly.compose.ui.text.style.TextAlign
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.techskillplanet.phonics.theme.PhonicsColors
 
-enum class TspChipVariant { Default, Filter, Choice }
+enum class TspChipVariant { Default, Primary, Success, Warning, Danger }
 
 @Composable
 fun TspChip(
@@ -26,10 +28,27 @@ fun TspChip(
     onTap: (() -> Unit)? = null,
 ) {
     val fill = when {
-        disabled -> Color(theme.surfaceMuted)
-        selected || variant == TspChipVariant.Choice && selected -> Color(theme.selectedFill)
-        variant == TspChipVariant.Filter && selected -> Color(theme.brandSoft)
-        else -> Color(theme.surfaceMuted)
+        disabled -> theme.surfaceMuted
+        selected -> theme.selectedFill
+        variant == TspChipVariant.Primary -> theme.brandSoft
+        variant == TspChipVariant.Success -> theme.selectedFill
+        variant == TspChipVariant.Warning -> theme.activeFill
+        variant == TspChipVariant.Danger -> theme.dangerSoft
+        else -> theme.surfaceMuted
+    }
+    val stroke = when {
+        disabled -> theme.borderDefault
+        selected || variant == TspChipVariant.Success -> theme.success
+        variant == TspChipVariant.Primary -> theme.brandPrimary
+        variant == TspChipVariant.Warning -> theme.warning
+        variant == TspChipVariant.Danger -> theme.danger
+        else -> theme.borderDefault
+    }
+    val color = when {
+        disabled -> theme.textTertiary
+        variant == TspChipVariant.Danger -> theme.danger
+        variant == TspChipVariant.Primary -> theme.brandDark
+        else -> theme.textPrimary
     }
     val clickableModifier = if (onTap != null && !disabled) {
         modifier.clickable { onTap() }
@@ -38,10 +57,11 @@ fun TspChip(
     }
     Box(
         modifier = clickableModifier
-            .background(fill, RoundedCornerShape(999.dp))
-            .border(1.dp, Color(if (selected) theme.success else theme.borderDefault), RoundedCornerShape(999.dp))
+            .background(Color(fill), RoundedCornerShape(999.dp))
+            .border(1.dp, Color(stroke), RoundedCornerShape(999.dp))
             .padding(horizontal = 12.dp, vertical = 8.dp),
+        contentAlignment = Alignment.Center,
     ) {
-        Text(text = text, color = Color(if (disabled) theme.textTertiary else theme.textPrimary))
+        Text(text = text, color = Color(color), textAlign = TextAlign.Center)
     }
 }

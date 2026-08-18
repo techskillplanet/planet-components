@@ -23,19 +23,33 @@ import com.tencent.kuikly.compose.ui.text.font.FontWeight
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.techskillplanet.phonics.theme.PhonicsColors
 
+enum class TspStickyFooterVariant { Default, Subtle }
+
 @Composable
 fun TspStickyFooter(
     theme: PhonicsColors,
     modifier: Modifier = Modifier,
+    variant: TspStickyFooterVariant = TspStickyFooterVariant.Default,
+    bottomInset: Float = 0f,
     content: @Composable () -> Unit,
 ) {
+    val fill = if (variant == TspStickyFooterVariant.Subtle) theme.surfaceMuted else theme.surfaceRaised
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(Color(theme.surfaceRaised))
-            .border(1.dp, Color(theme.borderDefault))
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .background(Color(fill))
+            .padding(bottom = bottomInset.dp),
     ) {
-        content()
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(1.dp)
+                .background(Color(theme.borderDefault)),
+        )
+        Column(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+        ) {
+            content()
+        }
     }
 }

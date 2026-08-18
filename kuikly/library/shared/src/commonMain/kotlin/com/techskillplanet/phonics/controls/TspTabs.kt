@@ -14,6 +14,7 @@ import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
+import com.tencent.kuikly.compose.ui.text.style.TextAlign
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.techskillplanet.phonics.theme.PhonicsColors
 
@@ -40,6 +41,7 @@ fun TspTabs(
                 text = tab,
                 color = if (selected) Color.White else Color(theme.textSecondary),
                 fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
                 modifier = Modifier
                     .weight(1f)
                     .background(
@@ -47,7 +49,8 @@ fun TspTabs(
                         RoundedCornerShape(999.dp),
                     )
                     .clickable { onSelect(index, tab) }
-                    .padding(vertical = 8.dp),
+                    .padding(vertical = 8.dp)
+                    .fillMaxWidth(),
             )
         }
     }

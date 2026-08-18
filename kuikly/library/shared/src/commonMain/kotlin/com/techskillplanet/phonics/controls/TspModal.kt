@@ -7,6 +7,7 @@ import com.tencent.kuikly.compose.foundation.layout.Arrangement
 import com.tencent.kuikly.compose.foundation.layout.Box
 import com.tencent.kuikly.compose.foundation.layout.Column
 import com.tencent.kuikly.compose.foundation.layout.Row
+import com.tencent.kuikly.compose.foundation.layout.fillMaxSize
 import com.tencent.kuikly.compose.foundation.layout.fillMaxWidth
 import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
@@ -16,6 +17,7 @@ import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
 import com.tencent.kuikly.compose.ui.unit.dp
+import com.tencent.kuikly.compose.ui.window.Dialog
 import com.techskillplanet.phonics.theme.PhonicsColors
 
 @Composable
@@ -24,16 +26,17 @@ fun TspModal(
     message: String,
     theme: PhonicsColors,
     modifier: Modifier = Modifier,
-    confirmText: String = "OK",
-    cancelText: String = "Cancel",
-    visible: Boolean = true,
+    confirmText: String = "确定",
+    cancelText: String = "取消",
+    visible: Boolean = false,
     onConfirm: () -> Unit = {},
     onCancel: () -> Unit = {},
 ) {
     if (!visible) return
+    Dialog(onDismissRequest = onCancel) {
     Box(
         modifier = modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .background(Color(0x66000000))
             .clickable { onCancel() }
             .padding(18.dp),
@@ -49,21 +52,27 @@ fun TspModal(
         ) {
             Text(text = title, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
             Text(text = message, color = Color(theme.textSecondary))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
                 TspButton(
                     text = cancelText,
                     theme = theme,
                     modifier = Modifier.weight(1f),
+                    fullWidth = true,
                     onClick = onCancel,
                 )
                 TspButton(
                     text = confirmText,
                     theme = theme,
                     modifier = Modifier.weight(1f),
+                    fullWidth = true,
                     variant = TspButtonVariant.Primary,
                     onClick = onConfirm,
                 )
             }
         }
+    }
     }
 }

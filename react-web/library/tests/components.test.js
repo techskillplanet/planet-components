@@ -487,6 +487,11 @@ describe('TspSelect', () => {
     fireEvent.click(container.querySelector('.bc-select'));
     expect(container.querySelector('.bc-option-sheet')).toBeTruthy();
   });
+  it('uses a custom sheet title', () => {
+    const { container } = render(React.createElement(TspSelect, { options: ['A', 'B'], title: 'Language' }));
+    fireEvent.click(container.querySelector('.bc-select'));
+    expect(container.querySelector('.bc-option-sheet')).toHaveTextContent('Language');
+  });
 });
 
 describe('TspLoadingDialog', () => {

@@ -2,12 +2,14 @@ package com.techskillplanet.phonics.controls
 
 import androidx.compose.runtime.Composable
 import com.tencent.kuikly.compose.foundation.background
+import com.tencent.kuikly.compose.foundation.border
 import com.tencent.kuikly.compose.foundation.clickable
 import com.tencent.kuikly.compose.foundation.layout.Arrangement
 import com.tencent.kuikly.compose.foundation.layout.Box
 import com.tencent.kuikly.compose.foundation.layout.Column
 import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.layout.size
+import com.tencent.kuikly.compose.foundation.layout.fillMaxSize
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
 import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
@@ -15,6 +17,7 @@ import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
 import com.tencent.kuikly.compose.ui.unit.dp
+import com.tencent.kuikly.compose.ui.window.Dialog
 import com.techskillplanet.phonics.theme.PhonicsColors
 
 enum class TspLoadingDialogVariant { Default, Compact }
@@ -31,28 +34,34 @@ fun TspLoadingDialog(
 ) {
     if (!visible) return
     val compact = variant == TspLoadingDialogVariant.Compact
-    Box(
-        modifier = modifier
-            .background(Color(0x66000000))
-            .clickable(enabled = dismissible) { onDismiss() }
-            .padding(if (compact) 12.dp else 24.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Column(
-            modifier = Modifier
-                .background(Color(theme.surfaceRaised), RoundedCornerShape(16.dp))
-                .clickable { }
-                .padding(if (compact) 12.dp else 20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(if (compact) 8.dp else 12.dp),
+    Dialog(onDismissRequest = { if (dismissible) onDismiss() }) {
+        Box(
+            modifier = modifier
+                .fillMaxSize()
+                .background(Color(0x66000000))
+                .clickable(enabled = dismissible) { onDismiss() }
+                .padding(if (compact) 12.dp else 24.dp),
+            contentAlignment = Alignment.Center,
         ) {
-            Box(
+            Column(
                 modifier = Modifier
-                    .size(if (compact) 18.dp else 28.dp)
-                    .background(Color(theme.brandPrimary), RoundedCornerShape(999.dp)),
-            )
-            if (message.isNotEmpty()) {
-                Text(text = message, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
+                    .background(Color(theme.surfaceRaised), RoundedCornerShape(16.dp))
+                    .clickable { }
+                    .padding(if (compact) 12.dp else 20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(if (compact) 8.dp else 12.dp),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(if (compact) 18.dp else 28.dp)
+                        .border(3.dp, Color(theme.brandPrimary), RoundedCornerShape(999.dp)),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    TspSpinnerMark(color = Color(theme.brandPrimary), iconSize = if (compact) 10.dp else 14.dp)
+                }
+                if (message.isNotEmpty()) {
+                    Text(text = message, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
+                }
             }
         }
     }

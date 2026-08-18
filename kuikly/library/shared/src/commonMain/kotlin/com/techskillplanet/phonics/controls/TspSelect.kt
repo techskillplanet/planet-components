@@ -28,6 +28,7 @@ fun TspSelect(
     modifier: Modifier = Modifier,
     selectedIndex: Int = 0,
     disabled: Boolean = false,
+    bottomInset: Float = 0f,
     onSelect: (Int, Any) -> Unit = { _, _ -> },
 ) {
     val open = remember { mutableStateOf(false) }
@@ -49,7 +50,7 @@ fun TspSelect(
                 color = Color(if (disabled) theme.textTertiary else theme.textPrimary),
                 fontWeight = FontWeight.Bold,
             )
-            Text(text = "⌄", color = Color(theme.textTertiary))
+            TspChevronRight(color = Color(theme.textTertiary))
         }
         TspOptionSheet(
             title = "请选择",
@@ -57,6 +58,7 @@ fun TspSelect(
             selectedIndex = selectedIndex,
             visible = open.value,
             theme = theme,
+            bottomInset = bottomInset,
             onCancel = { open.value = false },
             onSelect = { index, option ->
                 open.value = false

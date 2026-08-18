@@ -1,7 +1,12 @@
-# Integrate TechSkillPlanet React Components
+---
+name: integrate-react-components
+description: >-
+  Integrate @techskillplanet/planet-components-react into a React web app.
+  Use when installing, theming, or composing Tsp* controls on React Web
+  (Vite, Next.js, CRA) with Sky/Night/Mint/Sunrise themes.
+---
 
-## Description
-Integrate the `@techskillplanet/planet-components-react` component library into a React web application. This skill covers installation, theme setup, component usage patterns, and customization.
+# Integrate TechSkillPlanet React Components
 
 ## When to Use
 - When building a React web app that needs TechSkillPlanet's Star Planet UI components

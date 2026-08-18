@@ -10,11 +10,12 @@ plugins {
 
 buildscript {
     repositories {
+        maven { url = uri("https://maven.aliyun.com/repository/google") }
+        maven { url = uri("https://maven.aliyun.com/repository/central") }
+        maven { url = uri("https://maven.aliyun.com/repository/public") }
+        maven { url = uri("https://mirrors.tencent.com/repository/maven-tencent/") }
         mavenCentral()
         google()
-        maven {
-            url = uri("https://mirrors.tencent.com/repository/maven-tencent/")
-        }
         gradlePluginPortal()
     }
     dependencies {
@@ -24,10 +25,11 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url = uri("https://maven.aliyun.com/repository/google") }
+        maven { url = uri("https://maven.aliyun.com/repository/central") }
+        maven { url = uri("https://maven.aliyun.com/repository/public") }
+        maven { url = uri("https://mirrors.tencent.com/repository/maven-tencent/") }
         google()
         mavenCentral()
-        maven {
-            url = uri("https://mirrors.tencent.com/repository/maven-tencent/")
-        }
     }
 }

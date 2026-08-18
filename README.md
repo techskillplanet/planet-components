@@ -51,8 +51,10 @@ implementation "io.github.techskillplanet:planet-components-android:0.2.0"
 The accumulated implementation rules have been migrated into this repository:
 
 - `AGENTS.md`: high-level repository context and engineering rules.
+- `.agents/skills/use-planet-components/SKILL.md`: **consume** the published library in an app (install, theme, contract APIs).
 - `.agents/skills/build-planet-components/SKILL.md`: cross-platform component library workflow.
 - `.agents/skills/build-android-view-ui/SKILL.md`: Android View Java/XML workflow.
+- `docs/AI_PLUGIN.md`: install the Cursor / Claude / Codex plugin and skills.
 - `docs/PLATFORM_STRUCTURE.md`: one-component-one-file, one-page-one-file, routing, and sample rules.
 - `docs/COMPONENT_CONTRACT.md`: human-readable component API and variant contract.
 - `component_contract.json`: machine-readable component API and variant contract.

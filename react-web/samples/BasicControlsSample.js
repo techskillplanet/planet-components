@@ -29,7 +29,8 @@ const sampleLocales = {
     openModal: '打开弹窗', stickyFooter: '底部固定操作', modalTitle: '确认',
     platformSwitch: '平台预览', platformHint: '切换手机 / 桌面布局，验证全场景展示。',
     modalBody: '弹窗遵循同一套组件契约，并验证移动端高度、滚动和底部按钮完整显示。',
-    cancel: '取消', ok: '确定', auto: '自动', mobile: '手机', desktop: '桌面'
+    cancel: '取消', ok: '确定', auto: '自动', mobile: '手机', desktop: '桌面',
+    learn: '学习', settings: '设置', selectTitle: '请选择'
   },
   en: {
     title: 'Basic Controls', themeSwitch: 'Theme Switch', languageSwitch: 'Language Switch',
@@ -44,7 +45,8 @@ const sampleLocales = {
     stickyFooter: 'Sticky Footer', modalTitle: 'Confirm',
     platformSwitch: 'Platform Preview', platformHint: 'Switch mobile / desktop layout for full coverage.',
     modalBody: 'The modal follows the same contract and verifies mobile height, scrolling and visible actions.',
-    cancel: 'Cancel', ok: 'OK', auto: 'Auto', mobile: 'Mobile', desktop: 'Desktop'
+    cancel: 'Cancel', ok: 'OK', auto: 'Auto', mobile: 'Mobile', desktop: 'Desktop',
+    learn: 'Learn', settings: 'Settings', selectTitle: 'Choose'
   },
   ja: {
     title: '基本コンポーネント', themeSwitch: 'テーマ切替', languageSwitch: '言語切替',
@@ -60,7 +62,88 @@ const sampleLocales = {
     stickyFooter: '固定フッター', modalTitle: '確認',
     platformSwitch: 'プラットフォーム', platformHint: 'モバイル / デスクトップ表示を切替えて検証します。',
     modalBody: 'モーダルは同じ契約に従い、モバイル高さとスクロールを検証します。',
-    cancel: '取消', ok: 'OK', auto: '自動', mobile: 'モバイル', desktop: 'デスクトップ'
+    cancel: '取消', ok: 'OK', auto: '自動', mobile: 'モバイル', desktop: 'デスクトップ',
+    learn: '学習', settings: '設定', selectTitle: '選択'
+  },
+  'zh-TW': {
+    title: '基礎元件', themeSwitch: '主題切換', languageSwitch: '語言切換',
+    pageSwitch: '頁面切換', themeHint: '切換主題後，頁面、元件、彈窗和 Toast 同步變更。',
+    languageHint: '切換語言後，樣例文案從內建字典讀取。',
+    primary: '主按鈕', default: '預設按鈕', danger: '危險按鈕',
+    card: '卡片', cardBody: '星球主題內容卡片。', success: '成功',
+    applied: '主題已套用。', badge: '徽標', chip: '標籤', input: '輸入框',
+    switch: '開關', progress: '進度', notice: '通知', noticeBody: '繼續學習。',
+    listItem: '列表項', selectedState: '選中狀態', empty: '空狀態',
+    emptyBody: '暫無紀錄。', action: '操作', showToast: '顯示 Toast',
+    openModal: '開啟彈窗', stickyFooter: '底部固定操作', modalTitle: '確認',
+    platformSwitch: '平台預覽', platformHint: '切換手機 / 桌面佈局，驗證全場景展示。',
+    modalBody: '彈窗遵循同一套元件契約，並驗證行動端高度、捲動和底部按鈕完整顯示。',
+    cancel: '取消', ok: '確定', auto: '自動', mobile: '手機', desktop: '桌面',
+    learn: '學習', settings: '設定', selectTitle: '請選擇'
+  },
+  ko: {
+    title: '기본 컴포넌트', themeSwitch: '테마 전환', languageSwitch: '언어 전환',
+    pageSwitch: '페이지 전환', themeHint: '테마를 바꾸면 페이지, 컴포넌트, 모달, Toast가 함께 변경됩니다.',
+    languageHint: '언어를 바꾸면 샘플 문구가 내장 사전에서 읽힙니다.',
+    primary: '기본 버튼', default: '기본값', danger: '위험 버튼',
+    card: '카드', cardBody: 'Sky Planet 콘텐츠 카드.', success: '성공',
+    applied: '테마가 적용되었습니다.', badge: '배지', chip: '칩', input: '입력',
+    switch: '스위치', progress: '진행률', notice: '알림', noticeBody: '학습을 계속하세요.',
+    listItem: '리스트 항목', selectedState: '선택 상태', empty: '빈 상태',
+    emptyBody: '기록이 없습니다.', action: '작업', showToast: 'Toast 표시',
+    openModal: '모달 열기', stickyFooter: '하단 고정 작업', modalTitle: '확인',
+    platformSwitch: '플랫폼 미리보기', platformHint: '모바일 / 데스크톱 레이아웃을 전환해 전체 시나리오를 검증합니다.',
+    modalBody: '모달은 동일한 계약을 따르며 모바일 높이, 스크롤, 하단 버튼 표시를 검증합니다.',
+    cancel: '취소', ok: '확인', auto: '자동', mobile: '모바일', desktop: '데스크톱',
+    learn: '학습', settings: '설정', selectTitle: '선택'
+  },
+  es: {
+    title: 'Controles básicos', themeSwitch: 'Cambio de tema', languageSwitch: 'Cambio de idioma',
+    pageSwitch: 'Cambio de página', themeHint: 'Al cambiar el tema se actualizan página, componentes, modal y toast.',
+    languageHint: 'El texto del sample se carga desde el diccionario integrado.',
+    primary: 'Principal', default: 'Predeterminado', danger: 'Peligro', card: 'Tarjeta',
+    cardBody: 'Tarjeta de superficie Sky Planet.', success: 'Correcto', applied: 'Tema aplicado.',
+    badge: 'Insignia', chip: 'Chip', input: 'Entrada', switch: 'Interruptor', progress: 'Progreso',
+    notice: 'Aviso', noticeBody: 'Sigue aprendiendo.', listItem: 'Elemento de lista',
+    selectedState: 'Estado seleccionado', empty: 'Vacío', emptyBody: 'Aún no hay registros.',
+    action: 'Acción', showToast: 'Mostrar Toast', openModal: 'Abrir modal',
+    stickyFooter: 'Pie fijo', modalTitle: 'Confirmar',
+    platformSwitch: 'Vista de plataforma', platformHint: 'Cambia entre móvil y escritorio para cubrir todos los escenarios.',
+    modalBody: 'El modal sigue el mismo contrato y verifica altura, desplazamiento y acciones visibles en móvil.',
+    cancel: 'Cancelar', ok: 'Aceptar', auto: 'Auto', mobile: 'Móvil', desktop: 'Escritorio',
+    learn: 'Aprender', settings: 'Ajustes', selectTitle: 'Elegir'
+  },
+  fr: {
+    title: 'Contrôles de base', themeSwitch: 'Changement de thème', languageSwitch: 'Changement de langue',
+    pageSwitch: 'Changement de page', themeHint: 'Le thème met à jour la page, les composants, la modale et le toast.',
+    languageHint: 'Les textes du sample viennent du dictionnaire intégré.',
+    primary: 'Principal', default: 'Par défaut', danger: 'Danger', card: 'Carte',
+    cardBody: 'Carte de surface Sky Planet.', success: 'Succès', applied: 'Thème appliqué.',
+    badge: 'Badge', chip: 'Chip', input: 'Saisie', switch: 'Interrupteur', progress: 'Progression',
+    notice: 'Notification', noticeBody: 'Continuez à apprendre.', listItem: 'Élément de liste',
+    selectedState: 'État sélectionné', empty: 'Vide', emptyBody: 'Aucun enregistrement.',
+    action: 'Action', showToast: 'Afficher le toast', openModal: 'Ouvrir la modale',
+    stickyFooter: 'Pied fixe', modalTitle: 'Confirmer',
+    platformSwitch: 'Aperçu plateforme', platformHint: 'Basculez mobile / bureau pour couvrir tous les scénarios.',
+    modalBody: 'La modale suit le même contrat et vérifie hauteur, défilement et actions visibles sur mobile.',
+    cancel: 'Annuler', ok: 'OK', auto: 'Auto', mobile: 'Mobile', desktop: 'Bureau',
+    learn: 'Apprendre', settings: 'Réglages', selectTitle: 'Choisir'
+  },
+  de: {
+    title: 'Basis-Controls', themeSwitch: 'Thema wechseln', languageSwitch: 'Sprache wechseln',
+    pageSwitch: 'Seite wechseln', themeHint: 'Themenwechsel aktualisiert Seite, Komponenten, Modal und Toast.',
+    languageHint: 'Sample-Texte kommen aus dem integrierten Wörterbuch.',
+    primary: 'Primär', default: 'Standard', danger: 'Gefahr', card: 'Karte',
+    cardBody: 'Sky-Planet-Inhaltskarte.', success: 'Erfolg', applied: 'Thema angewendet.',
+    badge: 'Badge', chip: 'Chip', input: 'Eingabe', switch: 'Schalter', progress: 'Fortschritt',
+    notice: 'Hinweis', noticeBody: 'Weiterlernen.', listItem: 'Listeneintrag',
+    selectedState: 'Ausgewählt', empty: 'Leer', emptyBody: 'Noch keine Einträge.',
+    action: 'Aktion', showToast: 'Toast anzeigen', openModal: 'Modal öffnen',
+    stickyFooter: 'Fixierte Fußleiste', modalTitle: 'Bestätigen',
+    platformSwitch: 'Plattformvorschau', platformHint: 'Zwischen Mobil und Desktop wechseln, um alle Szenarien zu prüfen.',
+    modalBody: 'Das Modal folgt demselben Vertrag und prüft Höhe, Scrollen und sichtbare Aktionen auf Mobilgeräten.',
+    cancel: 'Abbrechen', ok: 'OK', auto: 'Auto', mobile: 'Mobil', desktop: 'Desktop',
+    learn: 'Lernen', settings: 'Einstellungen', selectTitle: 'Auswählen'
   }
 };
 
@@ -143,7 +226,13 @@ function ComponentDocPage({ doc, theme, state, onBack, layoutClass }) {
   );
 }
 
-export function BasicControlsSample() {
+export function BasicControlsSample({
+  forcePlatform,
+  themeKey: themeKeyProp,
+  locale: localeProp,
+  onThemeKeyChange,
+  onLocaleChange
+} = {}) {
   const themeOptions = useMemo(() => [
     { key: 'sky', title: 'Sky' }, { key: 'night', title: 'Night' },
     { key: 'mint', title: 'Mint' }, { key: 'sunrise', title: 'Sunrise' }
@@ -151,12 +240,22 @@ export function BasicControlsSample() {
   const languageOptions = useMemo(() => [
     { key: 'zh-CN', title: '简体中文' }, { key: 'en', title: 'English' }, { key: 'ja', title: '日本語' }
   ], []);
-  const [themeKey, setThemeKey] = useState('sky');
-  const [locale, setLocale] = useState('zh-CN');
+  const [themeKeyState, setThemeKeyState] = useState('sky');
+  const [localeState, setLocaleState] = useState('zh-CN');
+  const themeKey = themeKeyProp ?? themeKeyState;
+  const locale = localeProp ?? localeState;
+  const setThemeKey = (key) => {
+    if (themeKeyProp === undefined) setThemeKeyState(key);
+    onThemeKeyChange?.(key);
+  };
+  const setLocale = (next) => {
+    if (localeProp === undefined) setLocaleState(next);
+    onLocaleChange?.(next);
+  };
   const [platformMode, setPlatformMode] = useState('auto');
   const [autoPlatform, setAutoPlatform] = useState(() => detectPlatform());
   const theme = starPlanetThemes[themeKey];
-  const t = (key) => sampleLocales[locale][key] ?? sampleLocales.en[key] ?? key;
+  const t = (key) => (sampleLocales[locale] || sampleLocales.en)[key] ?? sampleLocales.en[key] ?? key;
   const platformOptions = useMemo(() => [
     { key: 'auto', title: t('auto') }, { key: 'mobile', title: t('mobile') }, { key: 'desktop', title: t('desktop') }
   ], [locale]);
@@ -167,16 +266,20 @@ export function BasicControlsSample() {
   const [pinValue, setPinValue] = useState('12');
   const [inputValue, setInputValue] = useState('');
   const [showSheet, setShowSheet] = useState(false);
-  const [selectedDocName, setSelectedDocName] = useState(() => (typeof window !== 'undefined' ? window.location.hash.replace(/^#/, '') : ''));
+  const [selectedDocName, setSelectedDocName] = useState(() => {
+    if (forcePlatform || typeof window === 'undefined') return '';
+    return window.location.hash.replace(/^#/, '');
+  });
   const [showModal, setShowModal] = useState(false);
   const [toast, setToast] = useState(null);
-  const tabs = useMemo(() => [{ key: 'learn', title: '学习', icon: '⌂' }, { key: 'settings', title: '设置', icon: '⚙' }], []);
+  const tabs = useMemo(() => [{ key: 'learn', title: t('learn'), icon: '⌂' }, { key: 'settings', title: t('settings'), icon: '⚙' }], [locale]);
   const showToast = (message, variant = 'info') => {
     setToast({ message, variant, id: Date.now() });
     window.clearTimeout(showToast.timer);
     showToast.timer = window.setTimeout(() => setToast(null), 1800);
   };
   useEffect(() => {
+    if (forcePlatform) return undefined;
     const syncFromHash = () => setSelectedDocName(window.location.hash.replace(/^#/, ''));
     window.addEventListener('hashchange', syncFromHash);
     const mediaQuery = typeof window.matchMedia === 'function' ? window.matchMedia('(min-width: 1024px)') : null;
@@ -186,20 +289,29 @@ export function BasicControlsSample() {
       window.removeEventListener('hashchange', syncFromHash);
       mediaQuery?.removeEventListener('change', syncPlatform);
     };
-  }, []);
-  const openDoc = (name) => { window.location.hash = name; setSelectedDocName(name); };
-  const closeDoc = () => { history.pushState('', document.title, window.location.pathname + window.location.search); setSelectedDocName(''); };
-  const selectedDoc = componentDocs.find((doc) => doc.name === selectedDocName);
+  }, [forcePlatform]);
+  const openDoc = (name) => {
+    if (!forcePlatform) window.location.hash = name;
+    setSelectedDocName(name);
+  };
+  const closeDoc = () => {
+    if (!forcePlatform) history.pushState('', document.title, window.location.pathname + window.location.search);
+    setSelectedDocName('');
+  };
+  const routeName = selectedDocName;
+  const selectedDoc = ['', 'top', 'preview', 'platforms', 'features', 'skills', 'install'].includes(routeName)
+    ? undefined
+    : componentDocs.find((doc) => doc.name === routeName);
   const previewState = { checked, setChecked, inputValue, setInputValue, selectedOption, setSelectedOption, selectedTab, setSelectedTab, pinValue, setPinValue, showSheet, setShowSheet, showModal, setShowModal, toast, tabs, tab, setTab, showToast };
-  const resolvedPlatform = platformMode === 'auto' ? autoPlatform : platformMode;
+  const resolvedPlatform = forcePlatform ?? (platformMode === 'auto' ? autoPlatform : platformMode);
   const layoutClass = resolvedPlatform === 'desktop' ? 'bc-sample--force-desktop' : 'bc-sample--force-mobile';
   if (selectedDoc) {
     return h(ComponentDocPage, { doc: selectedDoc, theme, state: previewState, onBack: closeDoc, layoutClass });
   }
   const settingsPage = h(React.Fragment, null,
-    h(TspCard, { theme }, h('strong', null, t('platformSwitch')), h('p', null, t('platformHint')), h(TspSelect, { options: platformOptions, selectedIndex: platformOptions.findIndex((item) => item.key === platformMode), theme, onSelect: (_, option) => setPlatformMode(option.key) })),
-    h(TspCard, { theme }, h('strong', null, t('themeSwitch')), h('p', null, t('themeHint')), h(TspSelect, { options: themeOptions, selectedIndex: themeOptions.findIndex((item) => item.key === themeKey), theme, onSelect: (_, option) => setThemeKey(option.key) })),
-    h(TspCard, { theme }, h('strong', null, t('languageSwitch')), h('p', null, t('languageHint')), h(TspSelect, { options: languageOptions, selectedIndex: languageOptions.findIndex((item) => item.key === locale), theme, onSelect: (_, option) => setLocale(option.key) }))
+    !forcePlatform && h(TspCard, { theme }, h('strong', null, t('platformSwitch')), h('p', null, t('platformHint')), h(TspSelect, { options: platformOptions, selectedIndex: platformOptions.findIndex((item) => item.key === platformMode), theme, title: t('selectTitle'), onSelect: (_, option) => setPlatformMode(option.key) })),
+    h(TspCard, { theme }, h('strong', null, t('themeSwitch')), h('p', null, t('themeHint')), h(TspSelect, { options: themeOptions, selectedIndex: themeOptions.findIndex((item) => item.key === themeKey), theme, title: t('themeSwitch'), onSelect: (_, option) => setThemeKey(option.key) })),
+    h(TspCard, { theme }, h('strong', null, t('languageSwitch')), h('p', null, t('languageHint')), h(TspSelect, { options: languageOptions, selectedIndex: languageOptions.findIndex((item) => item.key === locale), theme, title: t('languageSwitch'), onSelect: (_, option) => setLocale(option.key) }))
   );
   const learnPage = componentCategories.map((category) => h('section', { key: category, className: 'bc-doc-home-section' },
     h('div', { className: 'bc-doc-section-title' }, category),
@@ -213,10 +325,10 @@ export function BasicControlsSample() {
       style: themed(theme),
       'data-platform': resolvedPlatform
     },
-    h(TspTopBar, { title: t('title'), showBack: true, theme }),
-    h('section', { className: 'bc-sample__grid' }, tab === 'settings' ? settingsPage : learnPage),
+    h(TspTopBar, { title: t('title'), showBack: !forcePlatform, theme }),
+    h('section', { className: 'bc-sample__grid' }, tab === 'settings' && !forcePlatform ? settingsPage : learnPage),
     toast && h('div', { className: 'bc-toast-layer', key: toast.id }, h(TspToast, { message: toast.message, variant: toast.variant, theme })),
-    h(TspBottomTab, { tabs, selectedKey: tab, theme, onSelect: setTab }),
+    !forcePlatform && h(TspBottomTab, { tabs, selectedKey: tab, theme, onSelect: setTab }),
     showModal && h(TspModal, { title: t('modalTitle'), message: t('modalBody'), confirmText: t('ok'), cancelText: t('cancel'), theme, onConfirm: () => setShowModal(false), onCancel: () => setShowModal(false) })
   );
 }

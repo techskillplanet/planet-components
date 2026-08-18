@@ -57,7 +57,7 @@ fun TspStepper(
                 contentAlignment = Alignment.Center,
             ) {
                 Text(
-                    text = if (done) "✓" else "$step",
+                    text = "$step",
                     color = Color(if (done || active) 0xFFFFFFFF else theme.textTertiary),
                     fontWeight = FontWeight.Bold,
                 )

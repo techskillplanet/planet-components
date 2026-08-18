@@ -39,10 +39,10 @@ fun TspEmpty(
         Box(
             modifier = Modifier
                 .size(36.dp)
-                .background(Color(theme.brandPrimary), RoundedCornerShape(999.dp)),
+                .background(Color(theme.brandSoft), RoundedCornerShape(999.dp)),
             contentAlignment = Alignment.Center,
         ) {
-            Text(text = "○", color = Color.White)
+            TspEmptyMark(color = Color(theme.brandPrimary), iconSize = 20.dp)
         }
         Text(text = title, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
         Text(text = message, color = Color(theme.textSecondary))
