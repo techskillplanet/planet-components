@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace "com.techskillplanet.basiccontrols.samples"
+    namespace "com.techskillplanet.planetcomponents.samples"
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.techskillplanet.basiccontrols.samples"
+        applicationId "com.techskillplanet.planetcomponents.samples"
         minSdk 23
         targetSdk 35
         versionCode 1
@@ -16,5 +16,5 @@ android {
 }
 
 dependencies {
-    implementation "io.github.techskillplanet:planet-components-android:0.2.0"
+    implementation project(":library")
 }

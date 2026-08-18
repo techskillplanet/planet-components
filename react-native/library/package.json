@@ -1,6 +1,6 @@
 {
   "name": "@techskillplanet/planet-components-react-native",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "TechSkillPlanet themed React Native basic controls library.",
   "main": "src/starPlanet/index.js",
   "files": [
@@ -8,7 +8,8 @@
     "src/starPlanet/theme.js",
     "src/starPlanet/components",
     "src/starPlanet/utils",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "peerDependencies": {
     "react": ">=19",

@@ -15,7 +15,7 @@ From `kuikly/`:
 Generated framework:
 
 ```text
-library/shared/build/bin/iosSimulatorArm64/debugFramework/PhonicsPlanetKuiklyShared.framework
+library/shared/build/bin/iosSimulatorArm64/debugFramework/PlanetComponentsKuiklyShared.framework
 ```
 
 ## Host Integration

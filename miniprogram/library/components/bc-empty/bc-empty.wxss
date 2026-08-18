@@ -1,0 +1,4 @@
+.bc-empty { text-align: center; padding: 48rpx 24rpx; }
+.bc-empty__title { color: var(--bc-text); font-weight: 800; font-size: 32rpx; }
+.bc-empty__msg { margin-top: 12rpx; color: var(--bc-muted); }
+.bc-empty__action { margin-top: 24rpx; display: inline-flex; padding: 16rpx 32rpx; border-radius: 999rpx; background: var(--bc-surface); border: 2rpx solid var(--bc-border); color: var(--bc-text); font-weight: 800; }

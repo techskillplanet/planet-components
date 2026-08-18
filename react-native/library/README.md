@@ -11,6 +11,8 @@ React Native implementation for the Star Planet basic controls library.
 
 Package name: `@techskillplanet/planet-components-react-native`.
 
+Samples must depend on `file:../library`. Do not point the sample at a published registry version.
+
 Theme API (aligned with Android `style_token.json` / `color_token.json`):
 
 - `starPlanetThemes`: color presets (`sky`, `night`, `mint`)

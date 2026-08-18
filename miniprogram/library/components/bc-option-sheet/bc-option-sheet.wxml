@@ -1,0 +1,8 @@
+<view wx:if="{{visible}}" class="bc-sheet-mask" bindtap="onCancel">
+  <view class="bc-sheet" catchtap="noop"
+    style="--bc-surface: {{theme.surfaceRaised}}; --bc-border: {{theme.borderDefault}}; --bc-text: {{theme.textPrimary}}; --bc-brand: {{theme.brandPrimary}};">
+    <view class="bc-sheet__title">{{title}}</view>
+    <view wx:for="{{options}}" wx:key="*this" class="bc-sheet__item {{index === selectedIndex ? 'is-selected' : ''}}" data-index="{{index}}" bindtap="onPick">{{item}}</view>
+    <view class="bc-sheet__cancel" bindtap="onCancel">取消</view>
+  </view>
+</view>

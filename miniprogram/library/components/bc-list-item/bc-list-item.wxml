@@ -1,0 +1,9 @@
+<view class="bc-list-item {{selected ? 'is-selected' : ''}} {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-surface: {{theme.surfaceRaised}}; --bc-border: {{theme.borderDefault}}; --bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textSecondary}}; --bc-fill: {{theme.selectedFill}};"
+  bindtap="onTap">
+  <view class="bc-list-item__body">
+    <view class="bc-list-item__title">{{title}}</view>
+    <view wx:if="{{message}}" class="bc-list-item__msg">{{message}}</view>
+  </view>
+  <view wx:if="{{trailing}}" class="bc-list-item__trail">{{trailing}}</view>
+</view>

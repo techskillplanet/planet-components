@@ -7,7 +7,7 @@
     "preview": "npm run build && python3 -m http.server 5173 --bind 127.0.0.1"
   },
   "dependencies": {
-    "@techskillplanet/planet-components-react": "0.1.2",
+    "@techskillplanet/planet-components-react": "file:../library",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

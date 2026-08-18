@@ -55,6 +55,42 @@ Core semantic colors:
 | RefreshLayout | `refreshing`, `loadingMore`, `disabled` | `refreshing`, `loadingMore`, `onRefresh`, `onLoadMore` |
 | LoadingDialog | `default`, `compact` | `visible`, `message`, `dismissible` |
 
+## Platform public names
+
+| Contract | RN / Web / Flutter / iOS | Android View | WeChat Mini Program tag |
+| --- | --- | --- | --- |
+| Button | `TspButton` | `BasicButton` | `bc-button` |
+| Card | `TspCard` | `BasicCardView` | `bc-card` |
+| Alert | `TspAlert` | `BasicAlertView` | `bc-alert` |
+| Badge | `TspBadge` | `BasicBadgeView` | `bc-badge` |
+| Chip | `TspChip` | `BasicChipView` | `bc-chip` |
+| Input | `TspInput` | `BasicInputView` | `bc-input` |
+| Select | `TspSelect` | `BasicSelectView` | `bc-select` |
+| OptionSheet | `TspOptionSheet` | `BasicOptionSheet` | `bc-option-sheet` |
+| Switch | `TspSwitch` | `BasicSwitchView` | `bc-switch` |
+| Progress | `TspProgress` | `BasicProgressView` | `bc-progress` |
+| TopBar | `TspTopBar` | `BasicTopBarView` | `bc-top-bar` |
+| BottomTab | `TspBottomTab` | `BasicBottomTabView` | `bc-bottom-tab` |
+| Tabs | `TspTabs` | `BasicTabsView` | `bc-tabs` |
+| Amount | `TspAmount` | `BasicAmountView` | `bc-amount` |
+| IconButton | `TspIconButton` | `BasicIconButtonView` | `bc-icon-button` |
+| KeyValueLabel | `TspKeyValueLabel` | `BasicKeyValueLabelView` | `bc-key-value-label` |
+| Notification | `TspNotification` | `BasicNotificationView` | `bc-notification` |
+| TextLink | `TspTextLink` | `BasicTextLinkView` | `bc-text-link` |
+| Stepper | `TspStepper` | `BasicStepperView` | `bc-stepper` |
+| StickyFooter | `TspStickyFooter` | `BasicStickyFooterView` | `bc-sticky-footer` |
+| PinInput | `TspPinInput` | `BasicPinInputView` | `bc-pin-input` |
+| ListItem | `TspListItem` | `BasicListItemView` | `bc-list-item` |
+| Empty | `TspEmpty` | `BasicEmptyView` | `bc-empty` |
+| Toast | `TspToast` | `BasicToast` | `bc-toast` |
+| Modal | `TspModal` | `BasicModalDialog` | `bc-modal` |
+| RefreshLayout | `TspRefreshLayout` | `BasicRefreshLayout` | `bc-refresh-layout` |
+| LoadingDialog | `TspLoadingDialog` | `BasicLoadingDialog` | `bc-loading-dialog` |
+
+Mini Program keeps `bc-*` tags because WeChat `usingComponents` is path/tag based. Semantic APIs still use `variant` / `disabled` / `text` / `theme`. Flutter Button uses enum value `standard` for contract `default` because `default` is reserved in Dart.
+
+Kuikly public names match RN / Web / Flutter / iOS (`Tsp*`). The Kuikly tree still hosts phonics sample pages beside the control files.
+
 ## Sample Coverage
 
 Every component added to a library must appear in that stack's `samples` project with:

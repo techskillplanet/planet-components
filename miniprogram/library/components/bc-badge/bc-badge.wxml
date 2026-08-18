@@ -1,0 +1,4 @@
+<view class="bc-badge bc-badge--{{variant}} {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-brand: {{theme.brandPrimary}}; --bc-success: {{theme.success}}; --bc-warning: {{theme.warning}}; --bc-danger: {{theme.danger}}; --bc-text: {{theme.textPrimary}}; --bc-page: {{theme.pageEnd}};">
+  {{text}}
+</view>

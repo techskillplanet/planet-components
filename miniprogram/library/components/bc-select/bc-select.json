@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "bc-option-sheet": "../bc-option-sheet/bc-option-sheet"
+  }
+}

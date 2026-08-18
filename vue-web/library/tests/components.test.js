@@ -9,6 +9,7 @@ import {
   TspOptionSheet, TspSwitch, TspProgress, TspTopBar, TspBottomTab, TspTabs,
   TspAmount, TspIconButton, TspKeyValueLabel, TspNotification, TspTextLink,
   TspStepper, TspStickyFooter, TspPinInput, TspListItem, TspEmpty, TspToast, TspModal,
+  TspLoadingDialog, TspRefreshLayout,
   starPlanetTheme, starPlanetThemes, themeVars, resolveTheme, cx, clamp, optionText
 } from '../src/index.js';
 
@@ -466,6 +467,26 @@ describe('TspSelect', () => {
     const wrapper = mount(TspSelect, { props: { options: ['A', 'B'] } });
     await wrapper.find('.bc-select').trigger('click');
     expect(wrapper.find('.bc-option-sheet').exists()).toBe(true);
+  });
+});
+
+describe('TspLoadingDialog', () => {
+  it('hides when not visible', () => {
+    const wrapper = mount(TspLoadingDialog, { props: { visible: false } });
+    expect(wrapper.find('.bc-loading-dialog').exists()).toBe(false);
+  });
+  it('renders message when visible', () => {
+    const wrapper = mount(TspLoadingDialog, { props: { visible: true, message: '加载中...' } });
+    expect(wrapper.find('[role="dialog"]').text()).toContain('加载中...');
+  });
+});
+
+describe('TspRefreshLayout', () => {
+  it('renders slot and emits refresh', async () => {
+    const wrapper = mount(TspRefreshLayout, { slots: { default: 'rows' } });
+    expect(wrapper.text()).toContain('rows');
+    await wrapper.find('.bc-refresh-layout__refresh').trigger('click');
+    expect(wrapper.emitted('refresh')).toHaveLength(1);
   });
 });
 

@@ -1,6 +1,6 @@
 # Switch 跨端强约束契约
 
-Status: confirmed（扁平常规 UI，五端完全一致）
+Status: confirmed（扁平常规 UI，六端一致；含 iOS SwiftUI）
 
 ## 视觉方向
 
@@ -13,8 +13,9 @@ Status: confirmed（扁平常规 UI，五端完全一致）
 | React Web | `TspSwitch` | `react-web/library/src/components/TspSwitch.js` |
 | Vue Web | `TspSwitch` | `vue-web/library/src/components/TspSwitch.js` |
 | React Native | `TspSwitch` | `react-native/library/src/starPlanet/components/TspSwitch.js` |
-| Flutter | `TspSwitch` | `flutter/library/lib/tech_skill_planet_components.dart` |
+| Flutter | `TspSwitch` | `flutter/library/lib/src/tsp_switch.dart` |
 | Android View | `BasicSwitchView`（语义等价 `TspSwitch`） | `android/library/.../widget/BasicSwitchView.java` |
+| iOS SwiftUI | `TspSwitch` | `ios-swiftui/library/Sources/PlanetComponents/TspSwitch.swift` |
 
 Web CSS 根类名强制：`bc-switch`。
 
@@ -71,3 +72,4 @@ SwitchRoot                    // bc-switch
 
 - 一组件一文件；Barrel 仅导出公开 API
 - Sample 覆盖：md、sm、loading、disabled、带 `text`
+- iOS sample **禁止** 使用系统 `Toggle` 演示 Switch

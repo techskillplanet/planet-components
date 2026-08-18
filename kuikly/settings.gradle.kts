@@ -23,10 +23,12 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PhonicsPlanetKuikly"
+rootProject.name = "PlanetComponentsKuikly"
 
 include(":shared")
 include(":miniApp")
+include(":androidApp")
 
 project(":shared").projectDir = file("library/shared")
 project(":miniApp").projectDir = file("samples/miniApp")
+project(":androidApp").projectDir = file("samples/androidApp")

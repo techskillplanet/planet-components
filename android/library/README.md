@@ -57,7 +57,7 @@ android/scripts/publish-maven-central.sh --upload-only
 ## 目录
 
 ```text
-library/src/main/java/com/techskillplanet/basiccontrols/
+library/src/main/java/com/techskillplanet/planetcomponents/
 ├── widget/          # 一个组件一个 Java 类（BasicButton、BasicCardView …）
 ├── theme/           # BasicThemeManager、BasicColors、BasicStyle、Token 解析
 ├── i18n/            # BasicI18nManager

@@ -15,11 +15,11 @@ import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
 import com.tencent.kuikly.compose.ui.unit.dp
-import com.techskillplanet.phonics.controls.PhonicsAlert
-import com.techskillplanet.phonics.controls.PhonicsButton
-import com.techskillplanet.phonics.controls.PhonicsButtonVariant
-import com.techskillplanet.phonics.controls.PhonicsCard
-import com.techskillplanet.phonics.controls.PhonicsTopBar
+import com.techskillplanet.phonics.controls.TspAlert
+import com.techskillplanet.phonics.controls.TspButton
+import com.techskillplanet.phonics.controls.TspButtonVariant
+import com.techskillplanet.phonics.controls.TspCard
+import com.techskillplanet.phonics.controls.TspTopBar
 import com.techskillplanet.phonics.data.PhonemeRepository
 
 @Composable
@@ -36,7 +36,7 @@ fun LearnPage(
             .fillMaxSize()
             .background(Color(theme.pageStart)),
     ) {
-        PhonicsTopBar(
+        TspTopBar(
             title = "学习 ${phoneme.symbol}",
             theme = theme,
             showBack = true,
@@ -48,7 +48,7 @@ fun LearnPage(
                 .padding(horizontal = 16.dp),
         ) {
             item {
-                PhonicsCard(theme = theme) {
+                TspCard(theme = theme) {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -58,14 +58,14 @@ fun LearnPage(
                     ) {
                         Text(text = phoneme.symbol, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
                     }
-                    PhonicsButton(
+                    TspButton(
                         text = "播放",
                         theme = theme,
-                        variant = PhonicsButtonVariant.Primary,
+                        variant = TspButtonVariant.Primary,
                         modifier = Modifier.padding(top = 16.dp),
                         onClick = { state.audio.playPhoneme(phoneme.id) },
                     )
-                    PhonicsAlert(
+                    TspAlert(
                         title = "口型提示",
                         message = phoneme.mouthTip,
                         theme = theme,
@@ -83,13 +83,13 @@ fun LearnPage(
             }
             phoneme.words.forEach { word ->
                 item {
-                    PhonicsCard(theme = theme, modifier = Modifier.padding(bottom = 12.dp)) {
+                    TspCard(theme = theme, modifier = Modifier.padding(bottom = 12.dp)) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(text = word.text, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
                                 Text(text = word.tip, color = Color(theme.textTertiary))
                             }
-                            PhonicsButton(
+                            TspButton(
                                 text = "播放",
                                 theme = theme,
                                 modifier = Modifier.fillMaxWidth(0.32f),
@@ -100,10 +100,10 @@ fun LearnPage(
                 }
             }
         }
-        PhonicsButton(
+        TspButton(
             text = "去检查",
             theme = theme,
-            variant = PhonicsButtonVariant.Primary,
+            variant = TspButtonVariant.Primary,
             modifier = Modifier.padding(16.dp),
             onClick = { onGoCheck(phoneme.id) },
         )

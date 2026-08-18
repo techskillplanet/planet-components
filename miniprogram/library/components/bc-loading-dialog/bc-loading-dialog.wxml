@@ -1,0 +1,7 @@
+<view wx:if="{{visible}}" class="bc-loading-mask" bindtap="onDismiss">
+  <view class="bc-loading bc-loading--{{variant}}" catchtap="noop"
+    style="--bc-surface: {{theme.surfaceRaised}}; --bc-border: {{theme.borderDefault}}; --bc-text: {{theme.textPrimary}}; --bc-brand: {{theme.brandPrimary}};">
+    <view class="bc-loading__spinner"></view>
+    <view wx:if="{{message}}" class="bc-loading__msg">{{message}}</view>
+  </view>
+</view>

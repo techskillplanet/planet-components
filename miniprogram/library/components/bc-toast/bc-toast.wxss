@@ -1,0 +1,4 @@
+.bc-toast { position: fixed; left: 50%; bottom: 160rpx; transform: translateX(-50%); z-index: 1100; padding: 16rpx 28rpx; border-radius: 999rpx; color: #fff; font-weight: 800; background: var(--bc-brand); }
+.bc-toast--success { background: var(--bc-success); }
+.bc-toast--warning { background: var(--bc-warning); color: var(--bc-text); }
+.bc-toast--error { background: var(--bc-danger); }

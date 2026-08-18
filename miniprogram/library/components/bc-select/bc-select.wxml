@@ -1,0 +1,8 @@
+<view class="bc-select {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-surface: {{theme.surfaceRaised}}; --bc-border: {{theme.borderDefault}}; --bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textSecondary}};">
+  <view class="bc-select__face" bindtap="onToggle">
+    <text>{{options[selectedIndex] || '请选择'}}</text>
+    <text class="bc-select__chevron">▾</text>
+  </view>
+  <bc-option-sheet title="请选择" options="{{options}}" selectedIndex="{{selectedIndex}}" visible="{{open}}" theme="{{theme}}" bind:select="onPick" bind:cancel="onCancel" />
+</view>

@@ -1,0 +1,4 @@
+.bc-tabs { padding: 8rpx; border-radius: 999rpx; background: var(--bc-page); border: 2rpx solid var(--bc-border); }
+.bc-tabs__row { white-space: nowrap; }
+.bc-tabs__item { display: inline-flex; align-items: center; min-height: 68rpx; padding: 0 32rpx; border-radius: 999rpx; color: var(--bc-muted); font-weight: 800; }
+.bc-tabs__item.is-on { background: var(--bc-brand); color: #fff; }

@@ -3,28 +3,42 @@ package com.techskillplanet.phonics.samples
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import com.techskillplanet.phonics.controls.BottomTabItem
-import com.techskillplanet.phonics.controls.PhonicsAlert
-import com.techskillplanet.phonics.controls.PhonicsAmount
-import com.techskillplanet.phonics.controls.PhonicsBottomTab
-import com.techskillplanet.phonics.controls.PhonicsButton
-import com.techskillplanet.phonics.controls.PhonicsButtonVariant
-import com.techskillplanet.phonics.controls.PhonicsCard
-import com.techskillplanet.phonics.controls.PhonicsChip
-import com.techskillplanet.phonics.controls.PhonicsIconButton
-import com.techskillplanet.phonics.controls.PhonicsKeyValueLabel
-import com.techskillplanet.phonics.controls.PhonicsNotification
-import com.techskillplanet.phonics.controls.PhonicsNotificationVariant
-import com.techskillplanet.phonics.controls.PhonicsPinInput
-import com.techskillplanet.phonics.controls.PhonicsProgress
-import com.techskillplanet.phonics.controls.PhonicsStepper
-import com.techskillplanet.phonics.controls.PhonicsStickyFooter
-import com.techskillplanet.phonics.controls.PhonicsTextLink
-import com.techskillplanet.phonics.controls.PhonicsTopBar
+import com.techskillplanet.phonics.controls.TspAlert
+import com.techskillplanet.phonics.controls.TspAmount
+import com.techskillplanet.phonics.controls.TspBadge
+import com.techskillplanet.phonics.controls.TspBadgeVariant
+import com.techskillplanet.phonics.controls.TspBottomTab
+import com.techskillplanet.phonics.controls.TspButton
+import com.techskillplanet.phonics.controls.TspButtonVariant
+import com.techskillplanet.phonics.controls.TspCard
+import com.techskillplanet.phonics.controls.TspChip
+import com.techskillplanet.phonics.controls.TspEmpty
+import com.techskillplanet.phonics.controls.TspIconButton
+import com.techskillplanet.phonics.controls.TspInput
+import com.techskillplanet.phonics.controls.TspInputVariant
+import com.techskillplanet.phonics.controls.TspKeyValueLabel
+import com.techskillplanet.phonics.controls.TspListItem
+import com.techskillplanet.phonics.controls.TspLoadingDialog
+import com.techskillplanet.phonics.controls.TspModal
+import com.techskillplanet.phonics.controls.TspNotification
+import com.techskillplanet.phonics.controls.TspNotificationVariant
+import com.techskillplanet.phonics.controls.TspOptionSheet
+import com.techskillplanet.phonics.controls.TspPinInput
+import com.techskillplanet.phonics.controls.TspProgress
+import com.techskillplanet.phonics.controls.TspRefreshLayout
+import com.techskillplanet.phonics.controls.TspSelect
+import com.techskillplanet.phonics.controls.TspStepper
+import com.techskillplanet.phonics.controls.TspStickyFooter
+import com.techskillplanet.phonics.controls.TspSwitch
+import com.techskillplanet.phonics.controls.TspTabItem
+import com.techskillplanet.phonics.controls.TspTabs
+import com.techskillplanet.phonics.controls.TspTextLink
+import com.techskillplanet.phonics.controls.TspToast
+import com.techskillplanet.phonics.controls.TspToastVariant
+import com.techskillplanet.phonics.controls.TspTopBar
 import com.techskillplanet.phonics.theme.PhonicsColors
 import com.techskillplanet.phonics.theme.PhonicsTheme
 import com.tencent.kuikly.compose.foundation.background
-import com.tencent.kuikly.compose.foundation.clickable
 import com.tencent.kuikly.compose.foundation.layout.Arrangement
 import com.tencent.kuikly.compose.foundation.layout.Column
 import com.tencent.kuikly.compose.foundation.layout.Row
@@ -89,15 +103,15 @@ fun BasicControlsSample() {
         else -> "基础组件"
     }
     val tabs = listOf(
-        BottomTabItem("learn", "⌂", "学习"),
-        BottomTabItem("settings", "⚙", "设置"),
+        TspTabItem("learn", "⌂", "学习"),
+        TspTabItem("settings", "⚙", "设置"),
     )
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(theme.pageStart)),
     ) {
-        PhonicsTopBar(title = title, theme = theme, showBack = selectedDoc.value != null) {
+        TspTopBar(title = title, theme = theme, showBack = selectedDoc.value != null) {
             selectedDoc.value = null
         }
         LazyColumn(
@@ -121,7 +135,12 @@ fun BasicControlsSample() {
                     }
                     docs.forEach { doc ->
                         item {
-                            SampleListItem(title = "Tsp${doc.name}", message = doc.description, theme = theme) {
+                            TspListItem(
+                                title = "Tsp${doc.name}",
+                                message = doc.description,
+                                trailing = "›",
+                                theme = theme,
+                            ) {
                                 selectedDoc.value = doc
                             }
                         }
@@ -130,7 +149,7 @@ fun BasicControlsSample() {
             }
         }
         if (selectedDoc.value == null) {
-            PhonicsBottomTab(tabs = tabs, selectedKey = tab.value, theme = theme) { key ->
+            TspBottomTab(tabs = tabs, selectedKey = tab.value, theme = theme) { key ->
                 tab.value = key
             }
         }
@@ -144,32 +163,32 @@ private fun SettingsList(
     languageKey: String,
     onSelect: (String, String) -> Unit,
 ) {
-    PhonicsCard(theme = theme) {
+    TspCard(theme = theme) {
         Text(text = "Theme Switch", color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(8.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             listOf(PhonicsTheme.Sky, PhonicsTheme.Night, PhonicsTheme.Mint).forEach { item ->
-                PhonicsButton(
+                TspButton(
                     text = item.key,
                     theme = theme,
                     modifier = Modifier.weight(1f),
-                    variant = if (item.key == themeKey) PhonicsButtonVariant.Primary else PhonicsButtonVariant.Default,
+                    variant = if (item.key == themeKey) TspButtonVariant.Primary else TspButtonVariant.Default,
                 ) {
                     onSelect(item.key, "theme")
                 }
             }
         }
     }
-    PhonicsCard(theme = theme) {
+    TspCard(theme = theme) {
         Text(text = "Language Switch", color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(8.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             listOf("zh-CN" to "简体中文", "en" to "English", "ja" to "日本語").forEach { item ->
-                PhonicsButton(
+                TspButton(
                     text = item.second,
                     theme = theme,
                     modifier = Modifier.weight(1f),
-                    variant = if (item.first == languageKey) PhonicsButtonVariant.Primary else PhonicsButtonVariant.Default,
+                    variant = if (item.first == languageKey) TspButtonVariant.Primary else TspButtonVariant.Default,
                 ) {
                     onSelect(item.first, "language")
                 }
@@ -180,24 +199,24 @@ private fun SettingsList(
 
 @Composable
 private fun ComponentDetail(doc: ComponentDoc, theme: PhonicsColors) {
-    PhonicsCard(theme = theme) {
+    TspCard(theme = theme) {
         Text(text = doc.category, color = Color(theme.brandPrimary), fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(8.dp))
         Text(text = "Tsp${doc.name}", color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(8.dp))
         Text(text = doc.description, color = Color(theme.textSecondary))
     }
-    PhonicsCard(theme = theme) {
+    TspCard(theme = theme) {
         Text(text = "使用案例", color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(10.dp))
         ComponentPreview(doc.name, theme)
     }
-    PhonicsCard(theme = theme) {
+    TspCard(theme = theme) {
         Text(text = "技术栈同步", color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(10.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             listOf("React", "Vue", "Android", "iOS", "Kuikly", "RN").forEach {
-                PhonicsChip(text = it, theme = theme)
+                TspChip(text = it, theme = theme)
             }
         }
     }
@@ -205,73 +224,150 @@ private fun ComponentDetail(doc: ComponentDoc, theme: PhonicsColors) {
 
 @Composable
 private fun ComponentPreview(name: String, theme: PhonicsColors) {
+    val checked = remember { mutableStateOf(true) }
+    val input = remember { mutableStateOf("Kuikly") }
+    val selectedIndex = remember { mutableStateOf(1) }
+    val sheetVisible = remember { mutableStateOf(true) }
+    val tabIndex = remember { mutableStateOf(0) }
+    val toastVisible = remember { mutableStateOf(true) }
+    val modalVisible = remember { mutableStateOf(true) }
+    val loadingVisible = remember { mutableStateOf(true) }
+    val refreshing = remember { mutableStateOf(false) }
+    val loadingMore = remember { mutableStateOf(false) }
+    val options = listOf("天空蓝", "夜空", "薄荷")
     when (name) {
         "Button" -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            PhonicsButton(text = "primary", theme = theme, variant = PhonicsButtonVariant.Primary) {}
-            PhonicsButton(text = "default", theme = theme) {}
-            PhonicsButton(text = "danger", theme = theme, variant = PhonicsButtonVariant.Danger) {}
+            TspButton(text = "primary", theme = theme, variant = TspButtonVariant.Primary) {}
+            TspButton(text = "default", theme = theme) {}
+            TspButton(text = "danger", theme = theme, variant = TspButtonVariant.Danger) {}
         }
-        "Chip", "Badge" -> Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            PhonicsChip(text = "Default", theme = theme)
-            PhonicsChip(text = "Selected", theme = theme)
+        "Chip" -> Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            TspChip(text = "Default", theme = theme)
+            TspChip(text = "Selected", theme = theme)
         }
-        "Card" -> PhonicsCard(theme = theme) {
+        "Badge" -> Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            TspBadge(text = "Default", theme = theme)
+            TspBadge(text = "Primary", theme = theme, variant = TspBadgeVariant.Primary)
+            TspBadge(text = "Danger", theme = theme, variant = TspBadgeVariant.Danger)
+        }
+        "Card" -> TspCard(theme = theme) {
             Text(text = "Selected card", color = Color(theme.textPrimary))
         }
-        "Alert" -> PhonicsAlert(title = "Success", message = "Theme is applied.", theme = theme)
+        "Alert" -> TspAlert(title = "Success", message = "Theme is applied.", theme = theme)
         "Progress" -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            PhonicsProgress(progress = 0.38f, theme = theme)
-            PhonicsProgress(progress = 0.68f, theme = theme)
+            TspProgress(progress = 0.38f, theme = theme)
+            TspProgress(progress = 0.68f, theme = theme)
         }
-        "TopBar" -> PhonicsTopBar(title = "基础组件", theme = theme, showBack = true) {}
-        "BottomTab" -> PhonicsBottomTab(
-            tabs = listOf(BottomTabItem("learn", "⌂", "学习"), BottomTabItem("settings", "⚙", "设置")),
+        "TopBar" -> TspTopBar(title = "基础组件", theme = theme, showBack = true) {}
+        "BottomTab" -> TspBottomTab(
+            tabs = listOf(TspTabItem("learn", "⌂", "学习"), TspTabItem("settings", "⚙", "设置")),
             selectedKey = "learn",
             theme = theme,
         ) {}
-        "Amount" -> PhonicsAmount(symbol = "$", value = "128.80", cycle = "month", theme = theme)
+        "Amount" -> TspAmount(symbol = "$", value = "128.80", cycle = "month", theme = theme)
         "IconButton" -> Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            PhonicsIconButton(icon = "♪", theme = theme) {}
-            PhonicsIconButton(icon = "✓", theme = theme, selected = true) {}
+            TspIconButton(icon = "♪", theme = theme) {}
+            TspIconButton(icon = "✓", theme = theme, selected = true) {}
         }
-        "KeyValueLabel" -> PhonicsKeyValueLabel(label = "Progress", value = "12/48", theme = theme)
-        "Notification" -> PhonicsNotification(title = "通知", message = "继续学习。", theme = theme, variant = PhonicsNotificationVariant.Alert)
-        "TextLink" -> PhonicsTextLink(text = "Text Link", theme = theme) {}
-        "Stepper" -> PhonicsStepper(stepCount = 5, currentStep = 3, theme = theme, modifier = Modifier.fillMaxWidth())
-        "StickyFooter" -> PhonicsStickyFooter(theme = theme) {
-            PhonicsButton(text = "Sticky Footer", theme = theme, variant = PhonicsButtonVariant.Primary) {}
+        "KeyValueLabel" -> TspKeyValueLabel(label = "Progress", value = "12/48", theme = theme)
+        "Notification" -> TspNotification(title = "通知", message = "继续学习。", theme = theme, variant = TspNotificationVariant.Alert)
+        "TextLink" -> TspTextLink(text = "Text Link", theme = theme) {}
+        "Stepper" -> TspStepper(stepCount = 5, currentStep = 3, theme = theme, modifier = Modifier.fillMaxWidth())
+        "StickyFooter" -> TspStickyFooter(theme = theme) {
+            TspButton(text = "Sticky Footer", theme = theme, variant = TspButtonVariant.Primary) {}
         }
-        "PinInput" -> PhonicsPinInput(value = "2468", cellCount = 6, theme = theme)
-        "ListItem" -> SampleListItem(title = "列表项", message = "选中状态", theme = theme) {}
-        "Empty" -> SampleEmpty(theme)
-        else -> SampleListItem(title = "待补真实交互", message = "当前 Kuikly 组件以视觉样例占位，后续接入平台能力。", theme = theme) {}
-    }
-}
-
-@Composable
-private fun SampleListItem(
-    title: String,
-    message: String,
-    theme: PhonicsColors,
-    onClick: () -> Unit,
-) {
-    PhonicsCard(
-        theme = theme,
-        modifier = Modifier.clickable { onClick() },
-    ) {
-        Text(text = title, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(text = message, color = Color(theme.textSecondary))
-    }
-}
-
-@Composable
-private fun SampleEmpty(theme: PhonicsColors) {
-    PhonicsCard(theme = theme) {
-        Text(text = "空状态", color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
-        Spacer(modifier = Modifier.height(6.dp))
-        Text(text = "暂无记录。", color = Color(theme.textSecondary))
-        Spacer(modifier = Modifier.height(10.dp))
-        PhonicsButton(text = "操作", theme = theme, variant = PhonicsButtonVariant.Primary) {}
+        "PinInput" -> TspPinInput(value = "2468", cellCount = 6, theme = theme)
+        "ListItem" -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            TspListItem(title = "默认列表项", message = "描述文案", trailing = "›", theme = theme)
+            TspListItem(title = "选中列表项", message = "选中状态", selected = true, theme = theme)
+            TspListItem(title = "禁用列表项", message = "不可点", disabled = true, theme = theme)
+        }
+        "Empty" -> TspEmpty(title = "空状态", message = "暂无记录。", actionText = "操作", theme = theme)
+        "Input" -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            TspInput(value = input.value, placeholder = "请输入", theme = theme) { input.value = it }
+            TspInput(value = "", placeholder = "错误态", variant = TspInputVariant.Error, theme = theme)
+            TspInput(value = "不可编辑", disabled = true, theme = theme)
+        }
+        "Select" -> TspSelect(
+            options = options,
+            selectedIndex = selectedIndex.value,
+            theme = theme,
+        ) { index, _ -> selectedIndex.value = index }
+        "OptionSheet" -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            TspButton(text = if (sheetVisible.value) "关闭 OptionSheet" else "打开 OptionSheet", theme = theme) {
+                sheetVisible.value = !sheetVisible.value
+            }
+            TspOptionSheet(
+                title = "选择主题",
+                options = options,
+                selectedIndex = selectedIndex.value,
+                visible = sheetVisible.value,
+                theme = theme,
+                onCancel = { sheetVisible.value = false },
+                onSelect = { index, _ ->
+                    selectedIndex.value = index
+                    sheetVisible.value = false
+                },
+            )
+        }
+        "Switch" -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            TspSwitch(text = "夜间模式", checked = checked.value, theme = theme) { checked.value = it }
+            TspSwitch(text = "加载中", checked = true, loading = true, theme = theme)
+            TspSwitch(text = "禁用", checked = false, disabled = true, variant = "sm", theme = theme)
+        }
+        "Tabs" -> TspTabs(
+            tabs = listOf("全部", "进行中", "已完成"),
+            selectedIndex = tabIndex.value,
+            theme = theme,
+        ) { index, _ -> tabIndex.value = index }
+        "Toast" -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            TspButton(text = if (toastVisible.value) "隐藏 Toast" else "显示 Toast", theme = theme) {
+                toastVisible.value = !toastVisible.value
+            }
+            if (toastVisible.value) {
+                TspToast(message = "已保存", variant = TspToastVariant.Success, theme = theme)
+            }
+        }
+        "Modal" -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            TspButton(text = if (modalVisible.value) "关闭 Modal" else "打开 Modal", theme = theme) {
+                modalVisible.value = !modalVisible.value
+            }
+            TspModal(
+                title = "确认操作",
+                message = "要应用当前主题吗？",
+                visible = modalVisible.value,
+                theme = theme,
+                onConfirm = { modalVisible.value = false },
+                onCancel = { modalVisible.value = false },
+            )
+        }
+        "LoadingDialog" -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            TspButton(text = if (loadingVisible.value) "关闭加载" else "打开加载", theme = theme) {
+                loadingVisible.value = !loadingVisible.value
+            }
+            TspLoadingDialog(
+                visible = loadingVisible.value,
+                message = "加载中...",
+                dismissible = true,
+                theme = theme,
+                onDismiss = { loadingVisible.value = false },
+            )
+        }
+        "RefreshLayout" -> TspRefreshLayout(
+            theme = theme,
+            refreshing = refreshing.value,
+            loadingMore = loadingMore.value,
+            onRefresh = {
+                refreshing.value = true
+                loadingMore.value = false
+            },
+            onLoadMore = { loadingMore.value = true },
+        ) {
+            TspListItem(title = "列表内容", message = "下拉刷新 / 加载更多", theme = theme) {
+                refreshing.value = false
+                loadingMore.value = false
+            }
+        }
+        else -> TspListItem(title = "未覆盖预览", message = name, theme = theme)
     }
 }

@@ -1,0 +1,6 @@
+.bc-loading-mask { position: fixed; inset: 0; z-index: 1100; background: rgba(23, 58, 98, 0.28); display: flex; align-items: center; justify-content: center; }
+.bc-loading { min-width: 220rpx; padding: 36rpx 44rpx; border-radius: 32rpx; background: var(--bc-surface); border: 2rpx solid var(--bc-border); text-align: center; }
+.bc-loading--compact { min-width: 180rpx; padding: 24rpx 32rpx; border-radius: 24rpx; }
+.bc-loading__spinner { width: 48rpx; height: 48rpx; margin: 0 auto; border: 6rpx solid rgba(49,168,255,0.2); border-top-color: var(--bc-brand); border-radius: 50%; animation: spin 700ms linear infinite; }
+.bc-loading__msg { margin-top: 20rpx; color: var(--bc-text); font-weight: 800; }
+@keyframes spin { to { transform: rotate(360deg); } }

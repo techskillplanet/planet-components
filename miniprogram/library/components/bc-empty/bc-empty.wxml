@@ -1,0 +1,5 @@
+<view class="bc-empty" style="--bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textSecondary}}; --bc-surface: {{theme.surfaceRaised}}; --bc-border: {{theme.borderDefault}};">
+  <view class="bc-empty__title">{{title}}</view>
+  <view class="bc-empty__msg">{{message}}</view>
+  <view wx:if="{{actionText}}" class="bc-empty__action" bindtap="onAction">{{actionText}}</view>
+</view>

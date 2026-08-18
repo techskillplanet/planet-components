@@ -1,0 +1,4 @@
+<view class="bc-input bc-input--{{variant}} {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-surface: {{theme.surfaceRaised}}; --bc-border: {{theme.borderDefault}}; --bc-text: {{theme.textPrimary}}; --bc-danger: {{theme.danger}};">
+  <input value="{{value}}" placeholder="{{placeholder}}" disabled="{{disabled}}" bindinput="onInput" />
+</view>

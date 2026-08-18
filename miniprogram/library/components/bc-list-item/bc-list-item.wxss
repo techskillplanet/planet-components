@@ -1,0 +1,5 @@
+.bc-list-item { display: flex; align-items: center; gap: 16rpx; padding: 24rpx; border-radius: 24rpx; background: var(--bc-surface); border: 2rpx solid var(--bc-border); }
+.is-selected { background: var(--bc-fill); }
+.bc-list-item__title { color: var(--bc-text); font-weight: 800; }
+.bc-list-item__msg, .bc-list-item__trail { color: var(--bc-muted); font-size: 24rpx; }
+.is-disabled { opacity: 0.45; }

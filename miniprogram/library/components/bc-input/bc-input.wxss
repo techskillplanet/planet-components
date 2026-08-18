@@ -1,0 +1,4 @@
+.bc-input { padding: 18rpx 22rpx; border-radius: 24rpx; background: var(--bc-surface); border: 2rpx solid var(--bc-border); }
+.bc-input input { width: 100%; color: var(--bc-text); font-size: 28rpx; }
+.bc-input--error { border-color: var(--bc-danger); }
+.is-disabled { opacity: 0.45; }

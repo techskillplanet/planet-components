@@ -10,6 +10,7 @@ import {
   TspOptionSheet, TspSwitch, TspProgress, TspTopBar, TspBottomTab, TspTabs,
   TspAmount, TspIconButton, TspKeyValueLabel, TspNotification, TspTextLink,
   TspStepper, TspStickyFooter, TspPinInput, TspListItem, TspEmpty, TspToast, TspModal,
+  TspLoadingDialog, TspRefreshLayout,
   starPlanetTheme, starPlanetThemes, themeVars, resolveTheme, cx, clamp, optionText
 } from '../src/index.js';
 
@@ -485,6 +486,27 @@ describe('TspSelect', () => {
     const { container } = render(React.createElement(TspSelect, { options: ['A', 'B'] }));
     fireEvent.click(container.querySelector('.bc-select'));
     expect(container.querySelector('.bc-option-sheet')).toBeTruthy();
+  });
+});
+
+describe('TspLoadingDialog', () => {
+  it('returns null when not visible', () => {
+    const { container } = render(React.createElement(TspLoadingDialog, { visible: false }));
+    expect(container.querySelector('.bc-loading-dialog')).toBeNull();
+  });
+  it('renders message when visible', () => {
+    render(React.createElement(TspLoadingDialog, { visible: true, message: '加载中...' }));
+    expect(screen.getByRole('dialog')).toHaveTextContent('加载中...');
+  });
+});
+
+describe('TspRefreshLayout', () => {
+  it('renders children and refresh control', () => {
+    const onRefresh = vi.fn();
+    render(React.createElement(TspRefreshLayout, { onRefresh }, 'rows'));
+    expect(screen.getByText('rows')).toBeTruthy();
+    fireEvent.click(screen.getByText('刷新'));
+    expect(onRefresh).toHaveBeenCalledTimes(1);
   });
 });
 

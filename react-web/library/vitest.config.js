@@ -9,7 +9,8 @@ export default defineConfig({
     alias: {
       react: resolve(root, 'node_modules/react'),
       'react-dom/client': resolve(root, 'node_modules/react-dom/client'),
-      'react/jsx-runtime': resolve(root, 'node_modules/react/jsx-runtime.js')
+      'react/jsx-runtime': resolve(root, 'node_modules/react/jsx-runtime.js'),
+      '@techskillplanet/planet-components-react': root,
     }
   },
   server: {

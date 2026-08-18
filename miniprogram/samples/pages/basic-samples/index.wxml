@@ -41,8 +41,40 @@
       <bc-pin-input value="2468" cellCount="{{6}}" secure="{{false}}" theme="{{theme}}" />
       <view class="sample-title">Progress</view>
       <bc-progress value="{{0.68}}" theme="{{theme}}" />
+
+      <view class="sample-title">Form / Overlay</view>
+      <view class="chip-row">
+        <bc-badge text="default" theme="{{theme}}" />
+        <bc-badge text="primary" variant="primary" theme="{{theme}}" />
+        <bc-badge text="danger" variant="danger" theme="{{theme}}" />
+      </view>
+      <view class="gap"></view>
+      <bc-input value="{{inputValue}}" placeholder="输入内容" theme="{{theme}}" bind:change="onInputChange" />
+      <view class="gap"></view>
+      <bc-select options="{{selectOptions}}" selectedIndex="{{selectIndex}}" theme="{{theme}}" bind:select="onSelect" />
+      <view class="gap"></view>
+      <bc-switch text="夜间模式" checked="{{switchChecked}}" theme="{{theme}}" bind:change="onSwitchChange" />
+      <view class="gap"></view>
+      <bc-tabs tabs="{{segmentTabs}}" selectedIndex="{{segmentIndex}}" theme="{{theme}}" bind:select="onSegmentSelect" />
+      <view class="gap"></view>
+      <bc-list-item title="列表项" message="契约对齐" trailing="›" theme="{{theme}}" bind:tap="onTap" />
+      <view class="gap"></view>
+      <bc-empty title="暂无内容" message="用于空态对齐" actionText="重试" theme="{{theme}}" bind:action="onTap" />
+      <view class="gap"></view>
+      <bc-button text="打开确认框" variant="default" theme="{{theme}}" bind:tap="onOpenModal" />
+      <view class="gap"></view>
+      <bc-button text="打开加载框" variant="default" theme="{{theme}}" bind:tap="onShowLoading" />
+      <view class="gap"></view>
+      <view style="height: 280rpx;">
+        <bc-refresh-layout refreshing="{{refreshing}}" theme="{{theme}}" bind:refresh="onRefresh">
+          <view class="card-body">下拉刷新区域</view>
+        </bc-refresh-layout>
+      </view>
     </view>
   </scroll-view>
+  <bc-toast message="已触发" variant="success" visible="{{toastVisible}}" theme="{{theme}}" bind:dismiss="onToastDismiss" />
+  <bc-modal title="确认" message="与 RN Modal 语义对齐" visible="{{modalVisible}}" theme="{{theme}}" bind:confirm="onCloseModal" bind:cancel="onCloseModal" />
+  <bc-loading-dialog visible="{{loadingVisible}}" message="加载中..." theme="{{theme}}" />
   <bc-sticky-footer theme="{{theme}}">
     <bc-button text="Sticky Footer Action" variant="primary" theme="{{theme}}" bind:tap="onTap" />
   </bc-sticky-footer>

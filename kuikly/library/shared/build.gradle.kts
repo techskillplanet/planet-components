@@ -7,10 +7,10 @@ plugins {
     id("com.tencent.kuikly-open.kuikly")
 }
 
-group = "com.techskillplanet.phonics"
-version = "1.0.0"
+group = "io.github.techskillplanet"
+version = "0.2.0"
 
-description = "TechSkillPlanet Kuikly shared UI library and samples."
+description = "TechSkillPlanet Planet Components Kuikly shared UI library."
 
 val kuiklyVersion = "2.4.0-2.0.21"
 
@@ -23,9 +23,9 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach { target ->
         target.binaries.framework {
-            baseName = "PhonicsPlanetKuiklyShared"
+            baseName = "PlanetComponentsKuiklyShared"
             isStatic = true
-            binaryOption("bundleId", "com.techskillplanet.phonics.kuikly.shared")
+            binaryOption("bundleId", "com.techskillplanet.planetcomponents.kuikly.shared")
         }
     }
 
@@ -61,7 +61,7 @@ ksp {
 }
 
 android {
-    namespace = "com.techskillplanet.phonics.kuikly.shared"
+    namespace = "com.techskillplanet.planetcomponents.kuikly"
     compileSdk = 34
 
     defaultConfig {
@@ -85,5 +85,6 @@ kuikly {
 dependencies {
     compileOnly("com.tencent.kuikly-open:core-ksp:$kuiklyVersion") {
         add("kspJs", this)
+        add("kspAndroid", this)
     }
 }

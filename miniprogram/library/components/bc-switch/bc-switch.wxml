@@ -1,0 +1,12 @@
+<view class="bc-switch bc-switch--{{variant}} {{disabled ? 'is-disabled' : ''}} {{loading ? 'is-loading' : ''}} {{checked ? 'is-on' : ''}}"
+  style="--bc-text: {{theme.textPrimary}}; --bc-off: {{theme.switchOffBackground || theme.borderDefault}}; --bc-on: {{theme.switchOnBackground || theme.brandPrimary}}; --bc-handle: {{theme.switchHandleBackground || theme.surfaceRaised}};"
+  bindtap="onTap">
+  <text wx:if="{{text}}" class="bc-switch__label">{{text}}</text>
+  <view class="bc-switch__control">
+    <view class="bc-switch__track">
+      <view class="bc-switch__thumb">
+        <view wx:if="{{loading}}" class="bc-switch__spinner"></view>
+      </view>
+    </view>
+  </view>
+</view>

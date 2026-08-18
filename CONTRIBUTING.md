@@ -72,6 +72,10 @@ cd flutter/library && flutter analyze
 cd flutter/samples && flutter analyze
 cd ios-swiftui/library && swift build
 cd ios-swiftui/samples && swift build
+# SPM git 入口（仓库根目录 Package.swift）
+swift build
+# CocoaPods 本地 lint（需 macOS + CocoaPods；无环境可跳过）
+pod lib lint PlanetComponents.podspec --allow-warnings
 cd miniprogram && node -e "const fs=require('fs'); JSON.parse(fs.readFileSync('samples/app.json','utf8')); if(!fs.lstatSync('samples/planet-components').isSymbolicLink()) throw new Error('samples/planet-components should be a symlink')"
 cd kuikly && ./gradlew :shared:compileKotlinJs :miniApp:compileKotlinJs :shared:compileDebugKotlinAndroid
 ```

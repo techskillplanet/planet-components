@@ -3,10 +3,15 @@
     "bc-button": "/planet-components/components/bc-button/bc-button",
     "bc-card": "/planet-components/components/bc-card/bc-card",
     "bc-alert": "/planet-components/components/bc-alert/bc-alert",
+    "bc-badge": "/planet-components/components/bc-badge/bc-badge",
     "bc-chip": "/planet-components/components/bc-chip/bc-chip",
+    "bc-input": "/planet-components/components/bc-input/bc-input",
+    "bc-select": "/planet-components/components/bc-select/bc-select",
+    "bc-switch": "/planet-components/components/bc-switch/bc-switch",
     "bc-progress": "/planet-components/components/bc-progress/bc-progress",
     "bc-top-bar": "/planet-components/components/bc-top-bar/bc-top-bar",
     "bc-bottom-tab": "/planet-components/components/bc-bottom-tab/bc-bottom-tab",
+    "bc-tabs": "/planet-components/components/bc-tabs/bc-tabs",
     "bc-amount": "/planet-components/components/bc-amount/bc-amount",
     "bc-icon-button": "/planet-components/components/bc-icon-button/bc-icon-button",
     "bc-key-value-label": "/planet-components/components/bc-key-value-label/bc-key-value-label",
@@ -14,7 +19,13 @@
     "bc-text-link": "/planet-components/components/bc-text-link/bc-text-link",
     "bc-stepper": "/planet-components/components/bc-stepper/bc-stepper",
     "bc-sticky-footer": "/planet-components/components/bc-sticky-footer/bc-sticky-footer",
-    "bc-pin-input": "/planet-components/components/bc-pin-input/bc-pin-input"
+    "bc-pin-input": "/planet-components/components/bc-pin-input/bc-pin-input",
+    "bc-list-item": "/planet-components/components/bc-list-item/bc-list-item",
+    "bc-empty": "/planet-components/components/bc-empty/bc-empty",
+    "bc-toast": "/planet-components/components/bc-toast/bc-toast",
+    "bc-modal": "/planet-components/components/bc-modal/bc-modal",
+    "bc-refresh-layout": "/planet-components/components/bc-refresh-layout/bc-refresh-layout",
+    "bc-loading-dialog": "/planet-components/components/bc-loading-dialog/bc-loading-dialog"
   },
   "navigationStyle": "custom"
 }

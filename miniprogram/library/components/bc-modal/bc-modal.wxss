@@ -1,0 +1,7 @@
+.bc-modal-mask { position: fixed; inset: 0; z-index: 1000; background: rgba(23, 58, 98, 0.28); display: flex; align-items: center; justify-content: center; padding: 36rpx; }
+.bc-modal { width: 100%; max-width: 620rpx; background: var(--bc-surface); border: 2rpx solid var(--bc-border); border-radius: 32rpx; padding: 36rpx; }
+.bc-modal__title { color: var(--bc-text); font-size: 36rpx; font-weight: 900; }
+.bc-modal__msg { margin: 20rpx 0 28rpx; color: var(--bc-muted); line-height: 1.4; }
+.bc-modal__row { display: flex; gap: 16rpx; }
+.bc-modal__btn { flex: 1; text-align: center; padding: 18rpx 0; border-radius: 999rpx; border: 2rpx solid var(--bc-border); font-weight: 800; color: var(--bc-text); }
+.bc-modal__btn--primary { background: var(--bc-brand); color: #fff; border-color: var(--bc-brand); }

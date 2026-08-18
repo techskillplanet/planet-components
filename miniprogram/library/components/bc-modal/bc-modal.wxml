@@ -1,0 +1,11 @@
+<view wx:if="{{visible}}" class="bc-modal-mask" catchtap="noop">
+  <view class="bc-modal"
+    style="--bc-surface: {{theme.surfaceRaised}}; --bc-border: {{theme.borderDefault}}; --bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textSecondary}}; --bc-brand: {{theme.brandPrimary}};">
+    <view class="bc-modal__title">{{title}}</view>
+    <view class="bc-modal__msg">{{message}}</view>
+    <view class="bc-modal__row">
+      <view class="bc-modal__btn" bindtap="onCancel">{{cancelText}}</view>
+      <view class="bc-modal__btn bc-modal__btn--primary" bindtap="onConfirm">{{confirmText}}</view>
+    </view>
+  </view>
+</view>

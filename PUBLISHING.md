@@ -5,13 +5,13 @@ Each `library` directory is intended to become an independently published open-s
 | Platform | Package manager | Current package identity |
 | --- | --- | --- |
 | Android View | Maven Central / GitHub Packages | `io.github.techskillplanet:planet-components-android:0.2.0`（脚本：`android/scripts/publish-maven-central.sh`） |
-| React Native | npm | `@techskillplanet/planet-components-react-native` |
-| React Web | npm | `@techskillplanet/planet-components-react` |
-| Vue Web | npm | `@techskillplanet/planet-components-vue` |
-| Flutter | pub.dev | `tech_skill_planet_components`（脚本：`tools/verify-flutter-sample.sh`；发布：`cd flutter/library && dart pub publish`） |
-| iOS SwiftUI | Swift Package Manager | `TechSkillPlanetBasicControls` |
-| WeChat Mini Program | npm / miniprogram package | `@techskillplanet/planet-components-miniprogram` |
-| Kuikly | Maven / internal Kuikly package | `com.techskillplanet:planet-components-kuikly` |
+| React Native | npm | `@techskillplanet/planet-components-react-native@0.2.0` |
+| React Web | npm | `@techskillplanet/planet-components-react@0.2.0` |
+| Vue Web | npm | `@techskillplanet/planet-components-vue@0.2.0` |
+| Flutter | pub.dev | `tech_skill_planet_components@0.2.0`（脚本：`tools/verify-flutter-sample.sh`；发布：`cd flutter/library && dart pub publish`） |
+| iOS SwiftUI | Swift Package Manager + CocoaPods | `PlanetComponents` 0.2.0（源码 `ios-swiftui/library`；SPM 根目录 `Package.swift`；CocoaPods 根目录 `PlanetComponents.podspec`；同一 git tag） |
+| WeChat Mini Program | npm / miniprogram package | `@techskillplanet/planet-components-miniprogram@0.2.0` |
+| Kuikly | Maven / internal Kuikly package | `io.github.techskillplanet` / shared module `PlanetComponentsKuiklyShared`（业务页仍在 `phonics` 包；公开控件为 `Tsp*`） |
 
 Before publishing a library:
 
@@ -120,5 +120,15 @@ Sample 动态依赖示例：
 
 ```yaml
 dependencies:
-  tech_skill_planet_components: ^0.1.0
+  tech_skill_planet_components: ^0.2.0
 ```
+
+## iOS：SPM + CocoaPods
+
+Package: `PlanetComponents` → 源码 `ios-swiftui/library`；根目录 `Package.swift` + `PlanetComponents.podspec`；同一 git tag 双发。
+
+完整步骤（验证门禁、Trunk 注册、tag、trunk push）见：
+
+[`ios-swiftui/library/PUBLISHING.md`](ios-swiftui/library/PUBLISHING.md)
+
+**当前约定：iOS 验证通过前不打 tag、不执行 `pod trunk push`。**

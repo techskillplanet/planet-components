@@ -29,7 +29,7 @@ This repository contains cross-platform basic component libraries for TechSkillP
 | React Web | `react-web/` | npm |
 | Vue Web | `vue-web/` | npm |
 | Flutter | `flutter/` | pub.dev |
-| iOS SwiftUI | `ios-swiftui/` | Swift Package Manager |
+| iOS SwiftUI | `ios-swiftui/` | Swift Package Manager / CocoaPods |
 | WeChat Mini Program | `miniprogram/` | npm / miniprogram package |
 | Kuikly | `kuikly/` | Maven / internal package |
 

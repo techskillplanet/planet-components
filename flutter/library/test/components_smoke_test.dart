@@ -187,4 +187,16 @@ void main() {
     await tester.pump();
     expect(find.text('已保存'), findsNothing);
   });
+
+  testWidgets('TC-FLUTTER-LOADING-01 shows loading message', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: TspLoadingDialog(message: '加载中...'),
+        ),
+      ),
+    );
+    expect(find.text('加载中...'), findsOneWidget);
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
 }

@@ -1,0 +1,6 @@
+.bc-badge { display: inline-flex; align-items: center; padding: 6rpx 16rpx; border-radius: 999rpx; font-size: 22rpx; font-weight: 800; background: var(--bc-page); color: var(--bc-text); }
+.bc-badge--primary { background: var(--bc-brand); color: #fff; }
+.bc-badge--success { background: var(--bc-success); color: #fff; }
+.bc-badge--warning { background: var(--bc-warning); color: var(--bc-text); }
+.bc-badge--danger { background: var(--bc-danger); color: #fff; }
+.is-disabled { opacity: 0.45; }

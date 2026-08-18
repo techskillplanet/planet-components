@@ -6,7 +6,7 @@ TechSkillPlanet（技趣星球）Flutter 基础控件库，Sky Planet 设计语�
 
 ```yaml
 dependencies:
-  tech_skill_planet_components: ^0.1.0
+  tech_skill_planet_components: ^0.2.0
 ```
 
 ```bash
@@ -51,7 +51,7 @@ Pass `theme:` on each component, or wrap demos with the theme you need.
 
 ## Components
 
-Public API is exported from:
+Public API is exported from the barrel file. Implementations live one-per-file under `lib/src/`.
 
 ```dart
 import 'package:tech_skill_planet_components/tech_skill_planet_components.dart';

@@ -1,0 +1,6 @@
+<view class="bc-refresh" style="--bc-brand: {{theme.brandPrimary}}; --bc-muted: {{theme.textSecondary}};">
+  <scroll-view scroll-y class="bc-refresh__scroll" refresher-enabled="{{!disabled}}" refresher-triggered="{{refreshing}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore">
+    <slot />
+    <view wx:if="{{loadingMore}}" class="bc-refresh__more">加载更多…</view>
+  </scroll-view>
+</view>

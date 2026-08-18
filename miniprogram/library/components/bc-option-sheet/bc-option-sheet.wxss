@@ -1,0 +1,6 @@
+.bc-sheet-mask { position: fixed; inset: 0; z-index: 1000; background: rgba(23, 58, 98, 0.28); display: flex; align-items: flex-end; }
+.bc-sheet { width: 100%; background: var(--bc-surface); border-radius: 32rpx 32rpx 0 0; padding: 24rpx 24rpx 48rpx; }
+.bc-sheet__title { font-weight: 800; color: var(--bc-text); margin-bottom: 16rpx; }
+.bc-sheet__item { padding: 22rpx 8rpx; border-top: 2rpx solid var(--bc-border); color: var(--bc-text); }
+.bc-sheet__item.is-selected { color: var(--bc-brand); font-weight: 800; }
+.bc-sheet__cancel { margin-top: 12rpx; text-align: center; padding: 20rpx; color: var(--bc-text); }

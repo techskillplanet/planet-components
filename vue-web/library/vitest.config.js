@@ -7,7 +7,8 @@ const root = dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   resolve: {
     alias: {
-      vue: resolve(root, 'node_modules/vue')
+      vue: resolve(root, 'node_modules/vue'),
+      '@techskillplanet/planet-components-vue': root,
     }
   },
   server: {

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.techskillplanet.basiccontrols.flutter.sample"
+    namespace = "com.techskillplanet.planetcomponents.flutter.sample"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -15,7 +15,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.techskillplanet.basiccontrols.flutter.sample"
+        applicationId = "com.techskillplanet.planetcomponents.flutter.sample"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

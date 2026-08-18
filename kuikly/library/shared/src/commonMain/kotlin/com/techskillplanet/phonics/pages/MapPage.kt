@@ -23,13 +23,13 @@ import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
 import com.tencent.kuikly.compose.ui.unit.dp
-import com.techskillplanet.phonics.controls.BottomTabItem
-import com.techskillplanet.phonics.controls.PhonicsBottomTab
-import com.techskillplanet.phonics.controls.PhonicsButton
-import com.techskillplanet.phonics.controls.PhonicsButtonVariant
-import com.techskillplanet.phonics.controls.PhonicsCard
-import com.techskillplanet.phonics.controls.PhonicsChip
-import com.techskillplanet.phonics.controls.PhonicsProgress
+import com.techskillplanet.phonics.controls.TspTabItem
+import com.techskillplanet.phonics.controls.TspBottomTab
+import com.techskillplanet.phonics.controls.TspButton
+import com.techskillplanet.phonics.controls.TspButtonVariant
+import com.techskillplanet.phonics.controls.TspCard
+import com.techskillplanet.phonics.controls.TspChip
+import com.techskillplanet.phonics.controls.TspProgress
 import com.techskillplanet.phonics.data.Phoneme
 import com.techskillplanet.phonics.data.PhonemeRepository
 
@@ -61,7 +61,7 @@ fun MapPage(
             }
             PhonemeRepository.groups.forEach { group ->
                 item {
-                    PhonicsCard(theme = theme) {
+                    TspCard(theme = theme) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
                                 text = group.title,
@@ -69,7 +69,7 @@ fun MapPage(
                                 color = Color(theme.textPrimary),
                                 fontWeight = FontWeight.Bold,
                             )
-                            PhonicsChip(text = "${group.items.size} 关", theme = theme)
+                            TspChip(text = "${group.items.size} 关", theme = theme)
                         }
                         PhonemeGrid(
                             items = group.items,
@@ -79,17 +79,17 @@ fun MapPage(
                 }
             }
         }
-        PhonicsButton(
+        TspButton(
             text = "开始学习 ${PhonemeRepository.findById(state.selectedPhonemeId.value).symbol}",
             theme = theme,
-            variant = PhonicsButtonVariant.Primary,
+            variant = TspButtonVariant.Primary,
             modifier = Modifier.padding(16.dp),
             onClick = { onStartLearn(state.selectedPhonemeId.value) },
         )
-        PhonicsBottomTab(
+        TspBottomTab(
             tabs = listOf(
-                BottomTabItem("learn", "⌂", "学习"),
-                BottomTabItem("settings", "⚙", "设置"),
+                TspTabItem("learn", "⌂", "学习"),
+                TspTabItem("settings", "⚙", "设置"),
             ),
             selectedKey = "learn",
             theme = theme,
@@ -124,7 +124,7 @@ private fun Header(theme: com.techskillplanet.phonics.theme.PhonicsColors) {
 @Composable
 private fun ProgressCard(completed: Int, total: Int, state: PhonicsAppState) {
     val theme = state.theme
-    PhonicsCard(theme = theme) {
+    TspCard(theme = theme) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 text = "已通过 $completed / $total",
@@ -132,9 +132,9 @@ private fun ProgressCard(completed: Int, total: Int, state: PhonicsAppState) {
                 color = Color(theme.textPrimary),
                 fontWeight = FontWeight.Bold,
             )
-            PhonicsChip(text = "${completed * 100 / total}%", theme = theme)
+            TspChip(text = "${completed * 100 / total}%", theme = theme)
         }
-        PhonicsProgress(
+        TspProgress(
             progress = completed.toFloat() / total.toFloat(),
             theme = theme,
             modifier = Modifier.padding(top = 12.dp),

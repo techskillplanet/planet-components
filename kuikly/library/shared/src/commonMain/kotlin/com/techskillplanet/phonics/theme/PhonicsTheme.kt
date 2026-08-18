@@ -17,7 +17,11 @@ data class PhonicsColors(
     val selectedFill: Long,
     val activeFill: Long,
     val danger: Long,
-)
+) {
+    val switchOnBackground: Long get() = brandPrimary
+    val switchOffBackground: Long get() = borderDefault
+    val switchHandleBackground: Long get() = 0xFFFFFFFF
+}
 
 object PhonicsTheme {
     val Sky = PhonicsColors(

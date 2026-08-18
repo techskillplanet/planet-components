@@ -1,24 +1,20 @@
-# TechSkillPlanet Basic Controls · 微信小程序版
+# TechSkillPlanet Planet Components · 微信小程序版
 
 Package name: `@techskillplanet/planet-components-miniprogram`.
 
-本目录是可独立分发的小程序组件库；业务示例在外层 `pages/basic-samples`，不要把音标业务页面放进组件库目录。
+本目录是可独立分发的小程序组件库；samples 通过 `file:../library`（`samples/planet-components` 符号链接）依赖本库，禁止再复制一份实现。
 
-与 Android `basiccontrols` 模块对应的 Sky Planet 组件库（精简 MVP）。
+WeChat 标签名使用 `bc-*`；跨端语义名仍是契约表中的 `Tsp*`。对照见 `docs/COMPONENT_CONTRACT.md`。
 
-## 组件
+## 组件（27）
 
-- `bc-button` — 岛屿风格按钮（default / primary / danger）
-- `bc-card` — 卡片容器
-- `bc-top-bar` — 顶栏（标题 + 返回）
-- `bc-bottom-tab` — 底部 Tab
-- `bc-progress` — 进度条
-- `bc-alert` — 提示条
-- `bc-chip` — 标签
+- `bc-button` `bc-card` `bc-alert` `bc-badge` `bc-chip`
+- `bc-input` `bc-select` `bc-option-sheet` `bc-switch`
+- `bc-progress` `bc-top-bar` `bc-bottom-tab` `bc-tabs`
+- `bc-amount` `bc-icon-button` `bc-key-value-label` `bc-notification` `bc-text-link`
+- `bc-stepper` `bc-sticky-footer` `bc-pin-input` `bc-list-item` `bc-empty`
+- `bc-toast` `bc-modal` `bc-refresh-layout` `bc-loading-dialog`
 
-## 主题 / 国际化
+## 主题
 
-- `theme/theme.js` — `sky` / `night` 两套 token
-- `i18n/i18n.js` — 读取 `data/local.json`
-
-页面通过 `getApp().globalData.theme` 传入各组件。
+- `theme/theme.js` — `sky` / `night` / `mint` / `sunrise`

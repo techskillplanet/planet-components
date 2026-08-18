@@ -1,0 +1,4 @@
+<view wx:if="{{visible}}" class="bc-toast bc-toast--{{variant}}"
+  style="--bc-brand: {{theme.brandDark}}; --bc-success: {{theme.success}}; --bc-warning: {{theme.warning}}; --bc-danger: {{theme.danger}}; --bc-text: {{theme.textPrimary}};">
+  {{message}}
+</view>

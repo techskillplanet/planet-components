@@ -10,11 +10,11 @@
       "web"
     ],
     "android": {
-      "package": "com.techskillplanet.basiccontrols.rn.sample",
+      "package": "com.techskillplanet.planetcomponents.rn.sample",
       "softwareKeyboardLayoutMode": "resize"
     },
     "ios": {
-      "bundleIdentifier": "com.techskillplanet.basiccontrols.rn.sample",
+      "bundleIdentifier": "com.techskillplanet.planetcomponents.rn.sample",
       "supportsTablet": false
     },
     "androidStatusBar": {

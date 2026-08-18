@@ -1,0 +1,12 @@
+.bc-switch { display: flex; align-items: center; gap: 16rpx; }
+.bc-switch__label { color: var(--bc-text); font-size: 28rpx; font-weight: 700; }
+.bc-switch__track { width: 104rpx; height: 56rpx; border-radius: 999rpx; background: var(--bc-off); position: relative; }
+.bc-switch--sm .bc-switch__track { width: 80rpx; height: 44rpx; }
+.bc-switch.is-on .bc-switch__track { background: var(--bc-on); }
+.bc-switch__thumb { position: absolute; top: 4rpx; left: 4rpx; width: 48rpx; height: 48rpx; border-radius: 50%; background: var(--bc-handle); transition: left 180ms ease; }
+.bc-switch--sm .bc-switch__thumb { width: 36rpx; height: 36rpx; }
+.bc-switch.is-on .bc-switch__thumb { left: 52rpx; }
+.bc-switch--sm.is-on .bc-switch__thumb { left: 40rpx; }
+.bc-switch__spinner { width: 28rpx; height: 28rpx; margin: 10rpx auto; border: 4rpx solid rgba(23,58,98,0.2); border-top-color: var(--bc-on); border-radius: 50%; animation: spin 700ms linear infinite; }
+.is-disabled { opacity: 0.5; }
+@keyframes spin { to { transform: rotate(360deg); } }

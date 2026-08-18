@@ -1,0 +1,5 @@
+<view class="bc-tabs" style="--bc-page: {{theme.pageEnd}}; --bc-border: {{theme.borderDefault}}; --bc-brand: {{theme.brandPrimary}}; --bc-muted: {{theme.textSecondary}};">
+  <scroll-view scroll-x class="bc-tabs__row">
+    <view wx:for="{{tabs}}" wx:key="*this" class="bc-tabs__item {{index === selectedIndex ? 'is-on' : ''}}" data-index="{{index}}" bindtap="onSelect">{{item}}</view>
+  </scroll-view>
+</view>

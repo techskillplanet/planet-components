@@ -1,0 +1,2 @@
+.bc-refresh, .bc-refresh__scroll { height: 100%; }
+.bc-refresh__more { text-align: center; padding: 24rpx; color: var(--bc-muted); }

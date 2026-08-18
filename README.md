@@ -16,7 +16,7 @@ Every technology stack is kept at the same level. Each stack contains:
 | React Web | `react-web/library` | `react-web/samples` | npm |
 | Vue Web | `vue-web/library` | `vue-web/samples` | npm |
 | Flutter | `flutter/library` | `flutter/samples` | pub.dev |
-| iOS SwiftUI | `ios-swiftui/library` | `ios-swiftui/samples` | Swift Package Manager |
+| iOS SwiftUI | `ios-swiftui/library` | `ios-swiftui/samples` | Swift Package Manager / CocoaPods |
 | WeChat Mini Program | `miniprogram/library` | `miniprogram/samples` | npm / miniprogram package |
 | Kuikly | `kuikly/library` | `kuikly/samples` | Maven / internal Kuikly package |
 
@@ -35,6 +35,12 @@ implementation "io.github.techskillplanet:planet-components-android:0.2.0"
 - 说明：[`android/library/README.md`](android/library/README.md)
 
 历史坐标 `io.github.techskillplanet:basic-controls-android:0.1.0` 已停用；`0.2.0` 需按 [`PUBLISHING.md`](PUBLISHING.md) / [`android/library/README.md`](android/library/README.md) 发布到 Central。
+
+## iOS（SPM / CocoaPods）
+
+包名 `PlanetComponents`，目标版本 **0.2.0**。**验证通过前不打 tag、不推 Trunk。**
+
+步骤文档：[`ios-swiftui/library/PUBLISHING.md`](ios-swiftui/library/PUBLISHING.md)
 
 ## License
 
@@ -77,6 +83,8 @@ cd flutter/library && flutter analyze
 cd flutter/samples && flutter analyze
 cd ios-swiftui/library && swift build
 cd ios-swiftui/samples && swift build
+swift build
+pod lib lint PlanetComponents.podspec --allow-warnings
 cd miniprogram && node -e "const fs=require('fs'); JSON.parse(fs.readFileSync('samples/app.json','utf8')); if(!fs.lstatSync('samples/planet-components').isSymbolicLink()) throw new Error('samples/planet-components should be a symlink')"
-cd kuikly && ./gradlew :shared:compileKotlinJs :miniApp:compileKotlinJs :shared:compileDebugKotlinAndroid
+cd kuikly && ./gradlew :shared:compileKotlinJs :miniApp:compileKotlinJs :shared:compileDebugKotlinAndroid :androidApp:assembleDebug
 ```

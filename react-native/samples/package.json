@@ -14,7 +14,7 @@
   "dependencies": {
     "@expo/metro-runtime": "~57.0.9",
     "@expo/vector-icons": "^15.0.2",
-    "@techskillplanet/planet-components-react-native": "^0.1.1",
+    "@techskillplanet/planet-components-react-native": "file:../library",
     "expo": "~57.0.12",
     "expo-asset": "~57.0.10",
     "expo-constants": "~57.0.10",

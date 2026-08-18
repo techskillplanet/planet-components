@@ -2,21 +2,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "TechSkillPlanetBasicControlsSamples",
+    name: "PlanetComponentsSamples",
     platforms: [.iOS(.v15), .macOS(.v13)],
     products: [
-        .library(name: "BasicControlsSamples", targets: ["BasicControlsSamples"])
+        .library(name: "PlanetComponentsSamples", targets: ["PlanetComponentsSamples"])
     ],
     dependencies: [
         .package(path: "../library")
     ],
     targets: [
         .target(
-            name: "BasicControlsSamples",
+            name: "PlanetComponentsSamples",
             dependencies: [
-                .product(name: "TechSkillPlanetBasicControls", package: "library")
+                .product(name: "PlanetComponents", package: "library")
             ],
-            path: "Sources/BasicControlsSamples"
+            path: "Sources/PlanetComponentsSamples"
         )
     ]
 )

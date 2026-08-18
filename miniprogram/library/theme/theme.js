@@ -16,6 +16,9 @@ const THEMES = {
     selectedFill: '#E8FDF7',
     activeFill: '#FFF7D7',
     danger: '#FF6B7A',
+    switchOffBackground: '#C8EAFF',
+    switchOnBackground: '#31A8FF',
+    switchHandleBackground: '#FEFFFF',
   },
   night: {
     key: 'night',
@@ -34,6 +37,9 @@ const THEMES = {
     selectedFill: '#1E3A52',
     activeFill: '#3A3020',
     danger: '#FF6B7A',
+    switchOffBackground: '#2A3F5C',
+    switchOnBackground: '#31A8FF',
+    switchHandleBackground: '#FEFFFF',
   },
   mint: {
     key: 'mint',
@@ -52,6 +58,9 @@ const THEMES = {
     selectedFill: '#E6FFF4',
     activeFill: '#FFF7D7',
     danger: '#FF6B7A',
+    switchOffBackground: '#BDEFE2',
+    switchOnBackground: '#20BFA9',
+    switchHandleBackground: '#FEFFFF',
   },
   sunrise: {
     key: 'sunrise',
@@ -70,6 +79,9 @@ const THEMES = {
     selectedFill: '#FFF1E7',
     activeFill: '#FFF7D7',
     danger: '#E24C5C',
+    switchOffBackground: '#FFD1AD',
+    switchOnBackground: '#FF8A3D',
+    switchHandleBackground: '#FEFFFF',
   },
 };
 

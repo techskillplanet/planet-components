@@ -1,0 +1,69 @@
+package com.techskillplanet.phonics.controls
+
+import androidx.compose.runtime.Composable
+import com.tencent.kuikly.compose.foundation.background
+import com.tencent.kuikly.compose.foundation.clickable
+import com.tencent.kuikly.compose.foundation.layout.Arrangement
+import com.tencent.kuikly.compose.foundation.layout.Box
+import com.tencent.kuikly.compose.foundation.layout.Column
+import com.tencent.kuikly.compose.foundation.layout.Row
+import com.tencent.kuikly.compose.foundation.layout.fillMaxWidth
+import com.tencent.kuikly.compose.foundation.layout.padding
+import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
+import com.tencent.kuikly.compose.material3.Text
+import com.tencent.kuikly.compose.ui.Alignment
+import com.tencent.kuikly.compose.ui.Modifier
+import com.tencent.kuikly.compose.ui.graphics.Color
+import com.tencent.kuikly.compose.ui.text.font.FontWeight
+import com.tencent.kuikly.compose.ui.unit.dp
+import com.techskillplanet.phonics.theme.PhonicsColors
+
+@Composable
+fun TspModal(
+    title: String,
+    message: String,
+    theme: PhonicsColors,
+    modifier: Modifier = Modifier,
+    confirmText: String = "OK",
+    cancelText: String = "Cancel",
+    visible: Boolean = true,
+    onConfirm: () -> Unit = {},
+    onCancel: () -> Unit = {},
+) {
+    if (!visible) return
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(Color(0x66000000))
+            .clickable { onCancel() }
+            .padding(18.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(theme.surfaceRaised), RoundedCornerShape(18.dp))
+                .clickable { }
+                .padding(18.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            Text(text = title, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
+            Text(text = message, color = Color(theme.textSecondary))
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                TspButton(
+                    text = cancelText,
+                    theme = theme,
+                    modifier = Modifier.weight(1f),
+                    onClick = onCancel,
+                )
+                TspButton(
+                    text = confirmText,
+                    theme = theme,
+                    modifier = Modifier.weight(1f),
+                    variant = TspButtonVariant.Primary,
+                    onClick = onConfirm,
+                )
+            }
+        }
+    }
+}
