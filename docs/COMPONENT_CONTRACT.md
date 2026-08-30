@@ -54,6 +54,14 @@ Core semantic colors:
 | Modal | `confirm` | `title`, `message`, `confirmText`, `cancelText`, `onConfirm`, `onCancel` |
 | RefreshLayout | `refreshing`, `loadingMore`, `disabled` | `refreshing`, `loadingMore`, `onRefresh`, `onLoadMore` |
 | LoadingDialog | `default`, `compact` | `visible`, `message`, `dismissible` |
+| DatePicker | `default`, `disabled` | `value`, `onChange`, `min`, `max`, `placeholder`, `disabled` |
+| ChildSwitcher | `chip`, `tabs` | `items`, `selectedId`, `onChange`, `disabled` |
+| ScoreRuleGrid | `default`, `readOnly` | `rules`, `columns`, `onIncrement`, `disabled` |
+| RedeemCardGrid | `default`, `frozen` | `items`, `availablePoints`, `frozen`, `onRedeem`, `disabled` |
+| CalendarHeatmap | `month` | `yearMonth`, `cells`, `onSelectDay`, `showLegend` |
+| PrintSheet | `pinyin`, `meaning` | `title`, `items`, `columns`, `footerFields` |
+| BalanceHero | `default`, `compact` | `total`, `breakdown`, `suffix` |
+| CheckInStreakCard | `default` | `streakDays`, `totalDays`, `weekProgress`, `onOpen`, `disabled` |
 
 ## Platform public names
 
@@ -86,6 +94,14 @@ Core semantic colors:
 | Modal | `TspModal` | `BasicModalDialog` | `bc-modal` |
 | RefreshLayout | `TspRefreshLayout` | `BasicRefreshLayout` | `bc-refresh-layout` |
 | LoadingDialog | `TspLoadingDialog` | `BasicLoadingDialog` | `bc-loading-dialog` |
+| DatePicker | `TspDatePicker` | `BasicDatePickerView` | `bc-date-picker` |
+| ChildSwitcher | `TspChildSwitcher` | `BasicChildSwitcherView` | `bc-child-switcher` |
+| ScoreRuleGrid | `TspScoreRuleGrid` | `BasicScoreRuleGridView` | `bc-score-rule-grid` |
+| RedeemCardGrid | `TspRedeemCardGrid` | `BasicRedeemCardGridView` | `bc-redeem-card-grid` |
+| CalendarHeatmap | `TspCalendarHeatmap` | `BasicCalendarHeatmapView` | `bc-calendar-heatmap` |
+| PrintSheet | `TspPrintSheet` | `BasicPrintSheetView` | `bc-print-sheet` |
+| BalanceHero | `TspBalanceHero` | `BasicBalanceHeroView` | `bc-balance-hero` |
+| CheckInStreakCard | `TspCheckInStreakCard` | `BasicCheckInStreakCardView` | `bc-check-in-streak-card` |
 
 Mini Program keeps `bc-*` tags because WeChat `usingComponents` is path/tag based. Semantic APIs still use `variant` / `disabled` / `text` / `theme`. Flutter Button uses enum value `standard` for contract `default` because `default` is reserved in Dart.
 

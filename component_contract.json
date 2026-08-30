@@ -153,6 +153,46 @@
       "name": "LoadingDialog",
       "variants": ["default", "compact"],
       "props": ["visible", "message", "dismissible"]
+    },
+    {
+      "name": "DatePicker",
+      "variants": ["default", "disabled"],
+      "props": ["value", "onChange", "min", "max", "placeholder", "disabled"]
+    },
+    {
+      "name": "ChildSwitcher",
+      "variants": ["chip", "tabs"],
+      "props": ["items", "selectedId", "onChange", "disabled"]
+    },
+    {
+      "name": "ScoreRuleGrid",
+      "variants": ["default", "readOnly"],
+      "props": ["rules", "columns", "onIncrement", "disabled"]
+    },
+    {
+      "name": "RedeemCardGrid",
+      "variants": ["default", "frozen"],
+      "props": ["items", "availablePoints", "frozen", "onRedeem", "disabled"]
+    },
+    {
+      "name": "CalendarHeatmap",
+      "variants": ["month"],
+      "props": ["yearMonth", "cells", "onSelectDay", "showLegend"]
+    },
+    {
+      "name": "PrintSheet",
+      "variants": ["pinyin", "meaning"],
+      "props": ["title", "items", "columns", "footerFields"]
+    },
+    {
+      "name": "BalanceHero",
+      "variants": ["default", "compact"],
+      "props": ["total", "breakdown", "suffix"]
+    },
+    {
+      "name": "CheckInStreakCard",
+      "variants": ["default"],
+      "props": ["streakDays", "totalDays", "weekProgress", "onOpen", "disabled"]
     }
   ]
 }

@@ -2,8 +2,8 @@
   "$schema": "https://planet-components.local/schemas/color-token.schema.json",
   "meta": {
     "name": "Basic Controls Sky Planet Color Tokens",
-    "version": "0.1.0",
-    "source": "Migrated from BaseWidget and reskinned with the 技趣星球 blue-sky planet article style.",
+    "version": "0.2.0",
+    "source": "Migrated from BaseWidget and reskinned with the 技趣星球 blue-sky planet article style. v0.2: selected ≠ success; selected is sky/cloud; success is sky-cyan for feedback only.",
     "themeSwitching": "Swap this file, or swap a theme object under themes, to recolor/reskin the component library.",
     "naming": {
       "primitive": "Primitive keys describe the color role in the Sky Planet visual language, such as sky.pageStart, sky.brandPrimary, ink.textPrimary.",
@@ -36,10 +36,11 @@
           "soft": "#FFF7D7"
         },
         "aurora": {
-          "successHover": "#70E5DE",
-          "success": "#43CFC7",
-          "successPressed": "#16A9A1",
-          "selectedFill": "#E8FDF7"
+          "successHover": "#5BC8E8",
+          "success": "#2BB8E6",
+          "successPressed": "#1A9BC4",
+          "successSubtle": "#E8F7FC",
+          "selectedFill": "#E5F6FF"
         },
         "coral": {
           "dangerHover": "#FF8A95",
@@ -71,6 +72,7 @@
           "success": "{primitive.aurora.success}",
           "successHover": "{primitive.aurora.successHover}",
           "successActive": "{primitive.aurora.successPressed}",
+          "successSubtle": "{primitive.aurora.successSubtle}",
           "warning": "{primitive.sun.highlight}",
           "warningHover": "{primitive.sun.highlightSoft}",
           "warningActive": "{primitive.sun.highlight}",
@@ -96,7 +98,8 @@
           "surfaceDisabled": "{primitive.cloud.border}",
           "menu": "{primitive.cloud.white}",
           "modalScrim": "{primitive.neutral.scrimBlue}",
-          "selectedFill": "{primitive.aurora.selectedFill}",
+          "selectedFill": "{primitive.sky.brandSubtle}",
+          "emphasisFill": "{primitive.cloud.soft}",
           "activeFill": "{primitive.sun.soft}"
         },
         "border": {
@@ -104,6 +107,7 @@
           "light": "{primitive.cloud.border}",
           "control": "{primitive.sky.borderSoft}",
           "focus": "{primitive.sky.brandPrimary}",
+          "selected": "{primitive.sky.brandPrimary}",
           "warning": "{primitive.sun.highlight}",
           "danger": "{primitive.coral.danger}"
         },
@@ -135,11 +139,11 @@
             "loadingSpinner": "{primitive.sky.brandPrimary}"
           },
           "select": {
-            "selectedOptionBackground": "{primitive.aurora.selectedFill}"
+            "selectedOptionBackground": "{primitive.sky.brandSubtle}"
           },
           "loading": {
             "stripePrimary": "{primitive.sky.brandHover}",
-            "stripeSecondary": "{primitive.aurora.success}",
+            "stripeSecondary": "{primitive.sky.brandPrimary}",
             "border": "{primitive.sky.borderSoft}"
           }
         }
@@ -170,10 +174,11 @@
           "soft": "#3D3520"
         },
         "aurora": {
-          "successHover": "#70E5DE",
-          "success": "#43CFC7",
-          "successPressed": "#16A9A1",
-          "selectedFill": "#1E3A52"
+          "successHover": "#5BC8E8",
+          "success": "#2BB8E6",
+          "successPressed": "#1A9BC4",
+          "successSubtle": "#1A3348",
+          "selectedFill": "#1E3A5F"
         },
         "coral": {
           "dangerHover": "#FF8A95",
@@ -205,6 +210,7 @@
           "success": "{primitive.aurora.success}",
           "successHover": "{primitive.aurora.successHover}",
           "successActive": "{primitive.aurora.successPressed}",
+          "successSubtle": "{primitive.aurora.successSubtle}",
           "warning": "{primitive.sun.highlight}",
           "warningHover": "{primitive.sun.highlightSoft}",
           "warningActive": "{primitive.sun.highlight}",
@@ -230,7 +236,8 @@
           "surfaceDisabled": "{primitive.cloud.border}",
           "menu": "{primitive.cloud.white}",
           "modalScrim": "{primitive.neutral.scrimBlue}",
-          "selectedFill": "{primitive.aurora.selectedFill}",
+          "selectedFill": "{primitive.sky.brandSubtle}",
+          "emphasisFill": "{primitive.cloud.soft}",
           "activeFill": "{primitive.sun.soft}"
         },
         "border": {
@@ -238,6 +245,7 @@
           "light": "{primitive.cloud.border}",
           "control": "{primitive.sky.borderSoft}",
           "focus": "{primitive.sky.brandPrimary}",
+          "selected": "{primitive.sky.brandPrimary}",
           "warning": "{primitive.sun.highlight}",
           "danger": "{primitive.coral.danger}"
         },
@@ -269,11 +277,11 @@
             "loadingSpinner": "{primitive.sky.brandPrimary}"
           },
           "select": {
-            "selectedOptionBackground": "{primitive.aurora.selectedFill}"
+            "selectedOptionBackground": "{primitive.sky.brandSubtle}"
           },
           "loading": {
             "stripePrimary": "{primitive.sky.brandHover}",
-            "stripeSecondary": "{primitive.aurora.success}",
+            "stripeSecondary": "{primitive.sky.brandPrimary}",
             "border": "{primitive.sky.borderSoft}"
           }
         }
@@ -307,6 +315,7 @@
           "successHover": "#5FD9A8",
           "success": "#35C58B",
           "successPressed": "#1F9E6C",
+          "successSubtle": "#E8FBF3",
           "selectedFill": "#E6FFF4"
         },
         "coral": {
@@ -339,6 +348,7 @@
           "success": "{primitive.aurora.success}",
           "successHover": "{primitive.aurora.successHover}",
           "successActive": "{primitive.aurora.successPressed}",
+          "successSubtle": "{primitive.aurora.successSubtle}",
           "warning": "{primitive.sun.highlight}",
           "warningHover": "{primitive.sun.highlightSoft}",
           "warningActive": "{primitive.sun.highlight}",
@@ -364,7 +374,8 @@
           "surfaceDisabled": "{primitive.cloud.border}",
           "menu": "{primitive.cloud.white}",
           "modalScrim": "{primitive.neutral.scrimBlue}",
-          "selectedFill": "{primitive.aurora.selectedFill}",
+          "selectedFill": "{primitive.sky.brandSubtle}",
+          "emphasisFill": "{primitive.cloud.soft}",
           "activeFill": "{primitive.sun.soft}"
         },
         "border": {
@@ -372,6 +383,7 @@
           "light": "{primitive.cloud.border}",
           "control": "{primitive.sky.borderSoft}",
           "focus": "{primitive.sky.brandPrimary}",
+          "selected": "{primitive.sky.brandPrimary}",
           "warning": "{primitive.sun.highlight}",
           "danger": "{primitive.coral.danger}"
         },
@@ -403,11 +415,11 @@
             "loadingSpinner": "{primitive.sky.brandPrimary}"
           },
           "select": {
-            "selectedOptionBackground": "{primitive.aurora.selectedFill}"
+            "selectedOptionBackground": "{primitive.sky.brandSubtle}"
           },
           "loading": {
             "stripePrimary": "{primitive.sky.brandHover}",
-            "stripeSecondary": "{primitive.aurora.success}",
+            "stripeSecondary": "{primitive.sky.brandPrimary}",
             "border": "{primitive.sky.borderSoft}"
           }
         }

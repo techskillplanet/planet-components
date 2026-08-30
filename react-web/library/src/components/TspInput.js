@@ -15,10 +15,21 @@ import { React, h, cx, clamp, optionText, themed, starPlanetTheme } from './_sha
  * @returns {React.ReactElement} A styled <input> element.
  */
 
-export function TspInput({ value = '', placeholder = '', variant = 'default', disabled = false, theme = starPlanetTheme, onChange }) {
+export function TspInput({
+  value = '',
+  placeholder = '',
+  variant = 'default',
+  disabled = false,
+  type = 'text',
+  autoComplete,
+  theme = starPlanetTheme,
+  onChange
+}) {
   return h('input', {
     className: cx('bc-input', `bc-input--${variant}`),
     style: themed(theme),
+    type,
+    autoComplete,
     value,
     placeholder,
     disabled,
