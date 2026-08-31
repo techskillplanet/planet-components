@@ -12,26 +12,36 @@ public struct TspBottomTab: View {
     }
 
     public var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             ForEach(tabs) { tab in
                 Button {
                     selectedKey = tab.id
                 } label: {
                     VStack(spacing: 2) {
                         Text(tab.icon)
-                        Text(tab.title).font(.system(size: 11, weight: .bold))
+                            .font(.system(size: 20))
+                            .frame(height: 22)
+                        Text(tab.title)
+                            .font(.system(size: 11, weight: .bold))
+                            .lineLimit(1)
                     }
                     .foregroundColor(tab.id == selectedKey ? theme.brandPrimary : theme.textTertiary)
                     .frame(maxWidth: .infinity)
+                    .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
+                .frame(maxWidth: .infinity)
             }
         }
-        .frame(minHeight: 52)
+        .frame(maxWidth: .infinity)
+        .frame(height: 52)
         .padding(.top, 8)
-        .padding(.bottom, 8)
-        .padding(.horizontal, 12)
-        .background(theme.surfaceRaised)
+        // Keep the icon row above the home indicator; paint chrome into the safe area.
+        .padding(.bottom, SafeAreaHelper.bottomInset)
+        .background(
+            theme.surfaceRaised
+                .ignoresSafeArea(edges: .bottom)
+        )
         .overlay(alignment: .top) {
             Rectangle().fill(theme.borderDefault).frame(height: 1)
         }

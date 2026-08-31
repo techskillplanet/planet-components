@@ -45,9 +45,15 @@ public struct TspSelect: View {
         }
         .buttonStyle(.plain)
         .opacity(disabled ? 0.45 : 1)
+        #if os(iOS)
         .fullScreenCover(isPresented: $sheetVisible) {
             sheetContent
         }
+        #else
+        .sheet(isPresented: $sheetVisible) {
+            sheetContent
+        }
+        #endif
     }
 
     private var sheetContent: some View {

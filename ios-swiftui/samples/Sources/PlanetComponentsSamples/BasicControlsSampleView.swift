@@ -4,132 +4,193 @@ import PlanetComponents
 private struct ComponentDoc: Identifiable {
     let id: String
     let category: String
-    let description: String
 }
 
 private let componentDocs: [ComponentDoc] = [
-    .init(id: "Button", category: "Actions", description: "主要操作按钮，支持主按钮、默认、危险、文本和链接样式。"),
-    .init(id: "Chip", category: "Actions", description: "可点击标签，用于筛选、选择和轻量操作。"),
-    .init(id: "IconButton", category: "Actions", description: "图标按钮，用于工具栏、快捷动作和选中态。"),
-    .init(id: "TextLink", category: "Actions", description: "文本链接按钮，适合弱操作和辅助跳转。"),
-    .init(id: "Card", category: "Surfaces", description: "内容容器，用于承载分组内容、选中态和弱化背景。"),
-    .init(id: "ListItem", category: "Surfaces", description: "列表项，支持描述、尾部内容、选中和禁用。"),
-    .init(id: "Empty", category: "Surfaces", description: "空状态展示，支持说明文案和操作按钮。"),
-    .init(id: "Alert", category: "Feedback", description: "页面内提示，适合成功、警告、错误和普通信息。"),
-    .init(id: "Badge", category: "Feedback", description: "短文本状态徽标，用于标记数量、状态或风险等级。"),
-    .init(id: "Progress", category: "Feedback", description: "进度条，支持主色、成功、警告和危险色。"),
-    .init(id: "Notification", category: "Feedback", description: "通知卡片，用于强调当前任务或状态提醒。"),
-    .init(id: "Toast", category: "Feedback", description: "轻提示，用于短时反馈。"),
-    .init(id: "Modal", category: "Feedback", description: "确认弹窗，支持确认和取消按钮。"),
-    .init(id: "LoadingDialog", category: "Feedback", description: "加载对话框，支持默认与紧凑变体。"),
-    .init(id: "Input", category: "Inputs", description: "单行输入框，支持错误态、禁用态和受控输入。"),
-    .init(id: "Select", category: "Inputs", description: "选择入口，移动端默认打开底部 OptionSheet。"),
-    .init(id: "OptionSheet", category: "Inputs", description: "移动端底部选择弹窗，和 Select 共用选项渲染逻辑。"),
-    .init(id: "Switch", category: "Inputs", description: "二元开关，支持加载、禁用和开关文案。"),
-    .init(id: "PinInput", category: "Inputs", description: "验证码或密码输入，支持 4 到 6 位和安全显示。"),
-    .init(id: "TopBar", category: "Navigation", description: "顶部导航栏，支持标题、返回按钮和背景色覆盖。"),
-    .init(id: "BottomTab", category: "Navigation", description: "一级页面底部 Tab，通常承载 3 到 5 个入口。"),
-    .init(id: "Tabs", category: "Navigation", description: "内容区分段切换，适合页面内筛选和分类。"),
-    .init(id: "StickyFooter", category: "Navigation", description: "固定底部操作区，用于主操作按钮。"),
-    .init(id: "RefreshLayout", category: "Navigation", description: "下拉刷新与加载更多容器。"),
-    .init(id: "Amount", category: "Data", description: "金额或数值展示，支持币种前后置、周期和删除线。"),
-    .init(id: "KeyValueLabel", category: "Data", description: "键值对展示，用于摘要信息和表单确认。"),
-    .init(id: "Stepper", category: "Data", description: "步骤进度，支持 3 到 5 步。")
+    .init(id: "Button", category: "Actions"),
+    .init(id: "Chip", category: "Actions"),
+    .init(id: "IconButton", category: "Actions"),
+    .init(id: "TextLink", category: "Actions"),
+    .init(id: "Card", category: "Surfaces"),
+    .init(id: "ListItem", category: "Surfaces"),
+    .init(id: "Empty", category: "Surfaces"),
+    .init(id: "Alert", category: "Feedback"),
+    .init(id: "Badge", category: "Feedback"),
+    .init(id: "Progress", category: "Feedback"),
+    .init(id: "Notification", category: "Feedback"),
+    .init(id: "Toast", category: "Feedback"),
+    .init(id: "Modal", category: "Feedback"),
+    .init(id: "LoadingDialog", category: "Feedback"),
+    .init(id: "Input", category: "Inputs"),
+    .init(id: "Select", category: "Inputs"),
+    .init(id: "OptionSheet", category: "Inputs"),
+    .init(id: "Switch", category: "Inputs"),
+    .init(id: "PinInput", category: "Inputs"),
+    .init(id: "TopBar", category: "Navigation"),
+    .init(id: "BottomTab", category: "Navigation"),
+    .init(id: "Tabs", category: "Navigation"),
+    .init(id: "StickyFooter", category: "Navigation"),
+    .init(id: "RefreshLayout", category: "Navigation"),
+    .init(id: "Amount", category: "Data"),
+    .init(id: "KeyValueLabel", category: "Data"),
+    .init(id: "Stepper", category: "Data")
+]
+
+private let languageOptions: [(key: String, labelKey: String)] = [
+    ("zh-CN", "sample/lang/zh-CN"),
+    ("en", "sample/lang/en"),
+    ("ja", "sample/lang/ja")
 ]
 
 public struct BasicControlsSampleView: View {
     @State private var themeIndex = 0
-    @State private var languageIndex = 0
+    @State private var languageKey = "zh-CN"
     @State private var tab = "learn"
     @State private var selectedDoc: ComponentDoc?
     @State private var selectedIndex = 1
     @State private var selectedTab = 0
     @State private var checked = true
-    @State private var switchLoading = false
     @State private var inputValue = ""
     @State private var showModal = false
     @State private var showToast = false
+    @State private var toastMessage = ""
     @State private var showLoading = false
     @State private var refreshing = false
     @State private var loadingMore = false
     @State private var refreshRows = Array(1...8)
     private let themes: [(String, StarPlanetTheme)] = [("Sky", .sky), ("Night", .night), ("Mint", .mint)]
-    private let languages: [(String, String, String)] = [("zh-CN", "简体中文", "基础组件"), ("en", "English", "Basic Controls"), ("ja", "日本語", "基本コンポーネント")]
-    private let tabs = [TspTabItem(id: "learn", icon: "⌂", title: "学习"), TspTabItem(id: "settings", icon: "⚙", title: "设置")]
 
     public init() {}
 
+    private var i18n: SampleI18n { SampleI18n(language: languageKey) }
+
+    private var tabs: [TspTabItem] {
+        [
+            TspTabItem(id: "learn", icon: "⌂", title: i18n.t("sample/tab/home")),
+            TspTabItem(id: "settings", icon: "⚙", title: i18n.t("sample/tab/settings"))
+        ]
+    }
+
     public var body: some View {
         let theme = themes[themeIndex].1
+        let strings = i18n
         ZStack {
             VStack(spacing: 0) {
-                TspTopBar(title: selectedDoc.map { "Tsp\($0.id)" } ?? languages[languageIndex].2, showBack: selectedDoc != nil, theme: theme) {
+                TspTopBar(
+                    title: selectedDoc.map { "Tsp\($0.id)" } ?? strings.t("sample/app/title"),
+                    showBack: selectedDoc != nil,
+                    theme: theme
+                ) {
                     selectedDoc = nil
                 }
                 ScrollView {
                     VStack(alignment: .leading, spacing: 14) {
                         if let doc = selectedDoc {
-                            detail(doc, theme: theme)
+                            detail(doc, theme: theme, strings: strings)
                         } else if tab == "settings" {
-                            settings(theme: theme)
+                            settings(theme: theme, strings: strings)
                         } else {
-                            list(theme: theme)
+                            list(theme: theme, strings: strings)
                         }
                     }
                     .padding(18)
-                    .padding(.bottom, selectedDoc == nil ? 80 : 12)
+                    .padding(.bottom, 12)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 if selectedDoc == nil {
                     TspBottomTab(tabs: tabs, selectedKey: $tab, theme: theme)
                 }
             }
-            .background(theme.pageStart)
-            .tspToast(visible: $showToast, message: "已保存", variant: "success", theme: theme)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .ignoresSafeArea(edges: [.top, .bottom])
+            .background(theme.pageStart.ignoresSafeArea())
+            .tspToast(visible: $showToast, message: toastMessage, variant: "success", theme: theme)
+            .id(languageKey)
 
             if showModal {
                 TspModal(
-                    title: "确认",
-                    message: "组件弹窗完整显示。",
-                    confirmText: "确定",
-                    cancelText: "取消",
+                    title: strings.t("sample/demo/modal/title"),
+                    message: strings.t("sample/demo/modal/body"),
+                    confirmText: strings.t("sample/common/confirm"),
+                    cancelText: strings.t("sample/common/cancel"),
                     theme: theme,
                     onConfirm: { showModal = false },
                     onCancel: { showModal = false }
                 )
             }
             if showLoading {
-                TspLoadingDialog(message: "加载中...", theme: theme, onDismiss: { showLoading = false })
+                TspLoadingDialog(
+                    message: strings.t("sample/demo/loading/dialog_message"),
+                    theme: theme,
+                    onDismiss: { showLoading = false }
+                )
             }
         }
     }
 
-    private func settings(theme: StarPlanetTheme) -> some View {
+    private func settings(theme: StarPlanetTheme, strings: SampleI18n) -> some View {
         VStack(spacing: 14) {
             TspCard(theme: theme) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Theme Switch").font(.headline).foregroundColor(theme.textPrimary)
+                    Text(strings.t("sample/settings/theme/title"))
+                        .font(.headline)
+                        .foregroundColor(theme.textPrimary)
+                    Text(strings.t("sample/settings/theme/current", themes[themeIndex].0))
+                        .font(.subheadline)
+                        .foregroundColor(theme.textSecondary)
                     ForEach(Array(themes.enumerated()), id: \.offset) { index, item in
-                        TspButton(item.0, variant: index == themeIndex ? .primary : .default, theme: theme) { themeIndex = index }
+                        TspButton(item.0, variant: index == themeIndex ? .primary : .default, theme: theme) {
+                            themeIndex = index
+                            presentToast(strings.t("sample/toast/theme_changed", item.0))
+                        }
                     }
                 }
             }
             TspCard(theme: theme) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Language Switch").font(.headline).foregroundColor(theme.textPrimary)
-                    ForEach(Array(languages.enumerated()), id: \.offset) { index, item in
-                        TspButton(item.1, variant: index == languageIndex ? .primary : .default, theme: theme) { languageIndex = index }
+                    Text(strings.t("sample/settings/language/title"))
+                        .font(.headline)
+                        .foregroundColor(theme.textPrimary)
+                    Text(strings.t("sample/settings/language/current", strings.t("sample/lang/\(languageKey)")))
+                        .font(.subheadline)
+                        .foregroundColor(theme.textSecondary)
+                    Text(strings.t("sample/settings/language/hint"))
+                        .font(.caption)
+                        .foregroundColor(theme.textTertiary)
+                    ForEach(languageOptions, id: \.key) { option in
+                        TspButton(
+                            strings.t(option.labelKey),
+                            variant: option.key == languageKey ? .primary : .default,
+                            theme: theme
+                        ) {
+                            guard option.key != languageKey else { return }
+                            languageKey = option.key
+                            let next = SampleI18n(language: option.key)
+                            presentToast(next.t("sample/toast/language_changed", next.t(option.labelKey)))
+                        }
                     }
                 }
             }
         }
     }
 
-    private func list(theme: StarPlanetTheme) -> some View {
-        VStack(alignment: .leading, spacing: 14) {
-            ForEach(Array(Set(componentDocs.map(\.category))).sorted(), id: \.self) { category in
-                Text(category).font(.subheadline.bold()).foregroundColor(theme.textSecondary)
+    private func list(theme: StarPlanetTheme, strings: SampleI18n) -> some View {
+        let categories = componentDocs.map(\.category).reduce(into: [String]()) { result, category in
+            if !result.contains(category) { result.append(category) }
+        }
+        return VStack(alignment: .leading, spacing: 14) {
+            ForEach(Array(categories.enumerated()), id: \.element) { index, category in
+                Text(strings.t("sample/group/\(category.lowercased())"))
+                    .font(.subheadline.bold())
+                    .foregroundColor(theme.textSecondary)
+                    .padding(.top, index == 0 ? 0 : 6)
                 ForEach(componentDocs.filter { $0.category == category }) { doc in
-                    TspListItem(title: "Tsp\(doc.id)", message: doc.description, trailing: "›", theme: theme) {
+                    TspListItem(
+                        title: "Tsp\(doc.id)",
+                        message: strings.t(componentDescKey(doc.id)),
+                        trailing: strings.t("sample/nav/chevron"),
+                        theme: theme
+                    ) {
                         selectedDoc = doc
                     }
                 }
@@ -137,85 +198,207 @@ public struct BasicControlsSampleView: View {
         }
     }
 
-    private func detail(_ doc: ComponentDoc, theme: StarPlanetTheme) -> some View {
+    private func detail(_ doc: ComponentDoc, theme: StarPlanetTheme, strings: SampleI18n) -> some View {
         VStack(alignment: .leading, spacing: 14) {
             TspCard(theme: theme) {
-                Text(doc.category).font(.caption.bold()).foregroundColor(theme.brandPrimary)
-                Text("Tsp\(doc.id)").font(.title.bold()).foregroundColor(theme.textPrimary).padding(.top, 6)
-                Text(doc.description).foregroundColor(theme.textSecondary).padding(.top, 6)
+                Text(strings.t("sample/group/\(doc.category.lowercased())"))
+                    .font(.caption.bold())
+                    .foregroundColor(theme.brandPrimary)
+                Text("Tsp\(doc.id)")
+                    .font(.title.bold())
+                    .foregroundColor(theme.textPrimary)
+                    .padding(.top, 6)
+                Text(strings.t(componentDescKey(doc.id)))
+                    .foregroundColor(theme.textSecondary)
+                    .padding(.top, 6)
             }
             TspCard(theme: theme) {
-                Text("使用案例").font(.headline).foregroundColor(theme.textPrimary)
-                preview(doc.id, theme: theme).padding(.top, 10)
+                Text(strings.t("sample/section/usage"))
+                    .font(.headline)
+                    .foregroundColor(theme.textPrimary)
+                preview(doc.id, theme: theme, strings: strings)
+                    .padding(.top, 10)
             }
             TspCard(theme: theme) {
-                Text("技术栈同步").font(.headline).foregroundColor(theme.textPrimary)
-                FlowLabels(["React", "Vue", "Android", "iOS", "Kuikly", "RN"], theme: theme).padding(.top, 10)
+                Text(strings.t("sample/section/stack_sync"))
+                    .font(.headline)
+                    .foregroundColor(theme.textPrimary)
+                FlowLabels(
+                    [
+                        strings.t("sample/demo/platform/react"),
+                        strings.t("sample/demo/platform/vue"),
+                        strings.t("sample/demo/platform/android"),
+                        strings.t("sample/demo/platform/ios"),
+                        strings.t("sample/demo/platform/kuikly"),
+                        strings.t("sample/demo/platform/rn")
+                    ],
+                    theme: theme
+                )
+                .padding(.top, 10)
             }
         }
     }
 
     @ViewBuilder
-    private func preview(_ name: String, theme: StarPlanetTheme) -> some View {
+    private func preview(_ name: String, theme: StarPlanetTheme, strings: SampleI18n) -> some View {
         switch name {
         case "Button":
-            VStack(spacing: 10) { TspButton("primary", variant: .primary, theme: theme); TspButton("default", theme: theme); TspButton("danger", variant: .danger, theme: theme); TspButton("text", variant: .text, theme: theme) }
+            VStack(spacing: 10) {
+                TspButton(strings.t("sample/demo/button/primary"), variant: .primary, theme: theme)
+                TspButton(strings.t("sample/demo/button/default"), theme: theme)
+                TspButton(strings.t("sample/demo/button/danger"), variant: .danger, theme: theme)
+                TspButton(strings.t("sample/demo/button/text"), variant: .text, theme: theme)
+            }
         case "Card":
             VStack(spacing: 10) {
-                TspCard(theme: theme) { Text("Default card").foregroundColor(theme.textPrimary) }
-                TspCard(selected: true, theme: theme) { Text("Selected card").foregroundColor(theme.textPrimary) }
+                TspCard(theme: theme) {
+                    Text(strings.t("sample/demo/card/default_title")).foregroundColor(theme.textPrimary)
+                }
+                TspCard(selected: true, theme: theme) {
+                    Text(strings.t("sample/demo/card/selected_title")).foregroundColor(theme.textPrimary)
+                }
             }
         case "Alert":
-            VStack(spacing: 10) { TspAlert(title: "success", message: "Theme is applied.", variant: .success, theme: theme); TspAlert(title: "warning", message: "Check required fields.", variant: .warning, theme: theme) }
+            VStack(spacing: 10) {
+                TspAlert(
+                    title: strings.t("sample/demo/alert/success_title"),
+                    message: strings.t("sample/demo/alert/success_body"),
+                    variant: .success,
+                    theme: theme
+                )
+                TspAlert(
+                    title: strings.t("sample/demo/alert/warning_title"),
+                    message: strings.t("sample/demo/alert/warning_body"),
+                    variant: .warning,
+                    theme: theme
+                )
+            }
         case "Badge":
-            FlowLabels(["default", "primary", "success", "warning", "danger"], theme: theme)
+            FlowLabels(
+                [
+                    strings.t("sample/demo/badge/default"),
+                    strings.t("sample/demo/badge/primary"),
+                    strings.t("sample/demo/badge/success"),
+                    strings.t("sample/demo/badge/warning"),
+                    strings.t("sample/demo/badge/danger")
+                ],
+                theme: theme
+            )
         case "Chip":
-            HStack { TspChip("Default", theme: theme); TspChip("Selected", selected: true, theme: theme); TspChip("Disabled", disabled: true, theme: theme) }
+            HStack {
+                TspChip(strings.t("sample/demo/chip/ai"), theme: theme)
+                TspChip(strings.t("sample/demo/chip/published"), selected: true, theme: theme)
+                TspChip(strings.t("sample/demo/badge/disabled"), disabled: true, theme: theme)
+            }
         case "Input":
-            VStack(spacing: 10) { TspInput(value: $inputValue, placeholder: "Input", theme: theme); TspInput(value: .constant(""), placeholder: "Required", variant: "error", theme: theme) }
+            VStack(spacing: 10) {
+                TspInput(value: $inputValue, placeholder: strings.t("sample/demo/input/hint_default"), theme: theme)
+                TspInput(value: .constant(""), placeholder: strings.t("sample/demo/input/hint_error"), variant: "error", theme: theme)
+            }
         case "Select", "OptionSheet":
-            TspSelect(options: ["A", "B", "C"], selectedIndex: $selectedIndex, theme: theme)
+            TspSelect(
+                options: [
+                    strings.t("sample/demo/select/option_all"),
+                    strings.t("sample/demo/select/option_ai"),
+                    strings.t("sample/demo/select/option_android")
+                ],
+                selectedIndex: $selectedIndex,
+                theme: theme
+            )
         case "Switch":
             VStack(alignment: .leading, spacing: 12) {
-                TspSwitch(text: "开启发布提醒", checked: checked, theme: theme) { checked = $0 }
-                TspSwitch(text: "小号", checked: checked, variant: .sm, theme: theme) { checked = $0 }
-                TspSwitch(text: "加载中", checked: true, loading: true, theme: theme)
-                TspSwitch(text: "禁用", checked: false, disabled: true, theme: theme)
+                TspSwitch(text: strings.t("sample/demo/switch/publish"), checked: checked, theme: theme) { checked = $0 }
+                TspSwitch(text: strings.t("sample/demo/switch/sm"), checked: checked, variant: .sm, theme: theme) { checked = $0 }
+                TspSwitch(text: strings.t("sample/demo/switch/loading_short"), checked: true, loading: true, theme: theme)
+                TspSwitch(text: strings.t("sample/demo/switch/disabled_short"), checked: false, disabled: true, theme: theme)
             }
         case "Progress":
-            VStack(spacing: 10) { TspProgress(progress: 38, theme: theme); TspProgress(progress: 68, variant: "success", theme: theme); TspProgress(progress: 82, variant: "danger", theme: theme) }
+            VStack(spacing: 10) {
+                TspProgress(progress: 38, theme: theme)
+                TspProgress(progress: 68, variant: "success", theme: theme)
+                TspProgress(progress: 82, variant: "danger", theme: theme)
+            }
         case "TopBar":
-            TspTopBar(title: "基础组件", showBack: true, theme: theme)
+            TspTopBar(title: strings.t("sample/app/title"), showBack: true, theme: theme)
         case "BottomTab":
             TspBottomTab(tabs: tabs, selectedKey: $tab, theme: theme)
         case "Tabs":
-            TspTabs(tabs: ["全部", "已学", "未学"], selectedIndex: $selectedTab, theme: theme)
+            TspTabs(
+                tabs: [
+                    strings.t("sample/demo/tabs/all"),
+                    strings.t("sample/demo/tabs/learned"),
+                    strings.t("sample/demo/tabs/todo")
+                ],
+                selectedIndex: $selectedTab,
+                theme: theme
+            )
         case "Amount":
-            VStack(spacing: 10) { TspAmount(symbol: "$", value: "128.80", cycle: "month", theme: theme); TspAmount(symbol: "$", value: "199.00", strikeThrough: true, theme: theme) }
+            VStack(spacing: 10) {
+                TspAmount(symbol: "$", value: "128.80", cycle: strings.t("sample/demo/amount/cycle"), theme: theme)
+                TspAmount(symbol: "$", value: "199.00", strikeThrough: true, theme: theme)
+            }
         case "IconButton":
-            HStack { TspIconButton(icon: "♪", selected: true, theme: theme); TspIconButton(icon: "✓", theme: theme); TspIconButton(icon: "×", disabled: true, theme: theme) }
+            HStack {
+                TspIconButton(icon: "♪", selected: true, theme: theme)
+                TspIconButton(icon: "✓", theme: theme)
+                TspIconButton(icon: "×", disabled: true, theme: theme)
+            }
         case "KeyValueLabel":
-            TspKeyValueLabel(label: "Progress", value: "12/48", theme: theme)
+            TspKeyValueLabel(label: strings.t("sample/demo/kv/label"), value: strings.t("sample/demo/kv/value"), theme: theme)
         case "Notification":
-            TspNotification(title: "通知", message: "继续学习。", variant: "alert", theme: theme)
+            TspNotification(
+                title: strings.t("sample/demo/notification/title"),
+                message: strings.t("sample/demo/notification/body"),
+                variant: "alert",
+                theme: theme
+            )
         case "TextLink":
-            TspTextLink("Text Link", theme: theme)
+            TspTextLink(strings.t("sample/demo/link/contract"), theme: theme)
         case "Stepper":
-            VStack(spacing: 10) { TspStepper(stepCount: 3, currentStep: 2, theme: theme); TspStepper(stepCount: 5, currentStep: 3, theme: theme) }
+            VStack(spacing: 10) {
+                TspStepper(stepCount: 3, currentStep: 2, theme: theme)
+                TspStepper(stepCount: 5, currentStep: 3, theme: theme)
+            }
         case "StickyFooter":
-            TspStickyFooter(theme: theme) { TspButton("Sticky Footer", variant: .primary, theme: theme) }
+            TspStickyFooter(theme: theme) {
+                TspButton(strings.t("sample/demo/footer/action"), variant: .primary, theme: theme)
+            }
         case "PinInput":
-            VStack(spacing: 10) { TspPinInput(value: "2468", secure: true, theme: theme); TspPinInput(value: "123", cellCount: 6, theme: theme) }
+            VStack(spacing: 10) {
+                TspPinInput(value: "2468", secure: true, theme: theme)
+                TspPinInput(value: "123", cellCount: 6, theme: theme)
+            }
         case "ListItem":
-            VStack(spacing: 10) { TspListItem(title: "列表项", message: "选中状态", trailing: "›", selected: true, theme: theme); TspListItem(title: "不可点击", message: "禁用状态", disabled: true, theme: theme) }
+            VStack(spacing: 10) {
+                TspListItem(
+                    title: strings.t("sample/demo/list/app_title"),
+                    message: strings.t("sample/demo/list/selected"),
+                    trailing: strings.t("sample/nav/chevron"),
+                    selected: true,
+                    theme: theme
+                )
+                TspListItem(
+                    title: strings.t("sample/demo/list/disabled_title"),
+                    message: strings.t("sample/demo/list/disabled_body"),
+                    disabled: true,
+                    theme: theme
+                )
+            }
         case "Empty":
-            TspEmpty(title: "空状态", message: "暂无记录。", actionText: "操作", theme: theme)
+            TspEmpty(
+                title: strings.t("sample/demo/empty/title"),
+                message: strings.t("sample/demo/empty/body"),
+                actionText: strings.t("sample/demo/empty/action"),
+                theme: theme
+            )
         case "Toast":
-            TspButton("Show Toast", variant: .primary, theme: theme) { showToast = true }
+            TspButton(strings.t("sample/toast/success"), variant: .primary, theme: theme) {
+                presentToast(strings.t("sample/toast/saved"))
+            }
         case "Modal":
-            TspButton("Open Modal", theme: theme) { showModal = true }
+            TspButton(strings.t("sample/demo/modal/button"), theme: theme) { showModal = true }
         case "LoadingDialog":
-            TspButton("Show Loading", variant: .primary, theme: theme) {
+            TspButton(strings.t("sample/demo/loading/dialog_button"), variant: .primary, theme: theme) {
                 showLoading = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { showLoading = false }
             }
@@ -229,6 +412,7 @@ public struct BasicControlsSampleView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                         refreshRows = Array(1...8)
                         refreshing = false
+                        presentToast(strings.t("sample/toast/refreshed"))
                     }
                 },
                 onLoadMore: {
@@ -242,14 +426,27 @@ public struct BasicControlsSampleView: View {
                 }
             ) {
                 ForEach(refreshRows, id: \.self) { row in
-                    TspListItem(title: "Row \(row)", message: "下拉刷新 / 上拉加载", theme: theme)
-                        .padding(.bottom, 8)
+                    TspListItem(
+                        title: "\(strings.t("sample/demo/list/app_title")) \(row)",
+                        message: strings.t("sample/demo/refresh/row"),
+                        theme: theme
+                    )
+                    .padding(.bottom, 8)
                 }
             }
             .frame(height: 280)
         default:
             EmptyView()
         }
+    }
+
+    private func componentDescKey(_ id: String) -> String {
+        "sample/component/\(id.lowercased())/desc"
+    }
+
+    private func presentToast(_ message: String) {
+        toastMessage = message
+        showToast = true
     }
 }
 
@@ -263,7 +460,7 @@ private struct FlowLabels: View {
     var body: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 78), spacing: 8)], alignment: .leading, spacing: 8) {
             ForEach(values, id: \.self) { value in
-                TspBadge(value, variant: value == "primary" ? "primary" : "default", theme: theme)
+                TspBadge(value, variant: value.lowercased() == "primary" ? "primary" : "default", theme: theme)
             }
         }
     }

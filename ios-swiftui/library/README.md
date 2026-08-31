@@ -4,7 +4,7 @@ TechSkillPlanet Planet Components 的 SwiftUI 实现。同一套源码同时支�
 
 Product、module、CocoaPods pod 名均为 `PlanetComponents`。公开类型使用 `Tsp*` 前缀，对齐 `docs/COMPONENT_CONTRACT.md`。本仓库 samples 通过 `path: ../library` 依赖本地包。
 
-Version: **0.2.0**（文档版本；验证通过前不打 tag、不推 Trunk）。
+Version: **0.2.0**（SPM：git tag `0.2.0`；CocoaPods Trunk 可随后单独推送）。
 
 发布步骤见 [`PUBLISHING.md`](PUBLISHING.md)。总览见仓库根目录 [`PUBLISHING.md`](../../PUBLISHING.md)。
 

@@ -5,7 +5,8 @@ let package = Package(
     name: "PlanetComponentsSamples",
     platforms: [.iOS(.v15), .macOS(.v13)],
     products: [
-        .library(name: "PlanetComponentsSamples", targets: ["PlanetComponentsSamples"])
+        .library(name: "PlanetComponentsSamples", targets: ["PlanetComponentsSamples"]),
+        .executable(name: "PlanetComponentsSampleApp", targets: ["PlanetComponentsSampleApp"])
     ],
     dependencies: [
         .package(path: "../library")
@@ -16,7 +17,15 @@ let package = Package(
             dependencies: [
                 .product(name: "PlanetComponents", package: "library")
             ],
-            path: "Sources/PlanetComponentsSamples"
+            path: "Sources/PlanetComponentsSamples",
+            resources: [
+                .process("Resources")
+            ]
+        ),
+        .executableTarget(
+            name: "PlanetComponentsSampleApp",
+            dependencies: ["PlanetComponentsSamples"],
+            path: "Sources/PlanetComponentsSampleApp"
         )
     ]
 )

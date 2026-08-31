@@ -18,13 +18,15 @@ public struct TspAmount: View {
     }
 
     public var body: some View {
+        // Text.strikethrough is available on iOS 15; View.strikethrough requires iOS 16+.
         HStack(alignment: .lastTextBaseline, spacing: 4) {
-            if !symbolAfter { Text(symbol).font(.headline) }
-            Text(value).font(.system(size: 30, weight: .heavy))
-            if symbolAfter { Text(symbol).font(.headline) }
-            if !cycle.isEmpty { Text("/\(cycle)").font(.caption).foregroundColor(theme.textSecondary) }
+            if !symbolAfter { Text(symbol).font(.headline).strikethrough(strikeThrough) }
+            Text(value).font(.system(size: 30, weight: .heavy)).strikethrough(strikeThrough)
+            if symbolAfter { Text(symbol).font(.headline).strikethrough(strikeThrough) }
+            if !cycle.isEmpty {
+                Text("/\(cycle)").font(.caption).foregroundColor(theme.textSecondary).strikethrough(strikeThrough)
+            }
         }
         .foregroundColor(theme.textPrimary)
-        .strikethrough(strikeThrough)
     }
 }
