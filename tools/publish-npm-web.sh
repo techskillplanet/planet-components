@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Publish npm packages to npmjs.org (React Web / Vue Web / React Native).
+# Publish npm packages to npmjs.org (React Web / Vue Web / React Native / Mini Program).
 # Auth: NPM_TOKEN env, or project .env, or tools/publish-npm-web.env.
 set -euo pipefail
 
@@ -15,13 +15,14 @@ TARGETS=()
 
 usage() {
   cat <<'EOF'
-Usage: tools/publish-npm-web.sh [--dry-run] [react|vue|rn|all]
+Usage: tools/publish-npm-web.sh [--dry-run] [react|vue|rn|miniprogram|all]
 
 Examples:
   tools/publish-npm-web.sh --dry-run all
   tools/publish-npm-web.sh rn
   tools/publish-npm-web.sh react
   tools/publish-npm-web.sh vue
+  tools/publish-npm-web.sh miniprogram
   tools/publish-npm-web.sh all
 EOF
 }
@@ -30,7 +31,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run) DRY_RUN=1; shift ;;
     -h|--help) usage; exit 0 ;;
-    react|vue|rn|all) TARGETS+=("$1"); shift ;;
+    react|vue|rn|miniprogram|all) TARGETS+=("$1"); shift ;;
     *) echo "Unknown arg: $1" >&2; usage; exit 1 ;;
   esac
 done
@@ -103,10 +104,12 @@ for target in "${TARGETS[@]}"; do
     react) publish_one "react" "$ROOT/react-web/library" ;;
     vue) publish_one "vue" "$ROOT/vue-web/library" ;;
     rn) publish_one "react-native" "$ROOT/react-native/library" ;;
+    miniprogram) publish_one "miniprogram" "$ROOT/miniprogram/library" ;;
     all)
       publish_one "react" "$ROOT/react-web/library"
       publish_one "vue" "$ROOT/vue-web/library"
       publish_one "react-native" "$ROOT/react-native/library"
+      publish_one "miniprogram" "$ROOT/miniprogram/library"
       ;;
   esac
 done

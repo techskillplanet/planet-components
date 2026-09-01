@@ -1,6 +1,6 @@
 # PlanetComponents iOS 发布步骤
 
-Status: **SPM 可通过 git tag `0.2.0` 发布；CocoaPods Trunk 尚未推送。**
+Status: **已发布 0.2.0（SPM git tag + CocoaPods Trunk）。**
 
 约定：先完成下方「发布前验证」，再打 git tag / 推 CocoaPods Trunk。验证未通过前不要执行第 4 节之后的命令。
 

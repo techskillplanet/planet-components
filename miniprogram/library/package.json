@@ -10,5 +10,18 @@
     "README.md",
     "LICENSE"
   ],
+  "scripts": {
+    "pack:dry": "npm pack --dry-run"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techskillplanet/planet-components.git",
+    "directory": "miniprogram/library"
+  },
+  "homepage": "https://github.com/techskillplanet/planet-components/tree/main/miniprogram/library",
   "license": "MIT"
 }

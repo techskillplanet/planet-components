@@ -11,7 +11,7 @@ Each `library` directory is intended to become an independently published open-s
 | Flutter | pub.dev | `tech_skill_planet_components@0.2.0`（脚本：`tools/verify-flutter-sample.sh`；发布：`cd flutter/library && dart pub publish`） |
 | iOS SwiftUI | Swift Package Manager + CocoaPods | `PlanetComponents` 0.2.0（源码 `ios-swiftui/library`；SPM 根目录 `Package.swift`；CocoaPods 根目录 `PlanetComponents.podspec`；同一 git tag） |
 | WeChat Mini Program | npm / miniprogram package | `@techskillplanet/planet-components-miniprogram@0.2.0` |
-| Kuikly | Maven / internal Kuikly package | `io.github.techskillplanet` / shared module `PlanetComponentsKuiklyShared`（业务页仍在 `phonics` 包；公开控件为 `Tsp*`） |
+| Kuikly | Maven Central | `io.github.techskillplanet:planet-components-kuikly:0.2.0`（脚本：`kuikly/scripts/publish-maven-central.sh`；KMP 多 publication） |
 
 Before publishing a library:
 
@@ -127,8 +127,22 @@ dependencies:
 
 Package: `PlanetComponents` → 源码 `ios-swiftui/library`；根目录 `Package.swift` + `PlanetComponents.podspec`；同一 git tag 双发。
 
-完整步骤（验证门禁、Trunk 注册、tag、trunk push）见：
+完整步骤见：[`ios-swiftui/library/PUBLISHING.md`](ios-swiftui/library/PUBLISHING.md)
 
-[`ios-swiftui/library/PUBLISHING.md`](ios-swiftui/library/PUBLISHING.md)
+**0.2.0 状态：SPM git tag 与 CocoaPods Trunk 均已发布。**
 
-**当前约定：iOS 验证通过前不打 tag、不执行 `pod trunk push`。**
+## Kuikly：Maven Central
+
+Package: `io.github.techskillplanet:planet-components-kuikly` → `kuikly/library/shared`（KMP：Android / iOS / JS）
+
+流程与 Android 相同（可复用 `android/gradle.properties` 的 Portal Token / GPG）：
+
+```bash
+kuikly/scripts/publish-maven-central.sh --dry-run
+kuikly/scripts/publish-maven-central.sh
+# → https://central.sonatype.com/publishing/deployments 点 Publish
+```
+
+凭证模板：`kuikly/gradle.properties.example`。库说明：[`kuikly/library/README.md`](kuikly/library/README.md)。
+
+Gradle 任务：`:shared:publishAllPublicationsToMavenCentralRepository`（多 publication，勿只用单一 android release）。

@@ -1,14 +1,11 @@
 pluginManagement {
     repositories {
-        maven { url = uri("https://maven.aliyun.com/repository/google") }
-        maven { url = uri("https://maven.aliyun.com/repository/central") }
-        maven { url = uri("https://maven.aliyun.com/repository/public") }
-        maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
-        maven { url = uri("https://mirrors.tencent.com/repository/maven-tencent/") }
-        maven { url = uri("https://mirrors.tencent.com/nexus/repository/gradle-plugins/") }
+        // Avoid Aliyun for plugins: incomplete KSP metadata / intermittent 502 breaks resolution.
+        gradlePluginPortal()
         mavenCentral()
         google()
-        gradlePluginPortal()
+        maven { url = uri("https://mirrors.tencent.com/repository/maven-tencent/") }
+        maven { url = uri("https://mirrors.tencent.com/nexus/repository/gradle-plugins/") }
     }
 }
 

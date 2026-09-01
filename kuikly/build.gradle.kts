@@ -10,13 +10,13 @@ plugins {
 
 buildscript {
     repositories {
-        maven { url = uri("https://maven.aliyun.com/repository/google") }
-        maven { url = uri("https://maven.aliyun.com/repository/central") }
-        maven { url = uri("https://maven.aliyun.com/repository/public") }
-        maven { url = uri("https://mirrors.tencent.com/repository/maven-tencent/") }
         mavenCentral()
         google()
         gradlePluginPortal()
+        maven { url = uri("https://mirrors.tencent.com/repository/maven-tencent/") }
+        maven { url = uri("https://maven.aliyun.com/repository/google") }
+        maven { url = uri("https://maven.aliyun.com/repository/central") }
+        maven { url = uri("https://maven.aliyun.com/repository/public") }
     }
     dependencies {
         classpath("com.tencent.kuikly-open:core-gradle-plugin:2.4.0-2.0.21")

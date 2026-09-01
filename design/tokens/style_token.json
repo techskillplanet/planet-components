@@ -168,7 +168,8 @@
     },
     "chip": {
       "height": 32,
-      "closeIcon": 16
+      "closeIcon": 16,
+      "gap": 6
     },
     "toast": {
       "minHeight": 44,
@@ -203,6 +204,11 @@
     },
     "rating": {
       "star": 20
+    },
+    "searchBar": {
+      "height": 44,
+      "iconWidth": 40,
+      "iconSize": 20
     }
   },
   "padding": {

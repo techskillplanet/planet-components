@@ -709,8 +709,20 @@ body {
   border: 0;
   color: var(--bc-text-primary);
   background: transparent;
-  font-size: 34px;
+  font-size: 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bc-top-bar__back::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-left: 2.5px solid currentColor;
+  border-bottom: 2.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-left: 4px;
 }
 
 .bc-top-bar__title {
@@ -726,6 +738,10 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .bc-top-bar__trailing {
@@ -1243,6 +1259,23 @@ body {
   font-weight: 800;
   white-space: nowrap;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.bc-child-switcher__avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #fff;
+}
+.bc-child-switcher__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .bc-child-switcher--tabs .bc-child-switcher__tab {
   border-radius: 14px;

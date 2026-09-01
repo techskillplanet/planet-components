@@ -3,6 +3,7 @@ import { React, h, cx, themed, starPlanetTheme } from './_shared.js';
 /**
  * TspChildSwitcher – Single-select child chips/tabs.
  * Item label resolves from label | name | text.
+ * Prefer iconSrc (image) over emoji for production UI.
  */
 export function TspChildSwitcher({
   items = [],
@@ -23,8 +24,21 @@ export function TspChildSwitcher({
     items.map((item) => {
       const id = item?.id;
       const label = item?.label ?? item?.name ?? item?.text ?? '';
-      const emoji = item?.emoji ? `${item.emoji} ` : '';
       const selected = String(id) === String(selectedId);
+      const leading = item?.leading
+        ? item.leading
+        : item?.iconSrc
+          ? h('img', {
+              className: 'bc-child-switcher__avatar',
+              src: item.iconSrc,
+              alt: '',
+              width: 22,
+              height: 22,
+              draggable: false
+            })
+          : item?.emoji
+            ? h('span', { className: 'bc-child-switcher__emoji', 'aria-hidden': true }, item.emoji)
+            : null;
       return h(
         'button',
         {
@@ -39,7 +53,8 @@ export function TspChildSwitcher({
           ),
           onClick: disabled ? undefined : () => onChange?.(id)
         },
-        `${emoji}${label}`
+        leading,
+        h('span', { className: 'bc-child-switcher__label' }, label)
       );
     })
   );

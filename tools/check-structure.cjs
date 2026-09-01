@@ -47,6 +47,7 @@ const checks = [
   ['miniprogram-coverage', dirs('miniprogram/library/components', name => name.startsWith('bc-')).length >= 25],
   ['miniprogram-sample-local', exists('miniprogram/samples/planet-components') && usesLocalLibrary('miniprogram/samples/package.json', ['file:../library'])],
   ['kuikly', exists('kuikly/library/shared/build.gradle.kts') && exists('kuikly/samples/miniApp/build.gradle.kts') && exists('kuikly/samples/androidApp/build.gradle.kts') && exists('kuikly/README.md')],
+  ['kuikly-publish-maven', exists('kuikly/scripts/publish-maven-central.sh') && read('kuikly/library/shared/build.gradle.kts').includes('maven-publish') && read('kuikly/library/shared/build.gradle.kts').includes('planet-components-kuikly') && exists('kuikly/gradle.properties.example')],
   ['kuikly-one-file', files('kuikly/library/shared/src/commonMain/kotlin/com/techskillplanet/phonics/controls', f => /^Tsp.+\.kt$/.test(f)).length >= 27],
 ];
 

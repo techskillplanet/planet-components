@@ -105,7 +105,8 @@
           "control": "{primitive.sky.borderSoft}",
           "focus": "{primitive.sky.brandPrimary}",
           "warning": "{primitive.sun.highlight}",
-          "danger": "{primitive.coral.danger}"
+          "danger": "{primitive.coral.danger}",
+          "divider": "{primitive.cloud.border}"
         },
         "control": {
           "button": {
@@ -239,7 +240,8 @@
           "control": "{primitive.sky.borderSoft}",
           "focus": "{primitive.sky.brandPrimary}",
           "warning": "{primitive.sun.highlight}",
-          "danger": "{primitive.coral.danger}"
+          "danger": "{primitive.coral.danger}",
+          "divider": "{primitive.cloud.border}"
         },
         "control": {
           "button": {
@@ -373,7 +375,8 @@
           "control": "{primitive.sky.borderSoft}",
           "focus": "{primitive.sky.brandPrimary}",
           "warning": "{primitive.sun.highlight}",
-          "danger": "{primitive.coral.danger}"
+          "danger": "{primitive.coral.danger}",
+          "divider": "{primitive.cloud.border}"
         },
         "control": {
           "button": {
