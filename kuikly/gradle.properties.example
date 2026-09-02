@@ -1,0 +1,32 @@
+# Template for Kuikly Maven Central publish credentials.
+# Prefer reusing android/gradle.properties (same Central Portal token + GPG).
+# Fallback: copy this file to kuikly/gradle.properties and fill values,
+# or put the same keys in ~/.gradle/gradle.properties.
+#
+# Maven coordinates:
+#   io.github.techskillplanet:planet-components-kuikly:0.2.0
+#   (+ KMP platform artifacts: -android, -iosarm64, -js, …)
+#
+# Controllable publish (Gradle staging + Portal upload):
+#   kuikly/scripts/publish-maven-central.sh
+#   kuikly/scripts/publish-maven-central.sh --dry-run
+#   kuikly/scripts/publish-maven-central.sh --list
+#   kuikly/scripts/publish-maven-central.sh --upload-only
+#
+# Then open https://central.sonatype.com/publishing/deployments and Publish.
+
+# --- Sonatype Central Portal (https://central.sonatype.com → Account → Generate User Token)
+ossrhUsername=YOUR_SONATYPE_TOKEN_USERNAME
+ossrhPassword=YOUR_SONATYPE_TOKEN_PASSWORD
+
+# --- GPG signing (pick ONE approach; same keys as Android are fine)
+
+# Option A: local GPG keyring
+# signing.keyId=ABCD1234
+# signing.password=YOUR_GPG_PASSPHRASE
+# signing.secretKeyRingFile=/Users/YOU/.gnupg/secring.gpg
+
+# Option B: armored private key file (works without local gpg binary)
+# signing.keyId=ABCD1234
+# signing.password=YOUR_GPG_PASSPHRASE
+# signingKeyFile=/Users/YOU/.gnupg/planet-components-signing.asc
