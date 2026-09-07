@@ -96,6 +96,15 @@ describe('TspButton', () => {
     const { container } = render(React.createElement(TspButton, { text: 'X', theme }));
     expect(container.querySelector('.bc-button--flat')).toBeTruthy();
   });
+  it('shows loading spinner and blocks onTap', () => {
+    const fn = vi.fn();
+    const { container } = render(React.createElement(TspButton, { text: 'Go', loading: true, onTap: fn }));
+    expect(container.querySelector('.bc-button--loading')).toBeTruthy();
+    expect(container.querySelector('.bc-button__spinner')).toBeTruthy();
+    expect(screen.getByRole('button')).toBeDisabled();
+    fireEvent.click(screen.getByRole('button'));
+    expect(fn).not.toHaveBeenCalled();
+  });
   it('renders children over text', () => {
     render(React.createElement(TspButton, { text: 'No' }, 'Yes'));
     expect(screen.getByRole('button')).toHaveTextContent('Yes');

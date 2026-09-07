@@ -10,6 +10,7 @@ import { React, h, cx, clamp, optionText, themed, starPlanetTheme } from './_sha
  * @param {string} [props.text] - Button label text.
  * @param {'primary'|'default'|'danger'|'text'} [props.variant='default'] - Visual variant.
  * @param {boolean} [props.disabled=false] - Disable interaction and dim appearance.
+ * @param {boolean} [props.loading=false] - Show spinner and block taps.
  * @param {boolean} [props.fullWidth=true] - Whether button takes full container width.
  * @param {Object} [props.theme] - Theme object for CSS variable injection.
  * @param {Function} [props.onTap] - Click handler callback.
@@ -21,27 +22,38 @@ export function TspButton({
   text,
   variant = 'default',
   disabled = false,
+  loading = false,
   fullWidth = true,
   theme = starPlanetTheme,
   onTap,
   children
 }) {
+  const busy = Boolean(loading);
+  const inert = disabled || busy;
+  const label = children ?? text;
   return h(
     'button',
     {
       type: 'button',
-      disabled,
+      disabled: inert,
+      'aria-busy': busy || undefined,
       className: cx(
         'bc-button',
         `bc-button--${variant}`,
         fullWidth && 'bc-full',
-        disabled && 'bc-disabled',
+        inert && 'bc-disabled',
+        busy && 'bc-button--loading',
         theme.buttonRaisedShadowEnabled === false && 'bc-button--flat'
       ),
       style: themed(theme),
-      onClick: disabled ? undefined : onTap
+      onClick: inert ? undefined : onTap
     },
-    h('span', { className: 'bc-button__shadow' }),
-    h('span', { className: 'bc-button__face' }, children ?? text)
+    h('span', { className: 'bc-button__shadow', 'aria-hidden': true }),
+    h(
+      'span',
+      { className: 'bc-button__face' },
+      busy ? h('span', { className: 'bc-button__spinner', 'aria-hidden': true }) : null,
+      label
+    )
   );
 }

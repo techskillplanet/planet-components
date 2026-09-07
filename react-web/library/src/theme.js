@@ -132,17 +132,21 @@ export const starPlanetThemes = {
 export const starPlanetStyleProfiles = {
   island_raised: {
     buttonRaisedShadowEnabled: true,
-    shadowControlIslandLiftY: 5,
+    shadowControlIslandLiftY: 6,
     shadowControlPressedY: 2,
     pressedDropY: 2,
+    hoverLiftY: -1,
     buttonFaceHeight: 46,
+    cardIslandShadow: '0 10px 28px rgba(49, 168, 255, 0.14)',
   },
   island_flat: {
     buttonRaisedShadowEnabled: false,
     shadowControlIslandLiftY: 0,
     shadowControlPressedY: 0,
     pressedDropY: 0,
+    hoverLiftY: 0,
     buttonFaceHeight: 46,
+    cardIslandShadow: 'none',
   },
 };
 
@@ -205,7 +209,9 @@ export function themeVars(theme = starPlanetTheme) {
     '--bc-button-face-height': `${theme.buttonFaceHeight ?? 46}px`,
     '--bc-button-height': `${(theme.buttonFaceHeight ?? 46) + (theme.shadowControlIslandLiftY ?? 5)}px`,
     '--bc-pressed-drop-y': `${theme.pressedDropY ?? 2}px`,
+    '--bc-hover-lift-y': `${theme.hoverLiftY ?? -1}px`,
     '--bc-button-raised-shadow-display': theme.buttonRaisedShadowEnabled === false ? 'none' : 'block',
+    '--bc-card-island-shadow': theme.cardIslandShadow ?? (theme.buttonRaisedShadowEnabled === false ? 'none' : '0 10px 28px rgba(49, 168, 255, 0.14)'),
     '--bc-space-1': '4px',
     '--bc-space-2': '8px',
     '--bc-space-3': '12px',

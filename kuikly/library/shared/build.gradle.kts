@@ -67,6 +67,24 @@ ksp {
     arg("packLocalJSBundle", "")
 }
 
+// Library publish: Kuikly KSP entry (KuiklyCoreEntry) is app wiring, not needed in
+ // common metadata klib; generating it breaks compileCommonMainKotlinMetadata.
+tasks.matching { it.name == "kspCommonMainKotlinMetadata" }.configureEach {
+    enabled = false
+}
+tasks.matching { it.name == "compileCommonMainKotlinMetadata" }.configureEach {
+    // Ensure stale generated entry cannot poison metadata compilation.
+    doFirst {
+        val generatedEntry = layout.buildDirectory
+            .dir("generated/ksp/metadata/commonMain/kotlin/KuiklyCoreEntry.kt")
+            .get()
+            .asFile
+        if (generatedEntry.exists()) {
+            generatedEntry.delete()
+        }
+    }
+}
+
 android {
     namespace = "com.techskillplanet.planetcomponents.kuikly"
     compileSdk = 34

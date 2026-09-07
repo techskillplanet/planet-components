@@ -23,14 +23,14 @@
 | React Native | npm `@techskillplanet/planet-components-react-native` | **0.2.0** | 已发布 |
 | Flutter | pub.dev `tech_skill_planet_components` | **0.2.0** | 已发布 |
 | 微信小程序 | npm `@techskillplanet/planet-components-miniprogram` | **0.2.0** | 已发布 |
-| Kuikly | Maven Central `io.github.techskillplanet:planet-components-kuikly` | — | **流水线已就绪，尚未上架**（脚本：`kuikly/scripts/publish-maven-central.sh`） |
+| Kuikly | Maven Central `io.github.techskillplanet:planet-components-kuikly` | **0.2.0**（待 Portal Publish） | Staging 已上传，需在 Central Deployments 点 Publish |
 
 ### 当前没法 / 尚未对外发布的
 
 1. **Kuikly**  
-   - 流水线已按 Android 同款打通（`maven-publish` + staging 脚本 + 复用 Android Portal/GPG 凭证）。  
-   - 公开 registry 尚无 `0.2.0` 工件；需执行 `kuikly/scripts/publish-maven-central.sh` 后在 Central Portal 点 Publish。  
-   - 临时接入：源码 include 本仓 `kuikly/library/shared`，或拷贝 `Tsp*` 控件。
+   - 流水线已跑通：Gradle 多 publication 已上传 Staging，并进入 Central Portal Deployments。  
+   - 请到 https://central.sonatype.com/publishing/deployments 对 deployment `b953dd16-74fd-44df-b2b8-19b7a743b9e9` 点 **Publish**；同步到 Maven Central 后即可按坐标消费。  
+   - 临时接入：源码 include 本仓 `kuikly/library/shared`。
 
 发版流程总览：[`PUBLISHING.md`](PUBLISHING.md)。iOS 双渠道步骤：[`ios-swiftui/library/PUBLISHING.md`](ios-swiftui/library/PUBLISHING.md)。
 
