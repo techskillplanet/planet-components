@@ -1,105 +1,69 @@
 # Planet Components
 
-技趣星球（TechSkillPlanet）跨端基础组件库。口号：**用技术创造乐趣**。
+<p align="center">
+  <strong>TechSkillPlanet · 技趣星球</strong><br/>
+  <em>用技术创造乐趣 · Create Joy with Technology</em>
+</p>
 
-每个技术栈都是一级目录，各自包含：
+<p align="center">
+  Cross-platform UI component libraries sharing one <strong>Sky Planet</strong> design system:<br/>
+  blue-sky brand, cloud surfaces, island-style controls, soft borders, playful motion.
+</p>
 
-- `library`：可独立发布的组件库
-- `samples`：依赖本地 `library` 的可运行示例（本仓库 samples **不要**改成已发布坐标）
+<p align="center">
+  <a href="README.md">English</a> ·
+  <a href="README.zh-CN.md">简体中文</a> ·
+  <a href="README.ja.md">日本語</a> ·
+  <a href="README.ko.md">한국어</a>
+  · <a href="docs/AI_FOR_EVERYONE.md">非技术 · 用 AI 做页面</a>
+</p>
 
-共享设计 Token：`design/tokens/`。
-
-## 发布状态（公开渠道）
-
-仓库内多数库的目标版本号是 **0.2.0**。下表以 **公开 registry 实查** 为准（2026-09-01）：
-
-| 技术栈 | 包坐标 / 渠道 | 公开已发布 | 状态 |
-| --- | --- | --- | --- |
-| Android View | Maven Central `io.github.techskillplanet:planet-components-android` | **0.2.0** | 已发布 |
-| iOS SwiftUI | SPM（GitHub tag） | **0.2.0** | 已发布 |
-| iOS SwiftUI | CocoaPods `PlanetComponents` | **0.2.0** | 已发布 |
-| React Web | npm `@techskillplanet/planet-components-react` | **0.2.0** | 已发布 |
-| Vue Web | npm `@techskillplanet/planet-components-vue` | **0.2.0** | 已发布 |
-| React Native | npm `@techskillplanet/planet-components-react-native` | **0.2.0** | 已发布 |
-| Flutter | pub.dev `tech_skill_planet_components` | **0.2.0** | 已发布 |
-| 微信小程序 | npm `@techskillplanet/planet-components-miniprogram` | **0.2.0** | 已发布 |
-| Kuikly | Maven Central `io.github.techskillplanet:planet-components-kuikly` | **0.2.0**（待 Portal Publish） | Staging 已上传，需在 Central Deployments 点 Publish |
-
-### 当前没法 / 尚未对外发布的
-
-1. **Kuikly**  
-   - 流水线已跑通：Gradle 多 publication 已上传 Staging，并进入 Central Portal Deployments。  
-   - 请到 https://central.sonatype.com/publishing/deployments 对 deployment `b953dd16-74fd-44df-b2b8-19b7a743b9e9` 点 **Publish**；同步到 Maven Central 后即可按坐标消费。  
-   - 临时接入：源码 include 本仓 `kuikly/library/shared`。
-
-发版流程总览：[`PUBLISHING.md`](PUBLISHING.md)。iOS 双渠道步骤：[`ios-swiftui/library/PUBLISHING.md`](ios-swiftui/library/PUBLISHING.md)。
+<p align="center">
+  <img alt="version" src="https://img.shields.io/badge/version-0.2.0-31A8FF?style=flat-square" />
+  <img alt="license" src="https://img.shields.io/badge/license-MIT-2BB8E6?style=flat-square" />
+  <img alt="platforms" src="https://img.shields.io/badge/platforms-8_stacks-1479D6?style=flat-square" />
+  <img alt="tokens" src="https://img.shields.io/badge/design-token--driven-8BD5FF?style=flat-square" />
+</p>
 
 ---
 
-## 三方接入（按技术栈）
+## Why Planet Components?
 
-以下面向 **业务工程消费已发布包**。本仓库 `samples/` 请继续用本地 `library`。
+| | |
+| --- | --- |
+| **One visual language** | Shared semantic tokens in `design/tokens/` — same names across Android, iOS, Web, Flutter, Mini Program, and Kuikly |
+| **Eight publishable stacks** | Each stack ships a real `library` + runnable `samples` (samples always depend on the local library) |
+| **Small, consistent APIs** | Common props: `variant`, `disabled`, `selected` / `checked`, `text` / `title` / `message`, runtime theme refresh |
+| **Open & packaged** | MIT · public registries at **0.2.0** (npm / Maven Central / pub.dev / SPM / CocoaPods) |
 
-### 1. Android View（Maven Central）
+---
 
-```gradle
-repositories {
-    mavenCentral()
-}
+## Supported platforms (v0.2.0)
 
-dependencies {
-    implementation "io.github.techskillplanet:planet-components-android:0.2.0"
-}
-```
+| Stack | Package | Registry |
+| --- | --- | --- |
+| Android View | [`io.github.techskillplanet:planet-components-android`](https://central.sonatype.com/artifact/io.github.techskillplanet/planet-components-android) | Maven Central |
+| iOS SwiftUI | [`PlanetComponents`](https://github.com/techskillplanet/planet-components) | [SPM](https://github.com/techskillplanet/planet-components) · [CocoaPods](https://cocoapods.org/pods/PlanetComponents) |
+| React Web | [`@techskillplanet/planet-components-react`](https://www.npmjs.com/package/@techskillplanet/planet-components-react) | npm |
+| Vue Web | [`@techskillplanet/planet-components-vue`](https://www.npmjs.com/package/@techskillplanet/planet-components-vue) | npm |
+| React Native | [`@techskillplanet/planet-components-react-native`](https://www.npmjs.com/package/@techskillplanet/planet-components-react-native) | npm |
+| Flutter | [`tech_skill_planet_components`](https://pub.dev/packages/tech_skill_planet_components) | pub.dev |
+| WeChat Mini Program | [`@techskillplanet/planet-components-miniprogram`](https://www.npmjs.com/package/@techskillplanet/planet-components-miniprogram) | npm |
+| Kuikly (KMP) | [`io.github.techskillplanet:planet-components-kuikly`](https://central.sonatype.com/artifact/io.github.techskillplanet/planet-components-kuikly) | Maven Central |
 
-```java
-BasicThemeManager.init(context, "sky_planet_day", "island_raised");
-```
+Full install snippets: **[简体中文（完整）](README.zh-CN.md#三方接入按技术栈)** · [日本語](README.ja.md) · [한국어](README.ko.md).
 
-- Central：https://central.sonatype.com/artifact/io.github.techskillplanet/planet-components-android  
-- 说明：[`android/library/README.md`](android/library/README.md)
+---
 
-### 2. iOS SwiftUI · SPM
+## Quick start
 
-Xcode → Package Dependencies，或 `Package.swift`：
+Pick your stack — all examples use the public **0.2.0** packages.
 
-```swift
-.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.0")
-```
-
-把 product **`PlanetComponents`** 加到 target：
-
-```swift
-import PlanetComponents
-
-TspButton("Get Started", variant: .primary) { }
-```
-
-说明：[`ios-swiftui/library/README.md`](ios-swiftui/library/README.md)
-
-### 3. iOS SwiftUI · CocoaPods
-
-```ruby
-pod 'PlanetComponents', '~> 0.2.0'
-```
-
-```bash
-pod install
-```
-
-```swift
-import PlanetComponents
-```
-
-- 包页：https://cocoapods.org/pods/PlanetComponents
-
-### 4. React Web（npm）
-
-当前 npm latest：**0.2.0**。
+<details>
+<summary><strong>React Web</strong></summary>
 
 ```bash
 npm install @techskillplanet/planet-components-react
-# 或固定：npm install @techskillplanet/planet-components-react@0.2.0
 ```
 
 ```jsx
@@ -108,174 +72,111 @@ import '@techskillplanet/planet-components-react/styles.css';
 
 <TspButton text="Get Started" variant="primary" theme={starPlanetTheme} onTap={() => {}} />
 ```
+</details>
 
-- 说明：[`react-web/library/README.md`](react-web/library/README.md)  
-- Agent skill：[`.agents/skills/integrate-react-components/SKILL.md`](.agents/skills/integrate-react-components/SKILL.md)
+<details>
+<summary><strong>Android View</strong></summary>
 
-### 5. Vue Web（npm）
-
-当前 npm latest：**0.2.0**。
-
-```bash
-npm install @techskillplanet/planet-components-vue
+```gradle
+implementation "io.github.techskillplanet:planet-components-android:0.2.0"
 ```
 
-```js
-import { TspButton } from '@techskillplanet/planet-components-vue';
-import '@techskillplanet/planet-components-vue/styles.css';
+```java
+BasicThemeManager.init(context, "sky_planet_day", "island_raised");
 ```
+</details>
 
-在 Vue 3 应用中注册/使用组件（peer：`vue >= 3`）。详见 [`vue-web/library/README.md`](vue-web/library/README.md)。
+<details>
+<summary><strong>iOS SwiftUI (SPM)</strong></summary>
 
-### 6. React Native（npm）
-
-当前 npm latest：**0.2.0**。
-
-```bash
-npm install @techskillplanet/planet-components-react-native
+```swift
+.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.0")
+// product: PlanetComponents
 ```
+</details>
 
-```js
-import { TspButton, resolveTheme } from '@techskillplanet/planet-components-react-native';
-
-const theme = resolveTheme('sky', 'island_raised');
-<TspButton text="Get Started" variant="primary" theme={theme} onTap={() => {}} />
-```
-
-Peer：`react` / `react-native`（见包内 `package.json`）。说明：[`react-native/library/README.md`](react-native/library/README.md)。
-
-### 7. Flutter（pub.dev）
-
-当前 pub.dev latest：**0.2.0**。
+<details>
+<summary><strong>Flutter</strong></summary>
 
 ```yaml
 dependencies:
   tech_skill_planet_components: ^0.2.0
 ```
+</details>
 
-```bash
-flutter pub get
-```
-
-```dart
-import 'package:tech_skill_planet_components/tech_skill_planet_components.dart';
-
-TspButton(
-  text: 'Get Started',
-  variant: TspButtonVariant.primary,
-  theme: StarPlanetTheme.sky,
-  onTap: () {},
-);
-```
-
-- pub：https://pub.dev/packages/tech_skill_planet_components  
-- 说明：[`flutter/library/README.md`](flutter/library/README.md)
-
-### 8. 微信小程序（npm）
-
-当前 npm latest：**0.2.0**。
-
-```bash
-npm install @techskillplanet/planet-components-miniprogram
-```
-
-小程序侧使用 `bc-*` 组件（语义对齐契约 `Tsp*`）。说明：[`miniprogram/library/README.md`](miniprogram/library/README.md)。
-
-### 9. Kuikly（Maven Central 流水线已就绪）
-
-坐标：`io.github.techskillplanet:planet-components-kuikly:0.2.0`（上架后可用）。
+<details>
+<summary><strong>Kuikly</strong></summary>
 
 ```gradle
 repositories {
     mavenCentral()
     maven { url = uri("https://mirrors.tencent.com/repository/maven-tencent/") }
 }
-
 dependencies {
     implementation("io.github.techskillplanet:planet-components-kuikly:0.2.0")
 }
 ```
-
-维护者发布（对齐 Android）：
-
-```bash
-kuikly/scripts/publish-maven-central.sh --dry-run
-kuikly/scripts/publish-maven-central.sh
-# → https://central.sonatype.com/publishing/deployments 点 Publish
-```
-
-上架前业务侧仍可：
-
-1. 将本仓库 `kuikly/library/shared` 以 Gradle 源码依赖 / include 进 Kuikly 工程；或  
-2. 直接使用 `phonics/controls/Tsp*.kt` 公开控件。
-
-```text
-Gradle: io.github.techskillplanet:planet-components-kuikly:0.2.0
-iOS framework 名: PlanetComponentsKuiklyShared
-```
-
-说明：[`kuikly/library/README.md`](kuikly/library/README.md)。本仓可跑 samples：
-
-```bash
-cd kuikly
-./gradlew :androidApp:assembleDebug
-```
+</details>
 
 ---
 
-## Platform Layout
+## Design system
 
-| Platform | Library | Runnable samples | Package target |
-| --- | --- | --- | --- |
-| Android View | `android/library` | `android/samples` | Maven Central |
-| React Native | `react-native/library` | `react-native/samples` | npm |
-| React Web | `react-web/library` | `react-web/samples` | npm |
-| Vue Web | `vue-web/library` | `vue-web/samples` | npm |
-| Flutter | `flutter/library` | `flutter/samples` | pub.dev |
-| iOS SwiftUI | `ios-swiftui/library` | `ios-swiftui/samples` | SPM / CocoaPods |
-| WeChat Mini Program | `miniprogram/library` | `miniprogram/samples` | npm / miniprogram package |
-| Kuikly | `kuikly/library` | `kuikly/samples` | Maven Central |
+- **Brand**: 技趣星球 / TechSkillPlanet  
+- **Direction**: Sky Planet — sky-blue primary (`#31A8FF`), cloud surfaces, island-raised controls  
+- **Tokens**: [`design/tokens/color_token.json`](design/tokens/color_token.json) · [`design/tokens/style_token.json`](design/tokens/style_token.json)  
+- **Contract**: [`docs/COMPONENT_CONTRACT.md`](docs/COMPONENT_CONTRACT.md) · [`component_contract.json`](component_contract.json)
 
-## License
+Themes (where supported): Sky / Night / Mint / Sunrise, with style profiles such as `island_raised`.
 
-[MIT License](LICENSE)
+---
 
-## Reusable Agent Context
+## Repository layout
 
-- `AGENTS.md`：仓库级规则  
-- `.agents/skills/build-planet-components/SKILL.md`：扩展本仓组件库  
-- `.agents/skills/build-android-view-ui/SKILL.md`：Android View  
-- `.agents/skills/integrate-react-components/SKILL.md`：React Web 接入  
-- `docs/AI_PLUGIN.md`：安装 Cursor / Claude / Codex 插件  
-- `docs/PLATFORM_STRUCTURE.md`：一组件一文件 / 一页一文件等结构规则  
-- `docs/COMPONENT_CONTRACT.md` + `component_contract.json`：跨端契约  
+```text
+planet-components/
+├── design/tokens/          # shared color + style tokens
+├── android/                # View (Java) library + samples
+├── ios-swiftui/            # SwiftUI library + samples
+├── react-web/ · vue-web/   # Web libraries + samples
+├── react-native/           # RN library + samples
+├── flutter/                # Dart library + samples
+├── miniprogram/            # WeChat Mini Program
+├── kuikly/                 # Tencent Kuikly / KMP
+├── docs/                   # structure, contract, AI plugin
+└── tools/                  # structure checks, publish helpers
+```
 
-## Rules
+Each stack: **`library/`** (publishable) + **`samples/`** (local dependency only).
 
-- 一组件一源文件（已拆分的平台）  
-- 一示例页一文件  
-- samples 必须依赖本地 library，不复制实现  
-- barrel/index 只导出公开 API  
-- 构建产物与 IDE/cache 不进开源包表面  
+---
 
-## Local Checks
+## Documentation
+
+| Doc | Description |
+| --- | --- |
+| [README.zh-CN.md](README.zh-CN.md) | Full Chinese guide (install per stack) |
+| [PUBLISHING.md](PUBLISHING.md) | Release playbooks (npm / Maven / pub / SPM / CocoaPods) |
+| [docs/PLATFORM_STRUCTURE.md](docs/PLATFORM_STRUCTURE.md) | One-component-one-file rules |
+| [docs/COMPONENT_CONTRACT.md](docs/COMPONENT_CONTRACT.md) | Cross-platform component contract |
+| [docs/AI_FOR_EVERYONE.md](docs/AI_FOR_EVERYONE.md) | Non-engineers: build pages with AI (Chinese) |
+| [docs/prompts/](docs/prompts/) | Copy-paste prompts (zh / en) |
+| [docs/AI_PLUGIN.md](docs/AI_PLUGIN.md) | Agent Skills: `npx skills add techskillplanet/planet-components` |
+| [.agents/README.md](.agents/README.md) | Built-in skill catalog (v0.2.0) |
+| [AGENTS.md](AGENTS.md) | Repo rules for coding agents |
+
+---
+
+## Local development
 
 ```bash
 node tools/check-structure.cjs
 ```
 
-```bash
-cd android && ./gradlew :library:assembleRelease :samples:assembleDebug
-cd react-native/library && npm run pack:dry
-cd react-native/samples && npm install && npm run check
-cd react-web/library && npm run check && npm run pack:dry
-cd vue-web/library && npm run check && npm run pack:dry
-cd flutter/library && flutter analyze
-cd flutter/samples && flutter analyze
-cd ios-swiftui/library && swift build
-cd ios-swiftui/samples && swift build
-swift build
-pod lib lint PlanetComponents.podspec --allow-warnings
-cd miniprogram && node -e "const fs=require('fs'); JSON.parse(fs.readFileSync('samples/app.json','utf8')); if(!fs.lstatSync('samples/planet-components').isSymbolicLink()) throw new Error('samples/planet-components should be a symlink')"
-cd kuikly && ./gradlew :shared:compileKotlinJs :miniApp:compileKotlinJs :shared:compileDebugKotlinAndroid :androidApp:assembleDebug
-```
+See [README.zh-CN.md](README.zh-CN.md#local-checks) for per-stack build / pack commands. Publishing scripts live under `android/scripts/`, `kuikly/scripts/`, and `tools/publish-npm-web.sh`.
+
+---
+
+## License
+
+[MIT](LICENSE) © TechSkillPlanet

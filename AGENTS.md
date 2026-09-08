@@ -31,7 +31,7 @@ This repository contains cross-platform basic component libraries for TechSkillP
 | Flutter | `flutter/` | pub.dev |
 | iOS SwiftUI | `ios-swiftui/` | Swift Package Manager / CocoaPods |
 | WeChat Mini Program | `miniprogram/` | npm / miniprogram package |
-| Kuikly | `kuikly/` | Maven / internal package |
+| Kuikly | `kuikly/` | Maven Central |
 
 ## Token Rules
 
@@ -66,7 +66,11 @@ Run platform checks for changed stacks. Current expected commands are documented
 
 ## Agent plugin and skills
 
-- Consuming the published library in an app: `.agents/skills/use-planet-components/SKILL.md`
-- Extending this repo's libraries: `.agents/skills/build-planet-components/SKILL.md`
-- Install for Cursor / Claude / Codex: `docs/AI_PLUGIN.md` and `./tools/install-ai-plugin.sh`
+- **Public install (same as everyday skills)**: `npx skills add techskillplanet/planet-components`
+- **Non-engineers / AI page building**: `.agents/skills/ai-build-with-planet/SKILL.md` + `docs/AI_FOR_EVERYONE.md`
+- Catalog: [`.agents/README.md`](.agents/README.md) · manifest [`.agents/plugin-manifest.json`](.agents/plugin-manifest.json)
+- Consuming published libraries: `.agents/skills/use-planet-components/SKILL.md`
+- Extending this repo: `.agents/skills/build-planet-components/SKILL.md`
+- Publishing registries: `.agents/skills/publish-planet-components/SKILL.md`
+- Docs / local symlink: [`docs/AI_PLUGIN.md`](docs/AI_PLUGIN.md) · `./tools/install-ai-plugin.sh`
 

@@ -1,0 +1,29 @@
+{
+  "name": "planet-components-agent",
+  "displayName": "TechSkillPlanet Planet Components Agent Skills",
+  "version": "0.2.0",
+  "description": "Built-in Agent Skills for TechSkillPlanet UI — including non-engineer AI page building on React Web.",
+  "homepage": "https://github.com/techskillplanet/planet-components",
+  "skillsDir": "skills",
+  "skills": [
+    "ai-build-with-planet",
+    "use-planet-components",
+    "build-planet-components",
+    "build-android-view-ui",
+    "publish-planet-components",
+    "integrate-react-components",
+    "integrate-vue-components",
+    "integrate-react-native-components",
+    "integrate-flutter-components",
+    "integrate-android-view",
+    "integrate-ios-swiftui",
+    "integrate-miniprogram",
+    "integrate-kuikly"
+  ],
+  "installTargets": [
+    { "id": "cursor", "path": "~/.cursor/skills" },
+    { "id": "claude", "path": "~/.claude/skills" },
+    { "id": "codex", "path": "~/.codex/skills" },
+    { "id": "agents", "path": "~/.agents/skills" }
+  ]
+}

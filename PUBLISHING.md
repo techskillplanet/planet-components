@@ -1,6 +1,12 @@
 # Publishing Plan
 
-Each `library` directory is intended to become an independently published open-source package.
+Each `library` directory is an independently published open-source package.
+
+**Current public release: 0.2.0（八栈均已上架，2026-09-08 实查）。**
+
+GitHub 主页多语言：[`README.md`](README.md)（English）· [`README.zh-CN.md`](README.zh-CN.md) · [`README.ja.md`](README.ja.md) · [`README.ko.md`](README.ko.md)。
+
+Agent Skills：公共安装 `npx skills add techskillplanet/planet-components`；说明见 [`docs/AI_PLUGIN.md`](docs/AI_PLUGIN.md)。
 
 | Platform | Package manager | Current package identity |
 | --- | --- | --- |
@@ -146,3 +152,5 @@ kuikly/scripts/publish-maven-central.sh
 凭证模板：`kuikly/gradle.properties.example`。库说明：[`kuikly/library/README.md`](kuikly/library/README.md)。
 
 Gradle 任务：`:shared:publishAllPublicationsToMavenCentralRepository`（多 publication，勿只用单一 android release）。
+
+**0.2.0 状态：已发布到 Maven Central。**
