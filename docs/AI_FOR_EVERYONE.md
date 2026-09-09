@@ -5,7 +5,7 @@
 
 默认技术栈（已选好，不用纠结）：
 
-- **网页版 React** + 技趣星球组件库 `@techskillplanet/planet-components-react` **0.2.0**
+- **网页版 React** + 技趣星球组件库 `@techskillplanet/planet-components-react` **0.2.1**
 - 蓝天白云「Sky Planet」视觉
 
 ---

@@ -1,0 +1,15 @@
+<view
+  class="bc-print-sheet bc-print-sheet--{{variant}}"
+  style="--bc-print-cols: {{cols}}; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-text: {{theme.textPrimary}};"
+>
+  <view wx:if="{{title}}" class="bc-print-sheet__title">{{title}}</view>
+  <view class="bc-print-sheet__grid">
+    <view wx:for="{{displayItems}}" wx:key="key" class="bc-print-sheet__cell" style="width: {{100 / cols}}%;">
+      <view class="bc-print-sheet__prompt">{{item.prompt}}</view>
+      <view class="bc-print-sheet__blank"></view>
+    </view>
+  </view>
+  <view wx:if="{{footerTexts.length}}" class="bc-print-sheet__footer">
+    <text wx:for="{{footerTexts}}" wx:key="*this">{{item}}</text>
+  </view>
+</view>

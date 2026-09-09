@@ -15,6 +15,8 @@ vi.mock('react-native', () => {
   const View = ({ children, ...props }) => React.createElement('View', props, children);
   const Text = ({ children, ...props }) => React.createElement('Text', props, children);
   const Pressable = ({ children, ...props }) => React.createElement('Pressable', props, children);
+  const TextInput = (props) => React.createElement('TextInput', props);
+  const Image = (props) => React.createElement('Image', props);
 
   class AnimatedValue {
     constructor(value) {
@@ -58,6 +60,8 @@ vi.mock('react-native', () => {
     Platform: { OS: 'android', select: specs => (specs && (specs.android ?? specs.default)) },
     View,
     Text,
+    TextInput,
+    Image,
     Pressable,
     Modal: View,
     ScrollView: View,

@@ -5,28 +5,47 @@ public struct TspButton: View {
     let text: String
     let variant: Variant
     let disabled: Bool
+    let loading: Bool
     let theme: StarPlanetTheme
     let action: () -> Void
 
-    public init(_ text: String, variant: Variant = .default, disabled: Bool = false, theme: StarPlanetTheme = .sky, action: @escaping () -> Void = {}) {
+    public init(
+        _ text: String,
+        variant: Variant = .default,
+        disabled: Bool = false,
+        loading: Bool = false,
+        theme: StarPlanetTheme = .sky,
+        action: @escaping () -> Void = {}
+    ) {
         self.text = text
         self.variant = variant
         self.disabled = disabled
+        self.loading = loading
         self.theme = theme
         self.action = action
     }
 
+    private var inert: Bool { disabled || loading }
+
     public var body: some View {
-        Button(action: { if !disabled { action() } }) {
-            Text(text)
-                .font(.system(size: 15, weight: .bold))
-                .foregroundColor(textColor)
-                .frame(maxWidth: .infinity, minHeight: 46)
-                .background(face)
-                .clipShape(Capsule())
+        Button(action: { if !inert { action() } }) {
+            HStack(spacing: 8) {
+                if loading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: textColor))
+                        .scaleEffect(0.85)
+                }
+                Text(text)
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundColor(textColor)
+            }
+            .frame(maxWidth: .infinity, minHeight: 46)
+            .background(face)
+            .clipShape(Capsule())
         }
         .buttonStyle(.plain)
-        .opacity(disabled ? 0.45 : 1)
+        .opacity(inert ? 0.45 : 1)
+        .disabled(inert)
         .background(Capsule().fill(theme.borderDefault).offset(y: 5))
     }
 

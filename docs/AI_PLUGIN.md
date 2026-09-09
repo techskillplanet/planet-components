@@ -18,7 +18,7 @@
     └── integrate-*/ …
 ```
 
-当前插件版本与组件库对齐：**0.2.0**（见 `plugin-manifest.json`）。
+当前插件版本：**0.2.1**（见 `plugin-manifest.json`）。组件库目标版本 **0.2.1**；本地已含 Domain-7 等时，下次发版需升组件 semver。
 
 ## 公共安装（推荐 · 日常用法）
 

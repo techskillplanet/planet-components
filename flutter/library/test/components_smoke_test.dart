@@ -199,4 +199,45 @@ void main() {
     expect(find.text('加载中...'), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
+
+  testWidgets('TC-FLUTTER-DOMAIN-01 renders DatePicker and Domain-7 shells', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                TspDatePicker(value: '2026-08-26', onChanged: (_) {}),
+                TspChildSwitcher(
+                  items: const [
+                    TspChildSwitcherItem(id: '1', label: 'A'),
+                    TspChildSwitcherItem(id: '2', label: 'B'),
+                  ],
+                  selectedId: '1',
+                  onChanged: (_) {},
+                ),
+                TspScoreRuleGrid(
+                  rules: const [
+                    TspScoreRule(id: '1', name: '作业', value: 5, count: 0),
+                  ],
+                ),
+                TspRedeemCardGrid(
+                  items: const [TspRedeemItem(id: '1', name: '零食', cost: 10)],
+                  availablePoints: 20,
+                ),
+                const TspCalendarHeatmap(yearMonth: '2026-08', cells: []),
+                const TspPrintSheet(title: '默写', items: ['a']),
+                const TspBalanceHero(total: 41),
+                TspCheckInStreakCard(streakDays: 3, totalDays: 10, weekProgress: 0.5, onOpen: () {}),
+                const TspButton(text: 'Loading', loading: true),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+    expect(find.text('可用积分'), findsOneWidget);
+    expect(find.text('41'), findsOneWidget);
+    expect(find.text('连续打卡'), findsOneWidget);
+  });
 }

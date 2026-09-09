@@ -1,0 +1,25 @@
+<view
+  class="bc-calendar-heatmap"
+  style="--bc-border: {{theme.borderDefault}}; --bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textTertiary}}; --bc-success: {{theme.success}}; --bc-warning: {{theme.warning}}; --bc-brand: {{theme.brandPrimary}}; --bc-page-end: {{theme.pageEnd}};"
+>
+  <view wx:if="{{showLegend}}" class="bc-calendar-heatmap__legend">
+    <view
+      wx:for="{{levels}}"
+      wx:key="level"
+      class="bc-calendar-heatmap__legend-item bc-calendar-heatmap__cell--{{item.level}}"
+    >{{item.label}}</view>
+  </view>
+  <view class="bc-calendar-heatmap__weekdays">
+    <text wx:for="{{weekdays}}" wx:key="*this">{{item}}</text>
+  </view>
+  <view class="bc-calendar-heatmap__grid">
+    <view
+      wx:for="{{slots}}"
+      wx:key="key"
+      class="bc-calendar-heatmap__cell {{item.empty ? 'bc-calendar-heatmap__cell--empty' : 'bc-calendar-heatmap__cell--' + item.level}}"
+      data-date="{{item.date}}"
+      data-level="{{item.level}}"
+      bindtap="onSelectDay"
+    >{{item.empty ? '' : item.day}}</view>
+  </view>
+</view>

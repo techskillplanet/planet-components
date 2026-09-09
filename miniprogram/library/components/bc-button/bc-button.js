@@ -3,18 +3,20 @@ Component({
     text: { type: String, value: '' },
     variant: { type: String, value: 'default' },
     disabled: { type: Boolean, value: false },
+    loading: { type: Boolean, value: false },
     theme: { type: Object, value: {} },
   },
   data: { pressed: false },
   methods: {
     onTouchStart() {
-      if (!this.data.disabled) this.setData({ pressed: true });
+      if (this.data.disabled || this.data.loading) return;
+      this.setData({ pressed: true });
     },
     onTouchEnd() {
       this.setData({ pressed: false });
     },
     onTap() {
-      if (this.data.disabled) return;
+      if (this.data.disabled || this.data.loading) return;
       this.triggerEvent('tap');
     },
   },

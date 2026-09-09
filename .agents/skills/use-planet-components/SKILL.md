@@ -23,7 +23,24 @@ Non-engineer guide: https://github.com/techskillplanet/planet-components/blob/ma
 
 ## Version
 
-Current public release: **0.2.0**. Prefer `^0.2.0` / `~> 0.2.0` / `from: "0.2.0"`.
+Current public release: **0.2.1** (quality gate; publish after green checks). Prefer `^0.2.1` / `~> 0.2.1` / `from: "0.2.1"`.
+
+Local `main` may include **DatePicker + Domain-7** ahead of registries until the next publish bump — check monorepo / git if you need those APIs before they land on npm / Maven / pub.dev.
+
+## Public API surface
+
+≈ **35** `Tsp*` / `bc-*` / `Basic*View` controls (React Web inventory baseline), including:
+
+- **DatePicker**
+- **Domain-7**: ChildSwitcher, ScoreRuleGrid, RedeemCardGrid, CalendarHeatmap, PrintSheet, BalanceHero, CheckInStreakCard
+
+## Themes
+
+Built-in color keys: **sky** / **night** / **mint** / **sunrise** (platform key names differ; see each `integrate-*` skill).
+
+## Button loading
+
+`TspButton` / `BasicButton` / `bc-button` support **`loading`** across stacks (spinner + blocked taps). Platform event / prop names differ (`onTap` vs `bindtap` vs listeners).
 
 ## Route by stack
 
@@ -45,7 +62,7 @@ Current public release: **0.2.0**. Prefer `^0.2.0` / `~> 0.2.0` / `from: "0.2.0"
 ## Shared rules
 
 - Import / init theme once (Sky Planet tokens).
-- Prefer public APIs: `variant`, `disabled`, `selected`/`checked`, `text`/`title`/`message`.
+- Prefer public APIs: `variant`, `disabled`, `selected`/`checked`, `text`/`title`/`message`, `loading` (Button).
 - Samples in **this** repo must keep local `library` deps; apps use registry coords.
 
 ## Extending the libraries

@@ -1,0 +1,86 @@
+.bc-calendar-heatmap {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bc-calendar-heatmap__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-bottom: 20rpx;
+}
+
+.bc-calendar-heatmap__legend-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 56rpx;
+  padding: 0 20rpx;
+  border-radius: 999rpx;
+  border: 2rpx solid transparent;
+  font-size: 24rpx;
+  font-weight: 800;
+  box-sizing: border-box;
+}
+
+.bc-calendar-heatmap__weekdays {
+  display: flex;
+  margin-bottom: 8rpx;
+  color: var(--bc-muted);
+  font-size: 22rpx;
+  font-weight: 800;
+  text-align: center;
+}
+
+.bc-calendar-heatmap__weekdays > text {
+  width: 14.2857%;
+}
+
+.bc-calendar-heatmap__grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.bc-calendar-heatmap__cell {
+  width: 14.2857%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16rpx;
+  border: 2rpx solid var(--bc-border);
+  font-size: 24rpx;
+  font-weight: 800;
+  box-sizing: border-box;
+  margin-bottom: 8rpx;
+}
+
+.bc-calendar-heatmap__cell--empty {
+  visibility: hidden;
+  pointer-events: none;
+  border: none;
+  background: transparent;
+}
+
+.bc-calendar-heatmap__cell--full {
+  background: var(--bc-success);
+  color: #fff;
+  border-color: var(--bc-success);
+}
+
+.bc-calendar-heatmap__cell--partial {
+  background: var(--bc-warning);
+  color: var(--bc-text);
+  border-color: var(--bc-warning);
+}
+
+.bc-calendar-heatmap__cell--none {
+  background: var(--bc-page-end);
+  color: var(--bc-muted);
+}
+
+.bc-calendar-heatmap__cell--exempt {
+  background: var(--bc-brand);
+  color: #fff;
+  border-color: var(--bc-brand);
+}

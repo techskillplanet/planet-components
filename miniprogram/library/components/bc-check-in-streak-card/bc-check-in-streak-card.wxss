@@ -1,0 +1,29 @@
+.bc-check-in-streak-card {
+  width: 100%;
+  text-align: left;
+  border: 2rpx solid var(--bc-border);
+  border-radius: 36rpx;
+  background: var(--bc-surface);
+  padding: 28rpx;
+  box-sizing: border-box;
+}
+
+.bc-check-in-streak-card__title {
+  font-weight: 900;
+  color: var(--bc-text);
+  font-size: 32rpx;
+}
+
+.bc-check-in-streak-card__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx 32rpx;
+  margin: 16rpx 0 0;
+  color: var(--bc-secondary);
+  font-weight: 700;
+  font-size: 26rpx;
+}
+
+.bc-disabled {
+  opacity: 0.45;
+}

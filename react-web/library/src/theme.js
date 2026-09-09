@@ -137,7 +137,7 @@ export const starPlanetStyleProfiles = {
     pressedDropY: 2,
     hoverLiftY: -1,
     buttonFaceHeight: 46,
-    cardIslandShadow: '0 10px 28px rgba(49, 168, 255, 0.14)',
+    cardIslandShadow: '0 14px 34px rgba(49, 168, 255, 0.20), 0 2px 8px rgba(23, 58, 98, 0.06)',
   },
   island_flat: {
     buttonRaisedShadowEnabled: false,
@@ -157,6 +157,8 @@ export const builtInThemePresets = [
   { label: 'Star Planet · 扁平无影', colorKey: 'night', styleProfile: 'island_flat' },
   { label: 'Mint Planet · 岛屿阴影', colorKey: 'mint', styleProfile: 'island_raised' },
   { label: 'Mint Planet · 扁平无影', colorKey: 'mint', styleProfile: 'island_flat' },
+  { label: 'Sunrise Planet · 岛屿阴影', colorKey: 'sunrise', styleProfile: 'island_raised' },
+  { label: 'Sunrise Planet · 扁平无影', colorKey: 'sunrise', styleProfile: 'island_flat' },
 ];
 
 export function resolveTheme(colorKey = 'sky', styleProfile = 'island_raised') {
@@ -211,7 +213,7 @@ export function themeVars(theme = starPlanetTheme) {
     '--bc-pressed-drop-y': `${theme.pressedDropY ?? 2}px`,
     '--bc-hover-lift-y': `${theme.hoverLiftY ?? -1}px`,
     '--bc-button-raised-shadow-display': theme.buttonRaisedShadowEnabled === false ? 'none' : 'block',
-    '--bc-card-island-shadow': theme.cardIslandShadow ?? (theme.buttonRaisedShadowEnabled === false ? 'none' : '0 10px 28px rgba(49, 168, 255, 0.14)'),
+    '--bc-card-island-shadow': theme.cardIslandShadow ?? (theme.buttonRaisedShadowEnabled === false ? 'none' : '0 14px 34px rgba(49, 168, 255, 0.20), 0 2px 8px rgba(23, 58, 98, 0.06)'),
     '--bc-space-1': '4px',
     '--bc-space-2': '8px',
     '--bc-space-3': '12px',

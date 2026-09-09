@@ -10,7 +10,7 @@ description: >-
 ## SPM
 
 ```swift
-.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.0")
+.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.1")
 ```
 
 Add product **`PlanetComponents`** to the app target.
@@ -24,15 +24,21 @@ TspButton("Get Started", variant: .primary) { }
 ## CocoaPods
 
 ```ruby
-pod 'PlanetComponents', '~> 0.2.0'
+pod 'PlanetComponents', '~> 0.2.1'
 ```
 
 ```bash
 pod install
 ```
 
+## Coverage
+
+≈ **35** `Tsp*` SwiftUI controls. Includes **DatePicker** (`TspDatePicker`) and **Domain-7**: `TspChildSwitcher`, `TspScoreRuleGrid`, `TspRedeemCardGrid`, `TspCalendarHeatmap`, `TspPrintSheet`, `TspBalanceHero`, `TspCheckInStreakCard`.
+
 ## Notes
 
-- Same git tag drives SPM + CocoaPods.
+- Themes: `StarPlanetTheme.sky|night|mint|sunrise`.
+- `TspButton(..., loading: true)` for loading state.
+- Same git tag drives SPM + CocoaPods. Library version **0.2.1** (publish after `./tools/headless-check.sh` is green).
 - Pod page: https://cocoapods.org/pods/PlanetComponents
 - Monorepo sources: `ios-swiftui/library` (root `Package.swift` / `PlanetComponents.podspec`).

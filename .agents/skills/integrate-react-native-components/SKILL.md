@@ -13,7 +13,7 @@ description: >-
 npm install @techskillplanet/planet-components-react-native
 ```
 
-Peers: `react` / `react-native` per package.json. Version: **0.2.0**.
+Peers: `react` / `react-native` per package.json. Version: **0.2.1**.
 
 ## Usage
 
@@ -29,8 +29,14 @@ export function Screen() {
 }
 ```
 
+## Coverage
+
+≈ **35** `Tsp*` controls. Includes **DatePicker** (`TspDatePicker`) and **Domain-7**: `TspChildSwitcher`, `TspScoreRuleGrid`, `TspRedeemCardGrid`, `TspCalendarHeatmap`, `TspPrintSheet`, `TspBalanceHero`, `TspCheckInStreakCard`.
+
 ## Notes
 
-- Prefer `resolveTheme(palette, profile)` over hard-coded colors.
+- Prefer `resolveTheme(palette, profile)` over hard-coded colors. Palettes: `sky` / `night` / `mint` / `sunrise` (e.g. `resolveTheme('sunrise', 'island_raised')`).
+- `TspButton` supports `loading`.
 - No separate CSS import (StyleSheet inside the library).
+- Library version **0.2.1** (publish after `./tools/headless-check.sh` is green).
 - Monorepo library: `react-native/library`.

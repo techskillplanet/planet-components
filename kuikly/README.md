@@ -12,9 +12,10 @@ Public UI controls live under `library/shared/.../phonics/controls/Tsp*.kt` (one
 
 ## Maven Central
 
-坐标：`io.github.techskillplanet:planet-components-kuikly:0.2.0`
+**0.2.1**（质量门禁通过后发布）。 坐标：`io.github.techskillplanet:planet-components-kuikly:0.2.1`  
+包页：https://central.sonatype.com/artifact/io.github.techskillplanet/planet-components-kuikly
 
-发布流程对齐 Android（同一 Central Portal / GPG 凭证）：
+维护者发版对齐 Android（同一 Central Portal / GPG 凭证）：
 
 ```bash
 kuikly/scripts/publish-maven-central.sh --dry-run

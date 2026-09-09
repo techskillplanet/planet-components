@@ -68,9 +68,9 @@ Run platform checks for changed stacks. Current expected commands are documented
 
 - **Public install (same as everyday skills)**: `npx skills add techskillplanet/planet-components`
 - **Non-engineers / AI page building**: `.agents/skills/ai-build-with-planet/SKILL.md` + `docs/AI_FOR_EVERYONE.md`
-- Catalog: [`.agents/README.md`](.agents/README.md) · manifest [`.agents/plugin-manifest.json`](.agents/plugin-manifest.json)
+- Catalog: [`.agents/README.md`](.agents/README.md) · manifest [`.agents/plugin-manifest.json`](.agents/plugin-manifest.json) (skills **0.2.1**)
 - Consuming published libraries: `.agents/skills/use-planet-components/SKILL.md`
 - Extending this repo: `.agents/skills/build-planet-components/SKILL.md`
-- Publishing registries: `.agents/skills/publish-planet-components/SKILL.md`
+- Publishing registries: `.agents/skills/publish-planet-components/SKILL.md` · gate `./tools/headless-check.sh`
 - Docs / local symlink: [`docs/AI_PLUGIN.md`](docs/AI_PLUGIN.md) · `./tools/install-ai-plugin.sh`
 

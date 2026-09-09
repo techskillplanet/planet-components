@@ -1,0 +1,12 @@
+<view
+  class="bc-check-in-streak-card {{disabled ? 'bc-disabled' : ''}}"
+  style="--bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-text: {{theme.textPrimary}}; --bc-secondary: {{theme.textSecondary}};"
+  bindtap="onOpen"
+>
+  <view class="bc-check-in-streak-card__title">连续打卡</view>
+  <view class="bc-check-in-streak-card__stats">
+    <text>连续 {{streakDays}} 天</text>
+    <text>累计 {{totalDays}} 天</text>
+    <text>本周 {{pct}}%</text>
+  </view>
+</view>

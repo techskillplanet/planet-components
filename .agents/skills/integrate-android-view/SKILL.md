@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation "io.github.techskillplanet:planet-components-android:0.2.0"
+    implementation "io.github.techskillplanet:planet-components-android:0.2.1"
 }
 ```
 
@@ -24,11 +24,18 @@ dependencies {
 
 ```java
 BasicThemeManager.init(context, "sky_planet_day", "island_raised");
+// Color keys: sky_planet_day | star_planet_night | mint_planet_day | sunrise_planet_day
 // then inflate / construct library widgets and call refreshTheme() after theme switch
 ```
+
+## Coverage
+
+≈ **35** `Basic*View` controls. Includes **DatePicker** (`BasicDatePickerView`) and **Domain-7**: `BasicChildSwitcherView`, `BasicScoreRuleGridView`, `BasicRedeemCardGridView`, `BasicCalendarHeatmapView`, `BasicPrintSheetView`, `BasicBalanceHeroView`, `BasicCheckInStreakCardView`.
 
 ## Notes
 
 - Java + traditional View only in the library; do not pull Compose for consumption.
+- `BasicButton.setLoading(boolean)` for loading state.
+- Library version **0.2.1** (publish after `./tools/headless-check.sh` is green).
 - Central: https://central.sonatype.com/artifact/io.github.techskillplanet/planet-components-android
 - To **extend** the library source, use [build-android-view-ui](../build-android-view-ui/SKILL.md).

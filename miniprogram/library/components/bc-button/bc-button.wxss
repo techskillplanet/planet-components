@@ -29,6 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 12rpx;
   font-size: 30rpx;
   font-weight: 700;
   line-height: 1.2;
@@ -54,10 +55,44 @@
   color: #fff;
 }
 
+.bc-btn--text .bc-btn__face,
+.bc-btn--link .bc-btn__face {
+  background: transparent;
+  color: var(--bc-brand);
+  border: none;
+}
+
 .bc-btn.is-pressed .bc-btn__face {
   transform: translateY(8rpx);
 }
 
 .bc-btn.is-disabled {
   opacity: 0.5;
+}
+
+.bc-btn.is-loading {
+  pointer-events: none;
+}
+
+.bc-btn__spinner {
+  width: 28rpx;
+  height: 28rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.35);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: bc-btn-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+.bc-btn--default .bc-btn__spinner,
+.bc-btn--text .bc-btn__spinner,
+.bc-btn--link .bc-btn__spinner {
+  border-color: rgba(23, 58, 98, 0.25);
+  border-top-color: currentColor;
+}
+
+@keyframes bc-btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

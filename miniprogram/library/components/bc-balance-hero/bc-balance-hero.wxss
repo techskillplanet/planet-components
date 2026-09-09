@@ -1,0 +1,47 @@
+.bc-balance-hero {
+  border: 2rpx solid var(--bc-border);
+  border-radius: 40rpx;
+  background: var(--bc-surface);
+  padding: 32rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bc-balance-hero__label {
+  color: var(--bc-secondary);
+  font-weight: 700;
+}
+
+.bc-balance-hero__total {
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+  margin-top: 8rpx;
+  font-size: 72rpx;
+  font-weight: 900;
+  color: var(--bc-text);
+}
+
+.bc-balance-hero__suffix {
+  font-size: 32rpx;
+  color: var(--bc-secondary);
+}
+
+.bc-balance-hero__breakdown {
+  margin-top: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.bc-balance-hero__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16rpx;
+  color: var(--bc-secondary);
+  font-size: 26rpx;
+}
+
+.bc-balance-hero--compact .bc-balance-hero__total {
+  font-size: 56rpx;
+}

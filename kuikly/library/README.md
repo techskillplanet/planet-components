@@ -9,8 +9,9 @@ TechSkillPlanet 基础组件库（Planet Components）的 Kuikly / Kotlin Multip
 | 类型 | 地址 |
 | --- | --- |
 | 源码 | https://github.com/techskillplanet/planet-components/tree/main/kuikly/library/shared |
-| Maven 坐标（根 / metadata） | `io.github.techskillplanet:planet-components-kuikly:0.2.0` |
-| Maven Central（发布后） | https://central.sonatype.com/artifact/io.github.techskillplanet/planet-components-kuikly |
+| Maven 坐标（根 / metadata） | `io.github.techskillplanet:planet-components-kuikly:0.2.1` |
+| Maven Central | https://central.sonatype.com/artifact/io.github.techskillplanet/planet-components-kuikly |
+| Maven 仓库目录 | https://repo1.maven.org/maven2/io/github/techskillplanet/planet-components-kuikly/ |
 
 KMP 还会发布平台产物（`planet-components-kuikly-android`、`…-iosarm64`、`…-js` 等），由 Gradle metadata 自动选择。
 
@@ -24,7 +25,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.techskillplanet:planet-components-kuikly:0.2.0")
+    implementation("io.github.techskillplanet:planet-components-kuikly:0.2.1")
 }
 ```
 

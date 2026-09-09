@@ -22,7 +22,7 @@
     {
       "name": "Button",
       "variants": ["primary", "default", "danger", "text", "link"],
-      "props": ["text", "variant", "disabled", "fullWidth", "onTap"]
+      "props": ["text", "variant", "disabled", "fullWidth", "loading", "onTap"]
     },
     {
       "name": "Card",

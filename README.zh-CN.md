@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <img alt="version" src="https://img.shields.io/badge/version-0.2.0-31A8FF?style=flat-square" />
+  <img alt="version" src="https://img.shields.io/badge/version-0.2.1-31A8FF?style=flat-square" />
   <img alt="license" src="https://img.shields.io/badge/license-MIT-2BB8E6?style=flat-square" />
   <img alt="platforms" src="https://img.shields.io/badge/platforms-8_stacks-1479D6?style=flat-square" />
   <img alt="tokens" src="https://img.shields.io/badge/design-token--driven-8BD5FF?style=flat-square" />
@@ -69,7 +69,7 @@ repositories {
 }
 
 dependencies {
-    implementation "io.github.techskillplanet:planet-components-android:0.2.0"
+    implementation "io.github.techskillplanet:planet-components-android:0.2.1"
 }
 ```
 
@@ -83,7 +83,7 @@ BasicThemeManager.init(context, "sky_planet_day", "island_raised");
 ### 2. iOS SwiftUI · SPM
 
 ```swift
-.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.0")
+.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.1")
 ```
 
 Product：**`PlanetComponents`**
@@ -99,7 +99,7 @@ TspButton("Get Started", variant: .primary) { }
 ### 3. iOS SwiftUI · CocoaPods
 
 ```ruby
-pod 'PlanetComponents', '~> 0.2.0'
+pod 'PlanetComponents', '~> 0.2.1'
 ```
 
 - 包页：https://cocoapods.org/pods/PlanetComponents
@@ -152,7 +152,7 @@ const theme = resolveTheme('sky', 'island_raised');
 
 ```yaml
 dependencies:
-  tech_skill_planet_components: ^0.2.0
+  tech_skill_planet_components: ^0.2.1
 ```
 
 ```dart
@@ -186,7 +186,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.techskillplanet:planet-components-kuikly:0.2.0")
+    implementation("io.github.techskillplanet:planet-components-kuikly:0.2.1")
 }
 ```
 
@@ -247,6 +247,7 @@ dependencies {
 
 ```bash
 node tools/check-structure.cjs
+./tools/headless-check.sh   # 全栈无头：单测 / pack:dry / analyze / assemble
 ```
 
 ```bash

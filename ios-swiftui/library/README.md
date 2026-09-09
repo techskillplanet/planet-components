@@ -13,7 +13,7 @@ Version: **0.2.0**（SPM git tag + CocoaPods Trunk 均已发布）。
 ### Swift Package Manager
 
 ```swift
-.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.0")
+.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.1")
 ```
 
 然后把 product `PlanetComponents` 加到 target。
@@ -21,7 +21,7 @@ Version: **0.2.0**（SPM git tag + CocoaPods Trunk 均已发布）。
 ### CocoaPods
 
 ```ruby
-pod 'PlanetComponents', '~> 0.2.0'
+pod 'PlanetComponents', '~> 0.2.1'
 ```
 
 ## Usage
@@ -38,4 +38,5 @@ TspButton("Get Started", variant: .primary) {
 
 - One component per file under `Sources/PlanetComponents/`
 - 本地 `Package.swift` 只声明产品；仓库根目录 `Package.swift` / `PlanetComponents.podspec` 是对外发布入口
-- Theme: `StarPlanetTheme` (`sky` / `night` / `mint`)
+- Theme: `StarPlanetTheme` (`sky` / `night` / `mint` / `sunrise`)
+- Domain controls: `TspDatePicker`, `TspChildSwitcher`, `TspScoreRuleGrid`, `TspRedeemCardGrid`, `TspCalendarHeatmap`, `TspPrintSheet`, `TspBalanceHero`, `TspCheckInStreakCard`

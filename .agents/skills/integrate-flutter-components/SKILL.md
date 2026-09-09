@@ -11,7 +11,7 @@ description: >-
 
 ```yaml
 dependencies:
-  tech_skill_planet_components: ^0.2.0
+  tech_skill_planet_components: ^0.2.1
 ```
 
 ```bash
@@ -31,8 +31,15 @@ TspButton(
 );
 ```
 
+## Coverage
+
+≈ **35** `Tsp*` widgets. Includes **DatePicker** (`TspDatePicker`) and **Domain-7**: `TspChildSwitcher`, `TspScoreRuleGrid`, `TspRedeemCardGrid`, `TspCalendarHeatmap`, `TspPrintSheet`, `TspBalanceHero`, `TspCheckInStreakCard`.
+
 ## Notes
 
 - Package: https://pub.dev/packages/tech_skill_planet_components
+- Themes: `StarPlanetTheme.sky|night|mint|sunrise` (or `StarPlanetTheme.fromKey('sunrise')`).
+- `TspButton` supports `loading`.
 - Keep MaterialApp / theme separate; pass `StarPlanetTheme` into Tsp* widgets.
+- Library version **0.2.1** (publish after `./tools/headless-check.sh` is green).
 - Monorepo library: `flutter/library` (samples must use path dep, not hosted).

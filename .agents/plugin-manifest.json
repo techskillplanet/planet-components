@@ -1,8 +1,8 @@
 {
   "name": "planet-components-agent",
   "displayName": "TechSkillPlanet Planet Components Agent Skills",
-  "version": "0.2.0",
-  "description": "Built-in Agent Skills for TechSkillPlanet UI — including non-engineer AI page building on React Web.",
+  "version": "0.2.1",
+  "description": "Built-in Agent Skills for TechSkillPlanet UI — consume/publish/build across 8 stacks; Domain-7 + DatePicker + sunrise; headless-check publish gate.",
   "homepage": "https://github.com/techskillplanet/planet-components",
   "skillsDir": "skills",
   "skills": [

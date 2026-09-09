@@ -1,0 +1,68 @@
+.bc-child-switcher {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.bc-child-switcher__row {
+  display: inline-flex;
+  gap: 16rpx;
+  padding: 8rpx 0;
+  align-items: center;
+}
+
+.bc-child-switcher--tabs .bc-child-switcher__row {
+  display: flex;
+  width: 100%;
+}
+
+.bc-child-switcher__chip,
+.bc-child-switcher__tab {
+  min-height: 88rpx;
+  padding: 0 28rpx;
+  border-radius: 999rpx;
+  border: 2rpx solid var(--bc-border);
+  background: var(--bc-surface);
+  color: var(--bc-text);
+  font-weight: 800;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  box-sizing: border-box;
+}
+
+.bc-child-switcher--tabs .bc-child-switcher__tab {
+  border-radius: 28rpx;
+  flex: 1;
+}
+
+.bc-child-switcher__avatar {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 16rpx;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.bc-child-switcher__emoji {
+  font-size: 32rpx;
+}
+
+.bc-child-switcher__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+}
+
+.bc-child-switcher__chip.bc-selected,
+.bc-child-switcher__tab.bc-selected {
+  background: var(--bc-brand);
+  border-color: var(--bc-brand);
+  color: #fff;
+}
+
+.bc-disabled {
+  opacity: 0.45;
+}

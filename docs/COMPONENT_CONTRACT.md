@@ -27,7 +27,7 @@ Core semantic colors:
 
 | Component | Required variants | Core props |
 | --- | --- | --- |
-| Button | `primary`, `default`, `danger`, `text`, `link` | `text`, `variant`, `disabled`, `fullWidth`, `onTap` |
+| Button | `primary`, `default`, `danger`, `text`, `link` | `text`, `variant`, `disabled`, `fullWidth`, `loading`, `onTap` |
 | Card | `default`, `subtle`, `selected`, `disabled` | `variant`, `selected`, `disabled`, `content` |
 | Alert | `info`, `success`, `warning`, `error` | `title`, `message`, `variant` |
 | Badge | `default`, `primary`, `success`, `warning`, `danger` | `text`, `variant`, `disabled` |

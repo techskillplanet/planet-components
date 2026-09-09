@@ -4,9 +4,12 @@ import androidx.compose.runtime.Composable
 import com.tencent.kuikly.compose.foundation.background
 import com.tencent.kuikly.compose.foundation.border
 import com.tencent.kuikly.compose.foundation.clickable
+import com.tencent.kuikly.compose.foundation.layout.Arrangement
 import com.tencent.kuikly.compose.foundation.layout.Box
+import com.tencent.kuikly.compose.foundation.layout.Row
 import com.tencent.kuikly.compose.foundation.layout.fillMaxWidth
 import com.tencent.kuikly.compose.foundation.layout.height
+import com.tencent.kuikly.compose.foundation.layout.size
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
 import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
@@ -26,9 +29,11 @@ fun TspButton(
     modifier: Modifier = Modifier,
     variant: TspButtonVariant = TspButtonVariant.Default,
     disabled: Boolean = false,
+    loading: Boolean = false,
     fullWidth: Boolean = true,
     onClick: () -> Unit,
 ) {
+    val inert = disabled || loading
     val flat = variant == TspButtonVariant.Text || variant == TspButtonVariant.Link
     val faceColor = when {
         disabled -> Color(theme.surfaceMuted)
@@ -64,16 +69,27 @@ fun TspButton(
                 .then(
                     if (flat) Modifier else Modifier.border(1.dp, Color(theme.borderDefault), RoundedCornerShape(999.dp)),
                 )
-                .clickable(enabled = !disabled) { onClick() },
+                .clickable(enabled = !inert) { onClick() },
             contentAlignment = Alignment.Center,
         ) {
-            Text(
-                text = text,
-                color = textColor,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth(),
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                if (loading) {
+                    Box(
+                        modifier = Modifier
+                            .size(14.dp)
+                            .border(2.dp, textColor, RoundedCornerShape(999.dp)),
+                    )
+                }
+                Text(
+                    text = text,
+                    color = textColor,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                )
+            }
         }
     }
 }

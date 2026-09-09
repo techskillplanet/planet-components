@@ -1,0 +1,21 @@
+<view
+  class="bc-score-rule-grid {{colClass}}"
+  style="--bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textTertiary}}; --bc-success: {{theme.success}}; --bc-danger: {{theme.danger}}; --bc-selected: {{theme.selectedFill}}; --bc-brand-dark: {{theme.brandDark}};"
+>
+  <view wx:for="{{displayRules}}" wx:key="id" class="bc-score-rule-grid__card">
+    <view class="bc-score-rule-grid__head">
+      <text wx:if="{{item.icon}}">{{item.icon}}</text>
+      <text class="bc-score-rule-grid__name">{{item.name}}</text>
+    </view>
+    <view class="bc-score-rule-grid__value {{item.valuePos ? 'bc-score-rule-grid__value--pos' : 'bc-score-rule-grid__value--neg'}}">
+      {{item.valueText}}
+    </view>
+    <view class="bc-score-rule-grid__meta">{{item.meta}}</view>
+    <view
+      wx:if="{{!readOnly}}"
+      class="bc-score-rule-grid__add {{item.atLimit || disabled ? 'is-disabled' : ''}}"
+      data-index="{{index}}"
+      bindtap="onIncrement"
+    >+1</view>
+  </view>
+</view>

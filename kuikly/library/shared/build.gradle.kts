@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "io.github.techskillplanet"
-version = "0.2.0"
+version = "0.2.1"
 
 description = "TechSkillPlanet Planet Components Kuikly shared UI library."
 

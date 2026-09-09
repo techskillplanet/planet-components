@@ -10,7 +10,7 @@ MODE="${1:-path}"
 LIB="$ROOT/flutter/library"
 SAMPLE="$ROOT/flutter/samples"
 PKG_NAME="tech_skill_planet_components"
-PKG_VERSION="0.1.0"
+PKG_VERSION="0.2.1"
 
 echo "==> Flutter verify mode=$MODE"
 

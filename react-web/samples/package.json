@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npx --yes esbuild preview-entry.js --bundle --format=iife --outfile=dist/preview.js --platform=browser --alias:react=./node_modules/react/index.js --alias:react-dom=./node_modules/react-dom/index.js --alias:react-dom/client=./node_modules/react-dom/client.js && cp node_modules/@techskillplanet/planet-components-react/src/styles.css dist/styles.css",
+    "build": "npx --yes esbuild@0.25.0 preview-entry.js --bundle --format=iife --outfile=dist/preview.js --platform=browser --alias:react=./node_modules/react/index.js --alias:react-dom=./node_modules/react-dom/index.js --alias:react-dom/client=./node_modules/react-dom/client.js && mkdir -p dist && cp node_modules/@techskillplanet/planet-components-react/src/styles.css dist/styles.css",
     "preview": "npm run build && python3 -m http.server 5173 --bind 127.0.0.1"
   },
   "dependencies": {

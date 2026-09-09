@@ -1,0 +1,51 @@
+.bc-print-sheet {
+  border: 2rpx solid var(--bc-border);
+  border-radius: 32rpx;
+  padding: 24rpx;
+  background: #fff;
+  color: #173a62;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.bc-print-sheet__title {
+  text-align: center;
+  margin: 0 0 24rpx;
+  font-size: 32rpx;
+  font-weight: 900;
+}
+
+.bc-print-sheet__grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.bc-print-sheet__cell {
+  border: 2rpx solid #333;
+  min-height: 104rpx;
+  padding: 8rpx;
+  box-sizing: border-box;
+}
+
+.bc-print-sheet__prompt {
+  font-size: 22rpx;
+  text-align: center;
+  min-height: 32rpx;
+}
+
+.bc-print-sheet__blank {
+  min-height: 44rpx;
+  border-top: 2rpx dashed #999;
+  margin-top: 12rpx;
+}
+
+.bc-print-sheet__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16rpx;
+  margin-top: 24rpx;
+  font-size: 24rpx;
+}

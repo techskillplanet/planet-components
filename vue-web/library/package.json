@@ -1,6 +1,6 @@
 {
   "name": "@techskillplanet/planet-components-vue",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "TechSkillPlanet themed Vue basic controls library.",
   "type": "module",
   "main": "src/index.js",

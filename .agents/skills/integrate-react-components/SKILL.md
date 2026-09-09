@@ -115,44 +115,22 @@ const customTheme = {
 <TspButton text="Custom" variant="primary" theme={customTheme} />
 ```
 
-## Available Components (25 total)
+## Coverage
 
-### Actions
-- `TspButton` — Primary action button (primary/default/danger/text variants)
-- `TspChip` — Selectable filter tag
-- `TspIconButton` — Icon-only button
-- `TspTextLink` — Text link button
+Inventory baseline ≈ **35** `Tsp*` controls. Themes: `starPlanetThemes.sky|night|mint|sunrise`. `TspButton` supports `loading`.
 
-### Surfaces
-- `TspCard` — Content container card
-- `TspListItem` — List row with title/message/trailing
-- `TspEmpty` — Empty state placeholder
+### DatePicker + Domain-7
+- `TspDatePicker`
+- `TspChildSwitcher`, `TspScoreRuleGrid`, `TspRedeemCardGrid`, `TspCalendarHeatmap`, `TspPrintSheet`, `TspBalanceHero`, `TspCheckInStreakCard`
 
-### Feedback
-- `TspAlert` — Inline alert (info/success/warning/error)
-- `TspBadge` — Status badge
-- `TspProgress` — Progress bar
-- `TspNotification` — Notification card
-- `TspToast` — Temporary toast
-- `TspModal` — Confirmation dialog
-
-### Inputs
-- `TspInput` — Text input field
-- `TspSelect` — Dropdown selector
-- `TspOptionSheet` — Bottom sheet picker
-- `TspSwitch` — Toggle switch
-- `TspPinInput` — PIN/verification code input
-
-### Navigation
-- `TspTopBar` — Top navigation bar
-- `TspBottomTab` — Bottom tab bar
-- `TspTabs` — Segmented tabs
-- `TspStickyFooter` — Fixed bottom area
-
-### Data
-- `TspAmount` — Monetary display
-- `TspKeyValueLabel` — Key-value pair
-- `TspStepper` — Step progress indicator
+### Core catalog
+- Actions: `TspButton` (`loading`), `TspChip`, `TspIconButton`, `TspTextLink`
+- Surfaces: `TspCard`, `TspListItem`, `TspEmpty`
+- Feedback: `TspAlert`, `TspBadge`, `TspProgress`, `TspNotification`, `TspToast`, `TspModal`, `TspLoadingDialog`
+- Inputs: `TspInput`, `TspSelect`, `TspOptionSheet`, `TspSwitch`, `TspPinInput`
+- Navigation: `TspTopBar`, `TspBottomTab`, `TspTabs`, `TspStickyFooter`
+- Data: `TspAmount`, `TspKeyValueLabel`, `TspStepper`
+- Also: `TspRefreshLayout`
 
 ## Common Patterns
 

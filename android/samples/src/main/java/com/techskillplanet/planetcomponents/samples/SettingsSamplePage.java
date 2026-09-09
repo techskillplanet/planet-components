@@ -26,6 +26,8 @@ public final class SettingsSamplePage {
             new ThemePreset("sample/theme/star_flat", "star_planet_night", "island_flat"),
             new ThemePreset("sample/theme/mint_raised", "mint_planet_day", "island_raised"),
             new ThemePreset("sample/theme/mint_flat", "mint_planet_day", "island_flat"),
+            new ThemePreset("sample/theme/sunrise_raised", "sunrise_planet_day", "island_raised"),
+            new ThemePreset("sample/theme/sunrise_flat", "sunrise_planet_day", "island_flat"),
     };
 
     private SettingsSamplePage() {

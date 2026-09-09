@@ -6,7 +6,7 @@ TechSkillPlanet（技趣星球）Flutter 基础控件库，Sky Planet 设计语�
 
 ```yaml
 dependencies:
-  tech_skill_planet_components: ^0.2.0
+  tech_skill_planet_components: ^0.2.1
 ```
 
 ```bash
@@ -45,6 +45,7 @@ class DemoPage extends StatelessWidget {
 | `StarPlanetTheme.sky` | Default blue-sky planet (light) |
 | `StarPlanetTheme.night` | Dark deep-blue |
 | `StarPlanetTheme.mint` | Fresh mint/green |
+| `StarPlanetTheme.sunrise` | Warm sunrise orange |
 | `StarPlanetTheme.sunrise` | Warm orange/amber |
 
 Pass `theme:` on each component, or wrap demos with the theme you need.

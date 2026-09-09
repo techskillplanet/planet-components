@@ -1,0 +1,19 @@
+<scroll-view
+  scroll-x
+  class="bc-child-switcher {{variant === 'tabs' ? 'bc-child-switcher--tabs' : ''}}"
+  style="--bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-text: {{theme.textSecondary}}; --bc-brand: {{theme.brandPrimary}};"
+>
+  <view class="bc-child-switcher__row">
+    <view
+      wx:for="{{displayItems}}"
+      wx:key="id"
+      class="{{variant === 'tabs' ? 'bc-child-switcher__tab' : 'bc-child-switcher__chip'}} {{item.selected ? 'bc-selected' : ''}} {{disabled ? 'bc-disabled' : ''}}"
+      data-id="{{item.id}}"
+      bindtap="onSelect"
+    >
+      <image wx:if="{{item.iconSrc}}" class="bc-child-switcher__avatar" src="{{item.iconSrc}}" mode="aspectFill" />
+      <text wx:elif="{{item.emoji}}" class="bc-child-switcher__emoji">{{item.emoji}}</text>
+      <text class="bc-child-switcher__label">{{item.label}}</text>
+    </view>
+  </view>
+</scroll-view>

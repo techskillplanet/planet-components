@@ -1,14 +1,21 @@
 package com.techskillplanet.planetcomponents.widget;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.techskillplanet.planetcomponents.R;
@@ -21,7 +28,7 @@ import com.techskillplanet.planetcomponents.theme.BasicThemeManager;
  * 岛屿风格按钮。
  *
  * <p>这个组件不继承 Button，是因为需要做 animal-island-ui 风格的“上层按钮面 +
- * 下层托起阴影”。FrameLayout 更适合管理两个层级：shadowLayer 和 labelView。
+ * 下层托起阴影”。FrameLayout 更适合管理两个层级：shadowLayer 和 faceLayer。
  * 是否显示 shadowLayer 由 style_token 的
  * {@code islandStyle.rules.buttonRaisedShadowEnabled} 控制，样式配置
  * {@code themes.island_raised / island_flat} 会覆盖该开关；阴影颜色仍读取
@@ -37,11 +44,14 @@ public class BasicButton extends FrameLayout {
 
     /** 底部托起阴影层，模拟轻游戏感的 3D 按钮底座。 */
     private final View shadowLayer;
-    /** 按钮可见内容层，负责承载文字和按压位移。 */
+    /** 按钮可见内容层，负责承载 spinner、文字和按压位移。 */
+    private final LinearLayout faceLayer;
+    private final ButtonSpinnerView spinnerView;
     private final TextView labelView;
 
     private String variant = VARIANT_DEFAULT;
     private boolean basicDisabled;
+    private boolean loading;
 
     public BasicButton(Context context) {
         this(context, null);
@@ -54,30 +64,49 @@ public class BasicButton extends FrameLayout {
     public BasicButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         shadowLayer = new View(context);
+        faceLayer = new LinearLayout(context);
+        faceLayer.setOrientation(LinearLayout.HORIZONTAL);
+        faceLayer.setGravity(Gravity.CENTER);
+        spinnerView = new ButtonSpinnerView(context);
         labelView = new TextView(context);
         labelView.setGravity(Gravity.CENTER);
         labelView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        int spinnerSize = Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics()));
+        LinearLayout.LayoutParams spinnerLp = new LinearLayout.LayoutParams(spinnerSize, spinnerSize);
+        spinnerLp.rightMargin = Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
+        faceLayer.addView(spinnerView, spinnerLp);
+        faceLayer.addView(labelView, new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        ));
+        spinnerView.setVisibility(GONE);
         addView(shadowLayer);
-        addView(labelView);
+        addView(faceLayer);
         readAttrs(attrs);
         refreshTheme();
         setClickable(true);
         setFocusable(true);
         setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+        disableChildTouch(faceLayer);
         disableChildTouch(labelView);
+        disableChildTouch(spinnerView);
         disableChildTouch(shadowLayer);
     }
 
     @Override
     public void setOnClickListener(OnClickListener listener) {
         super.setOnClickListener(listener);
+        disableChildTouch(faceLayer);
         disableChildTouch(labelView);
+        disableChildTouch(spinnerView);
     }
 
-  /**
-   * 子 View 若变成 clickable，会抢走触摸，导致没有按压动画、点击无效。
-   * 所有触摸统一由 BasicButton 自己处理。
-   */
+    /**
+     * 子 View 若变成 clickable，会抢走触摸，导致没有按压动画、点击无效。
+     * 所有触摸统一由 BasicButton 自己处理。
+     */
     private static void disableChildTouch(View child) {
         child.setClickable(false);
         child.setLongClickable(false);
@@ -89,7 +118,7 @@ public class BasicButton extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        if (isEnabled() && isClickable()) {
+        if (isEnabled() && isClickable() && !loading) {
             return true;
         }
         return super.onInterceptTouchEvent(event);
@@ -114,8 +143,28 @@ public class BasicButton extends FrameLayout {
     /** 设置禁用态，并同步刷新颜色和交互。 */
     public void setBasicDisabled(boolean disabled) {
         basicDisabled = disabled;
-        setEnabled(!disabled);
+        applyInteractiveState();
         refreshTheme();
+    }
+
+    /** 设置 loading 态：显示 spinner 并阻止点击。 */
+    public void setLoading(boolean loading) {
+        this.loading = loading;
+        spinnerView.setLoading(loading);
+        spinnerView.setVisibility(loading ? VISIBLE : GONE);
+        applyInteractiveState();
+        refreshTheme();
+    }
+
+    /** 是否处于 loading。 */
+    public boolean isLoading() {
+        return loading;
+    }
+
+    private void applyInteractiveState() {
+        boolean inert = basicDisabled || loading;
+        setEnabled(!inert);
+        setClickable(!inert);
     }
 
     /**
@@ -134,7 +183,7 @@ public class BasicButton extends FrameLayout {
             int gradientStart = colors.brandPrimary;
             int gradientEnd = colors.brandPrimaryHover;
             text = colors.textInverse;
-            labelView.setBackground(BasicDrawableFactory.roundedGradientFill(
+            faceLayer.setBackground(BasicDrawableFactory.roundedGradientFill(
                     gradientStart,
                     gradientEnd,
                     style.radiusPill
@@ -142,6 +191,7 @@ public class BasicButton extends FrameLayout {
             shadowLayer.setVisibility(GONE);
             labelView.setTextColor(text);
             labelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
+            spinnerView.setSpinnerColor(text);
             setAlpha(basicDisabled || !isEnabled() ? 0.45f : 1f);
             requestLayout();
             return;
@@ -163,7 +213,7 @@ public class BasicButton extends FrameLayout {
             text = colors.buttonDefaultText;
             stroke = colors.borderControl;
         }
-        if ((basicDisabled || !isEnabled()) && !flatVariant) {
+        if ((basicDisabled || !isEnabled()) && !flatVariant && !loading) {
             fill = colors.backgroundSurfaceDisabled;
             text = colors.textDisabled;
             stroke = colors.borderLight;
@@ -171,7 +221,8 @@ public class BasicButton extends FrameLayout {
 
         labelView.setTextColor(text);
         labelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
-        labelView.setBackground(BasicDrawableFactory.roundedFillStroke(
+        spinnerView.setSpinnerColor(text);
+        faceLayer.setBackground(BasicDrawableFactory.roundedFillStroke(
                 fill,
                 stroke,
                 flatVariant ? 0f : style.borderDefault,
@@ -185,28 +236,28 @@ public class BasicButton extends FrameLayout {
                     style.radiusPill
             ));
         }
-        setAlpha(basicDisabled || !isEnabled() ? 0.45f : 1f);
+        setAlpha(basicDisabled || (!isEnabled() && !loading) ? 0.45f : 1f);
         requestLayout();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (!isEnabled() || !isClickable()) {
+        if (!isEnabled() || !isClickable() || loading) {
             return super.onTouchEvent(event);
         }
         BasicStyle style = BasicThemeManager.style();
         int action = event.getActionMasked();
         if (action == MotionEvent.ACTION_DOWN) {
-            labelView.setTranslationY(style.pressedDropY);
+            faceLayer.setTranslationY(style.pressedDropY);
             return true;
         }
         if (action == MotionEvent.ACTION_UP) {
-            labelView.setTranslationY(0f);
+            faceLayer.setTranslationY(0f);
             performClick();
             return true;
         }
         if (action == MotionEvent.ACTION_CANCEL) {
-            labelView.setTranslationY(0f);
+            faceLayer.setTranslationY(0f);
             return true;
         }
         return true;
@@ -230,7 +281,7 @@ public class BasicButton extends FrameLayout {
         int childHeight = Math.max(0, height - lift);
         int exactWidth = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
         int exactChildHeight = MeasureSpec.makeMeasureSpec(childHeight, MeasureSpec.EXACTLY);
-        labelView.measure(exactWidth, exactChildHeight);
+        faceLayer.measure(exactWidth, exactChildHeight);
         if (style.buttonRaisedShadowEnabled && !flatVariant) {
             shadowLayer.measure(exactWidth, exactChildHeight);
         }
@@ -250,7 +301,7 @@ public class BasicButton extends FrameLayout {
         if (style.buttonRaisedShadowEnabled && !flatVariant) {
             shadowLayer.layout(0, lift, width, lift + contentHeight);
         }
-        labelView.layout(0, 0, width, contentHeight);
+        faceLayer.layout(0, 0, width, contentHeight);
     }
 
     /** 从 XML 读取统一 BasicView 属性。 */
@@ -267,9 +318,91 @@ public class BasicButton extends FrameLayout {
             if (xmlText != null) {
                 labelView.setText(xmlText);
             }
-            setEnabled(!basicDisabled);
+            applyInteractiveState();
         } finally {
             array.recycle();
+        }
+    }
+
+    /** 按钮内小型圆弧 spinner。 */
+    private static final class ButtonSpinnerView extends View {
+        private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private final RectF arcRect = new RectF();
+        private boolean loading;
+        private int spinnerColor = 0xFFFFFFFF;
+        private ObjectAnimator animator;
+        private float rotationValue;
+
+        ButtonSpinnerView(Context context) {
+            super(context);
+        }
+
+        void setLoading(boolean loading) {
+            this.loading = loading;
+            if (loading) {
+                startSpinner();
+            } else {
+                stopSpinner();
+            }
+            invalidate();
+        }
+
+        void setSpinnerColor(int spinnerColor) {
+            this.spinnerColor = spinnerColor;
+            invalidate();
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            if (!loading) {
+                return;
+            }
+            float stroke = Math.max(2f, getWidth() * 0.14f);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(stroke);
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            paint.setColor(spinnerColor);
+            float inset = stroke * 1.6f;
+            arcRect.set(inset, inset, getWidth() - inset, getHeight() - inset);
+            canvas.save();
+            canvas.rotate(rotationValue, getWidth() / 2f, getHeight() / 2f);
+            canvas.drawArc(arcRect, 0f, 270f, false, paint);
+            canvas.restore();
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            stopSpinner();
+            super.onDetachedFromWindow();
+        }
+
+        private void startSpinner() {
+            if (animator != null) {
+                return;
+            }
+            animator = ObjectAnimator.ofFloat(this, "rotationValue", 0f, 360f);
+            animator.setDuration(600L);
+            animator.setRepeatCount(ValueAnimator.INFINITE);
+            animator.setInterpolator(new LinearInterpolator());
+            animator.addUpdateListener(animation -> {
+                rotationValue = (float) animation.getAnimatedValue();
+                invalidate();
+            });
+            animator.start();
+        }
+
+        private void stopSpinner() {
+            if (animator != null) {
+                animator.cancel();
+                animator = null;
+            }
+            rotationValue = 0f;
+        }
+
+        @SuppressWarnings("unused")
+        public void setRotationValue(float rotationValue) {
+            this.rotationValue = rotationValue;
         }
     }
 }

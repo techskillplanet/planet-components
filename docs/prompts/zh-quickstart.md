@@ -1,13 +1,13 @@
 # 提示词速查（中文 · 复制即用）
 
-配合技能 **`ai-build-with-planet`**。默认：**React 网页** + `@techskillplanet/planet-components-react@0.2.0` + Sky 主题。
+配合技能 **`ai-build-with-planet`**。默认：**React 网页** + `@techskillplanet/planet-components-react@0.2.1` + Sky 主题。
 
 ---
 
 ## 万能开场（每个新对话先发）
 
 ```text
-请使用技趣星球 Planet Components（npm：@techskillplanet/planet-components-react@0.2.0）帮我做网页界面。
+请使用技趣星球 Planet Components（npm：@techskillplanet/planet-components-react@0.2.1）帮我做网页界面。
 必须遵守：
 1. 使用 Tsp* 组件，不要自己用 div 重造按钮/顶栏/卡片；
 2. 入口引入 styles.css；

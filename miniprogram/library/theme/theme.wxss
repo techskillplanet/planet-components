@@ -1,0 +1,88 @@
+/* Page-level theme classes — distinct for sky / night / mint / sunrise. */
+.theme-sky {
+  --bc-page-start: #DDF4FF;
+  --bc-page-end: #F9FDFF;
+  --bc-text-primary: #173A62;
+  --bc-text-secondary: #365D82;
+  --bc-text-tertiary: #7895AE;
+  --bc-surface: #FFFFFF;
+  --bc-surface-subtle: #F6FBFF;
+  --bc-border: #C8EAFF;
+  --bc-brand-primary: #31A8FF;
+  --bc-brand-dark: #1479D6;
+  --bc-brand-subtle: #E5F6FF;
+  --bc-success: #2BB8E6;
+  --bc-success-subtle: #E8F7FC;
+  --bc-warning: #FFD166;
+  --bc-selected-fill: #E5F6FF;
+  --bc-selected-border: #31A8FF;
+  --bc-emphasis-fill: #F6FBFF;
+  --bc-active-fill: #FFF7D7;
+  --bc-danger: #FF6B7A;
+}
+
+.theme-night {
+  --bc-page-start: #0F1A2E;
+  --bc-page-end: #141E32;
+  --bc-text-primary: #E8F4FF;
+  --bc-text-secondary: #B8D0E8;
+  --bc-text-tertiary: #7A94B0;
+  --bc-surface: #1E2D45;
+  --bc-surface-subtle: #22324A;
+  --bc-border: #2A3F5C;
+  --bc-brand-primary: #31A8FF;
+  --bc-brand-dark: #1479D6;
+  --bc-brand-subtle: #1E3A5F;
+  --bc-success: #2BB8E6;
+  --bc-success-subtle: #1A3348;
+  --bc-warning: #FFD166;
+  --bc-selected-fill: #1E3A5F;
+  --bc-selected-border: #31A8FF;
+  --bc-emphasis-fill: #22324A;
+  --bc-active-fill: #3A3020;
+  --bc-danger: #FF6B7A;
+}
+
+.theme-mint {
+  --bc-page-start: #DFFAF2;
+  --bc-page-end: #F8FFFC;
+  --bc-text-primary: #123F3A;
+  --bc-text-secondary: #2F6B63;
+  --bc-text-tertiary: #6C938D;
+  --bc-surface: #FFFFFF;
+  --bc-surface-subtle: #F3FFFA;
+  --bc-border: #BDEFE2;
+  --bc-brand-primary: #20BFA9;
+  --bc-brand-dark: #0C8F7E;
+  --bc-brand-subtle: #E6FFF4;
+  --bc-success: #35C58B;
+  --bc-success-subtle: #E8FBF3;
+  --bc-warning: #FFD166;
+  --bc-selected-fill: #E6FFF4;
+  --bc-selected-border: #20BFA9;
+  --bc-emphasis-fill: #F3FFFA;
+  --bc-active-fill: #FFF7D7;
+  --bc-danger: #FF6B7A;
+}
+
+.theme-sunrise {
+  --bc-page-start: #FFE8D6;
+  --bc-page-end: #FFFDF8;
+  --bc-text-primary: #4A2B1A;
+  --bc-text-secondary: #80523A;
+  --bc-text-tertiary: #AA8068;
+  --bc-surface: #FFFFFF;
+  --bc-surface-subtle: #FFF8F2;
+  --bc-border: #FFD1AD;
+  --bc-brand-primary: #FF8A3D;
+  --bc-brand-dark: #D85C12;
+  --bc-brand-subtle: #FFF1E7;
+  --bc-success: #2BB8E6;
+  --bc-success-subtle: #E8F7FC;
+  --bc-warning: #FFD166;
+  --bc-selected-fill: #FFF1E7;
+  --bc-selected-border: #FF8A3D;
+  --bc-emphasis-fill: #FFF8F2;
+  --bc-active-fill: #FFF7D7;
+  --bc-danger: #E24C5C;
+}

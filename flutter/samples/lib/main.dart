@@ -45,7 +45,12 @@ class _BasicControlsExampleAppState extends State<BasicControlsExampleApp> {
     ComponentDoc('KeyValueLabel', 'Data', '键值对展示，用于摘要信息和表单确认。'),
     ComponentDoc('Stepper', 'Data', '步骤进度，支持 3 到 5 步。'),
   ];
-  static const themes = [('Sky', StarPlanetTheme.sky), ('Night', StarPlanetTheme.night), ('Mint', StarPlanetTheme.mint)];
+  static const themes = [
+    ('Sky', StarPlanetTheme.sky),
+    ('Night', StarPlanetTheme.night),
+    ('Mint', StarPlanetTheme.mint),
+    ('Sunrise', StarPlanetTheme.sunrise),
+  ];
   static const languages = [('zh-CN', '简体中文', '基础组件'), ('en', 'English', 'Basic Controls'), ('ja', '日本語', '基本コンポーネント')];
   final inputController = TextEditingController();
   int themeIndex = 0;

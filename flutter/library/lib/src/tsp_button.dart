@@ -10,6 +10,7 @@ class TspButton extends StatefulWidget {
     required this.text,
     this.variant = TspButtonVariant.standard,
     this.disabled = false,
+    this.loading = false,
     this.fullWidth = true,
     this.theme = StarPlanetTheme.sky,
     this.onTap,
@@ -18,6 +19,7 @@ class TspButton extends StatefulWidget {
   final String text;
   final TspButtonVariant variant;
   final bool disabled;
+  final bool loading;
   final bool fullWidth;
   final StarPlanetTheme theme;
   final VoidCallback? onTap;
@@ -28,6 +30,8 @@ class TspButton extends StatefulWidget {
 
 class _TspButtonState extends State<TspButton> {
   bool _pressed = false;
+
+  bool get _inert => widget.disabled || widget.loading;
 
   @override
   Widget build(BuildContext context) {
@@ -50,12 +54,12 @@ class _TspButtonState extends State<TspButton> {
     final borderColor = isFlat ? Colors.transparent : theme.borderDefault;
     final faceTop = (!isFlat && _pressed) ? pressedDrop : 0.0;
     final button = Opacity(
-      opacity: widget.disabled ? .45 : 1,
+      opacity: widget.disabled ? .45 : (widget.loading ? .7 : 1),
       child: GestureDetector(
-        onTap: widget.disabled ? null : widget.onTap,
-        onTapDown: widget.disabled || isFlat ? null : (_) => setState(() => _pressed = true),
-        onTapUp: widget.disabled || isFlat ? null : (_) => setState(() => _pressed = false),
-        onTapCancel: widget.disabled || isFlat ? null : () => setState(() => _pressed = false),
+        onTap: _inert ? null : widget.onTap,
+        onTapDown: _inert || isFlat ? null : (_) => setState(() => _pressed = true),
+        onTapUp: _inert || isFlat ? null : (_) => setState(() => _pressed = false),
+        onTapCancel: _inert || isFlat ? null : () => setState(() => _pressed = false),
         child: SizedBox(
           height: isFlat ? faceHeight : faceHeight + shadowLift,
           child: Stack(
@@ -81,9 +85,22 @@ class _TspButtonState extends State<TspButton> {
                     shape: StadiumBorder(side: BorderSide(color: borderColor)),
                   ),
                   child: Center(
-                    child: Text(
-                      widget.text,
-                      style: TextStyle(color: textColor, fontWeight: FontWeight.w800, fontSize: 15, height: 20 / 15),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (widget.loading) ...[
+                          SizedBox(
+                            width: 16,
+                            height: 16,
+                            child: CircularProgressIndicator(strokeWidth: 2, color: textColor),
+                          ),
+                          const SizedBox(width: 8),
+                        ],
+                        Text(
+                          widget.text,
+                          style: TextStyle(color: textColor, fontWeight: FontWeight.w800, fontSize: 15, height: 20 / 15),
+                        ),
+                      ],
                     ),
                   ),
                 ),

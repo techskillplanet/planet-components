@@ -45,9 +45,11 @@ Load [references/platform-component-workflow.md](references/platform-component-w
    - Samples should be runnable without copying source from `library`.
 
 6. Validate changed stacks.
-   - Run `node tools/check-structure.cjs`.
-   - Run stack-specific package/build/sample commands from `README.md`.
+   - Always: `node tools/check-structure.cjs`.
+   - Prefer full headless suite when many stacks changed: `./tools/headless-check.sh` (structure + web/RN/miniprogram pack/tests, Flutter analyze/test, iOS `swift build`, Android/Kuikly Gradle).
+   - Or run stack-specific package/build/sample commands from `README.md`.
    - For native stacks, build real platform targets when the platform code changed.
+   - Inventory baseline: **React Web** exports ≈ **35** components (includes DatePicker + Domain-7). Keep other stacks aligned to that contract.
 
 ## Visual Direction
 

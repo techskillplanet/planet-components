@@ -1,0 +1,16 @@
+<view
+  class="bc-balance-hero {{variant === 'compact' ? 'bc-balance-hero--compact' : ''}}"
+  style="--bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-text: {{theme.textPrimary}}; --bc-secondary: {{theme.textSecondary}};"
+>
+  <view class="bc-balance-hero__label">可用积分</view>
+  <view class="bc-balance-hero__total">
+    <text>{{total}}</text>
+    <text wx:if="{{suffix}}" class="bc-balance-hero__suffix">{{suffix}}</text>
+  </view>
+  <view wx:if="{{rows.length}}" class="bc-balance-hero__breakdown">
+    <view wx:for="{{rows}}" wx:key="key" class="bc-balance-hero__row">
+      <text>{{item.label}}</text>
+      <text>{{item.value}}</text>
+    </view>
+  </view>
+</view>

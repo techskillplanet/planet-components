@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+- Add DatePicker + Domain-7: ChildSwitcher, ScoreRuleGrid, RedeemCardGrid, CalendarHeatmap, PrintSheet, BalanceHero, CheckInStreakCard.
+- Align theme tokens with React Web; add sunrise palette.
+- Add `loading` support on `TspButton`.
+
 ## 0.2.0
 
 - Rename SPM product/target/import from `TechSkillPlanetBasicControls` to `PlanetComponents`.

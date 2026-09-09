@@ -1,11 +1,11 @@
 # Prompt cheat sheet (English)
 
-Use with skill **`ai-build-with-planet`**. Default: React web + `@techskillplanet/planet-components-react@0.2.0` + Sky theme.
+Use with skill **`ai-build-with-planet`**. Default: React web + `@techskillplanet/planet-components-react@0.2.1` + Sky theme.
 
 ## Bootstrap (paste first)
 
 ```text
-Build UI with TechSkillPlanet Planet Components (@techskillplanet/planet-components-react@0.2.0).
+Build UI with TechSkillPlanet Planet Components (@techskillplanet/planet-components-react@0.2.1).
 Rules:
 1) Use Tsp* components only for buttons, bars, cards, inputs — no custom div redesign.
 2) Import styles.css once.

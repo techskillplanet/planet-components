@@ -14,7 +14,7 @@ description: >-
 npm install @techskillplanet/planet-components-vue
 ```
 
-Peer: `vue >= 3`. Version: **0.2.0**.
+Peer: `vue >= 3`. Version: **0.2.1**.
 
 ## Setup
 
@@ -36,8 +36,14 @@ import { TspButton, starPlanetTheme } from '@techskillplanet/planet-components-v
 </template>
 ```
 
+## Coverage
+
+≈ **35** `Tsp*` controls aligned with React Web. Includes **DatePicker** (`TspDatePicker`) and **Domain-7**: `TspChildSwitcher`, `TspScoreRuleGrid`, `TspRedeemCardGrid`, `TspCalendarHeatmap`, `TspPrintSheet`, `TspBalanceHero`, `TspCheckInStreakCard`.
+
 ## Notes
 
 - Pass `theme` (or use built-in `starPlanetThemes.sky|night|mint|sunrise`) on controls.
+- `TspButton` supports `loading`.
+- Library version **0.2.1** (publish after `./tools/headless-check.sh` is green).
 - Library path: `vue-web/library` in the monorepo (for contributors only).
 - Full Chinese install table: repo `README.zh-CN.md`.

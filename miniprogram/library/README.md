@@ -6,7 +6,7 @@ Package name: `@techskillplanet/planet-components-miniprogram`.
 
 WeChat 标签名使用 `bc-*`；跨端语义名仍是契约表中的 `Tsp*`。对照见 `docs/COMPONENT_CONTRACT.md`。
 
-## 组件（27）
+## 组件（35）
 
 - `bc-button` `bc-card` `bc-alert` `bc-badge` `bc-chip`
 - `bc-input` `bc-select` `bc-option-sheet` `bc-switch`
@@ -14,6 +14,8 @@ WeChat 标签名使用 `bc-*`；跨端语义名仍是契约表中的 `Tsp*`。�
 - `bc-amount` `bc-icon-button` `bc-key-value-label` `bc-notification` `bc-text-link`
 - `bc-stepper` `bc-sticky-footer` `bc-pin-input` `bc-list-item` `bc-empty`
 - `bc-toast` `bc-modal` `bc-refresh-layout` `bc-loading-dialog`
+- `bc-date-picker` `bc-child-switcher` `bc-score-rule-grid` `bc-redeem-card-grid`
+- `bc-calendar-heatmap` `bc-print-sheet` `bc-balance-hero` `bc-check-in-streak-card`
 
 ## 主题
 

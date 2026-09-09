@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <img alt="version" src="https://img.shields.io/badge/version-0.2.0-31A8FF?style=flat-square" />
+  <img alt="version" src="https://img.shields.io/badge/version-0.2.1-31A8FF?style=flat-square" />
   <img alt="license" src="https://img.shields.io/badge/license-MIT-2BB8E6?style=flat-square" />
   <img alt="platforms" src="https://img.shields.io/badge/platforms-8_stacks-1479D6?style=flat-square" />
   <img alt="tokens" src="https://img.shields.io/badge/design-token--driven-8BD5FF?style=flat-square" />
@@ -78,7 +78,7 @@ import '@techskillplanet/planet-components-react/styles.css';
 <summary><strong>Android View</strong></summary>
 
 ```gradle
-implementation "io.github.techskillplanet:planet-components-android:0.2.0"
+implementation "io.github.techskillplanet:planet-components-android:0.2.1"
 ```
 
 ```java
@@ -90,7 +90,7 @@ BasicThemeManager.init(context, "sky_planet_day", "island_raised");
 <summary><strong>iOS SwiftUI (SPM)</strong></summary>
 
 ```swift
-.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.0")
+.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.1")
 // product: PlanetComponents
 ```
 </details>
@@ -100,7 +100,7 @@ BasicThemeManager.init(context, "sky_planet_day", "island_raised");
 
 ```yaml
 dependencies:
-  tech_skill_planet_components: ^0.2.0
+  tech_skill_planet_components: ^0.2.1
 ```
 </details>
 
@@ -113,7 +113,7 @@ repositories {
     maven { url = uri("https://mirrors.tencent.com/repository/maven-tencent/") }
 }
 dependencies {
-    implementation("io.github.techskillplanet:planet-components-kuikly:0.2.0")
+    implementation("io.github.techskillplanet:planet-components-kuikly:0.2.1")
 }
 ```
 </details>

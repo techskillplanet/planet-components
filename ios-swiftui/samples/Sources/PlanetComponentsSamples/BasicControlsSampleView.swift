@@ -58,7 +58,7 @@ public struct BasicControlsSampleView: View {
     @State private var refreshing = false
     @State private var loadingMore = false
     @State private var refreshRows = Array(1...8)
-    private let themes: [(String, StarPlanetTheme)] = [("Sky", .sky), ("Night", .night), ("Mint", .mint)]
+    private let themes: [(String, StarPlanetTheme)] = [("Sky", .sky), ("Night", .night), ("Mint", .mint), ("Sunrise", .sunrise)]
 
     public init() {}
 

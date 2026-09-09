@@ -13,7 +13,7 @@ TechSkillPlanet 基础组件库（Planet Components）的 Android View 实现：
 Maven 坐标：
 
 ```text
-io.github.techskillplanet:planet-components-android:0.2.0
+io.github.techskillplanet:planet-components-android:0.2.1
 ```
 
 > 历史包名：`io.github.techskillplanet:basic-controls-android:0.1.0`（已停用，请迁移到上方新坐标）。
@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-    implementation "io.github.techskillplanet:planet-components-android:0.2.0"
+    implementation "io.github.techskillplanet:planet-components-android:0.2.1"
 }
 ```
 
@@ -79,7 +79,7 @@ BasicColors colors = BasicThemeManager.colors();
 BasicStyle style = BasicThemeManager.style();
 ```
 
-内置配色：`sky_planet_day`、`star_planet_night`、`mint_planet_day`。  
+内置配色：`sky_planet_day`、`star_planet_night`、`mint_planet_day`、`sunrise_planet_day`。  
 内置风格：`island_raised`（岛屿阴影）或 `island_flat`（扁平无阴影）。
 
 组件在主题切换后调用 `refreshTheme()` 刷新外观。

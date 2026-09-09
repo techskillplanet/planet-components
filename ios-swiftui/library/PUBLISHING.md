@@ -156,7 +156,7 @@ import PlanetComponents
 ### SPM
 
 ```swift
-.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.0")
+.package(url: "https://github.com/techskillplanet/planet-components", from: "0.2.1")
 ```
 
 把 product `PlanetComponents` 加到 target。
@@ -164,7 +164,7 @@ import PlanetComponents
 ### CocoaPods
 
 ```ruby
-pod 'PlanetComponents', '~> 0.2.0'
+pod 'PlanetComponents', '~> 0.2.1'
 ```
 
 本仓库 samples **继续**使用 `path: ../library`，不要改成已发布版本。

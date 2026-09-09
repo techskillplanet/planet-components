@@ -2,7 +2,7 @@
 
 Each `library` directory is an independently published open-source package.
 
-**Current public release: 0.2.0（八栈均已上架，2026-09-08 实查）。**
+**Current public release: 0.2.1（八栈均已上架，2026-09-08 实查）。**
 
 GitHub 主页多语言：[`README.md`](README.md)（English）· [`README.zh-CN.md`](README.zh-CN.md) · [`README.ja.md`](README.ja.md) · [`README.ko.md`](README.ko.md)。
 
@@ -10,22 +10,24 @@ Agent Skills：公共安装 `npx skills add techskillplanet/planet-components`�
 
 | Platform | Package manager | Current package identity |
 | --- | --- | --- |
-| Android View | Maven Central / GitHub Packages | `io.github.techskillplanet:planet-components-android:0.2.0`（脚本：`android/scripts/publish-maven-central.sh`） |
-| React Native | npm | `@techskillplanet/planet-components-react-native@0.2.0` |
-| React Web | npm | `@techskillplanet/planet-components-react@0.2.0` |
-| Vue Web | npm | `@techskillplanet/planet-components-vue@0.2.0` |
-| Flutter | pub.dev | `tech_skill_planet_components@0.2.0`（脚本：`tools/verify-flutter-sample.sh`；发布：`cd flutter/library && dart pub publish`） |
+| Android View | Maven Central / GitHub Packages | `io.github.techskillplanet:planet-components-android:0.2.1`（脚本：`android/scripts/publish-maven-central.sh`） |
+| React Native | npm | `@techskillplanet/planet-components-react-native@0.2.1` |
+| React Web | npm | `@techskillplanet/planet-components-react@0.2.1` |
+| Vue Web | npm | `@techskillplanet/planet-components-vue@0.2.1` |
+| Flutter | pub.dev | `tech_skill_planet_components@0.2.1`（脚本：`tools/verify-flutter-sample.sh`；发布：`cd flutter/library && dart pub publish`） |
 | iOS SwiftUI | Swift Package Manager + CocoaPods | `PlanetComponents` 0.2.0（源码 `ios-swiftui/library`；SPM 根目录 `Package.swift`；CocoaPods 根目录 `PlanetComponents.podspec`；同一 git tag） |
-| WeChat Mini Program | npm / miniprogram package | `@techskillplanet/planet-components-miniprogram@0.2.0` |
-| Kuikly | Maven Central | `io.github.techskillplanet:planet-components-kuikly:0.2.0`（脚本：`kuikly/scripts/publish-maven-central.sh`；KMP 多 publication） |
+| WeChat Mini Program | npm / miniprogram package | `@techskillplanet/planet-components-miniprogram@0.2.1` |
+| Kuikly | Maven Central | `io.github.techskillplanet:planet-components-kuikly:0.2.1`（脚本：`kuikly/scripts/publish-maven-central.sh`；KMP 多 publication） |
 
 Before publishing a library:
 
-1. Run the platform-specific sample.
+1. Run `./tools/headless-check.sh` (preferred) or the platform-specific checks in [README.zh-CN.md](README.zh-CN.md#local-checks).
 2. Run the package build/dry-run command.
 3. Confirm sample uses the local library dependency.
 4. Confirm build caches are not included.
 5. Confirm package metadata points to `techskillplanet/planet-components`.
+
+> **Note:** Public registries are at **0.2.0**. Local tree may already include DatePicker + Domain-7 + sunrise + `Button.loading`. Bump all eight libraries to a new semver before the next publish.
 
 ## npm：React Web / Vue Web / React Native
 
@@ -126,7 +128,7 @@ Sample 动态依赖示例：
 
 ```yaml
 dependencies:
-  tech_skill_planet_components: ^0.2.0
+  tech_skill_planet_components: ^0.2.1
 ```
 
 ## iOS：SPM + CocoaPods
@@ -135,7 +137,7 @@ Package: `PlanetComponents` → 源码 `ios-swiftui/library`；根目录 `Packag
 
 完整步骤见：[`ios-swiftui/library/PUBLISHING.md`](ios-swiftui/library/PUBLISHING.md)
 
-**0.2.0 状态：SPM git tag 与 CocoaPods Trunk 均已发布。**
+**0.2.1 状态：SPM git tag 与 CocoaPods Trunk 均已发布。**
 
 ## Kuikly：Maven Central
 
@@ -153,4 +155,4 @@ kuikly/scripts/publish-maven-central.sh
 
 Gradle 任务：`:shared:publishAllPublicationsToMavenCentralRepository`（多 publication，勿只用单一 android release）。
 
-**0.2.0 状态：已发布到 Maven Central。**
+**0.2.1 状态：已发布到 Maven Central。**

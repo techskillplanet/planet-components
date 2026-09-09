@@ -7,7 +7,7 @@ TechSkillPlanet Planet Components 的 Android View 栈：可发布 `library` + �
 | 项 | 值 |
 | --- | --- |
 | 源码 | https://github.com/techskillplanet/planet-components/tree/main/android/library |
-| Maven 坐标 | `io.github.techskillplanet:planet-components-android:0.2.0` |
+| Maven 坐标 | `io.github.techskillplanet:planet-components-android:0.2.1` |
 | Maven Central | https://central.sonatype.com/artifact/io.github.techskillplanet/planet-components-android |
 | 仓库目录 | https://repo1.maven.org/maven2/io/github/techskillplanet/planet-components-android/ |
 
@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation "io.github.techskillplanet:planet-components-android:0.2.0"
+    implementation "io.github.techskillplanet:planet-components-android:0.2.1"
 }
 ```
 
@@ -47,4 +47,4 @@ cd android
 ./gradlew :library:assembleRelease :samples:assembleDebug
 ```
 
-历史包名 `basic-controls-android:0.1.0` 已停用，请改用 `planet-components-android:0.2.0`。
+历史包名 `basic-controls-android:0.1.0` 已停用，请改用 `planet-components-android:0.2.1`。

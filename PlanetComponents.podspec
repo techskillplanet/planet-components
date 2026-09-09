@@ -2,7 +2,7 @@
 # Paths are relative to the git repository root (required after trunk push).
 Pod::Spec.new do |s|
   s.name             = 'PlanetComponents'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'TechSkillPlanet Planet Components for SwiftUI.'
   s.description      = <<-DESC
     Sky Planet SwiftUI component library for TechSkillPlanet.

@@ -5,7 +5,7 @@
 | Field | Value |
 | --- | --- |
 | Package name | `@techskillplanet/planet-components-react` |
-| Version | `0.2.0` |
+| Version | `0.2.1` |
 | Peer dependency | `react >= 18` |
 | Module type | ESM (`type: "module"`) |
 | CSS required | Yes — `import 'pkg/styles.css'` |

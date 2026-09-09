@@ -1,0 +1,56 @@
+.bc-redeem-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bc-redeem-card-grid__banner {
+  width: 100%;
+  padding: 16rpx 24rpx;
+  border-radius: 24rpx;
+  background: var(--bc-active);
+  color: var(--bc-text);
+  font-weight: 800;
+  font-size: 26rpx;
+  box-sizing: border-box;
+}
+
+.bc-redeem-card-grid__card {
+  width: calc((100% - 24rpx) / 2);
+  min-height: 240rpx;
+  border: 4rpx solid var(--bc-border);
+  border-radius: 36rpx;
+  background: var(--bc-surface);
+  padding: 28rpx;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.bc-redeem-card-grid__card--blocked {
+  opacity: 0.5;
+}
+
+.bc-redeem-card-grid__icon {
+  font-size: 56rpx;
+}
+
+.bc-redeem-card-grid__name {
+  font-weight: 800;
+  color: var(--bc-text);
+  margin-top: 16rpx;
+  font-size: 28rpx;
+}
+
+.bc-redeem-card-grid__cost {
+  color: var(--bc-brand);
+  font-weight: 900;
+  margin-top: 8rpx;
+}
+
+.bc-redeem-card-grid__hint {
+  color: var(--bc-danger);
+  font-size: 24rpx;
+  margin-top: 8rpx;
+}

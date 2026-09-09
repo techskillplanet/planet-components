@@ -7,10 +7,11 @@ import { componentCategories, componentDocs } from '../shared/componentDocs.js';
 import {
   starPlanetThemes,
   themed,
-  TspAlert, TspAmount, TspBadge, TspBottomTab, TspButton, TspCard, TspChip,
-  TspEmpty, TspIconButton, TspInput, TspKeyValueLabel, TspListItem, TspModal,
-  TspNotification, TspOptionSheet, TspPinInput, TspProgress, TspSelect,
-  TspStepper, TspSwitch, TspTabs, TspTextLink, TspToast, TspTopBar
+  TspAlert, TspAmount, TspBadge, TspBalanceHero, TspBottomTab, TspButton, TspCalendarHeatmap,
+  TspCard, TspCheckInStreakCard, TspChildSwitcher, TspChip, TspDatePicker, TspEmpty,
+  TspIconButton, TspInput, TspKeyValueLabel, TspListItem, TspModal, TspNotification,
+  TspOptionSheet, TspPinInput, TspPrintSheet, TspProgress, TspRedeemCardGrid, TspScoreRuleGrid,
+  TspSelect, TspStepper, TspSwitch, TspTabs, TspTextLink, TspToast, TspTopBar
 } from '@techskillplanet/planet-components-vue';
 
 const sampleLocales = {
@@ -101,6 +102,66 @@ function renderVueDocPreview(name, theme, state) {
     case 'Empty': return h(TspEmpty, { title: '空状态', message: '暂无记录。', actionText: '操作', ...common });
     case 'Toast': return h(TspButton, { text: 'Show Toast', variant: 'primary', onTap: () => state.showToast('已保存', 'success'), ...common });
     case 'Modal': return h(TspButton, { text: 'Open Modal', onTap: () => { state.showModal.value = true; }, ...common });
+    case 'DatePicker': return h(TspDatePicker, {
+      value: state.dateValue?.value || '2026-08-26',
+      onChange: (value) => { if (state.dateValue) state.dateValue.value = value; },
+      placeholder: '选择日期',
+      ...common
+    });
+    case 'ChildSwitcher': return h('div', { class: 'bc-example-stack' }, [
+      example('chip', h(TspChildSwitcher, {
+        items: [{ id: 1, label: '悦悦', emoji: '👧' }, { id: 2, label: '佑佑', emoji: '👦' }],
+        selectedId: state.childId?.value || 1,
+        onChange: (id) => { if (state.childId) state.childId.value = id; },
+        ...common
+      })),
+      example('tabs', h(TspChildSwitcher, {
+        variant: 'tabs',
+        items: [{ id: 1, label: '悦悦' }, { id: 2, label: '佑佑' }],
+        selectedId: state.childId?.value || 1,
+        onChange: (id) => { if (state.childId) state.childId.value = id; },
+        ...common
+      }))
+    ]);
+    case 'ScoreRuleGrid': return h(TspScoreRuleGrid, {
+      rules: [
+        { id: 1, name: '按时认真完成作业', icon: '📝', value: 5, count: 1, dailyLimit: 1 },
+        { id: 2, name: '作业潦草', icon: '✏️', value: -2, count: 0, dailyLimit: 2 }
+      ],
+      columns: 'auto',
+      onIncrement: () => state.showToast?.('+1', 'success'),
+      ...common
+    });
+    case 'RedeemCardGrid': return h(TspRedeemCardGrid, {
+      items: [{ id: 1, name: '零食', icon: '🍬', cost: 15 }, { id: 2, name: '游戏', icon: '🎮', cost: 30 }],
+      availablePoints: 20,
+      onRedeem: () => state.showToast?.('兑换', 'success'),
+      ...common
+    });
+    case 'CalendarHeatmap': return h(TspCalendarHeatmap, {
+      yearMonth: '2026-08',
+      cells: [{ date: '2026-08-01', level: 'full' }, { date: '2026-08-02', level: 'partial' }, { date: '2026-08-03', level: 'exempt' }],
+      ...common
+    });
+    case 'PrintSheet': return h(TspPrintSheet, {
+      title: '错字默写',
+      variant: 'pinyin',
+      items: [{ prompt: 'dǐng' }, { prompt: 'lù' }, { prompt: 'yàn' }, { prompt: 'xīn' }, { prompt: 'wǎn' }],
+      columns: 5,
+      ...common
+    });
+    case 'BalanceHero': return h(TspBalanceHero, {
+      total: 41,
+      breakdown: { balance: 40, ruleScore: 11, streakBonus: 5, redeemTotal: 15 },
+      ...common
+    });
+    case 'CheckInStreakCard': return h(TspCheckInStreakCard, {
+      streakDays: 7,
+      totalDays: 45,
+      weekProgress: 0.85,
+      onOpen: () => state.showToast?.('打开打卡', 'info'),
+      ...common
+    });
     default: return null;
   }
 }
@@ -184,6 +245,8 @@ export const BasicControlsSample = defineComponent({
     const selectedOption = ref(1);
     const pinValue = ref('12');
     const inputValue = ref('');
+    const dateValue = ref('2026-08-26');
+    const childId = ref(1);
     const showSheet = ref(false);
     const selectedDocName = ref(typeof window !== 'undefined' ? window.location.hash.replace(/^#/, '') : '');
     const showModal = ref(false);
@@ -226,7 +289,7 @@ export const BasicControlsSample = defineComponent({
       const t = (key) => sampleLocales[locale.value][key] ?? sampleLocales.en[key] ?? key;
       const selectedDoc = componentDocs.find((doc) => doc.name === selectedDocName.value);
       const previewState = {
-        checked, inputValue, selectedOption, selectedTab, pinValue,
+        checked, inputValue, selectedOption, selectedTab, pinValue, dateValue, childId,
         showSheet, showModal, toast, tabs, tab, showToast
       };
       const layoutClass = resolveLayoutClass();

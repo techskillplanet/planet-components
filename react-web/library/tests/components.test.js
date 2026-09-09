@@ -11,6 +11,8 @@ import {
   TspAmount, TspIconButton, TspKeyValueLabel, TspNotification, TspTextLink,
   TspStepper, TspStickyFooter, TspPinInput, TspListItem, TspEmpty, TspToast, TspModal,
   TspLoadingDialog, TspRefreshLayout,
+  TspDatePicker, TspChildSwitcher, TspScoreRuleGrid, TspRedeemCardGrid,
+  TspCalendarHeatmap, TspPrintSheet, TspBalanceHero, TspCheckInStreakCard,
   starPlanetTheme, starPlanetThemes, themeVars, resolveTheme, cx, clamp, optionText
 } from '../src/index.js';
 
@@ -521,6 +523,41 @@ describe('TspRefreshLayout', () => {
     expect(screen.getByText('rows')).toBeTruthy();
     fireEvent.click(screen.getByText('刷新'));
     expect(onRefresh).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('TspDatePicker + Domain-7', () => {
+  it('renders date input and fires onChange', () => {
+    const onChange = vi.fn();
+    const { container } = render(React.createElement(TspDatePicker, { value: '2026-08-26', onChange }));
+    const input = container.querySelector('.bc-date-picker');
+    expect(input).toBeTruthy();
+    fireEvent.change(input, { target: { value: '2026-09-01' } });
+    expect(onChange).toHaveBeenCalledWith('2026-09-01');
+  });
+
+  it('renders ChildSwitcher and BalanceHero', () => {
+    const onChange = vi.fn();
+    const { container } = render(React.createElement(TspChildSwitcher, {
+      items: [{ id: 1, label: 'A' }, { id: 2, label: 'B' }],
+      selectedId: 1,
+      onChange
+    }));
+    expect(container.querySelector('.bc-child-switcher')).toBeTruthy();
+    fireEvent.click(screen.getByText('B'));
+    expect(onChange).toHaveBeenCalledWith(2);
+
+    const hero = render(React.createElement(TspBalanceHero, { total: 41, breakdown: { balance: 40 } }));
+    expect(hero.container.querySelector('.bc-balance-hero')).toBeTruthy();
+    expect(hero.container).toHaveTextContent('41');
+  });
+
+  it('renders remaining Domain-7 shells', () => {
+    expect(() => render(React.createElement(TspScoreRuleGrid, { rules: [{ id: 1, name: '作业', value: 5, count: 0 }] }))).not.toThrow();
+    expect(() => render(React.createElement(TspRedeemCardGrid, { items: [{ id: 1, name: '零食', cost: 10 }], availablePoints: 20 }))).not.toThrow();
+    expect(() => render(React.createElement(TspCalendarHeatmap, { yearMonth: '2026-08', cells: [] }))).not.toThrow();
+    expect(() => render(React.createElement(TspPrintSheet, { title: '默写', items: [{ prompt: 'a' }] }))).not.toThrow();
+    expect(() => render(React.createElement(TspCheckInStreakCard, { streakDays: 3, totalDays: 10, weekProgress: 0.5 }))).not.toThrow();
   });
 });
 

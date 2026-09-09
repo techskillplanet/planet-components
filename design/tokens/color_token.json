@@ -2,7 +2,7 @@
   "$schema": "https://planet-components.local/schemas/color-token.schema.json",
   "meta": {
     "name": "Basic Controls Sky Planet Color Tokens",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "source": "Migrated from BaseWidget and reskinned with the 技趣星球 blue-sky planet article style. v0.2: selected ≠ success; selected is sky/cloud; success is sky-cyan for feedback only.",
     "themeSwitching": "Swap this file, or swap a theme object under themes, to recolor/reskin the component library.",
     "naming": {
@@ -335,6 +335,145 @@
           "white": "#FFFFFF",
           "black": "#000000",
           "scrimBlue": "#123F3A59",
+          "transparent": "#00000000"
+        }
+      },
+      "semantic": {
+        "brand": {
+          "primary": "{primitive.sky.brandPrimary}",
+          "primaryHover": "{primitive.sky.brandHover}",
+          "primaryActive": "{primitive.sky.brandPressed}",
+          "primarySubtle": "{primitive.sky.brandSubtle}",
+          "dark": "{primitive.sky.brandPressed}"
+        },
+        "status": {
+          "success": "{primitive.aurora.success}",
+          "successHover": "{primitive.aurora.successHover}",
+          "successActive": "{primitive.aurora.successPressed}",
+          "successSubtle": "{primitive.aurora.successSubtle}",
+          "warning": "{primitive.sun.highlight}",
+          "warningHover": "{primitive.sun.highlightSoft}",
+          "warningActive": "{primitive.sun.highlight}",
+          "danger": "{primitive.coral.danger}",
+          "dangerHover": "{primitive.coral.dangerHover}",
+          "dangerActive": "{primitive.coral.dangerPressed}"
+        },
+        "text": {
+          "primary": "{primitive.ink.textPrimary}",
+          "secondary": "{primitive.ink.textSecondary}",
+          "tertiary": "{primitive.ink.textTertiary}",
+          "inverse": "{primitive.neutral.white}",
+          "disabled": "{primitive.ink.textTertiary}",
+          "dialogTitle": "{primitive.ink.textPrimary}",
+          "dialogBody": "{primitive.ink.textSecondary}"
+        },
+        "background": {
+          "page": "{primitive.sky.pageStart}",
+          "pageGradientEnd": "{primitive.sky.pageEnd}",
+          "surface": "{primitive.cloud.surface}",
+          "surfaceRaised": "{primitive.cloud.white}",
+          "surfaceSubtle": "{primitive.cloud.soft}",
+          "surfaceDisabled": "{primitive.cloud.border}",
+          "menu": "{primitive.cloud.white}",
+          "modalScrim": "{primitive.neutral.scrimBlue}",
+          "selectedFill": "{primitive.sky.brandSubtle}",
+          "emphasisFill": "{primitive.cloud.soft}",
+          "activeFill": "{primitive.sun.soft}"
+        },
+        "border": {
+          "default": "{primitive.sky.borderSoft}",
+          "light": "{primitive.cloud.border}",
+          "control": "{primitive.sky.borderSoft}",
+          "focus": "{primitive.sky.brandPrimary}",
+          "selected": "{primitive.sky.brandPrimary}",
+          "warning": "{primitive.sun.highlight}",
+          "danger": "{primitive.coral.danger}",
+          "divider": "{primitive.cloud.border}"
+        },
+        "control": {
+          "button": {
+            "defaultBackground": "{primitive.cloud.white}",
+            "defaultText": "{primitive.ink.textPrimary}",
+            "primaryBackground": "{primitive.sky.brandPrimary}",
+            "primaryText": "{primitive.neutral.white}",
+            "raisedShadow": "{primitive.sky.borderSoft}"
+          },
+          "checkbox": {
+            "background": "{primitive.cloud.surface}",
+            "checkedBackground": "{primitive.sky.brandPrimary}"
+          },
+          "radio": {
+            "checkedDot": "{primitive.sky.brandPrimary}"
+          },
+          "switch": {
+            "offBackground": "{primitive.sky.borderSoft}",
+            "offBorder": "{primitive.sky.borderSoft}",
+            "offText": "{primitive.ink.textSecondary}",
+            "onBackground": "{primitive.sky.brandPrimary}",
+            "onBorder": "{primitive.sky.brandPrimary}",
+            "onText": "{primitive.neutral.white}",
+            "handleBackground": "{primitive.cloud.surface}",
+            "handleBorder": "{primitive.sky.borderSoft}",
+            "handleCheckedBorder": "{primitive.sky.brandPrimary}",
+            "loadingSpinner": "{primitive.sky.brandPrimary}"
+          },
+          "select": {
+            "selectedOptionBackground": "{primitive.sky.brandSubtle}"
+          },
+          "loading": {
+            "stripePrimary": "{primitive.sky.brandHover}",
+            "stripeSecondary": "{primitive.sky.brandPrimary}",
+            "border": "{primitive.sky.borderSoft}"
+          }
+        }
+      }
+    },
+    "sunrise_planet_day": {
+      "primitive": {
+        "sky": {
+          "pageEnd": "#FFFDF8",
+          "pageMist": "#FFF6EE",
+          "brandSubtle": "#FFF1E7",
+          "pageStart": "#FFE8D6",
+          "borderSoft": "#FFD1AD",
+          "brandHover": "#FFB070",
+          "brandPrimary": "#FF8A3D",
+          "brandPressed": "#D85C12"
+        },
+        "cloud": {
+          "white": "#FFFFFF",
+          "surface": "#FFFEFB",
+          "soft": "#FFF8F2",
+          "border": "#FFE4CC",
+          "mist": "#FFDCC0"
+        },
+        "sun": {
+          "highlightSoft": "#FFE79A",
+          "highlight": "#FFD166",
+          "soft": "#FFF7D7"
+        },
+        "aurora": {
+          "successHover": "#5BC8E8",
+          "success": "#2BB8E6",
+          "successPressed": "#1A9BC4",
+          "successSubtle": "#E8F7FC",
+          "selectedFill": "#FFF1E7"
+        },
+        "coral": {
+          "dangerHover": "#FF6B7A",
+          "danger": "#E24C5C",
+          "dangerPressed": "#C43A48"
+        },
+        "ink": {
+          "textTertiary": "#AA8068",
+          "textSecondary": "#80523A",
+          "textPrimary": "#4A2B1A",
+          "textStrong": "#3A1F12"
+        },
+        "neutral": {
+          "white": "#FFFFFF",
+          "black": "#000000",
+          "scrimBlue": "#4A2B1A59",
           "transparent": "#00000000"
         }
       },

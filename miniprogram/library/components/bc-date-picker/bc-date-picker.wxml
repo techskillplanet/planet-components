@@ -1,0 +1,16 @@
+<picker
+  mode="date"
+  value="{{value}}"
+  start="{{min}}"
+  end="{{max}}"
+  disabled="{{disabled}}"
+  bindchange="onChange"
+>
+  <view
+    class="bc-date-picker {{disabled ? 'bc-disabled' : ''}}"
+    style="--bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textTertiary}}; --bc-brand: {{theme.brandPrimary}};"
+  >
+    <text wx:if="{{value}}">{{value}}</text>
+    <text wx:else class="bc-date-picker__placeholder">{{placeholder || '选择日期'}}</text>
+  </view>
+</picker>

@@ -10,6 +10,8 @@ import {
   TspAmount, TspIconButton, TspKeyValueLabel, TspNotification, TspTextLink,
   TspStepper, TspStickyFooter, TspPinInput, TspListItem, TspEmpty, TspToast, TspModal,
   TspLoadingDialog, TspRefreshLayout,
+  TspDatePicker, TspChildSwitcher, TspScoreRuleGrid, TspRedeemCardGrid,
+  TspCalendarHeatmap, TspPrintSheet, TspBalanceHero, TspCheckInStreakCard,
   starPlanetTheme, starPlanetThemes, themeVars, resolveTheme, cx, clamp, optionText
 } from '../src/index.js';
 
@@ -487,6 +489,47 @@ describe('TspRefreshLayout', () => {
     expect(wrapper.text()).toContain('rows');
     await wrapper.find('.bc-refresh-layout__refresh').trigger('click');
     expect(wrapper.emitted('refresh')).toHaveLength(1);
+  });
+});
+
+describe('TspDatePicker + Domain-7', () => {
+  it('renders date input and emits change', async () => {
+    const wrapper = mount(TspDatePicker, { props: { value: '2026-08-26' } });
+    expect(wrapper.find('.bc-date-picker').exists()).toBe(true);
+    await wrapper.find('.bc-date-picker').setValue('2026-09-01');
+    expect(wrapper.emitted('change')?.[0]?.[0]).toBe('2026-09-01');
+  });
+
+  it('ChildSwitcher emits change and BalanceHero renders total', async () => {
+    const switcher = mount(TspChildSwitcher, {
+      props: {
+        items: [{ id: 1, label: 'A' }, { id: 2, label: 'B' }],
+        selectedId: 1
+      }
+    });
+    expect(switcher.find('.bc-child-switcher').exists()).toBe(true);
+    const buttons = switcher.findAll('button');
+    await buttons[1].trigger('click');
+    expect(switcher.emitted('change')?.[0]?.[0]).toBe(2);
+
+    const hero = mount(TspBalanceHero, { props: { total: 41, breakdown: { balance: 40 } } });
+    expect(hero.find('.bc-balance-hero').exists()).toBe(true);
+    expect(hero.text()).toContain('41');
+  });
+
+  it('Button loading blocks tap', async () => {
+    const wrapper = mount(TspButton, { props: { text: 'Go', loading: true } });
+    expect(wrapper.find('.bc-button--loading').exists()).toBe(true);
+    await wrapper.trigger('click');
+    expect(wrapper.emitted('tap')).toBeFalsy();
+  });
+
+  it('renders remaining Domain-7 shells', () => {
+    expect(() => mount(TspScoreRuleGrid, { props: { rules: [{ id: 1, name: '作业', value: 5, count: 0 }] } })).not.toThrow();
+    expect(() => mount(TspRedeemCardGrid, { props: { items: [{ id: 1, name: '零食', cost: 10 }], availablePoints: 20 } })).not.toThrow();
+    expect(() => mount(TspCalendarHeatmap, { props: { yearMonth: '2026-08', cells: [] } })).not.toThrow();
+    expect(() => mount(TspPrintSheet, { props: { title: '默写', items: [{ prompt: 'a' }] } })).not.toThrow();
+    expect(() => mount(TspCheckInStreakCard, { props: { streakDays: 3, totalDays: 10, weekProgress: 0.5 } })).not.toThrow();
   });
 });
 

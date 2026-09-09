@@ -1,0 +1,18 @@
+<view
+  class="bc-redeem-card-grid"
+  style="--bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-text: {{theme.textPrimary}}; --bc-brand: {{theme.brandPrimary}}; --bc-danger: {{theme.danger}}; --bc-active: {{theme.activeFill}};"
+>
+  <view wx:if="{{frozen}}" class="bc-redeem-card-grid__banner">今日已冻结，暂不可兑换</view>
+  <view
+    wx:for="{{displayItems}}"
+    wx:key="id"
+    class="bc-redeem-card-grid__card {{item.blocked ? 'bc-redeem-card-grid__card--blocked' : ''}}"
+    data-index="{{index}}"
+    bindtap="onRedeem"
+  >
+    <view class="bc-redeem-card-grid__icon">{{item.icon}}</view>
+    <view class="bc-redeem-card-grid__name">{{item.name}}</view>
+    <view class="bc-redeem-card-grid__cost">{{item.costText}}</view>
+    <view wx:if="{{item.showHint}}" class="bc-redeem-card-grid__hint">积分不足</view>
+  </view>
+</view>
