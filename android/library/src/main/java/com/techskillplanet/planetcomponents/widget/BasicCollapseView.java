@@ -25,11 +25,17 @@ import com.techskillplanet.planetcomponents.theme.BasicThemeManager;
  * 标题行和展开内容。适合 FAQ、设置说明、表单帮助等场景。</p>
  */
 public class BasicCollapseView extends LinearLayout {
+    /** 展开状态变化回调，对齐合约 onChange。 */
+    public interface OnExpandChangeListener {
+        void onExpandChanged(BasicCollapseView view, boolean expanded);
+    }
+
     private final TextView iconView;
     private final TextView titleView;
     private final TextView messageView;
     private boolean expanded;
     private boolean basicDisabled;
+    private OnExpandChangeListener expandChangeListener;
 
     public BasicCollapseView(Context context) {
         this(context, null);
@@ -84,6 +90,11 @@ public class BasicCollapseView extends LinearLayout {
     /** 设置展开内容。 */
     public void setMessage(CharSequence message) {
         messageView.setText(message);
+    }
+
+    /** 设置展开状态变化监听。 */
+    public void setOnExpandChangeListener(OnExpandChangeListener listener) {
+        expandChangeListener = listener;
     }
 
     /** 设置是否展开。 */
@@ -141,9 +152,13 @@ public class BasicCollapseView extends LinearLayout {
 
     /** 设置展开状态，可选择是否做高度动画。 */
     private void setExpanded(boolean expanded, boolean animate) {
+        boolean changed = this.expanded != expanded;
         this.expanded = expanded;
         if (!animate) {
             refreshTheme();
+            if (changed && expandChangeListener != null) {
+                expandChangeListener.onExpandChanged(this, expanded);
+            }
             return;
         }
         int start = getHeight();
@@ -161,6 +176,9 @@ public class BasicCollapseView extends LinearLayout {
             }
         });
         animator.start();
+        if (changed && expandChangeListener != null) {
+            expandChangeListener.onExpandChanged(this, expanded);
+        }
     }
 
     /** 从 XML 读取标题、正文和状态。 */

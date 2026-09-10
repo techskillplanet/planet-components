@@ -24,7 +24,7 @@ Tencent mirror is required for `com.tencent.kuikly-open` transitive deps.
 
 ## Coverage
 
-≈ **35** `Tsp*` Kuikly controls. Includes **DatePicker** (`TspDatePicker`) and **Domain-7**: `TspChildSwitcher`, `TspScoreRuleGrid`, `TspRedeemCardGrid`, `TspCalendarHeatmap`, `TspPrintSheet`, `TspBalanceHero`, `TspCheckInStreakCard`.
+≈ **57** `Tsp*` Kuikly controls. Includes **DatePicker** (`TspDatePicker`) and **Domain-7**: `TspChildSwitcher`, `TspScoreRuleGrid`, `TspRedeemCardGrid`, `TspCalendarHeatmap`, `TspPrintSheet`, `TspBalanceHero`, `TspCheckInStreakCard`. W1: Avatar, Skeleton, Tooltip, Slider, TextArea, Drawer, InputNumber, Swiper. W2: Tag, Fab, TimePicker, Upload, Table, Tree, Cascader.
 
 ## Notes
 

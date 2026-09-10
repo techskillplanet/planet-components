@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, Pressable, Text, View, StyleSheet } from 'react-native';
 import { withTheme } from '../utils/shared';
+import { useReduceMotion } from '../utils/useReduceMotion';
 
 const SIZES = {
   md: { width: 52, height: 28, handle: 24, inset: 2, travel: 24 },
@@ -26,19 +27,20 @@ export function TspSwitch({
   const t = withTheme(theme);
   const size = variant === 'sm' ? SIZES.sm : SIZES.md;
   const blocked = disabled || loading;
+  const reduceMotion = useReduceMotion();
   const thumbX = useRef(new Animated.Value(checked ? size.travel : 0)).current;
   const spin = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.timing(thumbX, {
       toValue: checked ? size.travel : 0,
-      duration: 180,
+      duration: reduceMotion ? 0 : 180,
       useNativeDriver: true,
     }).start();
-  }, [checked, size.travel, thumbX]);
+  }, [checked, size.travel, thumbX, reduceMotion]);
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading || reduceMotion) {
       spin.stopAnimation?.();
       spin.setValue(0);
       return undefined;
@@ -53,7 +55,7 @@ export function TspSwitch({
     );
     loop.start();
     return () => loop.stop();
-  }, [loading, spin]);
+  }, [loading, spin, reduceMotion]);
 
   const trackBg = checked ? t.switchOnBg : t.switchOffBg;
   const spinnerColor = checked ? '#FFFFFF' : t.brandDark;
@@ -66,7 +68,8 @@ export function TspSwitch({
   return (
     <Pressable
       accessibilityRole="switch"
-      accessibilityState={{ checked, disabled: blocked }}
+      accessibilityLabel={text || 'Switch'}
+      accessibilityState={{ checked, disabled: blocked, busy: loading }}
       disabled={blocked}
       onPress={() => onChange?.(!checked)}
       style={styles.switchRoot}

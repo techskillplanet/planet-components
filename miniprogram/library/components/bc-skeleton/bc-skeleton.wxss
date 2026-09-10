@@ -1,0 +1,34 @@
+.bc-skeleton {
+  display: flex;
+  align-items: flex-start;
+  gap: 20rpx;
+  width: 100%;
+}
+.bc-skeleton__avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 999rpx;
+  background: var(--bc-fill);
+  flex-shrink: 0;
+}
+.bc-skeleton__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+.bc-skeleton__line {
+  height: 28rpx;
+  border-radius: 12rpx;
+  background: var(--bc-fill);
+}
+.bc-skeleton__line.is-short { width: 62%; }
+.is-animated .bc-skeleton__avatar,
+.is-animated .bc-skeleton__line {
+  animation: bc-skeleton-pulse 1s ease-in-out infinite alternate;
+}
+@keyframes bc-skeleton-pulse {
+  from { opacity: 0.45; }
+  to { opacity: 1; }
+}

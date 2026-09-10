@@ -1,150 +1,15 @@
-export const starPlanetTheme = {
-  pageStart: '#DDF4FF',
-  pageEnd: '#F9FDFF',
-  textPrimary: '#173A62',
-  textSecondary: '#365D82',
-  textTertiary: '#7895AE',
-  surfaceRaised: '#FFFFFF',
-  surfaceSubtle: '#F6FBFF',
-  borderDefault: '#C8EAFF',
-  brandPrimary: '#31A8FF',
-  brandDark: '#1479D6',
-  brandSubtle: '#E5F6FF',
-  /** Sky-cyan feedback only — not selected surface */
-  success: '#2BB8E6',
-  successSubtle: '#E8F7FC',
-  warning: '#FFD166',
-  /** Selection = sky brandSubtle (never aurora green) */
-  selectedFill: '#E5F6FF',
-  selectedBorder: '#31A8FF',
-  emphasisFill: '#F6FBFF',
-  activeFill: '#FFF7D7',
-  danger: '#FF6B7A',
-  switchOffBg: '#C8EAFF',
-  switchOffBorder: '#C8EAFF',
-  switchOffText: '#365D82',
-  switchOnBg: '#31A8FF',
-  switchOnBorder: '#31A8FF',
-  switchOnText: '#FFFFFF',
-  switchHandleBg: '#FFFFFF',
-  switchHandleBorder: '#C8EAFF',
-  switchHandleCheckedBorder: '#31A8FF',
-  switchSpinner: '#FFFFFF',
-};
+import {
+  starPlanetTheme,
+  starPlanetThemes,
+  starPlanetStyleProfiles,
+  planetMotion,
+} from './theme.generated.js';
 
-export const starPlanetThemes = {
-  sky: starPlanetTheme,
-  night: {
-    pageStart: '#0F1A2E',
-    pageEnd: '#141E32',
-    textPrimary: '#E8F4FF',
-    textSecondary: '#B8D0E8',
-    textTertiary: '#7A94B0',
-    surfaceRaised: '#1E2D45',
-    surfaceSubtle: '#22324A',
-    borderDefault: '#2A3F5C',
-    brandPrimary: '#31A8FF',
-    brandDark: '#1479D6',
-    brandSubtle: '#1E3A5F',
-    success: '#2BB8E6',
-    successSubtle: '#1A3348',
-    warning: '#FFD166',
-    selectedFill: '#1E3A5F',
-    selectedBorder: '#31A8FF',
-    emphasisFill: '#22324A',
-    activeFill: '#3A3020',
-    danger: '#FF6B7A',
-    switchOffBg: '#2A3F5C',
-    switchOffBorder: '#2A3F5C',
-    switchOffText: '#B8D0E8',
-    switchOnBg: '#31A8FF',
-    switchOnBorder: '#31A8FF',
-    switchOnText: '#FFFFFF',
-    switchHandleBg: '#FFFFFF',
-    switchHandleBorder: '#2A3F5C',
-    switchHandleCheckedBorder: '#31A8FF',
-    switchSpinner: '#FFFFFF',
-  },
-  mint: {
-    pageStart: '#DFFAF2',
-    pageEnd: '#F8FFFC',
-    textPrimary: '#123F3A',
-    textSecondary: '#2F6B63',
-    textTertiary: '#6C938D',
-    surfaceRaised: '#FFFFFF',
-    surfaceSubtle: '#F3FFFA',
-    borderDefault: '#BDEFE2',
-    brandPrimary: '#20BFA9',
-    brandDark: '#0C8F7E',
-    brandSubtle: '#E6FFF4',
-    success: '#35C58B',
-    successSubtle: '#E8FBF3',
-    warning: '#FFD166',
-    selectedFill: '#E6FFF4',
-    selectedBorder: '#20BFA9',
-    emphasisFill: '#F3FFFA',
-    activeFill: '#FFF7D7',
-    danger: '#FF6B7A',
-    switchOffBg: '#BDEFE2',
-    switchOffBorder: '#BDEFE2',
-    switchOffText: '#2F6B63',
-    switchOnBg: '#20BFA9',
-    switchOnBorder: '#20BFA9',
-    switchOnText: '#FFFFFF',
-    switchHandleBg: '#FFFFFF',
-    switchHandleBorder: '#BDEFE2',
-    switchHandleCheckedBorder: '#20BFA9',
-    switchSpinner: '#FFFFFF',
-  },
-  sunrise: {
-    pageStart: '#FFE8D6',
-    pageEnd: '#FFFDF8',
-    textPrimary: '#4A2B1A',
-    textSecondary: '#80523A',
-    textTertiary: '#AA8068',
-    surfaceRaised: '#FFFFFF',
-    surfaceSubtle: '#FFF8F2',
-    borderDefault: '#FFD1AD',
-    brandPrimary: '#FF8A3D',
-    brandDark: '#D85C12',
-    brandSubtle: '#FFF1E7',
-    success: '#2BB8E6',
-    successSubtle: '#E8F7FC',
-    warning: '#FFD166',
-    selectedFill: '#FFF1E7',
-    selectedBorder: '#FF8A3D',
-    emphasisFill: '#FFF8F2',
-    activeFill: '#FFF7D7',
-    danger: '#E24C5C',
-    switchOffBg: '#FFD1AD',
-    switchOffBorder: '#FFD1AD',
-    switchOffText: '#80523A',
-    switchOnBg: '#FF8A3D',
-    switchOnBorder: '#FF8A3D',
-    switchOnText: '#FFFFFF',
-    switchHandleBg: '#FFFFFF',
-    switchHandleBorder: '#FFD1AD',
-    switchHandleCheckedBorder: '#FF8A3D',
-    switchSpinner: '#FFFFFF',
-  },
-};
-
-/** style_token.json themes：岛屿阴影 / 扁平无影。 */
-export const starPlanetStyleProfiles = {
-  island_raised: {
-    buttonRaisedShadowEnabled: true,
-    shadowControlIslandLiftY: 5,
-    shadowControlPressedY: 2,
-    pressedDropY: 2,
-    buttonFaceHeight: 46,
-  },
-  island_flat: {
-    buttonRaisedShadowEnabled: false,
-    shadowControlIslandLiftY: 0,
-    shadowControlPressedY: 0,
-    pressedDropY: 0,
-    buttonFaceHeight: 46,
-  },
+export {
+  starPlanetTheme,
+  starPlanetThemes,
+  starPlanetStyleProfiles,
+  planetMotion,
 };
 
 /** Sample 内置主题预设，对齐 Android MainActivity / React Web。 */
@@ -161,9 +26,6 @@ export const builtInThemePresets = [
 
 /**
  * 合并 color token 与 style profile，供组件直接消费。
- *
- * @param {string} colorKey starPlanetThemes 键名。
- * @param {string} styleProfile starPlanetStyleProfiles 键名。
  */
 export function resolveTheme(colorKey = 'sky', styleProfile = 'island_raised') {
   const colors = starPlanetThemes[colorKey] || starPlanetThemes.sky;
@@ -174,5 +36,6 @@ export function resolveTheme(colorKey = 'sky', styleProfile = 'island_raised') {
     colorKey,
     styleProfile,
     buttonHeight: style.buttonFaceHeight + style.shadowControlIslandLiftY,
+    motion: planetMotion,
   };
 }

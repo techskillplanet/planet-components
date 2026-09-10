@@ -1,0 +1,14 @@
+<picker
+  mode="time"
+  value="{{value}}"
+  disabled="{{disabled}}"
+  bindchange="onChange"
+>
+  <view
+    class="bc-time-picker {{disabled ? 'is-disabled' : ''}}"
+    style="--bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textTertiary}};"
+  >
+    <text wx:if="{{value}}">{{value}}</text>
+    <text wx:else class="bc-time-picker__placeholder">{{placeholder || 'HH:mm'}}</text>
+  </view>
+</picker>

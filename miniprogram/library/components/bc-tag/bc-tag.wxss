@@ -1,0 +1,52 @@
+.bc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  max-width: 100%;
+  padding: 10rpx 22rpx;
+  border-radius: 999rpx;
+  border: 2rpx solid var(--bc-border);
+  background: var(--bc-surface);
+  color: var(--bc-text);
+  box-sizing: border-box;
+}
+.bc-tag__text {
+  font-size: 26rpx;
+  font-weight: 700;
+  flex-shrink: 1;
+}
+.bc-tag__close {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 999rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+.bc-tag--primary {
+  background: var(--bc-brand-soft);
+  border-color: transparent;
+  color: var(--bc-brand);
+}
+.bc-tag--success {
+  background: var(--bc-success-soft);
+  border-color: transparent;
+  color: var(--bc-success);
+}
+.bc-tag--warning {
+  background: var(--bc-warn-soft);
+  border-color: transparent;
+}
+.bc-tag--danger {
+  background: #ffe8eb;
+  border-color: transparent;
+  color: var(--bc-danger);
+}
+.bc-tag.is-selected {
+  border-color: var(--bc-selected-border);
+  border-width: 4rpx;
+}
+.is-disabled { opacity: 0.45; }

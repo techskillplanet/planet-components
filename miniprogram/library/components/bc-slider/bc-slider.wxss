@@ -1,0 +1,5 @@
+.bc-slider {
+  width: 100%;
+  padding: 8rpx 0;
+}
+.is-disabled { opacity: 0.45; }

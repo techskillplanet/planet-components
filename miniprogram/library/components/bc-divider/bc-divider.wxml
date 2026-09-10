@@ -1,0 +1,6 @@
+<view
+  class="bc-divider bc-divider--{{variant}} {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-border: {{theme.borderDefault}};"
+  aria-role="separator"
+  aria-label="{{text}}"
+></view>

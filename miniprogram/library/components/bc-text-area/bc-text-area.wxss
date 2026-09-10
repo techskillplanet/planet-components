@@ -1,0 +1,18 @@
+.bc-text-area {
+  width: 100%;
+  border-radius: 24rpx;
+  border: 2rpx solid var(--bc-border);
+  background: var(--bc-surface);
+  padding: 20rpx 24rpx;
+  box-sizing: border-box;
+}
+.bc-text-area--error { border-color: var(--bc-danger); }
+.bc-text-area__field {
+  width: 100%;
+  color: var(--bc-text);
+  font-size: 28rpx;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.bc-text-area__placeholder { color: var(--bc-muted); }
+.is-disabled { opacity: 0.45; }

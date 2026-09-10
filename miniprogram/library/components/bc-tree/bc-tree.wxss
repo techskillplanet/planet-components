@@ -1,0 +1,34 @@
+.bc-tree {
+  padding: 12rpx;
+  border-radius: 28rpx;
+  border: 2rpx solid var(--bc-border);
+  background: var(--bc-surface);
+  box-sizing: border-box;
+}
+.bc-tree__row {
+  display: flex;
+  align-items: center;
+  min-height: 64rpx;
+  border-radius: 16rpx;
+  padding-right: 12rpx;
+}
+.bc-tree__row.is-selected {
+  background: var(--bc-brand-soft);
+}
+.bc-tree__twist {
+  width: 40rpx;
+  text-align: center;
+  color: var(--bc-muted);
+  font-weight: 700;
+  font-size: 26rpx;
+}
+.bc-tree__twist--leaf { opacity: 0; }
+.bc-tree__label {
+  flex: 1;
+  color: var(--bc-text);
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.bc-tree__row.is-selected .bc-tree__label {
+  color: var(--bc-brand);
+}

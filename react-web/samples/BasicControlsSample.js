@@ -7,11 +7,14 @@ import { componentCategories, componentDocs } from '../shared/componentDocs.js';
 import {
   starPlanetTheme, starPlanetThemes, themeVars,
   TspAlert, TspAmount, TspBadge, TspBottomTab, TspButton, TspCard, TspChip,
-  TspEmpty, TspIconButton, TspInput, TspKeyValueLabel, TspListItem, TspModal,
-  TspNotification, TspOptionSheet, TspPinInput, TspProgress, TspSelect,
+  TspEmpty, TspIconButton, TspInput, TspKeyValueLabel, TspListItem, TspLoadingDialog, TspModal,
+  TspNotification, TspOptionSheet, TspPinInput, TspProgress, TspRefreshLayout, TspSelect,
   TspStepper, TspStickyFooter, TspSwitch, TspTabs, TspTextLink, TspToast, TspTopBar,
   TspDatePicker, TspChildSwitcher, TspScoreRuleGrid, TspRedeemCardGrid,
-  TspCalendarHeatmap, TspPrintSheet, TspBalanceHero, TspCheckInStreakCard
+  TspCalendarHeatmap, TspPrintSheet, TspBalanceHero, TspCheckInStreakCard,
+  TspCheckbox, TspCollapse, TspDivider, TspRadio, TspSearchBar, TspSegmentedControl, TspStarRating,
+  TspAvatar, TspSkeleton, TspTooltip, TspSlider, TspTextArea, TspDrawer, TspInputNumber, TspSwiper,
+  TspTag, TspFab, TspTimePicker, TspUpload, TspTable, TspTree, TspCascader
 } from '@techskillplanet/planet-components-react';
 
 const h = React.createElement;
@@ -172,6 +175,19 @@ function TspDocPreview({ name, theme, state }) {
       example('loading', h(TspSwitch, { text: 'Loading', checked: true, loading: true, ...common })),
       example('disabled', h(TspSwitch, { text: 'Disabled', checked: false, disabled: true, ...common }))
     ]);
+    case 'Checkbox': return h('div', { className: 'bc-example-stack' }, [
+      example('checked', h(TspCheckbox, { text: 'Agree', checked: state.checked, onChange: state.setChecked, ...common })),
+      example('disabled', h(TspCheckbox, { text: 'Disabled', checked: true, disabled: true, ...common }))
+    ]);
+    case 'Radio': return h('div', { className: 'bc-example-stack' }, [
+      example('a', h(TspRadio, { text: 'Option A', checked: (state.selectedOption || 0) === 0, onChange: () => state.setSelectedOption(0), ...common })),
+      example('b', h(TspRadio, { text: 'Option B', checked: state.selectedOption === 1, onChange: () => state.setSelectedOption(1), ...common }))
+    ]);
+    case 'Collapse': return h(TspCollapse, { title: 'Details', message: 'Sky Planet panel body.', expanded: Boolean(state.checked), onChange: state.setChecked, ...common });
+    case 'Divider': return h(TspDivider, { text: 'Section', ...common });
+    case 'SearchBar': return h(TspSearchBar, { value: state.inputValue || '', placeholder: 'Search…', onChange: state.setInputValue, ...common });
+    case 'SegmentedControl': return h(TspSegmentedControl, { options: ['Day', 'Week', 'Month'], selectedIndex: state.selectedTab || 0, onSelect: state.setSelectedTab, ...common });
+    case 'StarRating': return h(TspStarRating, { value: state.selectedOption || 3, max: 5, onChange: state.setSelectedOption, ...common });
     case 'Progress': return h('div', { className: 'bc-example-stack' }, ['primary', 'success', 'warning', 'danger'].map((variant, index) => example(variant, h(TspProgress, { progress: [38, 68, 52, 82][index], variant, ...common }))));
     case 'TopBar': return h(TspTopBar, { title: '基础组件', showBack: true, ...common });
     case 'BottomTab': return h('div', { className: 'bc-doc-sticky-demo' }, h(TspBottomTab, { tabs: state.tabs, selectedKey: state.tab, onSelect: state.setTab, ...common }));
@@ -188,6 +204,53 @@ function TspDocPreview({ name, theme, state }) {
     case 'Empty': return h(TspEmpty, { title: '空状态', message: '暂无记录。', actionText: '操作', ...common });
     case 'Toast': return h(TspButton, { text: 'Show Toast', variant: 'primary', onTap: () => state.showToast('已保存', 'success'), ...common });
     case 'Modal': return h(TspButton, { text: 'Open Modal', onTap: () => state.setShowModal(true), ...common });
+    case 'LoadingDialog': return h('div', { className: 'bc-example-stack' }, [
+      example('default', h(TspButton, {
+        text: 'Show Loading',
+        variant: 'primary',
+        onTap: () => {
+          state.setShowLoading(true);
+          setTimeout(() => state.setShowLoading(false), 1400);
+        },
+        ...common
+      })),
+      example('compact', h(TspButton, {
+        text: 'Compact Loading',
+        onTap: () => {
+          state.setShowLoading('compact');
+          setTimeout(() => state.setShowLoading(false), 1400);
+        },
+        ...common
+      }))
+    ]);
+    case 'RefreshLayout': return h('div', { style: { height: 280 } }, h(TspRefreshLayout, {
+      theme,
+      refreshing: Boolean(state.refreshing),
+      loadingMore: Boolean(state.loadingMore),
+      onRefresh: () => {
+        state.setRefreshing(true);
+        setTimeout(() => {
+          state.setRefreshItems([1, 2, 3, 4, 5, 6]);
+          state.setRefreshing(false);
+          state.showToast?.('已刷新', 'success');
+        }, 900);
+      },
+      onLoadMore: () => {
+        if (state.loadingMore || state.refreshing) return;
+        state.setLoadingMore(true);
+        setTimeout(() => {
+          const items = state.refreshItems || [1, 2, 3, 4, 5, 6];
+          state.setRefreshItems([...items, items.length + 1, items.length + 2]);
+          state.setLoadingMore(false);
+        }, 900);
+      }
+    }, (state.refreshItems || [1, 2, 3, 4, 5, 6]).map((item) => h(TspListItem, {
+      key: item,
+      title: `列表项 ${item}`,
+      message: '下拉刷新，上拉加载更多',
+      trailing: '›',
+      theme
+    }))));
     case 'DatePicker': return h(TspDatePicker, { value: state.dateValue || '2026-08-26', onChange: state.setDateValue, placeholder: '选择日期', ...common });
     case 'ChildSwitcher': return h('div', { className: 'bc-example-stack' }, [
       example('chip', h(TspChildSwitcher, { items: [{ id: 1, label: '悦悦', emoji: '👧' }, { id: 2, label: '佑佑', emoji: '👦' }], selectedId: state.childId || 1, onChange: state.setChildId, ...common })),
@@ -232,6 +295,98 @@ function TspDocPreview({ name, theme, state }) {
       onOpen: () => state.showToast?.('打开打卡', 'info'),
       ...common
     });
+    case 'Avatar': return h('div', { className: 'bc-row' }, [
+      h(TspAvatar, { key: 'default', text: '技趣', ...common }),
+      h(TspAvatar, { key: 'primary', text: 'SP', variant: 'primary', size: 'lg', ...common }),
+      h(TspAvatar, { key: 'subtle', text: 'A', variant: 'subtle', size: 'sm', ...common })
+    ]);
+    case 'Skeleton': return h(TspSkeleton, { rows: 3, animated: true, avatar: true, ...common });
+    case 'Tooltip': return h(TspTooltip, { text: 'Sky Planet tip', placement: 'top', ...common },
+      h(TspButton, { text: 'Hover me', variant: 'default', ...common })
+    );
+    case 'Slider': return h(TspSlider, {
+      value: state.sliderValue ?? 40,
+      min: 0,
+      max: 100,
+      step: 1,
+      onChange: state.setSliderValue,
+      ...common
+    });
+    case 'TextArea': return h(TspTextArea, {
+      value: state.textAreaValue || '',
+      placeholder: 'Write a note…',
+      rows: 3,
+      onChange: state.setTextAreaValue,
+      ...common
+    });
+    case 'Drawer': return h(TspButton, {
+      text: 'Open Drawer',
+      variant: 'primary',
+      onTap: () => state.setShowDrawer(true),
+      ...common
+    });
+    case 'InputNumber': return h(TspInputNumber, {
+      value: state.inputNumberValue ?? 3,
+      min: 0,
+      max: 10,
+      step: 1,
+      onChange: state.setInputNumberValue,
+      ...common
+    });
+    case 'Swiper': return h(TspSwiper, {
+      items: ['Slide A', 'Slide B', 'Slide C'],
+      index: state.swiperIndex || 0,
+      onChange: state.setSwiperIndex,
+      ...common
+    });
+    case 'Tag': return h('div', { className: 'bc-row' }, [
+      h(TspTag, { key: 'default', text: 'default', ...common }),
+      h(TspTag, { key: 'primary', text: 'primary', variant: 'primary', ...common }),
+      h(TspTag, { key: 'closable', text: 'closable', closable: true, onClose: () => state.showToast?.('closed', 'info'), ...common })
+    ]);
+    case 'Fab': return h('div', { className: 'bc-row' }, [
+      h(TspFab, { key: 'icon', icon: '+', ...common }),
+      h(TspFab, { key: 'ext', icon: '+', text: '新建', ...common }),
+      h(TspFab, { key: 'default', icon: '✎', text: '默认', variant: 'default', ...common })
+    ]);
+    case 'TimePicker': return h(TspTimePicker, {
+      value: state.timeValue || '09:30',
+      placeholder: 'HH:mm',
+      onChange: state.setTimeValue,
+      ...common
+    });
+    case 'Upload': return h(TspUpload, {
+      files: state.uploadFiles || [{ id: '1', name: 'readme.md' }],
+      onChange: state.setUploadFiles,
+      ...common
+    });
+    case 'Table': return h(TspTable, {
+      columns: [{ key: 'name', title: '名称' }, { key: 'status', title: '状态' }],
+      rows: [{ name: 'Avatar', status: '就绪' }, { name: 'Tag', status: '新增' }],
+      variant: 'striped',
+      ...common
+    });
+    case 'Tree': return h(TspTree, {
+      items: [
+        { id: 'a', label: '星球', children: [{ id: 'a1', label: '天空' }, { id: 'a2', label: '岛屿' }] },
+        { id: 'b', label: '玩法', children: [{ id: 'b1', label: '闯关' }] }
+      ],
+      selectedId: state.treeSelectedId || 'a1',
+      expandedIds: state.treeExpandedIds || ['a'],
+      onSelect: (id) => state.setTreeSelectedId?.(id),
+      onExpand: state.setTreeExpandedIds,
+      ...common
+    });
+    case 'Cascader': return h(TspCascader, {
+      options: [
+        { value: 'asia', label: '亚洲', children: [{ value: 'cn', label: '中国' }, { value: 'jp', label: '日本' }] },
+        { value: 'eu', label: '欧洲', children: [{ value: 'fr', label: '法国' }] }
+      ],
+      value: state.cascaderValue || [],
+      placeholder: '请选择地区',
+      onChange: state.setCascaderValue,
+      ...common
+    });
     default: return null;
   }
 }
@@ -268,7 +423,20 @@ function ComponentDocPage({ doc, theme, state, onBack, layoutClass }) {
     ),
     state.showSheet && h(TspOptionSheet, { title: '请选择', options: ['A', 'B', 'C'], selectedIndex: state.selectedOption, theme, visible: true, onCancel: () => state.setShowSheet(false), onSelect: (index) => { state.setSelectedOption(index); state.setShowSheet(false); } }),
     state.toast && h('div', { className: 'bc-toast-layer', key: state.toast.id }, h(TspToast, { message: state.toast.message, variant: state.toast.variant, theme })),
-    state.showModal && h(TspModal, { title: '确认', message: '组件弹窗在详情页中也需要完整显示。', confirmText: '确定', cancelText: '取消', theme, onConfirm: () => state.setShowModal(false), onCancel: () => state.setShowModal(false) })
+    state.showModal && h(TspModal, { title: '确认', message: '组件弹窗在详情页中也需要完整显示。', confirmText: '确定', cancelText: '取消', theme, onConfirm: () => state.setShowModal(false), onCancel: () => state.setShowModal(false) }),
+    h(TspLoadingDialog, {
+      visible: Boolean(state.showLoading),
+      variant: state.showLoading === 'compact' ? 'compact' : 'default',
+      message: '同步主题中...',
+      theme
+    }),
+    h(TspDrawer, {
+      visible: Boolean(state.showDrawer),
+      title: 'Drawer',
+      placement: 'bottom',
+      theme,
+      onClose: () => state.setShowDrawer(false)
+    }, 'Sky Planet drawer body.')
   );
 }
 
@@ -319,7 +487,21 @@ export function BasicControlsSample({
     return window.location.hash.replace(/^#/, '');
   });
   const [showModal, setShowModal] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [refreshItems, setRefreshItems] = useState([1, 2, 3, 4, 5, 6]);
   const [toast, setToast] = useState(null);
+  const [showDrawer, setShowDrawer] = useState(false);
+  const [sliderValue, setSliderValue] = useState(40);
+  const [textAreaValue, setTextAreaValue] = useState('');
+  const [inputNumberValue, setInputNumberValue] = useState(3);
+  const [swiperIndex, setSwiperIndex] = useState(0);
+  const [timeValue, setTimeValue] = useState('09:30');
+  const [uploadFiles, setUploadFiles] = useState([{ id: '1', name: 'readme.md' }]);
+  const [treeSelectedId, setTreeSelectedId] = useState('a1');
+  const [treeExpandedIds, setTreeExpandedIds] = useState(['a']);
+  const [cascaderValue, setCascaderValue] = useState([]);
   const tabs = useMemo(() => [{ key: 'learn', title: t('learn'), icon: '⌂' }, { key: 'settings', title: t('settings'), icon: '⚙' }], [locale]);
   const showToast = (message, variant = 'info') => {
     setToast({ message, variant, id: Date.now() });
@@ -350,7 +532,7 @@ export function BasicControlsSample({
   const selectedDoc = ['', 'top', 'preview', 'platforms', 'features', 'skills', 'install'].includes(routeName)
     ? undefined
     : componentDocs.find((doc) => doc.name === routeName);
-  const previewState = { checked, setChecked, inputValue, setInputValue, dateValue, setDateValue, childId, setChildId, selectedOption, setSelectedOption, selectedTab, setSelectedTab, pinValue, setPinValue, showSheet, setShowSheet, showModal, setShowModal, toast, tabs, tab, setTab, showToast };
+  const previewState = { checked, setChecked, inputValue, setInputValue, dateValue, setDateValue, childId, setChildId, selectedOption, setSelectedOption, selectedTab, setSelectedTab, pinValue, setPinValue, showSheet, setShowSheet, showModal, setShowModal, showLoading, setShowLoading, refreshing, setRefreshing, loadingMore, setLoadingMore, refreshItems, setRefreshItems, toast, tabs, tab, setTab, showToast, showDrawer, setShowDrawer, sliderValue, setSliderValue, textAreaValue, setTextAreaValue, inputNumberValue, setInputNumberValue, swiperIndex, setSwiperIndex, timeValue, setTimeValue, uploadFiles, setUploadFiles, treeSelectedId, setTreeSelectedId, treeExpandedIds, setTreeExpandedIds, cascaderValue, setCascaderValue };
   const resolvedPlatform = forcePlatform ?? (platformMode === 'auto' ? autoPlatform : platformMode);
   const layoutClass = resolvedPlatform === 'desktop' ? 'bc-sample--force-desktop' : 'bc-sample--force-mobile';
   if (selectedDoc) {

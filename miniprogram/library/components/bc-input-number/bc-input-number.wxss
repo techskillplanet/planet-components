@@ -1,0 +1,27 @@
+.bc-input-number {
+  display: flex;
+  align-items: center;
+  min-height: 80rpx;
+  border-radius: 24rpx;
+  border: 2rpx solid var(--bc-border);
+  background: var(--bc-surface);
+  overflow: hidden;
+}
+.bc-input-number__btn {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bc-text);
+  font-size: 36rpx;
+  font-weight: 800;
+}
+.bc-input-number__value {
+  flex: 1;
+  text-align: center;
+  color: var(--bc-text);
+  font-size: 28rpx;
+  font-weight: 800;
+}
+.is-disabled { opacity: 0.45; }

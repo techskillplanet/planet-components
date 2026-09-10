@@ -1,0 +1,9 @@
+<view
+  class="bc-avatar bc-avatar--{{size}} bc-avatar--{{variant}}"
+  style="--bc-text: {{theme.textPrimary}}; --bc-brand: {{theme.brandPrimary}}; --bc-subtle: {{theme.brandSubtle}}; --bc-surface: {{theme.surfaceSubtle}}; --bc-inverse: #fff;"
+  aria-role="img"
+  aria-label="{{text || 'Avatar'}}"
+>
+  <image wx:if="{{src}}" class="bc-avatar__img" src="{{src}}" mode="aspectFill" />
+  <text wx:else class="bc-avatar__text">{{initial}}</text>
+</view>

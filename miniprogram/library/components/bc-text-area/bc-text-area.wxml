@@ -1,0 +1,16 @@
+<view
+  class="bc-text-area bc-text-area--{{variant}} {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textTertiary}}; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-danger: {{theme.danger}};"
+>
+  <textarea
+    class="bc-text-area__field"
+    value="{{value}}"
+    placeholder="{{placeholder}}"
+    placeholder-class="bc-text-area__placeholder"
+    disabled="{{disabled}}"
+    maxlength="{{maxLength}}"
+    auto-height="{{false}}"
+    style="min-height: {{rows * 44}}rpx;"
+    bindinput="onInput"
+  />
+</view>

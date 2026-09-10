@@ -75,9 +75,13 @@ public class MainActivity extends Activity implements SamplePageHost {
         colors = BasicThemeManager.colors();
         style = BasicThemeManager.style();
         router.restoreInstanceState(savedInstanceState);
+        // Edge-to-edge before content so TopBar receives correct status-bar insets.
+        applyEdgeToEdgeWindow();
         setContentView(buildShell());
         renderCurrentPage();
-        applyEdgeToEdgeWindow();
+        if (topBar != null) {
+            topBar.requestApplyInsets();
+        }
     }
 
     @Override
@@ -90,7 +94,7 @@ public class MainActivity extends Activity implements SamplePageHost {
     private LinearLayout buildShell() {
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
-        root.setBackgroundColor(colors.backgroundPage);
+        root.setBackground(pageGradientBackground());
 
         topBar = new BasicTopBarView(this);
         topBar.setOnBackClickListener(view -> navigateBack());
@@ -196,11 +200,26 @@ public class MainActivity extends Activity implements SamplePageHost {
         BasicEdgeToEdgeHelper.applyWindow(this, BasicEdgeToEdgeHelper.shouldUseLightStatusBarIcons(colors));
     }
 
+    /** 页面渐变底：状态栏透明时透过 TopBar 仍可见蓝天。 */
+    private android.graphics.drawable.GradientDrawable pageGradientBackground() {
+        android.graphics.drawable.GradientDrawable gradient =
+                new android.graphics.drawable.GradientDrawable(
+                        android.graphics.drawable.GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{colors.backgroundPage, colors.backgroundPageGradientEnd}
+                );
+        gradient.setShape(android.graphics.drawable.GradientDrawable.RECTANGLE);
+        return gradient;
+    }
+
     /** 主题/语言变更后刷新 Shell 与当前 Page，避免整页 setContentView。 */
     private void refreshThemeRuntime() {
         colors = BasicThemeManager.colors();
         style = BasicThemeManager.style();
-        getWindow().getDecorView().setBackgroundColor(colors.backgroundPage);
+        View contentView = findViewById(android.R.id.content);
+        if (contentView instanceof ViewGroup && ((ViewGroup) contentView).getChildCount() > 0) {
+            ((ViewGroup) contentView).getChildAt(0).setBackground(pageGradientBackground());
+        }
+        getWindow().getDecorView().setBackground(pageGradientBackground());
         topBar.refreshTheme();
         refreshLayout.refreshTheme();
         if (bottomTab != null) {
@@ -208,6 +227,9 @@ public class MainActivity extends Activity implements SamplePageHost {
             bottomTab.refreshTheme();
         }
         applyEdgeToEdgeWindow();
+        if (topBar != null) {
+            topBar.requestApplyInsets();
+        }
         renderCurrentPage();
     }
 

@@ -1,0 +1,28 @@
+.bc-segmented-control {
+  display: flex;
+  width: 100%;
+  gap: 8rpx;
+  padding: 8rpx;
+  border-radius: 999rpx;
+  background: var(--bc-surface);
+  border: 2rpx solid var(--bc-border);
+  box-sizing: border-box;
+}
+.bc-segmented-control__item {
+  flex: 1;
+  min-height: 64rpx;
+  padding: 12rpx 16rpx;
+  border-radius: 999rpx;
+  text-align: center;
+  color: var(--bc-text);
+  font-size: 24rpx;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bc-segmented-control__item.is-selected {
+  background: linear-gradient(180deg, var(--bc-brand), var(--bc-brand-dark));
+  color: var(--bc-on-text);
+}
+.is-disabled { opacity: 0.45; }

@@ -34,11 +34,11 @@
 | **One visual language** | Shared semantic tokens in `design/tokens/` — same names across Android, iOS, Web, Flutter, Mini Program, and Kuikly |
 | **Eight publishable stacks** | Each stack ships a real `library` + runnable `samples` (samples always depend on the local library) |
 | **Small, consistent APIs** | Common props: `variant`, `disabled`, `selected` / `checked`, `text` / `title` / `message`, runtime theme refresh |
-| **Open & packaged** | MIT · public registries at **0.2.0** (npm / Maven Central / pub.dev / SPM / CocoaPods) |
+| **Open & packaged** | MIT · public registries at **0.2.1** (npm / Maven Central / pub.dev / SPM / CocoaPods) |
 
 ---
 
-## Supported platforms (v0.2.0)
+## Supported platforms (v0.2.1)
 
 | Stack | Package | Registry |
 | --- | --- | --- |
@@ -57,7 +57,7 @@ Full install snippets: **[简体中文（完整）](README.zh-CN.md#三方接入
 
 ## Quick start
 
-Pick your stack — all examples use the public **0.2.0** packages.
+Pick your stack — all examples use the public **0.2.1** packages.
 
 <details>
 <summary><strong>React Web</strong></summary>
@@ -162,7 +162,7 @@ Each stack: **`library/`** (publishable) + **`samples/`** (local dependency only
 | [docs/AI_FOR_EVERYONE.md](docs/AI_FOR_EVERYONE.md) | Non-engineers: build pages with AI (Chinese) |
 | [docs/prompts/](docs/prompts/) | Copy-paste prompts (zh / en) |
 | [docs/AI_PLUGIN.md](docs/AI_PLUGIN.md) | Agent Skills: `npx skills add techskillplanet/planet-components` |
-| [.agents/README.md](.agents/README.md) | Built-in skill catalog (v0.2.0) |
+| [.agents/README.md](.agents/README.md) | Built-in skill catalog (v0.2.1) |
 | [AGENTS.md](AGENTS.md) | Repo rules for coding agents |
 
 ---
@@ -171,7 +171,14 @@ Each stack: **`library/`** (publishable) + **`samples/`** (local dependency only
 
 ```bash
 node tools/check-structure.cjs
+node tools/check-token-drift.cjs
+node tools/check-contract-inventory.cjs
+./tools/headless-check.sh   # full eight-stack gate (local)
 ```
+
+CI (`.github/workflows/ci.yml`) runs the three Node checks plus React/Vue/RN/Mini package tests on every PR; native Flutter/Android/Kuikly assemble on `main` / manual dispatch.
+
+Accessibility baseline: [docs/A11Y.md](docs/A11Y.md). React Storybook: `cd react-web/library && npm run storybook`.
 
 See [README.zh-CN.md](README.zh-CN.md#local-checks) for per-stack build / pack commands. Publishing scripts live under `android/scripts/`, `kuikly/scripts/`, and `tools/publish-npm-web.sh`.
 

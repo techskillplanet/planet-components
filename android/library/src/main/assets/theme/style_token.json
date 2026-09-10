@@ -2,7 +2,7 @@
   "$schema": "https://planet-components.local/schemas/style-token.schema.json",
   "meta": {
     "name": "Basic Controls Sky Planet Style Tokens",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "unit": "dp/sp for Android; px-equivalent for Figma; duration in ms.",
     "themeSwitching": "Keep token keys stable. Reskin by changing values, not component code.",
     "naming": {
@@ -57,6 +57,16 @@
     "10": 40,
     "12": 48,
     "16": 64
+  },
+  "spacing": {
+    "form": {
+      "labelGap": 6,
+      "fieldGap": 16,
+      "actionGap": 20,
+      "hintGap": 8,
+      "hintMinHeight": 40,
+      "stackPadding": 8
+    }
   },
   "radius": {
     "none": 0,
@@ -303,7 +313,7 @@
     },
     "controlIslandLift": {
       "x": 0,
-      "y": 5,
+      "y": 6,
       "blur": 0,
       "spread": 0,
       "color": "rgba(143,205,235,0.72)"
@@ -319,23 +329,34 @@
   "motion": {
     "duration": {
       "fast": 150,
-      "base": 250,
-      "slow": 350,
-      "modalEnter": 300,
+      "base": 220,
+      "slow": 320,
+      "pageEnter": 200,
+      "modalEnter": 280,
       "loadingLoop": 1000
     },
     "easing": {
       "standard": "cubic-bezier(0.4,0,0.2,1)",
       "easeOut": "cubic-bezier(0,0,0.2,1)",
-      "springLike": "cubic-bezier(0.34,1.56,0.64,1)"
+      "pressPop": "cubic-bezier(0.34,1.56,0.64,1)"
     },
     "interaction": {
-      "hoverLiftY": -1,
+      "hoverLiftY": -2,
       "pressedDropY": 2,
-      "modalEnterScaleFrom": 0.94
+      "modalEnterScaleFrom": 0.97,
+      "pageEnterTranslateY": 8
+    },
+    "stagger": {
+      "step": 45,
+      "maxLevels": 3
     },
     "switch": {
       "duration": 180
+    },
+    "rules": {
+      "pressPopOnlyOnActiveRelease": true,
+      "noInfiniteDecorativeMotion": true,
+      "respectPrefersReducedMotion": true
     }
   },
   "opacity": {
@@ -352,9 +373,9 @@
       "controlShape": "controlIsland",
       "cardShape": "cardOrganic",
       "dialogShape": "dialogOrganic",
-      "clickableShadow": "controlIslandLift",
-      "pressedShadow": "controlPressed",
-      "buttonRaisedShadowEnabled": true
+      "clickableShadow": "none",
+      "pressedShadow": "none",
+      "buttonRaisedShadowEnabled": false
     }
   },
   "shape": {
@@ -373,7 +394,7 @@
       },
       "shadow": {
         "controlIslandLift": {
-          "y": 5
+          "y": 6
         },
         "controlPressed": {
           "y": 2
@@ -381,7 +402,8 @@
       },
       "motion": {
         "interaction": {
-          "pressedDropY": 2
+          "pressedDropY": 2,
+          "hoverLiftY": -1
         }
       }
     },

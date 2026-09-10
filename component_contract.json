@@ -193,6 +193,116 @@
       "name": "CheckInStreakCard",
       "variants": ["default"],
       "props": ["streakDays", "totalDays", "weekProgress", "onOpen", "disabled"]
+    },
+    {
+      "name": "Checkbox",
+      "variants": ["default", "disabled"],
+      "props": ["text", "variant", "checked", "disabled", "onChange"]
+    },
+    {
+      "name": "Collapse",
+      "variants": ["default", "disabled"],
+      "props": ["title", "message", "expanded", "disabled", "onChange"]
+    },
+    {
+      "name": "Divider",
+      "variants": ["default", "disabled"],
+      "props": ["variant", "text", "disabled"]
+    },
+    {
+      "name": "Radio",
+      "variants": ["default", "disabled"],
+      "props": ["text", "checked", "disabled", "onChange"]
+    },
+    {
+      "name": "SearchBar",
+      "variants": ["default", "disabled"],
+      "props": ["value", "placeholder", "variant", "disabled", "onChange"]
+    },
+    {
+      "name": "SegmentedControl",
+      "variants": ["default", "disabled"],
+      "props": ["options", "selectedIndex", "disabled", "onSelect"]
+    },
+    {
+      "name": "StarRating",
+      "variants": ["default", "disabled", "readonly"],
+      "props": ["value", "max", "disabled", "onChange"]
+    },
+    {
+      "name": "Avatar",
+      "variants": ["default", "primary", "subtle"],
+      "props": ["text", "src", "size", "variant"]
+    },
+    {
+      "name": "Skeleton",
+      "variants": ["default", "pulse"],
+      "props": ["rows", "animated", "avatar"]
+    },
+    {
+      "name": "Tooltip",
+      "variants": ["default"],
+      "props": ["text", "placement", "visible", "children"]
+    },
+    {
+      "name": "Slider",
+      "variants": ["default", "disabled"],
+      "props": ["value", "min", "max", "step", "disabled", "onChange"]
+    },
+    {
+      "name": "TextArea",
+      "variants": ["default", "error", "disabled"],
+      "props": ["value", "placeholder", "rows", "maxLength", "disabled", "onChange"]
+    },
+    {
+      "name": "Drawer",
+      "variants": ["default"],
+      "props": ["visible", "title", "placement", "onClose", "children"]
+    },
+    {
+      "name": "InputNumber",
+      "variants": ["default", "disabled"],
+      "props": ["value", "min", "max", "step", "disabled", "onChange"]
+    },
+    {
+      "name": "Swiper",
+      "variants": ["default"],
+      "props": ["items", "index", "autoplay", "onChange"]
+    },
+    {
+      "name": "Tag",
+      "variants": ["default", "primary", "success", "warning", "danger"],
+      "props": ["text", "closable", "selected", "disabled", "variant", "onClose", "onTap"]
+    },
+    {
+      "name": "Fab",
+      "variants": ["primary", "default"],
+      "props": ["icon", "text", "variant", "disabled", "onTap"]
+    },
+    {
+      "name": "TimePicker",
+      "variants": ["default", "disabled"],
+      "props": ["value", "placeholder", "disabled", "onChange"]
+    },
+    {
+      "name": "Upload",
+      "variants": ["default", "disabled"],
+      "props": ["files", "multiple", "disabled", "accept", "onChange", "onRemove"]
+    },
+    {
+      "name": "Table",
+      "variants": ["default", "striped"],
+      "props": ["columns", "rows", "variant", "emptyText"]
+    },
+    {
+      "name": "Tree",
+      "variants": ["default"],
+      "props": ["items", "selectedId", "expandedIds", "onSelect", "onExpand"]
+    },
+    {
+      "name": "Cascader",
+      "variants": ["default", "disabled"],
+      "props": ["options", "value", "placeholder", "disabled", "onChange"]
     }
   ]
 }

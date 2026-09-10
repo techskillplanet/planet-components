@@ -1,0 +1,33 @@
+.bc-swiper {
+  width: 100%;
+  border-radius: 24rpx;
+  border: 2rpx solid var(--bc-border);
+  background: var(--bc-surface);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.bc-swiper__viewport { height: 240rpx; }
+.bc-swiper__slide {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bc-text);
+  font-size: 30rpx;
+  font-weight: 800;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.bc-swiper__dots {
+  display: flex;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 12rpx 0 20rpx;
+}
+.bc-swiper__dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 999rpx;
+  background: var(--bc-border);
+}
+.bc-swiper__dot.is-active { background: var(--bc-brand); }

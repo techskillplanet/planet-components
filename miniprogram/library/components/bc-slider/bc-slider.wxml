@@ -1,0 +1,17 @@
+<view
+  class="bc-slider {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-brand: {{theme.brandPrimary}}; --bc-track: {{theme.borderDefault}};"
+>
+  <slider
+    value="{{value}}"
+    min="{{min}}"
+    max="{{max}}"
+    step="{{step}}"
+    disabled="{{disabled}}"
+    activeColor="{{theme.brandPrimary || '#31A8FF'}}"
+    backgroundColor="{{theme.borderDefault || '#D7E7F5'}}"
+    block-size="24"
+    bindchanging="onChanging"
+    bindchange="onChange"
+  />
+</view>

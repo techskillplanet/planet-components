@@ -1,8 +1,61 @@
 import 'package:flutter/material.dart';
 
+/// Island control style profile — aligns with React Web `starPlanetStyleProfiles`.
+class StarPlanetStyleProfile {
+  const StarPlanetStyleProfile({
+    required this.key,
+    this.buttonRaisedShadowEnabled = true,
+    this.shadowControlIslandLiftY = 6,
+    this.shadowControlPressedY = 2,
+    this.pressedDropY = 2,
+    this.hoverLiftY = -1,
+    this.buttonFaceHeight = 46,
+    this.cardIslandShadow =
+        '0 14px 34px rgba(49, 168, 255, 0.20), 0 2px 8px rgba(23, 58, 98, 0.06)',
+  });
+
+  final String key;
+  final bool buttonRaisedShadowEnabled;
+  final double shadowControlIslandLiftY;
+  final double shadowControlPressedY;
+  final double pressedDropY;
+  final double hoverLiftY;
+  final double buttonFaceHeight;
+  final String cardIslandShadow;
+
+  double get buttonHeight => buttonFaceHeight + shadowControlIslandLiftY;
+
+  static const islandRaised = StarPlanetStyleProfile(key: 'island_raised');
+
+  static const islandFlat = StarPlanetStyleProfile(
+    key: 'island_flat',
+    buttonRaisedShadowEnabled: false,
+    shadowControlIslandLiftY: 0,
+    shadowControlPressedY: 0,
+    pressedDropY: 0,
+    hoverLiftY: 0,
+    buttonFaceHeight: 46,
+    cardIslandShadow: 'none',
+  );
+
+  static const profileKeys = ['island_raised', 'island_flat'];
+
+  static StarPlanetStyleProfile resolve(String? styleProfile) {
+    switch (styleProfile) {
+      case 'island_flat':
+        return islandFlat;
+      case 'island_raised':
+      default:
+        return islandRaised;
+    }
+  }
+}
+
 /// Sky Planet theme — values aligned with React Web `theme.js` / shared tokens.
 class StarPlanetTheme {
   const StarPlanetTheme({
+    this.colorKey = 'sky',
+    this.styleProfile = 'island_raised',
     this.pageStart = const Color(0xFFDDF4FF),
     this.pageEnd = const Color(0xFFF9FDFF),
     this.textPrimary = const Color(0xFF173A62),
@@ -34,8 +87,19 @@ class StarPlanetTheme {
     this.switchHandleBorder = const Color(0xFFC8EAFF),
     this.switchHandleCheckedBorder = const Color(0xFF31A8FF),
     this.switchLoadingSpinner = Colors.white,
+    // Style profile defaults match `island_raised`.
+    this.buttonRaisedShadowEnabled = true,
+    this.shadowControlIslandLiftY = 6,
+    this.shadowControlPressedY = 2,
+    this.pressedDropY = 2,
+    this.hoverLiftY = -1,
+    this.buttonFaceHeight = 46,
+    this.cardIslandShadow =
+        '0 14px 34px rgba(49, 168, 255, 0.20), 0 2px 8px rgba(23, 58, 98, 0.06)',
   });
 
+  final String colorKey;
+  final String styleProfile;
   final Color pageStart;
   final Color pageEnd;
   final Color textPrimary;
@@ -65,10 +129,63 @@ class StarPlanetTheme {
   final Color switchHandleBorder;
   final Color switchHandleCheckedBorder;
   final Color switchLoadingSpinner;
+  final bool buttonRaisedShadowEnabled;
+  final double shadowControlIslandLiftY;
+  final double shadowControlPressedY;
+  final double pressedDropY;
+  final double hoverLiftY;
+  final double buttonFaceHeight;
+  final String cardIslandShadow;
 
-  static const sky = StarPlanetTheme();
+  double get buttonHeight => buttonFaceHeight + shadowControlIslandLiftY;
+
+  StarPlanetTheme withStyle(StarPlanetStyleProfile profile) {
+    return StarPlanetTheme(
+      colorKey: colorKey,
+      styleProfile: profile.key,
+      pageStart: pageStart,
+      pageEnd: pageEnd,
+      textPrimary: textPrimary,
+      textSecondary: textSecondary,
+      textTertiary: textTertiary,
+      surfaceRaised: surfaceRaised,
+      surfaceSubtle: surfaceSubtle,
+      borderDefault: borderDefault,
+      brandPrimary: brandPrimary,
+      brandDark: brandDark,
+      brandSubtle: brandSubtle,
+      success: success,
+      successSubtle: successSubtle,
+      warning: warning,
+      selectedFill: selectedFill,
+      selectedBorder: selectedBorder,
+      emphasisFill: emphasisFill,
+      activeFill: activeFill,
+      danger: danger,
+      switchOffBackground: switchOffBackground,
+      switchOffBorder: switchOffBorder,
+      switchOffText: switchOffText,
+      switchOnBackground: switchOnBackground,
+      switchOnBorder: switchOnBorder,
+      switchOnText: switchOnText,
+      switchHandleBackground: switchHandleBackground,
+      switchHandleBorder: switchHandleBorder,
+      switchHandleCheckedBorder: switchHandleCheckedBorder,
+      switchLoadingSpinner: switchLoadingSpinner,
+      buttonRaisedShadowEnabled: profile.buttonRaisedShadowEnabled,
+      shadowControlIslandLiftY: profile.shadowControlIslandLiftY,
+      shadowControlPressedY: profile.shadowControlPressedY,
+      pressedDropY: profile.pressedDropY,
+      hoverLiftY: profile.hoverLiftY,
+      buttonFaceHeight: profile.buttonFaceHeight,
+      cardIslandShadow: profile.cardIslandShadow,
+    );
+  }
+
+  static const sky = StarPlanetTheme(colorKey: 'sky');
 
   static const night = StarPlanetTheme(
+    colorKey: 'night',
     pageStart: Color(0xFF0F1A2E),
     pageEnd: Color(0xFF141E32),
     textPrimary: Color(0xFFE8F4FF),
@@ -91,6 +208,7 @@ class StarPlanetTheme {
   );
 
   static const mint = StarPlanetTheme(
+    colorKey: 'mint',
     pageStart: Color(0xFFDFFAF2),
     pageEnd: Color(0xFFF8FFFC),
     textPrimary: Color(0xFF123F3A),
@@ -116,6 +234,7 @@ class StarPlanetTheme {
   );
 
   static const sunrise = StarPlanetTheme(
+    colorKey: 'sunrise',
     pageStart: Color(0xFFFFE8D6),
     pageEnd: Color(0xFFFFFDF8),
     textPrimary: Color(0xFF4A2B1A),
@@ -144,6 +263,7 @@ class StarPlanetTheme {
   /// Built-in color keys aligned with React `starPlanetThemes`.
   static const themeKeys = ['sky', 'night', 'mint', 'sunrise'];
 
+  /// Resolve color theme only (kept for backward compatibility). Defaults to raised style.
   static StarPlanetTheme resolve(String colorKey) {
     switch (colorKey) {
       case 'night':
@@ -157,4 +277,19 @@ class StarPlanetTheme {
         return sky;
     }
   }
+
+  /// Merge color token + style profile — aligns with React `resolveTheme(colorKey, styleProfile)`.
+  static StarPlanetTheme resolveTheme([
+    String colorKey = 'sky',
+    String styleProfile = 'island_raised',
+  ]) {
+    return resolve(colorKey).withStyle(StarPlanetStyleProfile.resolve(styleProfile));
+  }
 }
+
+/// Top-level helper mirroring React Web `resolveTheme(colorKey, styleProfile)`.
+StarPlanetTheme resolveTheme([
+  String colorKey = 'sky',
+  String styleProfile = 'island_raised',
+]) =>
+    StarPlanetTheme.resolveTheme(colorKey, styleProfile);

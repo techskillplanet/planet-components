@@ -116,12 +116,18 @@ public class BasicTabsView extends HorizontalScrollView {
 
     /** 设置当前选中的 tab 下标。 */
     public void setSelectedIndex(int index) {
+        setSelectedIndex(index, true);
+    }
+
+    /** @param notify 是否回调监听。 */
+    public void setSelectedIndex(int index, boolean notify) {
         if (index < 0 || index >= tabs.size()) {
             return;
         }
+        boolean changed = selectedIndex != index;
         selectedIndex = index;
         refreshTheme();
-        if (listener != null) {
+        if (notify && changed && listener != null) {
             listener.onTabSelected(index, tabs.get(index));
         }
     }
@@ -165,7 +171,7 @@ public class BasicTabsView extends HorizontalScrollView {
         item.setPadding(Math.round(style.spaceMd), 0, Math.round(style.spaceMd), 0);
         item.setBackground(BasicDrawableFactory.roundedFill(fill, style.radiusPill));
         item.setEnabled(!basicDisabled && isEnabled());
-        item.setOnClickListener(view -> setSelectedIndex(index));
+        item.setOnClickListener(view -> setSelectedIndex(index, true));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 Math.round(style.tabHeight)

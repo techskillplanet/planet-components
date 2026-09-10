@@ -6,18 +6,35 @@ import androidx.compose.runtime.remember
 import com.techskillplanet.phonics.controls.TspAlert
 import com.techskillplanet.phonics.controls.TspAlertVariant
 import com.techskillplanet.phonics.controls.TspAmount
+import com.techskillplanet.phonics.controls.TspAvatar
 import com.techskillplanet.phonics.controls.TspBadge
 import com.techskillplanet.phonics.controls.TspBadgeVariant
+import com.techskillplanet.phonics.controls.TspBalanceHero
 import com.techskillplanet.phonics.controls.TspBottomTab
 import com.techskillplanet.phonics.controls.TspButton
 import com.techskillplanet.phonics.controls.TspButtonVariant
+import com.techskillplanet.phonics.controls.TspCalendarCell
+import com.techskillplanet.phonics.controls.TspCalendarHeatmap
 import com.techskillplanet.phonics.controls.TspCard
 import com.techskillplanet.phonics.controls.TspCardVariant
+import com.techskillplanet.phonics.controls.TspCascader
+import com.techskillplanet.phonics.controls.TspCascaderOption
+import com.techskillplanet.phonics.controls.TspCheckInStreakCard
+import com.techskillplanet.phonics.controls.TspCheckbox
+import com.techskillplanet.phonics.controls.TspChildSwitcher
+import com.techskillplanet.phonics.controls.TspChildSwitcherItem
+import com.techskillplanet.phonics.controls.TspChildSwitcherVariant
 import com.techskillplanet.phonics.controls.TspChip
 import com.techskillplanet.phonics.controls.TspChipVariant
+import com.techskillplanet.phonics.controls.TspCollapse
+import com.techskillplanet.phonics.controls.TspDatePicker
+import com.techskillplanet.phonics.controls.TspDivider
+import com.techskillplanet.phonics.controls.TspDrawer
 import com.techskillplanet.phonics.controls.TspEmpty
+import com.techskillplanet.phonics.controls.TspFab
 import com.techskillplanet.phonics.controls.TspIconButton
 import com.techskillplanet.phonics.controls.TspInput
+import com.techskillplanet.phonics.controls.TspInputNumber
 import com.techskillplanet.phonics.controls.TspInputVariant
 import com.techskillplanet.phonics.controls.TspKeyValueLabel
 import com.techskillplanet.phonics.controls.TspListItem
@@ -27,19 +44,42 @@ import com.techskillplanet.phonics.controls.TspNotification
 import com.techskillplanet.phonics.controls.TspNotificationVariant
 import com.techskillplanet.phonics.controls.TspOptionSheet
 import com.techskillplanet.phonics.controls.TspPinInput
+import com.techskillplanet.phonics.controls.TspPrintSheet
+import com.techskillplanet.phonics.controls.TspPrintSheetVariant
 import com.techskillplanet.phonics.controls.TspProgress
 import com.techskillplanet.phonics.controls.TspProgressVariant
+import com.techskillplanet.phonics.controls.TspRadio
+import com.techskillplanet.phonics.controls.TspRedeemCardGrid
+import com.techskillplanet.phonics.controls.TspRedeemItem
 import com.techskillplanet.phonics.controls.TspRefreshLayout
+import com.techskillplanet.phonics.controls.TspScoreRule
+import com.techskillplanet.phonics.controls.TspScoreRuleGrid
+import com.techskillplanet.phonics.controls.TspSearchBar
+import com.techskillplanet.phonics.controls.TspSegmentedControl
 import com.techskillplanet.phonics.controls.TspSelect
+import com.techskillplanet.phonics.controls.TspSkeleton
+import com.techskillplanet.phonics.controls.TspSlider
+import com.techskillplanet.phonics.controls.TspStarRating
 import com.techskillplanet.phonics.controls.TspStepper
 import com.techskillplanet.phonics.controls.TspStickyFooter
+import com.techskillplanet.phonics.controls.TspSwiper
 import com.techskillplanet.phonics.controls.TspSwitch
 import com.techskillplanet.phonics.controls.TspTabItem
+import com.techskillplanet.phonics.controls.TspTable
+import com.techskillplanet.phonics.controls.TspTableColumn
 import com.techskillplanet.phonics.controls.TspTabs
+import com.techskillplanet.phonics.controls.TspTag
+import com.techskillplanet.phonics.controls.TspTextArea
 import com.techskillplanet.phonics.controls.TspTextLink
+import com.techskillplanet.phonics.controls.TspTimePicker
 import com.techskillplanet.phonics.controls.TspToast
 import com.techskillplanet.phonics.controls.TspToastVariant
+import com.techskillplanet.phonics.controls.TspTooltip
 import com.techskillplanet.phonics.controls.TspTopBar
+import com.techskillplanet.phonics.controls.TspTree
+import com.techskillplanet.phonics.controls.TspTreeNode
+import com.techskillplanet.phonics.controls.TspUpload
+import com.techskillplanet.phonics.controls.TspUploadFile
 import com.techskillplanet.phonics.theme.PhonicsColors
 import com.techskillplanet.phonics.theme.PhonicsTheme
 import com.tencent.kuikly.compose.foundation.background
@@ -73,9 +113,13 @@ private val componentDocs = listOf(
     ComponentDoc("Chip", "group.actions", "component.chip.desc"),
     ComponentDoc("IconButton", "group.actions", "component.iconbutton.desc"),
     ComponentDoc("TextLink", "group.actions", "component.textlink.desc"),
+    ComponentDoc("Tag", "group.actions", "component.tag.desc"),
+    ComponentDoc("Fab", "group.actions", "component.fab.desc"),
     ComponentDoc("Card", "group.surfaces", "component.card.desc"),
     ComponentDoc("ListItem", "group.surfaces", "component.listitem.desc"),
     ComponentDoc("Empty", "group.surfaces", "component.empty.desc"),
+    ComponentDoc("Avatar", "group.surfaces", "component.avatar.desc"),
+    ComponentDoc("Drawer", "group.surfaces", "component.drawer.desc"),
     ComponentDoc("Alert", "group.feedback", "component.alert.desc"),
     ComponentDoc("Badge", "group.feedback", "component.badge.desc"),
     ComponentDoc("Progress", "group.feedback", "component.progress.desc"),
@@ -83,19 +127,45 @@ private val componentDocs = listOf(
     ComponentDoc("Toast", "group.feedback", "component.toast.desc"),
     ComponentDoc("Modal", "group.feedback", "component.modal.desc"),
     ComponentDoc("LoadingDialog", "group.feedback", "component.loadingdialog.desc"),
+    ComponentDoc("Skeleton", "group.feedback", "component.skeleton.desc"),
+    ComponentDoc("Tooltip", "group.feedback", "component.tooltip.desc"),
     ComponentDoc("Input", "group.inputs", "component.input.desc"),
     ComponentDoc("Select", "group.inputs", "component.select.desc"),
     ComponentDoc("OptionSheet", "group.inputs", "component.optionsheet.desc"),
     ComponentDoc("Switch", "group.inputs", "component.switch.desc"),
+    ComponentDoc("Checkbox", "group.inputs", "component.checkbox.desc"),
+    ComponentDoc("Radio", "group.inputs", "component.radio.desc"),
+    ComponentDoc("SearchBar", "group.inputs", "component.searchbar.desc"),
+    ComponentDoc("SegmentedControl", "group.inputs", "component.segmentedcontrol.desc"),
+    ComponentDoc("StarRating", "group.inputs", "component.starrating.desc"),
     ComponentDoc("PinInput", "group.inputs", "component.pininput.desc"),
+    ComponentDoc("Slider", "group.inputs", "component.slider.desc"),
+    ComponentDoc("TextArea", "group.inputs", "component.textarea.desc"),
+    ComponentDoc("InputNumber", "group.inputs", "component.inputnumber.desc"),
+    ComponentDoc("TimePicker", "group.inputs", "component.timepicker.desc"),
+    ComponentDoc("Upload", "group.inputs", "component.upload.desc"),
+    ComponentDoc("Collapse", "group.surfaces", "component.collapse.desc"),
+    ComponentDoc("Divider", "group.surfaces", "component.divider.desc"),
     ComponentDoc("TopBar", "group.navigation", "component.topbar.desc"),
     ComponentDoc("BottomTab", "group.navigation", "component.bottomtab.desc"),
     ComponentDoc("Tabs", "group.navigation", "component.tabs.desc"),
     ComponentDoc("StickyFooter", "group.navigation", "component.stickyfooter.desc"),
+    ComponentDoc("Swiper", "group.navigation", "component.swiper.desc"),
     ComponentDoc("Amount", "group.data", "component.amount.desc"),
     ComponentDoc("KeyValueLabel", "group.data", "component.keyvaluelabel.desc"),
     ComponentDoc("Stepper", "group.data", "component.stepper.desc"),
+    ComponentDoc("Table", "group.data", "component.table.desc"),
+    ComponentDoc("Tree", "group.data", "component.tree.desc"),
+    ComponentDoc("Cascader", "group.data", "component.cascader.desc"),
     ComponentDoc("RefreshLayout", "group.data", "component.refreshlayout.desc"),
+    ComponentDoc("DatePicker", "group.domain", "component.datepicker.desc"),
+    ComponentDoc("ChildSwitcher", "group.domain", "component.childswitcher.desc"),
+    ComponentDoc("ScoreRuleGrid", "group.domain", "component.scorerulegrid.desc"),
+    ComponentDoc("RedeemCardGrid", "group.domain", "component.redeemcardgrid.desc"),
+    ComponentDoc("CalendarHeatmap", "group.domain", "component.calendarheatmap.desc"),
+    ComponentDoc("PrintSheet", "group.domain", "component.printsheet.desc"),
+    ComponentDoc("BalanceHero", "group.domain", "component.balancehero.desc"),
+    ComponentDoc("CheckInStreakCard", "group.domain", "component.checkinstreakcard.desc"),
 )
 
 @Composable
@@ -282,6 +352,11 @@ private fun ComponentDetail(doc: ComponentDoc, theme: PhonicsColors, language: S
 @Composable
 private fun ComponentPreview(name: String, theme: PhonicsColors, bottomInset: Float) {
     val checked = remember { mutableStateOf(true) }
+    val radioValue = remember { mutableStateOf("A") }
+    val searchValue = remember { mutableStateOf("") }
+    val segmentIndex = remember { mutableStateOf(0) }
+    val starValue = remember { mutableStateOf(3) }
+    val collapseExpanded = remember { mutableStateOf(true) }
     val input = remember { mutableStateOf("Kuikly") }
     val selectedIndex = remember { mutableStateOf(1) }
     val sheetVisible = remember { mutableStateOf(false) }
@@ -291,6 +366,18 @@ private fun ComponentPreview(name: String, theme: PhonicsColors, bottomInset: Fl
     val loadingVisible = remember { mutableStateOf(false) }
     val refreshing = remember { mutableStateOf(false) }
     val loadingMore = remember { mutableStateOf(false) }
+    val dateValue = remember { mutableStateOf("2026-08-26") }
+    val childId = remember { mutableStateOf("1") }
+    val sliderValue = remember { mutableStateOf(40f) }
+    val textAreaValue = remember { mutableStateOf("") }
+    val drawerVisible = remember { mutableStateOf(false) }
+    val inputNumberValue = remember { mutableStateOf(2f) }
+    val swiperIndex = remember { mutableStateOf(0) }
+    val timeValue = remember { mutableStateOf("09:30") }
+    val uploadFiles = remember { mutableStateOf(listOf(TspUploadFile("1", "readme.md"))) }
+    val treeSelectedId = remember { mutableStateOf("a1") }
+    val treeExpandedIds = remember { mutableStateOf(listOf("a")) }
+    val cascaderValue = remember { mutableStateOf(listOf<String>()) }
     val options = listOf("天空蓝", "夜空", "薄荷")
     when (name) {
         "Button" -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -429,6 +516,39 @@ private fun ComponentPreview(name: String, theme: PhonicsColors, bottomInset: Fl
             TspSwitch(text = "加载中", checked = true, loading = true, theme = theme)
             TspSwitch(text = "禁用", checked = false, disabled = true, variant = "sm", theme = theme)
         }
+        "Checkbox" -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            TspCheckbox(text = "Agree", checked = checked.value, theme = theme) { checked.value = it }
+            TspCheckbox(text = "Disabled", checked = true, disabled = true, theme = theme)
+        }
+        "Radio" -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            TspRadio(text = "Option A", checked = radioValue.value == "A", theme = theme) { _ -> radioValue.value = "A" }
+            TspRadio(text = "Option B", checked = radioValue.value == "B", theme = theme) { _ -> radioValue.value = "B" }
+        }
+        "SearchBar" -> TspSearchBar(
+            value = searchValue.value,
+            placeholder = "Search…",
+            theme = theme,
+        ) { searchValue.value = it }
+        "SegmentedControl" -> TspSegmentedControl(
+            options = listOf("Day", "Week", "Month"),
+            selectedIndex = segmentIndex.value,
+            theme = theme,
+        ) { index, _ -> segmentIndex.value = index }
+        "StarRating" -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            TspStarRating(value = starValue.value, max = 5, theme = theme) { starValue.value = it }
+            TspStarRating(value = 4, max = 5, variant = "readonly", theme = theme)
+        }
+        "Collapse" -> TspCollapse(
+            title = "Details",
+            message = "Sky Planet token-driven panel.",
+            expanded = collapseExpanded.value,
+            theme = theme,
+        ) { collapseExpanded.value = it }
+        "Divider" -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(text = "Above", color = Color(theme.textSecondary))
+            TspDivider(theme = theme, text = "Section")
+            Text(text = "Below", color = Color(theme.textSecondary))
+        }
         "Tabs" -> TspTabs(
             tabs = listOf("全部", "进行中", "已完成"),
             selectedIndex = tabIndex.value,
@@ -488,6 +608,180 @@ private fun ComponentPreview(name: String, theme: PhonicsColors, bottomInset: Fl
                 loadingMore.value = false
             }
         }
+        "DatePicker" -> TspDatePicker(
+            theme = theme,
+            value = dateValue.value,
+            placeholder = "选择日期",
+        ) { dateValue.value = it }
+        "ChildSwitcher" -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            TspChildSwitcher(
+                items = listOf(
+                    TspChildSwitcherItem(id = "1", label = "悦悦", emoji = "👧"),
+                    TspChildSwitcherItem(id = "2", label = "佑佑", emoji = "👦"),
+                ),
+                selectedId = childId.value,
+                theme = theme,
+            ) { childId.value = it }
+            TspChildSwitcher(
+                items = listOf(
+                    TspChildSwitcherItem(id = "1", label = "悦悦"),
+                    TspChildSwitcherItem(id = "2", label = "佑佑"),
+                ),
+                selectedId = childId.value,
+                variant = TspChildSwitcherVariant.Tabs,
+                theme = theme,
+            ) { childId.value = it }
+        }
+        "ScoreRuleGrid" -> TspScoreRuleGrid(
+            rules = listOf(
+                TspScoreRule(id = "1", name = "按时认真完成作业", icon = "📝", value = 5, count = 1, dailyLimit = 1),
+                TspScoreRule(id = "2", name = "作业潦草", icon = "✏️", value = -2, count = 0, dailyLimit = 2),
+            ),
+            theme = theme,
+            columns = 2,
+        )
+        "RedeemCardGrid" -> TspRedeemCardGrid(
+            items = listOf(
+                TspRedeemItem(id = "1", name = "零食", icon = "🍬", cost = 15),
+                TspRedeemItem(id = "2", name = "游戏", icon = "🎮", cost = 30),
+            ),
+            availablePoints = 20,
+            theme = theme,
+        )
+        "CalendarHeatmap" -> TspCalendarHeatmap(
+            theme = theme,
+            yearMonth = "2026-08",
+            cells = listOf(
+                TspCalendarCell(date = "2026-08-01", level = "full"),
+                TspCalendarCell(date = "2026-08-02", level = "partial"),
+                TspCalendarCell(date = "2026-08-03", level = "exempt"),
+            ),
+        )
+        "PrintSheet" -> TspPrintSheet(
+            theme = theme,
+            title = "错字默写",
+            items = listOf("dǐng", "lù", "yàn", "xīn", "wǎn"),
+            columns = 5,
+            variant = TspPrintSheetVariant.Pinyin,
+        )
+        "BalanceHero" -> TspBalanceHero(
+            theme = theme,
+            total = 41,
+            breakdown = mapOf(
+                "balance" to 40,
+                "ruleScore" to 11,
+                "streakBonus" to 5,
+                "redeemTotal" to 15,
+            ),
+        )
+        "CheckInStreakCard" -> TspCheckInStreakCard(
+            theme = theme,
+            streakDays = 7,
+            totalDays = 45,
+            weekProgress = 0.85f,
+        )
+        "Avatar" -> Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            TspAvatar(theme = theme, text = "技趣")
+            TspAvatar(theme = theme, text = "SP", size = "lg", variant = "primary")
+            TspAvatar(theme = theme, text = "A", size = "sm", variant = "subtle")
+        }
+        "Skeleton" -> TspSkeleton(theme = theme, rows = 3, animated = true, avatar = true)
+        "Tooltip" -> TspTooltip(theme = theme, text = "Sky Planet tip", placement = "top") {
+            TspButton(text = "Tap me", theme = theme) {}
+        }
+        "Slider" -> TspSlider(
+            theme = theme,
+            value = sliderValue.value,
+            min = 0f,
+            max = 100f,
+        ) { sliderValue.value = it }
+        "TextArea" -> TspTextArea(
+            theme = theme,
+            value = textAreaValue.value,
+            placeholder = "Write a note…",
+            rows = 3,
+        ) { textAreaValue.value = it }
+        "Drawer" -> Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            TspButton(text = "Open Drawer", theme = theme, variant = TspButtonVariant.Primary) {
+                drawerVisible.value = true
+            }
+            TspDrawer(
+                theme = theme,
+                visible = drawerVisible.value,
+                title = "Drawer",
+                placement = "bottom",
+                onClose = { drawerVisible.value = false },
+            ) {
+                Text(text = "Sky Planet drawer body.", color = Color(theme.textPrimary))
+            }
+        }
+        "InputNumber" -> TspInputNumber(
+            theme = theme,
+            value = inputNumberValue.value,
+            min = 0f,
+            max = 10f,
+        ) { inputNumberValue.value = it }
+        "Swiper" -> TspSwiper(
+            theme = theme,
+            items = listOf("Slide A", "Slide B", "Slide C"),
+            index = swiperIndex.value,
+        ) { swiperIndex.value = it }
+        "Tag" -> Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            TspTag(theme = theme, text = "default")
+            TspTag(theme = theme, text = "primary", variant = "primary")
+            TspTag(theme = theme, text = "closable", closable = true)
+        }
+        "Fab" -> Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            TspFab(theme = theme, icon = "+")
+            TspFab(theme = theme, icon = "+", text = "新建")
+            TspFab(theme = theme, icon = "✎", text = "默认", variant = "default")
+        }
+        "TimePicker" -> TspTimePicker(
+            theme = theme,
+            value = timeValue.value,
+            placeholder = "HH:mm",
+        ) { timeValue.value = it }
+        "Upload" -> TspUpload(
+            theme = theme,
+            files = uploadFiles.value,
+            onChange = { uploadFiles.value = it },
+            onPickRequest = {
+                val next = uploadFiles.value + TspUploadFile(System.currentTimeMillis().toString(), "mock.txt")
+                uploadFiles.value = next
+            },
+        )
+        "Table" -> TspTable(
+            theme = theme,
+            columns = listOf(
+                TspTableColumn(key = "name", title = "名称"),
+                TspTableColumn(key = "status", title = "状态"),
+            ),
+            rows = listOf(
+                mapOf("name" to "Avatar", "status" to "就绪"),
+                mapOf("name" to "Tag", "status" to "新增"),
+            ),
+            variant = "striped",
+        )
+        "Tree" -> TspTree(
+            theme = theme,
+            items = listOf(
+                TspTreeNode("a", "星球", listOf(TspTreeNode("a1", "天空"), TspTreeNode("a2", "岛屿"))),
+                TspTreeNode("b", "玩法", listOf(TspTreeNode("b1", "闯关"))),
+            ),
+            selectedId = treeSelectedId.value,
+            expandedIds = treeExpandedIds.value,
+            onSelect = { id, _ -> treeSelectedId.value = id },
+            onExpand = { treeExpandedIds.value = it },
+        )
+        "Cascader" -> TspCascader(
+            theme = theme,
+            options = listOf(
+                TspCascaderOption("asia", "亚洲", listOf(TspCascaderOption("cn", "中国"), TspCascaderOption("jp", "日本"))),
+                TspCascaderOption("eu", "欧洲", listOf(TspCascaderOption("fr", "法国"))),
+            ),
+            value = cascaderValue.value,
+            placeholder = "请选择地区",
+        ) { value, _ -> cascaderValue.value = value }
         else -> TspListItem(title = "未覆盖预览", message = name, theme = theme)
     }
 }
@@ -514,6 +808,7 @@ private fun sampleText(language: String, key: String): String {
         "group.inputs" to "输入",
         "group.navigation" to "导航",
         "group.data" to "数据",
+        "group.domain" to "领域",
         "component.button.desc" to "主要操作按钮，支持主按钮、默认、危险、文本和链接样式。",
         "component.chip.desc" to "可点击标签，用于筛选、选择和轻量操作。",
         "component.iconbutton.desc" to "图标按钮，用于工具栏、快捷动作和选中态。",
@@ -521,6 +816,8 @@ private fun sampleText(language: String, key: String): String {
         "component.card.desc" to "内容容器，用于承载分组内容、选中态和弱化背景。",
         "component.listitem.desc" to "列表项，支持描述、尾部内容、选中和禁用。",
         "component.empty.desc" to "空状态展示，支持说明文案和操作按钮。",
+        "component.avatar.desc" to "头像展示，支持文字缩写、尺寸和主色/弱化样式。",
+        "component.drawer.desc" to "底部或顶部抽屉面板，用于补充操作与说明。",
         "component.alert.desc" to "页面内提示，适合成功、警告、错误和普通信息。",
         "component.badge.desc" to "短文本状态徽标，用于标记数量、状态或风险等级。",
         "component.progress.desc" to "进度条，支持主色、成功、警告和危险色。",
@@ -528,19 +825,47 @@ private fun sampleText(language: String, key: String): String {
         "component.toast.desc" to "轻提示，用于短时反馈。",
         "component.modal.desc" to "确认弹窗，支持确认和取消按钮。",
         "component.loadingdialog.desc" to "加载弹窗，用于阻塞式等待、紧凑加载和可取消提示。",
+        "component.skeleton.desc" to "加载骨架屏，支持行数、头像占位和动画。",
+        "component.tooltip.desc" to "轻量气泡提示，点击触发内容旁展示说明。",
         "component.input.desc" to "单行输入框，支持错误态、禁用态和受控输入。",
         "component.select.desc" to "选择入口，移动端默认打开底部 OptionSheet。",
         "component.optionsheet.desc" to "移动端底部选择弹窗，和 Select 共用选项渲染逻辑。",
         "component.switch.desc" to "二元开关，支持加载、禁用和开关文案。",
+        "component.checkbox.desc" to "复选框，支持选中、禁用与变体。",
+        "component.radio.desc" to "单选选项，分组互斥由业务层管理。",
+        "component.searchbar.desc" to "搜索输入条，支持占位符与禁用。",
+        "component.segmentedcontrol.desc" to "分段选择器，支持字符串选项。",
+        "component.starrating.desc" to "星级评分，支持只读变体。",
+        "component.collapse.desc" to "可展开折叠面板，支持标题与内容。",
+        "component.divider.desc" to "水平分割线，text 仅用于无障碍标签。",
         "component.pininput.desc" to "验证码或密码输入，支持 4 到 6 位和安全显示。",
+        "component.slider.desc" to "数值滑块，支持最小/最大范围与步进。",
+        "component.textarea.desc" to "多行文本输入，支持行数、字数上限和错误态。",
+        "component.inputnumber.desc" to "加减步进器，适合整数或小数数量输入。",
         "component.topbar.desc" to "顶部导航栏，支持标题、返回按钮和背景色覆盖。",
         "component.bottomtab.desc" to "一级页面底部 Tab，通常承载 3 到 5 个入口。",
         "component.tabs.desc" to "内容区分段切换，适合页面内筛选和分类。",
         "component.stickyfooter.desc" to "固定底部操作区，用于主操作按钮。",
+        "component.swiper.desc" to "轮播容器，支持多页切换与指示点。",
+        "component.tag.desc" to "可关闭或可选中的状态标签（区别于 Chip 筛选标签）。",
+        "component.fab.desc" to "悬浮操作按钮，支持图标或扩展文字。",
+        "component.timepicker.desc" to "HH:mm 时间选择，与 DatePicker 配套。",
+        "component.upload.desc" to "轻量文件列表与选择触发（不含上传后端）。",
+        "component.table.desc" to "轻量数据表格，支持斑马纹。",
+        "component.tree.desc" to "嵌套树选择，支持展开与选中。",
+        "component.cascader.desc" to "多级级联选择器。",
         "component.amount.desc" to "金额或数值展示，支持币种前后置、周期和删除线。",
         "component.keyvaluelabel.desc" to "键值对展示，用于摘要信息和表单确认。",
         "component.stepper.desc" to "步骤进度，支持 3 到 5 步。",
         "component.refreshlayout.desc" to "下拉刷新和加载更多容器，用于长列表数据刷新。",
+        "component.datepicker.desc" to "主题化 YYYY-MM-DD 日期选择。",
+        "component.childswitcher.desc" to "单选儿童/对象切换器，支持 chip 与 tabs。",
+        "component.scorerulegrid.desc" to "积分规则卡片网格，支持 +1 与列布局。",
+        "component.redeemcardgrid.desc" to "兑换商品卡片，支持冻结与积分不足态。",
+        "component.calendarheatmap.desc" to "月度打卡热力图，支持全勤/部分/未打/豁免。",
+        "component.printsheet.desc" to "A4 听写/填空打印版面。",
+        "component.balancehero.desc" to "可用积分英雄区，可展示拆分明细。",
+        "component.checkinstreakcard.desc" to "连续打卡摘要卡片，可打开详情。",
     )
     val en = mapOf(
         "app.title" to "Basic Controls",
@@ -557,6 +882,7 @@ private fun sampleText(language: String, key: String): String {
         "group.inputs" to "Inputs",
         "group.navigation" to "Navigation",
         "group.data" to "Data",
+        "group.domain" to "Domain",
         "component.button.desc" to "Primary actions with primary, default, danger, text and link variants.",
         "component.chip.desc" to "Tappable tags for filters, selection and light actions.",
         "component.iconbutton.desc" to "Icon buttons for toolbars, quick actions and selected states.",
@@ -564,6 +890,8 @@ private fun sampleText(language: String, key: String): String {
         "component.card.desc" to "Surface container for grouped content, selection and subtle backgrounds.",
         "component.listitem.desc" to "List rows with description, trailing content, selected and disabled states.",
         "component.empty.desc" to "Empty states with message and action button.",
+        "component.avatar.desc" to "Avatar with initials, size and primary/subtle variants.",
+        "component.drawer.desc" to "Bottom or top drawer panel for extra actions and copy.",
         "component.alert.desc" to "Inline alerts for info, success, warning and error.",
         "component.badge.desc" to "Short status badges for counts, states or risk levels.",
         "component.progress.desc" to "Progress bars with primary, success, warning and danger colors.",
@@ -571,19 +899,47 @@ private fun sampleText(language: String, key: String): String {
         "component.toast.desc" to "Lightweight toasts for short feedback.",
         "component.modal.desc" to "Confirm dialogs with confirm and cancel actions.",
         "component.loadingdialog.desc" to "Blocking loading dialog for submit and sync waits.",
+        "component.skeleton.desc" to "Loading skeleton with rows, avatar placeholder and motion.",
+        "component.tooltip.desc" to "Lightweight tip bubble shown next to trigger content.",
         "component.input.desc" to "Single-line inputs with error, disabled and controlled states.",
         "component.select.desc" to "Selection entry that opens the bottom OptionSheet on mobile.",
         "component.optionsheet.desc" to "Bottom sheet picker sharing option rendering with Select.",
         "component.switch.desc" to "Binary switches with loading, disabled and on/off labels.",
+        "component.checkbox.desc" to "Checkbox with brand checkmark box and label.",
+        "component.radio.desc" to "Single radio option; group exclusivity is app-owned.",
+        "component.searchbar.desc" to "Pill search field with placeholder and disabled state.",
+        "component.segmentedcontrol.desc" to "Equal-width segmented control for exclusive options.",
+        "component.starrating.desc" to "Interactive star rating with readonly and disabled variants.",
+        "component.collapse.desc" to "Expandable accordion panel with title and body.",
+        "component.divider.desc" to "Horizontal hairline divider.",
         "component.pininput.desc" to "PIN input with 4 to 6 cells and secure display.",
+        "component.slider.desc" to "Numeric slider with min/max range and step.",
+        "component.textarea.desc" to "Multi-line text input with rows, max length and error state.",
+        "component.inputnumber.desc" to "Stepper for integer or decimal quantity input.",
         "component.topbar.desc" to "Top bar with title, back button and background override.",
         "component.bottomtab.desc" to "Primary bottom tabs, usually 3 to 5 entries.",
         "component.tabs.desc" to "In-page segmented tabs for filters and categories.",
         "component.stickyfooter.desc" to "Sticky footer area for primary actions.",
+        "component.swiper.desc" to "Carousel with page switching and indicator dots.",
+        "component.tag.desc" to "Closable or selectable status tag (distinct from Chip).",
+        "component.fab.desc" to "Floating action button, icon-only or extended.",
+        "component.timepicker.desc" to "HH:mm time field paired with DatePicker.",
+        "component.upload.desc" to "Lightweight file list and picker (no upload backend).",
+        "component.table.desc" to "Lightweight data table with striped variant.",
+        "component.tree.desc" to "Nested tree selector with expand and select.",
+        "component.cascader.desc" to "Multi-level cascaded option picker.",
         "component.amount.desc" to "Amount display with symbol placement, cycle and strike-through.",
         "component.keyvaluelabel.desc" to "Key-value pairs for summaries and confirmations.",
         "component.stepper.desc" to "Step progress for 3 to 5 steps.",
         "component.refreshlayout.desc" to "Pull-to-refresh and load-more container for scrollable lists.",
+        "component.datepicker.desc" to "Themed YYYY-MM-DD date field.",
+        "component.childswitcher.desc" to "Single-select child switcher in chip or tabs variant.",
+        "component.scorerulegrid.desc" to "Score rule cards with optional +1 and responsive columns.",
+        "component.redeemcardgrid.desc" to "Redeem item cards with frozen and insufficient states.",
+        "component.calendarheatmap.desc" to "Month attendance heatmap with full/partial/none/exempt levels.",
+        "component.printsheet.desc" to "A4 dictation / fill-in print layout.",
+        "component.balancehero.desc" to "Available-points hero with optional ledger breakdown.",
+        "component.checkinstreakcard.desc" to "Continuous check-in summary card that opens detail.",
     )
     val ja = mapOf(
         "app.title" to "基本コンポーネント",
@@ -600,6 +956,7 @@ private fun sampleText(language: String, key: String): String {
         "group.inputs" to "入力",
         "group.navigation" to "ナビゲーション",
         "group.data" to "データ",
+        "group.domain" to "ドメイン",
         "component.button.desc" to "主/標準/危険/テキスト/リンクの主要操作ボタン。",
         "component.chip.desc" to "フィルタ、選択、軽量操作用のタグ。",
         "component.iconbutton.desc" to "ツールバー、クイック操作、選択状態用アイコンボタン。",
@@ -607,6 +964,8 @@ private fun sampleText(language: String, key: String): String {
         "component.card.desc" to "グループ内容、選択、弱い背景向けコンテナ。",
         "component.listitem.desc" to "説明、末尾、選択、無効をサポートするリスト項目。",
         "component.empty.desc" to "説明と操作ボタン付き空状態。",
+        "component.avatar.desc" to "頭文字・サイズ・primary/subtle 対応のアバター。",
+        "component.drawer.desc" to "追加操作向けの上下ドロワー。",
         "component.alert.desc" to "情報/成功/警告/エラー向けインラインアラート。",
         "component.badge.desc" to "数量/状態/リスク表示用バッジ。",
         "component.progress.desc" to "主/成功/警告/危険色のプログレス。",
@@ -614,19 +973,47 @@ private fun sampleText(language: String, key: String): String {
         "component.toast.desc" to "短いフィードバック用 Toast。",
         "component.modal.desc" to "確認/取消ボタン付きモーダル。",
         "component.loadingdialog.desc" to "送信・同期待ち向けのブロッキング Loading ダイアログ。",
+        "component.skeleton.desc" to "行数・アバター・アニメ対応のスケルトン。",
+        "component.tooltip.desc" to "トリガー横に出す軽量バブルヒント。",
         "component.input.desc" to "エラー/無効/制御入力対応の単行入力。",
         "component.select.desc" to "モバイルで OptionSheet を開く選択入口。",
         "component.optionsheet.desc" to "Select と共有するボトム選択シート。",
         "component.switch.desc" to "読込/無効/ON-OFF ラベル付きスイッチ。",
+        "component.checkbox.desc" to "選択/無効対応のチェックボックス。",
+        "component.radio.desc" to "単一ラジオ。グループ排他はアプリ側管理。",
+        "component.searchbar.desc" to "プレースホルダと無効対応の検索バー。",
+        "component.segmentedcontrol.desc" to "排他選択のセグメントコントロール。",
+        "component.starrating.desc" to "読み取り専用対応の星評価。",
+        "component.collapse.desc" to "タイトルと本文付き折りたたみパネル。",
+        "component.divider.desc" to "水平分割線。",
         "component.pininput.desc" to "4〜6 桁とセキュア表示の PIN 入力。",
+        "component.slider.desc" to "最小/最大とステップ対応の数値スライダー。",
+        "component.textarea.desc" to "行数・上限・エラー対応の複数行入力。",
+        "component.inputnumber.desc" to "整数/小数の加減ステッパー。",
         "component.topbar.desc" to "タイトル/戻る/背景上書き対応 TopBar。",
         "component.bottomtab.desc" to "通常 3〜5 項目のボトム Tab。",
         "component.tabs.desc" to "ページ内フィルタ/分類用 Tabs。",
         "component.stickyfooter.desc" to "主操作向け固定フッター。",
+        "component.swiper.desc" to "ページ切替とドット付きカルーセル。",
+        "component.tag.desc" to "閉じる／選択可能なステータスタグ（Chip とは別）。",
+        "component.fab.desc" to "フローティングアクションボタン。",
+        "component.timepicker.desc" to "HH:mm 時刻選択（DatePicker と併用）。",
+        "component.upload.desc" to "軽量ファイルリスト（実アップロードなし）。",
+        "component.table.desc" to "軽量データテーブル（ストライプ対応）。",
+        "component.tree.desc" to "入れ子ツリー選択。",
+        "component.cascader.desc" to "多段カスケード選択。",
         "component.amount.desc" to "記号位置/周期/打ち消し線付き金額表示。",
         "component.keyvaluelabel.desc" to "概要/確認向けキー値表示。",
         "component.stepper.desc" to "3〜5 ステップの進捗。",
         "component.refreshlayout.desc" to "プル刷新と追加読み込みに対応したスクロール容器。",
+        "component.datepicker.desc" to "テーマ対応の YYYY-MM-DD 日付選択。",
+        "component.childswitcher.desc" to "chip / tabs の単一選択スイッチャー。",
+        "component.scorerulegrid.desc" to "+1 と列レイアウト対応のスコアルールグリッド。",
+        "component.redeemcardgrid.desc" to "凍結・不足状態付きの交換カード。",
+        "component.calendarheatmap.desc" to "全勤/一部/未打/免除の月次ヒートマップ。",
+        "component.printsheet.desc" to "A4 書き取り/穴埋めプリント。",
+        "component.balancehero.desc" to "利用可能ポイントのヒーロー表示。",
+        "component.checkinstreakcard.desc" to "連続チェックイン要約カード。",
     )
     val table = when (language) {
         "en" -> en

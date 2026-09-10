@@ -1,0 +1,298 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`visual DOM smoke > TspAlert + TspCard nested structure 1`] = `
+{
+  "aria": {
+    "busy": undefined,
+    "checked": undefined,
+    "label": undefined,
+  },
+  "className": "bc-card bc-card--default",
+  "kids": [
+    {
+      "aria": {
+        "busy": undefined,
+        "checked": undefined,
+        "label": undefined,
+      },
+      "className": "bc-alert bc-alert--info",
+      "kids": [
+        {
+          "aria": {
+            "busy": undefined,
+            "checked": undefined,
+            "label": undefined,
+          },
+          "className": "bc-alert__title",
+          "kids": undefined,
+          "role": undefined,
+          "tag": "div",
+        },
+        {
+          "aria": {
+            "busy": undefined,
+            "checked": undefined,
+            "label": undefined,
+          },
+          "className": "bc-alert__message",
+          "kids": undefined,
+          "role": undefined,
+          "tag": "div",
+        },
+      ],
+      "role": "status",
+      "tag": "section",
+    },
+  ],
+  "role": undefined,
+  "tag": "section",
+}
+`;
+
+exports[`visual DOM smoke > TspButton primary loading structure 1`] = `
+{
+  "aria": {
+    "busy": "true",
+    "checked": undefined,
+    "label": undefined,
+  },
+  "className": "bc-button bc-button--primary bc-full bc-disabled bc-button--loading",
+  "kids": [
+    {
+      "aria": {
+        "busy": undefined,
+        "checked": undefined,
+        "label": undefined,
+      },
+      "className": "bc-button__shadow",
+      "kids": undefined,
+      "role": undefined,
+      "tag": "span",
+    },
+    {
+      "aria": {
+        "busy": undefined,
+        "checked": undefined,
+        "label": undefined,
+      },
+      "className": "bc-button__face",
+      "kids": [
+        {
+          "aria": {
+            "busy": undefined,
+            "checked": undefined,
+            "label": undefined,
+          },
+          "className": "bc-button__spinner",
+          "kids": undefined,
+          "role": undefined,
+          "tag": "span",
+        },
+      ],
+      "role": undefined,
+      "tag": "span",
+    },
+  ],
+  "role": undefined,
+  "tag": "button",
+}
+`;
+
+exports[`visual DOM smoke > TspIcon check structure 1`] = `
+{
+  "aria": {
+    "busy": undefined,
+    "checked": undefined,
+    "label": "Done",
+  },
+  "className": "bc-icon",
+  "kids": [
+    {
+      "aria": {
+        "busy": undefined,
+        "checked": undefined,
+        "label": undefined,
+      },
+      "className": SVGAnimatedString {},
+      "kids": [
+        {
+          "aria": {
+            "busy": undefined,
+            "checked": undefined,
+            "label": undefined,
+          },
+          "className": SVGAnimatedString {},
+          "kids": undefined,
+          "role": undefined,
+          "tag": "path",
+        },
+      ],
+      "role": undefined,
+      "tag": "svg",
+    },
+  ],
+  "role": "img",
+  "tag": "span",
+}
+`;
+
+exports[`visual DOM smoke > TspProgress labeled structure 1`] = `
+{
+  "aria": {
+    "busy": undefined,
+    "checked": undefined,
+    "label": "Progress",
+  },
+  "className": "bc-progress bc-progress--primary",
+  "kids": [
+    {
+      "aria": {
+        "busy": undefined,
+        "checked": undefined,
+        "label": undefined,
+      },
+      "className": undefined,
+      "kids": undefined,
+      "role": undefined,
+      "tag": "span",
+    },
+  ],
+  "role": "progressbar",
+  "tag": "div",
+}
+`;
+
+exports[`visual DOM smoke > TspSwitch checked structure 1`] = `
+{
+  "aria": {
+    "busy": undefined,
+    "checked": "true",
+    "label": undefined,
+  },
+  "className": "bc-switch bc-switch--md bc-checked",
+  "kids": [
+    {
+      "aria": {
+        "busy": undefined,
+        "checked": undefined,
+        "label": undefined,
+      },
+      "className": "bc-switch__label",
+      "kids": undefined,
+      "role": undefined,
+      "tag": "span",
+    },
+    {
+      "aria": {
+        "busy": undefined,
+        "checked": undefined,
+        "label": undefined,
+      },
+      "className": "bc-switch__control",
+      "kids": [
+        {
+          "aria": {
+            "busy": undefined,
+            "checked": undefined,
+            "label": undefined,
+          },
+          "className": "bc-switch__track",
+          "kids": [
+            {
+              "aria": {
+                "busy": undefined,
+                "checked": undefined,
+                "label": undefined,
+              },
+              "className": "bc-switch__thumb",
+              "kids": undefined,
+              "role": undefined,
+              "tag": "span",
+            },
+          ],
+          "role": undefined,
+          "tag": "span",
+        },
+      ],
+      "role": undefined,
+      "tag": "span",
+    },
+  ],
+  "role": "switch",
+  "tag": "button",
+}
+`;
+
+exports[`visual DOM smoke > TspTabs selected structure 1`] = `
+{
+  "aria": {
+    "busy": undefined,
+    "checked": undefined,
+    "label": undefined,
+  },
+  "className": "bc-tabs",
+  "kids": [
+    {
+      "aria": {
+        "busy": undefined,
+        "checked": undefined,
+        "label": undefined,
+      },
+      "className": "bc-tabs__item",
+      "kids": undefined,
+      "role": "tab",
+      "tag": "button",
+    },
+    {
+      "aria": {
+        "busy": undefined,
+        "checked": undefined,
+        "label": undefined,
+      },
+      "className": "bc-tabs__item bc-selected",
+      "kids": undefined,
+      "role": "tab",
+      "tag": "button",
+    },
+  ],
+  "role": "tablist",
+  "tag": "div",
+}
+`;
+
+exports[`visual DOM smoke > TspTopBar structure 1`] = `
+{
+  "aria": {
+    "busy": undefined,
+    "checked": undefined,
+    "label": undefined,
+  },
+  "className": "bc-top-bar",
+  "kids": [
+    {
+      "aria": {
+        "busy": undefined,
+        "checked": undefined,
+        "label": "Back",
+      },
+      "className": "bc-top-bar__back",
+      "kids": undefined,
+      "role": undefined,
+      "tag": "button",
+    },
+    {
+      "aria": {
+        "busy": undefined,
+        "checked": undefined,
+        "label": undefined,
+      },
+      "className": "bc-top-bar__title",
+      "kids": undefined,
+      "role": undefined,
+      "tag": "div",
+    },
+  ],
+  "role": undefined,
+  "tag": "header",
+}
+`;

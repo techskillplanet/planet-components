@@ -6,7 +6,6 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,10 +20,12 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 等宽分段选择器，选中项使用品牌色渐变高亮。
+ * 等宽分段选择器。
+ *
+ * <p>默认交互对齐主流 App（iOS Settings / 微信切换轨）：
+ * 软底轨道 + 白色选中拇指 + 品牌深色字，避免整块实心品牌色「油漆桶」感。</p>
  */
 public class BasicSegmentedControl extends LinearLayout {
-  private static final int GRADIENT_END = 0xFF9B6DFF;
 
   public interface OnOptionSelectedListener {
     void onOptionSelected(int index, String label, String value);
@@ -74,12 +75,18 @@ public class BasicSegmentedControl extends LinearLayout {
   }
 
   public void setSelectedIndex(int index) {
+    setSelectedIndex(index, true);
+  }
+
+  /** @param notify 是否回调监听（重建主题时勿重复通知）。 */
+  public void setSelectedIndex(int index, boolean notify) {
     if (index < 0 || index >= labels.size()) {
       return;
     }
+    boolean changed = selectedIndex != index;
     selectedIndex = index;
     refreshTheme();
-    if (listener != null) {
+    if (notify && changed && listener != null) {
       listener.onOptionSelected(index, labels.get(index), getSelectedValue());
     }
   }
@@ -106,28 +113,42 @@ public class BasicSegmentedControl extends LinearLayout {
     BasicStyle style = BasicThemeManager.style();
     removeAllViews();
 
-    float radius = style.radiusPill;
+    float radius = style.radiusLg > 0 ? style.radiusLg : Math.min(style.radiusPill, dp(14));
+    // 软轨：浅底 + 轻描边（非白底硬边）
+    int trackFill = colors.backgroundSurfaceSubtle != 0
+        ? colors.backgroundSurfaceSubtle
+        : colors.backgroundSurface;
     setBackground(BasicDrawableFactory.roundedFillStroke(
-        colors.backgroundSurface,
+        trackFill,
         colors.borderLight,
         style.borderHairline,
         radius
     ));
-    setPadding(Math.round(style.borderHairline), Math.round(style.borderHairline),
-        Math.round(style.borderHairline), Math.round(style.borderHairline));
+    int inset = Math.max(2, Math.round(style.spaceSm > 0 ? style.spaceSm / 2f : 3));
+    setPadding(inset, inset, inset, inset);
 
     int count = labels.size();
     for (int i = 0; i < count; i++) {
-      TextView item = createSegmentItem(i, count, colors, style, radius);
-      LayoutParams params = new LayoutParams(0, Math.round(style.controlHeightLg), 1f);
+      TextView item = createSegmentItem(i, colors, style, radius, inset);
+      LayoutParams params = new LayoutParams(0, Math.round(style.controlHeightMd > 0
+          ? style.controlHeightMd
+          : style.controlHeightLg - 4), 1f);
       addView(item, params);
     }
   }
 
-  private TextView createSegmentItem(int index, int count, BasicColors colors, BasicStyle style, float radius) {
+  private TextView createSegmentItem(
+      int index,
+      BasicColors colors,
+      BasicStyle style,
+      float trackRadius,
+      int inset
+  ) {
     TextView item = new TextView(getContext());
     boolean selected = index == selectedIndex;
-    int textColor = selected ? colors.textInverse : colors.textTertiary;
+    int textColor = selected
+        ? (colors.brandDark != 0 ? colors.brandDark : colors.brandPrimary)
+        : colors.textSecondary;
     if (basicDisabled || !isEnabled()) {
       textColor = colors.textDisabled;
     }
@@ -140,28 +161,36 @@ public class BasicSegmentedControl extends LinearLayout {
     item.setIncludeFontPadding(false);
 
     if (selected && !basicDisabled && isEnabled()) {
-      float innerRadius = Math.max(0, radius - style.borderHairline);
-      float[] corners = segmentCornerRadii(index, count, innerRadius);
-      item.setBackground(BasicDrawableFactory.roundedGradientFill(
-          colors.brandPrimary,
-          GRADIENT_END,
-          corners[0], corners[1], corners[2], corners[3]
+      float thumbRadius = Math.max(0, trackRadius - inset);
+      // 白拇指：主流分段控件选中态（非实心品牌色）
+      item.setBackground(BasicDrawableFactory.roundedFillStroke(
+          colors.backgroundSurfaceRaised != 0 ? colors.backgroundSurfaceRaised : colors.backgroundSurface,
+          colors.borderLight,
+          style.borderHairline,
+          thumbRadius
       ));
+      if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+        item.setElevation(dp(1.5f));
+      }
     } else {
       item.setBackground(null);
+      if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+        item.setElevation(0f);
+      }
     }
 
     item.setEnabled(!basicDisabled && isEnabled());
-    item.setOnClickListener(view -> setSelectedIndex(index));
+    final int tapIndex = index;
+    item.setOnClickListener(view -> setSelectedIndex(tapIndex, true));
     return item;
   }
 
-  private float[] segmentCornerRadii(int index, int count, float radius) {
-    float tl = index == 0 ? radius : 0f;
-    float tr = index == count - 1 ? radius : 0f;
-    float br = tr;
-    float bl = tl;
-    return new float[]{tl, tr, br, bl};
+  private int dp(float value) {
+    return Math.round(TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        value,
+        getResources().getDisplayMetrics()
+    ));
   }
 
   private void readAttrs(AttributeSet attrs) {

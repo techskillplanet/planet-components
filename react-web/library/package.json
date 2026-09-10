@@ -22,18 +22,30 @@
     "react": ">=18"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^8.6.14",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/react": "^8.6.14",
+    "@storybook/react-vite": "^8.6.14",
     "@testing-library/jest-dom": "^6.4.0",
     "@testing-library/react": "^14.2.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "axe-core": "^4.10.3",
+    "chromatic": "^18.7.2",
     "jsdom": "^24.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "storybook": "^8.6.14",
+    "vite": "^5.4.19",
     "vitest": "^1.6.0"
   },
   "scripts": {
     "check": "node --check src/index.js",
     "test": "vitest run",
     "test:watch": "vitest",
-    "pack:dry": "npm pack --dry-run"
+    "pack:dry": "npm pack --dry-run",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static",
+    "chromatic": "chromatic --exit-zero-on-changes --exit-once-uploaded"
   },
   "publishConfig": {
     "access": "public"

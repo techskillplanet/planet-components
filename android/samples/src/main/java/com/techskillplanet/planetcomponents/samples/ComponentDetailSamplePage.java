@@ -5,38 +5,67 @@ import android.widget.Toast;
 
 import com.techskillplanet.planetcomponents.widget.BasicAlertView;
 import com.techskillplanet.planetcomponents.widget.BasicAmountView;
+import com.techskillplanet.planetcomponents.widget.BasicAvatarView;
+import com.techskillplanet.planetcomponents.widget.BasicBalanceHeroView;
 import com.techskillplanet.planetcomponents.widget.BasicButton;
+import com.techskillplanet.planetcomponents.widget.BasicCalendarHeatmapView;
 import com.techskillplanet.planetcomponents.widget.BasicCardView;
+import com.techskillplanet.planetcomponents.widget.BasicCascaderView;
+import com.techskillplanet.planetcomponents.widget.BasicCheckInStreakCardView;
 import com.techskillplanet.planetcomponents.widget.BasicCheckboxView;
+import com.techskillplanet.planetcomponents.widget.BasicChildSwitcherView;
 import com.techskillplanet.planetcomponents.widget.BasicChipView;
 import com.techskillplanet.planetcomponents.widget.BasicCodeBlockView;
 import com.techskillplanet.planetcomponents.widget.BasicCollapseView;
+import com.techskillplanet.planetcomponents.widget.BasicDatePickerView;
 import com.techskillplanet.planetcomponents.widget.BasicDividerView;
+import com.techskillplanet.planetcomponents.widget.BasicDrawerView;
 import com.techskillplanet.planetcomponents.widget.BasicEmptyView;
+import com.techskillplanet.planetcomponents.widget.BasicFabView;
 import com.techskillplanet.planetcomponents.widget.BasicIconButtonView;
+import com.techskillplanet.planetcomponents.widget.BasicInputNumberView;
 import com.techskillplanet.planetcomponents.widget.BasicInputView;
 import com.techskillplanet.planetcomponents.widget.BasicKeyValueLabelView;
 import com.techskillplanet.planetcomponents.widget.BasicListItemView;
+import com.techskillplanet.planetcomponents.widget.BasicLoadingDialog;
 import com.techskillplanet.planetcomponents.widget.BasicLoadingView;
 import com.techskillplanet.planetcomponents.widget.BasicModalDialog;
 import com.techskillplanet.planetcomponents.widget.BasicNotificationView;
 import com.techskillplanet.planetcomponents.widget.BasicPinInputView;
+import com.techskillplanet.planetcomponents.widget.BasicPrintSheetView;
 import com.techskillplanet.planetcomponents.widget.BasicProgressView;
 import com.techskillplanet.planetcomponents.widget.BasicRadioView;
+import com.techskillplanet.planetcomponents.widget.BasicRedeemCardGridView;
+import com.techskillplanet.planetcomponents.widget.BasicRefreshLayout;
+import com.techskillplanet.planetcomponents.widget.BasicScoreRuleGridView;
+import com.techskillplanet.planetcomponents.widget.BasicSearchBarView;
+import com.techskillplanet.planetcomponents.widget.BasicSegmentedControl;
 import com.techskillplanet.planetcomponents.widget.BasicSelectView;
+import com.techskillplanet.planetcomponents.widget.BasicSkeletonView;
+import com.techskillplanet.planetcomponents.widget.BasicSliderView;
+import com.techskillplanet.planetcomponents.widget.BasicStarRatingView;
 import com.techskillplanet.planetcomponents.widget.BasicStepperView;
 import com.techskillplanet.planetcomponents.widget.BasicStickyFooterView;
 import com.techskillplanet.planetcomponents.widget.BasicSwitchView;
+import com.techskillplanet.planetcomponents.widget.BasicSwiperView;
 import com.techskillplanet.planetcomponents.widget.BasicTableView;
 import com.techskillplanet.planetcomponents.widget.BasicTabsView;
+import com.techskillplanet.planetcomponents.widget.BasicTagView;
+import com.techskillplanet.planetcomponents.widget.BasicTextAreaView;
 import com.techskillplanet.planetcomponents.widget.BasicTextLinkView;
+import com.techskillplanet.planetcomponents.widget.BasicTimePickerView;
 import com.techskillplanet.planetcomponents.widget.BasicToast;
+import com.techskillplanet.planetcomponents.widget.BasicTooltipView;
 import com.techskillplanet.planetcomponents.widget.BasicTopBarView;
+import com.techskillplanet.planetcomponents.widget.BasicTreeView;
 import com.techskillplanet.planetcomponents.widget.BasicTypewriterView;
+import com.techskillplanet.planetcomponents.widget.BasicUploadView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 组件详情 Demo Page。
@@ -102,6 +131,31 @@ public final class ComponentDetailSamplePage {
             case "Switch":
                 addSwitchSamples(host);
                 break;
+            case "Checkbox":
+            case "Radio":
+                addSelectionSamples(host);
+                break;
+            case "Collapse":
+                addCollapseSamples(host);
+                break;
+            case "Divider":
+                addDividerSamples(host);
+                break;
+            case "SearchBar":
+                addSearchBarSamples(host);
+                break;
+            case "SegmentedControl":
+                addSegmentedControlSamples(host);
+                break;
+            case "StarRating":
+                addStarRatingSamples(host);
+                break;
+            case "LoadingDialog":
+                addLoadingDialogSamples(host);
+                break;
+            case "RefreshLayout":
+                addRefreshLayoutSamples(host);
+                break;
             case "TopBar":
                 host.addSectionTitle(host.t("sample/section/topbar_preview"));
                 BasicTopBarView preview = new BasicTopBarView(host.getActivity());
@@ -113,6 +167,75 @@ public final class ComponentDetailSamplePage {
             case "BottomTab":
             case "Tabs":
                 addTabsSamples(host);
+                break;
+            case "DatePicker":
+                addDatePickerSamples(host);
+                break;
+            case "ChildSwitcher":
+                addChildSwitcherSamples(host);
+                break;
+            case "ScoreRuleGrid":
+                addScoreRuleGridSamples(host);
+                break;
+            case "RedeemCardGrid":
+                addRedeemCardGridSamples(host);
+                break;
+            case "CalendarHeatmap":
+                addCalendarHeatmapSamples(host);
+                break;
+            case "PrintSheet":
+                addPrintSheetSamples(host);
+                break;
+            case "BalanceHero":
+                addBalanceHeroSamples(host);
+                break;
+            case "CheckInStreakCard":
+                addCheckInStreakCardSamples(host);
+                break;
+            case "Avatar":
+                addAvatarSamples(host);
+                break;
+            case "Skeleton":
+                addSkeletonSamples(host);
+                break;
+            case "Tooltip":
+                addTooltipSamples(host);
+                break;
+            case "Slider":
+                addSliderSamples(host);
+                break;
+            case "TextArea":
+                addTextAreaSamples(host);
+                break;
+            case "Drawer":
+                addDrawerSamples(host);
+                break;
+            case "InputNumber":
+                addInputNumberSamples(host);
+                break;
+            case "Swiper":
+                addSwiperSamples(host);
+                break;
+            case "Tag":
+                addTagSamples(host);
+                break;
+            case "Fab":
+                addFabSamples(host);
+                break;
+            case "TimePicker":
+                addTimePickerSamples(host);
+                break;
+            case "Upload":
+                addUploadSamples(host);
+                break;
+            case "Table":
+                addTableContractSamples(host);
+                break;
+            case "Tree":
+                addTreeSamples(host);
+                break;
+            case "Cascader":
+                addCascaderSamples(host);
                 break;
             default:
                 addEmptySamples(host);
@@ -136,6 +259,17 @@ public final class ComponentDetailSamplePage {
         host.content().addView(host.button(host.t("sample/demo/button/text"), BasicButton.VARIANT_TEXT, false), host.withTopMargin(10));
         host.content().addView(host.button(host.t("sample/demo/button/link"), BasicButton.VARIANT_LINK, false), host.withTopMargin(10));
         host.content().addView(host.button(host.t("sample/demo/button/disabled_primary"), BasicButton.VARIANT_PRIMARY, true), host.withTopMargin(10));
+
+        BasicButton loadingBtn = host.button(host.t("sample/demo/button/loading"), BasicButton.VARIANT_PRIMARY, false);
+        loadingBtn.setLoading(true);
+        host.content().addView(loadingBtn, host.withTopMargin(10));
+
+        BasicButton busyTap = host.button(host.t("sample/demo/button/busy_tap"), BasicButton.VARIANT_DEFAULT, false);
+        busyTap.setOnClickListener(v -> {
+            busyTap.setLoading(true);
+            busyTap.postDelayed(() -> busyTap.setLoading(false), 1200);
+        });
+        host.content().addView(busyTap, host.withTopMargin(10));
     }
 
     private static void addDividerSamples(SamplePageHost host) {
@@ -526,5 +660,386 @@ public final class ComponentDetailSamplePage {
         host.content().addView(error, host.withTopMargin(10));
     }
 
+    private static void addDatePickerSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/domain"));
+        BasicDatePickerView picker = new BasicDatePickerView(host.getActivity());
+        picker.setValue("2026-08-26");
+        picker.setPlaceholder(host.t("sample/demo/datepicker/placeholder"));
+        picker.setOnDateChangeListener(value ->
+                BasicToast.show(host.getActivity(), host.t("sample/toast/datepicker", value), "info", Toast.LENGTH_SHORT));
+        host.content().addView(picker, host.withTopMargin(10));
+    }
+
+    private static void addChildSwitcherSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/domain"));
+        BasicChildSwitcherView chips = new BasicChildSwitcherView(host.getActivity());
+        chips.setItems(Arrays.asList(
+                new BasicChildSwitcherView.Item("1", host.t("sample/demo/child/yue"), "👧"),
+                new BasicChildSwitcherView.Item("2", host.t("sample/demo/child/you"), "👦")
+        ));
+        chips.setSelectedId("1");
+        chips.setOnChildChangeListener(id ->
+                BasicToast.show(host.getActivity(), host.t("sample/toast/child", id), "info", Toast.LENGTH_SHORT));
+        host.content().addView(chips, host.withTopMargin(10));
+
+        BasicChildSwitcherView tabs = new BasicChildSwitcherView(host.getActivity());
+        tabs.setVariant("tabs");
+        tabs.setItems(Arrays.asList(
+                new BasicChildSwitcherView.Item("1", host.t("sample/demo/child/yue")),
+                new BasicChildSwitcherView.Item("2", host.t("sample/demo/child/you"))
+        ));
+        tabs.setSelectedId("1");
+        host.content().addView(tabs, host.withTopMargin(10));
+    }
+
+    private static void addScoreRuleGridSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/domain"));
+        BasicScoreRuleGridView grid = new BasicScoreRuleGridView(host.getActivity());
+        grid.setColumns("auto");
+        grid.setRules(Arrays.asList(
+                new BasicScoreRuleGridView.Rule(
+                        "1",
+                        host.t("sample/demo/score/homework"),
+                        "📝",
+                        5,
+                        1,
+                        1
+                ),
+                new BasicScoreRuleGridView.Rule(
+                        "2",
+                        host.t("sample/demo/score/messy"),
+                        "✏️",
+                        -2,
+                        0,
+                        2
+                )
+        ));
+        grid.setOnIncrementListener(rule ->
+                BasicToast.show(host.getActivity(), host.t("sample/toast/score_plus"), "success", Toast.LENGTH_SHORT));
+        host.content().addView(grid, host.withTopMargin(10));
+    }
+
+    private static void addRedeemCardGridSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/domain"));
+        BasicRedeemCardGridView grid = new BasicRedeemCardGridView(host.getActivity());
+        grid.setAvailablePoints(20);
+        grid.setItems(Arrays.asList(
+                new BasicRedeemCardGridView.Item("1", host.t("sample/demo/redeem/snack"), "🍬", 15),
+                new BasicRedeemCardGridView.Item("2", host.t("sample/demo/redeem/game"), "🎮", 30)
+        ));
+        grid.setOnRedeemListener(item ->
+                BasicToast.show(host.getActivity(), host.t("sample/toast/redeem"), "success", Toast.LENGTH_SHORT));
+        host.content().addView(grid, host.withTopMargin(10));
+    }
+
+    private static void addCalendarHeatmapSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/domain"));
+        BasicCalendarHeatmapView heatmap = new BasicCalendarHeatmapView(host.getActivity());
+        heatmap.setYearMonth("2026-08");
+        heatmap.setCells(Arrays.asList(
+                new BasicCalendarHeatmapView.Cell("2026-08-01", "full"),
+                new BasicCalendarHeatmapView.Cell("2026-08-02", "partial"),
+                new BasicCalendarHeatmapView.Cell("2026-08-03", "exempt")
+        ));
+        host.content().addView(heatmap, host.withTopMargin(10));
+    }
+
+    private static void addPrintSheetSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/domain"));
+        BasicPrintSheetView sheet = new BasicPrintSheetView(host.getActivity());
+        sheet.setTitle(host.t("sample/demo/print/title"));
+        sheet.setVariant("pinyin");
+        sheet.setColumns(5);
+        sheet.setItems(Arrays.asList("dǐng", "lù", "yàn", "xīn", "wǎn"));
+        host.content().addView(sheet, host.withTopMargin(10));
+    }
+
+    private static void addBalanceHeroSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/domain"));
+        BasicBalanceHeroView hero = new BasicBalanceHeroView(host.getActivity());
+        hero.setTotal(41);
+        Map<String, Integer> breakdown = new LinkedHashMap<>();
+        breakdown.put("balance", 40);
+        breakdown.put("ruleScore", 11);
+        breakdown.put("streakBonus", 5);
+        breakdown.put("redeemTotal", 15);
+        hero.setBreakdown(breakdown);
+        host.content().addView(hero, host.withTopMargin(10));
+    }
+
+    private static void addCheckInStreakCardSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/domain"));
+        BasicCheckInStreakCardView card = new BasicCheckInStreakCardView(host.getActivity());
+        card.setStreakDays(7);
+        card.setTotalDays(45);
+        card.setWeekProgress(0.85f);
+        card.setOnOpenListener(() ->
+                BasicToast.show(host.getActivity(), host.t("sample/toast/checkin"), "info", Toast.LENGTH_SHORT));
+        host.content().addView(card, host.withTopMargin(10));
+    }
+
+    private static void addAvatarSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        LinearLayout row = host.horizontalWrap();
+        BasicAvatarView a1 = new BasicAvatarView(host.getActivity());
+        a1.setBasicText("技趣");
+        BasicAvatarView a2 = new BasicAvatarView(host.getActivity());
+        a2.setBasicText("SP");
+        a2.setVariant("primary");
+        a2.setSizeKey("lg");
+        BasicAvatarView a3 = new BasicAvatarView(host.getActivity());
+        a3.setBasicText("A");
+        a3.setVariant("subtle");
+        a3.setSizeKey("sm");
+        row.addView(a1);
+        row.addView(a2);
+        row.addView(a3);
+        host.content().addView(row, host.withTopMargin(10));
+    }
+
+    private static void addSkeletonSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicSkeletonView skeleton = new BasicSkeletonView(host.getActivity());
+        skeleton.setRows(3);
+        skeleton.setShowAvatar(true);
+        skeleton.setAnimated(true);
+        host.content().addView(skeleton, host.withTopMargin(10));
+    }
+
+    private static void addTooltipSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicTooltipView tooltip = new BasicTooltipView(host.getActivity());
+        tooltip.setTipText("Sky Planet tip");
+        tooltip.setPlacement("top");
+        BasicButton trigger = host.button(host.t("sample/demo/button/default"), BasicButton.VARIANT_DEFAULT, false);
+        tooltip.addView(trigger, new android.widget.FrameLayout.LayoutParams(
+                android.widget.FrameLayout.LayoutParams.WRAP_CONTENT,
+                android.widget.FrameLayout.LayoutParams.WRAP_CONTENT));
+        host.content().addView(tooltip, host.withTopMargin(10));
+    }
+
+    private static void addSliderSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicSliderView slider = new BasicSliderView(host.getActivity());
+        slider.setMin(0f);
+        slider.setMax(100f);
+        slider.setStep(1f);
+        slider.setValue(40f);
+        host.content().addView(slider, host.withTopMargin(10));
+    }
+
+    private static void addTextAreaSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicTextAreaView area = new BasicTextAreaView(host.getActivity());
+        area.setPlaceholder("Write a note…");
+        area.setRows(3);
+        host.content().addView(area, host.withTopMargin(10));
+    }
+
+    private static void addDrawerSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicDrawerView drawer = new BasicDrawerView(host.getActivity());
+        drawer.setTitleText("Drawer");
+        drawer.setPlacement("bottom");
+        drawer.setBody(host.text("Sky Planet drawer body.", host.style().textMd, host.colors().textPrimary, false));
+        drawer.setVisibleState(false);
+        BasicButton open = host.button("Open Drawer", BasicButton.VARIANT_PRIMARY, false);
+        open.setOnClickListener(v -> drawer.setVisibleState(true));
+        drawer.setOnCloseListener(view -> drawer.setVisibleState(false));
+        host.content().addView(open, host.withTopMargin(10));
+        host.content().addView(drawer, host.withTopMargin(10));
+    }
+
+    private static void addInputNumberSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicInputNumberView inputNumber = new BasicInputNumberView(host.getActivity());
+        inputNumber.setMin(0f);
+        inputNumber.setMax(10f);
+        inputNumber.setStep(1f);
+        inputNumber.setValue(3f);
+        host.content().addView(inputNumber, host.withTopMargin(10));
+    }
+
+    private static void addSwiperSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicSwiperView swiper = new BasicSwiperView(host.getActivity());
+        swiper.setItems(Arrays.asList("Slide A", "Slide B", "Slide C"));
+        swiper.setIndex(0);
+        host.content().addView(swiper, host.withTopMargin(10));
+    }
+
+    private static void addTagSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        LinearLayout row = host.horizontalWrap();
+        BasicTagView def = new BasicTagView(host.getActivity());
+        def.setBasicText("default");
+        BasicTagView primary = new BasicTagView(host.getActivity());
+        primary.setBasicText("primary");
+        primary.setVariant("primary");
+        BasicTagView closable = new BasicTagView(host.getActivity());
+        closable.setBasicText("closable");
+        closable.setClosable(true);
+        row.addView(def);
+        row.addView(primary);
+        row.addView(closable);
+        host.content().addView(row, host.withTopMargin(10));
+    }
+
+    private static void addFabSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        LinearLayout row = host.horizontalWrap();
+        BasicFabView icon = new BasicFabView(host.getActivity());
+        icon.setIcon("+");
+        BasicFabView extended = new BasicFabView(host.getActivity());
+        extended.setIcon("+");
+        extended.setBasicText("新建");
+        BasicFabView flat = new BasicFabView(host.getActivity());
+        flat.setIcon("✎");
+        flat.setBasicText("默认");
+        flat.setVariant("default");
+        row.addView(icon);
+        row.addView(extended);
+        row.addView(flat);
+        host.content().addView(row, host.withTopMargin(10));
+    }
+
+    private static void addTimePickerSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicTimePickerView picker = new BasicTimePickerView(host.getActivity());
+        picker.setValue("09:30");
+        picker.setPlaceholder("HH:mm");
+        host.content().addView(picker, host.withTopMargin(10));
+    }
+
+    private static void addUploadSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicUploadView upload = new BasicUploadView(host.getActivity());
+        List<BasicUploadView.FileItem> files = new ArrayList<>();
+        files.add(new BasicUploadView.FileItem("1", "readme.md"));
+        upload.setFiles(files);
+        upload.setOnPickRequestListener(view -> {
+            List<BasicUploadView.FileItem> next = new ArrayList<>(view.getFiles());
+            next.add(new BasicUploadView.FileItem(String.valueOf(System.currentTimeMillis()), "mock.txt"));
+            view.setFiles(next);
+        });
+        host.content().addView(upload, host.withTopMargin(10));
+    }
+
+    private static void addTableContractSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicTableView table = new BasicTableView(host.getActivity());
+        List<List<String>> rows = new ArrayList<>();
+        rows.add(Arrays.asList("Avatar", "就绪"));
+        rows.add(Arrays.asList("Tag", "新增"));
+        table.setData(Arrays.asList("名称", "状态"), rows);
+        table.setVariant("striped");
+        host.content().addView(table, host.withTopMargin(10));
+    }
+
+    private static void addTreeSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicTreeView tree = new BasicTreeView(host.getActivity());
+        List<BasicTreeView.Node> items = new ArrayList<>();
+        items.add(new BasicTreeView.Node("a", "星球", Arrays.asList(
+                new BasicTreeView.Node("a1", "天空", null),
+                new BasicTreeView.Node("a2", "岛屿", null)
+        )));
+        items.add(new BasicTreeView.Node("b", "玩法", Arrays.asList(
+                new BasicTreeView.Node("b1", "闯关", null)
+        )));
+        tree.setItems(items);
+        tree.setExpandedIds(Arrays.asList("a"));
+        tree.setSelectedId("a1");
+        host.content().addView(tree, host.withTopMargin(10));
+    }
+
+    private static void addCascaderSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicCascaderView cascader = new BasicCascaderView(host.getActivity());
+        List<BasicCascaderView.Option> options = new ArrayList<>();
+        options.add(new BasicCascaderView.Option("asia", "亚洲", Arrays.asList(
+                new BasicCascaderView.Option("cn", "中国", null),
+                new BasicCascaderView.Option("jp", "日本", null)
+        )));
+        options.add(new BasicCascaderView.Option("eu", "欧洲", Arrays.asList(
+                new BasicCascaderView.Option("fr", "法国", null)
+        )));
+        cascader.setOptions(options);
+        cascader.setPlaceholder("请选择地区");
+        host.content().addView(cascader, host.withTopMargin(10));
+    }
+
+    private static void addSearchBarSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicSearchBarView search = new BasicSearchBarView(host.getActivity());
+        search.setHint("Search…");
+        host.content().addView(search, host.withTopMargin(10));
+        BasicSearchBarView disabled = new BasicSearchBarView(host.getActivity());
+        disabled.setHint("Disabled");
+        disabled.setBasicDisabled(true);
+        host.content().addView(disabled, host.withTopMargin(10));
+    }
+
+    private static void addSegmentedControlSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicSegmentedControl segmented = new BasicSegmentedControl(host.getActivity());
+        segmented.setOptions(Arrays.asList("Day", "Week", "Month"), Arrays.asList("day", "week", "month"));
+        segmented.setSelectedIndex(0);
+        host.content().addView(segmented, host.withTopMargin(10));
+    }
+
+    private static void addStarRatingSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicStarRatingView rating = new BasicStarRatingView(host.getActivity());
+        rating.setStarCount(5);
+        rating.setSelectedStars(3);
+        host.content().addView(rating, host.withTopMargin(10));
+        BasicStarRatingView disabled = new BasicStarRatingView(host.getActivity());
+        disabled.setStarCount(5);
+        disabled.setSelectedStars(4);
+        disabled.setBasicDisabled(true);
+        host.content().addView(disabled, host.withTopMargin(10));
+    }
+
+    private static void addLoadingDialogSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicButton open = host.button("Show Loading", BasicButton.VARIANT_PRIMARY, false);
+        open.setOnClickListener(v -> {
+            BasicLoadingDialog dialog = BasicLoadingDialog.show(host.getActivity(), "同步主题中...");
+            open.postDelayed(dialog::dismiss, 1400);
+        });
+        host.content().addView(open, host.withTopMargin(10));
+    }
+
+    private static void addRefreshLayoutSamples(SamplePageHost host) {
+        host.addSectionTitle(host.t("sample/section/usage"));
+        BasicRefreshLayout refresh = new BasicRefreshLayout(host.getActivity());
+        LinearLayout content = new LinearLayout(host.getActivity());
+        content.setOrientation(LinearLayout.VERTICAL);
+        content.addView(host.text("下拉刷新 / 上拉加载", host.style().textMd, host.colors().textPrimary, true), host.fullWidth());
+        content.addView(host.listItem("列表项 1", "示例内容", "›", false, false), host.withTopMargin(8));
+        content.addView(host.listItem("列表项 2", "示例内容", "›", false, false), host.withTopMargin(8));
+        refresh.setContentView(content);
+        refresh.setOnRefreshLoadListener(new BasicRefreshLayout.OnRefreshLoadListener() {
+            @Override
+            public void onRefresh() {
+                refresh.postDelayed(() -> {
+                    refresh.finishRefresh();
+                    Toast.makeText(host.getActivity(), host.t("sample/toast/refreshed"), Toast.LENGTH_SHORT).show();
+                }, 900);
+            }
+
+            @Override
+            public void onLoadMore() {
+                refresh.postDelayed(() -> {
+                    refresh.finishLoadMore();
+                    Toast.makeText(host.getActivity(), host.t("sample/toast/load_more"), Toast.LENGTH_SHORT).show();
+                }, 900);
+            }
+        });
+        LinearLayout.LayoutParams lp = host.fullWidth();
+        lp.height = (int) (280 * host.getActivity().getResources().getDisplayMetrics().density);
+        host.content().addView(refresh, lp);
+    }
 
 }

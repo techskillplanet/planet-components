@@ -26,7 +26,7 @@ Publish **library** packages only. Samples stay on path/local library deps.
 
 **Target release: **0.2.1**.** Local `main` may include DatePicker + Domain-7 + sunrise + `Button.loading` not yet on registries — **bump version before the next publish** (recommended `0.2.1` or `0.3.0`).
 
-Catalog baseline: React Web ≈ **35** `Tsp*` (see `component_contract.json`). Themes: `sky` / `night` / `mint` / `sunrise` (Android keys: `sky_planet_day`, `star_planet_night`, `mint_planet_day`, `sunrise_planet_day`).
+Catalog baseline: React Web ≈ **57** `Tsp*` (see `component_contract.json`). Themes: `sky` / `night` / `mint` / `sunrise` (Android keys: `sky_planet_day`, `star_planet_night`, `mint_planet_day`, `sunrise_planet_day`).
 
 ## Pre-flight (mandatory)
 

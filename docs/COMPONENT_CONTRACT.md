@@ -62,6 +62,28 @@ Core semantic colors:
 | PrintSheet | `pinyin`, `meaning` | `title`, `items`, `columns`, `footerFields` |
 | BalanceHero | `default`, `compact` | `total`, `breakdown`, `suffix` |
 | CheckInStreakCard | `default` | `streakDays`, `totalDays`, `weekProgress`, `onOpen`, `disabled` |
+| Checkbox | `default`, `disabled` | `text`, `variant`, `checked`, `disabled`, `onChange` |
+| Collapse | `default`, `disabled` | `title`, `message`, `expanded`, `disabled`, `onChange` |
+| Divider | `default`, `disabled` | `variant`, `text`, `disabled` |
+| Radio | `default`, `disabled` | `text`, `checked`, `disabled`, `onChange` |
+| SearchBar | `default`, `disabled` | `value`, `placeholder`, `variant`, `disabled`, `onChange` |
+| SegmentedControl | `default`, `disabled` | `options`, `selectedIndex`, `disabled`, `onSelect` |
+| StarRating | `default`, `disabled`, `readonly` | `value`, `max`, `disabled`, `onChange` |
+| Avatar | `default`, `primary`, `subtle` | `text`, `src`, `size`, `variant` |
+| Skeleton | `default`, `pulse` | `rows`, `animated`, `avatar` |
+| Tooltip | `default` | `text`, `placement`, `visible`, `children` |
+| Slider | `default`, `disabled` | `value`, `min`, `max`, `step`, `disabled`, `onChange` |
+| TextArea | `default`, `error`, `disabled` | `value`, `placeholder`, `rows`, `maxLength`, `disabled`, `onChange` |
+| Drawer | `default` | `visible`, `title`, `placement`, `onClose`, `children` |
+| InputNumber | `default`, `disabled` | `value`, `min`, `max`, `step`, `disabled`, `onChange` |
+| Swiper | `default` | `items`, `index`, `autoplay`, `onChange` |
+| Tag | `default`, `primary`, `success`, `warning`, `danger` | `text`, `closable`, `selected`, `disabled`, `variant`, `onClose`, `onTap` |
+| Fab | `primary`, `default` | `icon`, `text`, `variant`, `disabled`, `onTap` |
+| TimePicker | `default`, `disabled` | `value`, `placeholder`, `disabled`, `onChange` |
+| Upload | `default`, `disabled` | `files`, `multiple`, `disabled`, `accept`, `onChange`, `onRemove` |
+| Table | `default`, `striped` | `columns`, `rows`, `variant`, `emptyText` |
+| Tree | `default` | `items`, `selectedId`, `expandedIds`, `onSelect`, `onExpand` |
+| Cascader | `default`, `disabled` | `options`, `value`, `placeholder`, `disabled`, `onChange` |
 
 ## Platform public names
 
@@ -102,6 +124,28 @@ Core semantic colors:
 | PrintSheet | `TspPrintSheet` | `BasicPrintSheetView` | `bc-print-sheet` |
 | BalanceHero | `TspBalanceHero` | `BasicBalanceHeroView` | `bc-balance-hero` |
 | CheckInStreakCard | `TspCheckInStreakCard` | `BasicCheckInStreakCardView` | `bc-check-in-streak-card` |
+| Checkbox | `TspCheckbox` | `BasicCheckboxView` | `bc-checkbox` |
+| Collapse | `TspCollapse` | `BasicCollapseView` | `bc-collapse` |
+| Divider | `TspDivider` | `BasicDividerView` | `bc-divider` |
+| Radio | `TspRadio` | `BasicRadioView` | `bc-radio` |
+| SearchBar | `TspSearchBar` | `BasicSearchBarView` | `bc-search-bar` |
+| SegmentedControl | `TspSegmentedControl` | `BasicSegmentedControl` | `bc-segmented-control` |
+| StarRating | `TspStarRating` | `BasicStarRatingView` | `bc-star-rating` |
+| Avatar | `TspAvatar` | `BasicAvatarView` | `bc-avatar` |
+| Skeleton | `TspSkeleton` | `BasicSkeletonView` | `bc-skeleton` |
+| Tooltip | `TspTooltip` | `BasicTooltipView` | `bc-tooltip` |
+| Slider | `TspSlider` | `BasicSliderView` | `bc-slider` |
+| TextArea | `TspTextArea` | `BasicTextAreaView` | `bc-text-area` |
+| Drawer | `TspDrawer` | `BasicDrawerView` | `bc-drawer` |
+| InputNumber | `TspInputNumber` | `BasicInputNumberView` | `bc-input-number` |
+| Swiper | `TspSwiper` | `BasicSwiperView` | `bc-swiper` |
+| Tag | `TspTag` | `BasicTagView` | `bc-tag` |
+| Fab | `TspFab` | `BasicFabView` | `bc-fab` |
+| TimePicker | `TspTimePicker` | `BasicTimePickerView` | `bc-time-picker` |
+| Upload | `TspUpload` | `BasicUploadView` | `bc-upload` |
+| Table | `TspTable` | `BasicTableView` | `bc-table` |
+| Tree | `TspTree` | `BasicTreeView` | `bc-tree` |
+| Cascader | `TspCascader` | `BasicCascaderView` | `bc-cascader` |
 
 Mini Program keeps `bc-*` tags because WeChat `usingComponents` is path/tag based. Semantic APIs still use `variant` / `disabled` / `text` / `theme`. Flutter Button uses enum value `standard` for contract `default` because `default` is reserved in Dart.
 

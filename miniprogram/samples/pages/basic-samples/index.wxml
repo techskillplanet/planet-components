@@ -8,6 +8,10 @@
       <bc-button text="Default" variant="default" theme="{{theme}}" bind:tap="onTap" />
       <view class="gap"></view>
       <bc-button text="Danger" variant="danger" theme="{{theme}}" bind:tap="onTap" />
+      <view class="gap"></view>
+      <bc-button text="Loading" variant="primary" loading="{{true}}" theme="{{theme}}" bind:tap="onTap" />
+      <view class="gap"></view>
+      <bc-button text="{{buttonBusy ? '提交中…' : '点我试 loading'}}" variant="default" loading="{{buttonBusy}}" theme="{{theme}}" bind:tap="onBusyTap" />
 
       <view class="sample-title">Cards / Alerts / Chips</view>
       <bc-card theme="{{theme}}">
@@ -55,6 +59,26 @@
       <view class="gap"></view>
       <bc-switch text="夜间模式" checked="{{switchChecked}}" theme="{{theme}}" bind:change="onSwitchChange" />
       <view class="gap"></view>
+      <bc-checkbox text="同意协议" checked="{{checkboxChecked}}" theme="{{theme}}" bind:change="onCheckboxChange" />
+      <view class="gap"></view>
+      <bc-radio text="选项 A" checked="{{radioValue === 'A'}}" theme="{{theme}}" bind:change="onRadioA" />
+      <view class="gap"></view>
+      <bc-radio text="选项 B" checked="{{radioValue === 'B'}}" theme="{{theme}}" bind:change="onRadioB" />
+      <view class="gap"></view>
+      <bc-search-bar value="{{searchValue}}" placeholder="搜索…" theme="{{theme}}" bind:change="onSearchChange" />
+      <view class="gap"></view>
+      <bc-segmented-control options="{{segmentedOptions}}" selectedIndex="{{segmentedIndex}}" theme="{{theme}}" bind:select="onSegmentedSelect" />
+      <view class="gap"></view>
+      <bc-star-rating value="{{starValue}}" max="{{5}}" theme="{{theme}}" bind:change="onStarChange" />
+      <view class="gap"></view>
+      <bc-star-rating value="{{4}}" max="{{5}}" variant="readonly" theme="{{theme}}" />
+      <view class="gap"></view>
+      <bc-collapse title="Details" message="Sky Planet token-driven panel." expanded="{{collapseExpanded}}" theme="{{theme}}" bind:change="onCollapseChange" />
+      <view class="gap"></view>
+      <bc-divider text="Section" theme="{{theme}}" />
+      <view class="gap"></view>
+      <bc-button text="打开 OptionSheet" variant="default" theme="{{theme}}" bind:tap="onOpenOptionSheet" />
+      <view class="gap"></view>
       <bc-tabs tabs="{{segmentTabs}}" selectedIndex="{{segmentIndex}}" theme="{{theme}}" bind:select="onSegmentSelect" />
       <view class="gap"></view>
       <bc-list-item title="列表项" message="契约对齐" trailing="›" theme="{{theme}}" bind:tap="onTap" />
@@ -65,16 +89,91 @@
       <view class="gap"></view>
       <bc-button text="打开加载框" variant="default" theme="{{theme}}" bind:tap="onShowLoading" />
       <view class="gap"></view>
+
+      <view class="sample-title">Domain / DatePicker</view>
+      <bc-date-picker value="{{dateValue}}" placeholder="选择日期" theme="{{theme}}" bind:change="onDateChange" />
+      <view class="gap"></view>
+      <bc-child-switcher items="{{childItems}}" selectedId="{{childId}}" theme="{{theme}}" bind:change="onChildChange" />
+      <view class="gap"></view>
+      <bc-child-switcher variant="tabs" items="{{childTabItems}}" selectedId="{{childId}}" theme="{{theme}}" bind:change="onChildChange" />
+      <view class="gap"></view>
+      <bc-score-rule-grid rules="{{scoreRules}}" columns="auto" theme="{{theme}}" bind:increment="onScoreIncrement" />
+      <view class="gap"></view>
+      <bc-redeem-card-grid items="{{redeemItems}}" availablePoints="{{20}}" theme="{{theme}}" bind:redeem="onRedeem" />
+      <view class="gap"></view>
+      <bc-calendar-heatmap yearMonth="2026-08" cells="{{heatmapCells}}" theme="{{theme}}" />
+      <view class="gap"></view>
+      <bc-print-sheet title="错字默写" variant="pinyin" items="{{printItems}}" columns="{{5}}" theme="{{theme}}" />
+      <view class="gap"></view>
+      <bc-balance-hero total="{{41}}" breakdown="{{balanceBreakdown}}" theme="{{theme}}" />
+      <view class="gap"></view>
+      <bc-check-in-streak-card streakDays="{{7}}" totalDays="{{45}}" weekProgress="{{0.85}}" theme="{{theme}}" bind:open="onCheckInOpen" />
+      <view class="gap"></view>
       <view style="height: 280rpx;">
         <bc-refresh-layout refreshing="{{refreshing}}" theme="{{theme}}" bind:refresh="onRefresh">
           <view class="card-body">下拉刷新区域</view>
         </bc-refresh-layout>
       </view>
+
+      <view class="sample-title">W1 / Surfaces</view>
+      <view class="chip-row">
+        <bc-avatar text="技趣" theme="{{theme}}" />
+        <bc-avatar text="SP" size="lg" variant="primary" theme="{{theme}}" />
+        <bc-avatar text="A" size="sm" variant="subtle" theme="{{theme}}" />
+      </view>
+      <view class="gap"></view>
+      <bc-button text="打开 Drawer" variant="primary" theme="{{theme}}" bind:tap="onOpenDrawer" />
+
+      <view class="sample-title">W1 / Feedback</view>
+      <bc-skeleton rows="{{3}}" animated="{{true}}" avatar="{{true}}" theme="{{theme}}" />
+      <view class="gap"></view>
+      <bc-tooltip text="Sky Planet tip" placement="top" theme="{{theme}}">
+        <bc-button text="点我看 Tooltip" variant="default" theme="{{theme}}" />
+      </bc-tooltip>
+
+      <view class="sample-title">W1 / Inputs</view>
+      <bc-slider value="{{sliderValue}}" min="{{0}}" max="{{100}}" theme="{{theme}}" bind:change="onSliderChange" />
+      <view class="gap"></view>
+      <bc-text-area value="{{textAreaValue}}" placeholder="Write a note…" rows="{{3}}" theme="{{theme}}" bind:change="onTextAreaChange" />
+      <view class="gap"></view>
+      <bc-input-number value="{{inputNumberValue}}" min="{{0}}" max="{{10}}" theme="{{theme}}" bind:change="onInputNumberChange" />
+
+      <view class="sample-title">W1 / Navigation</view>
+      <bc-swiper items="{{swiperItems}}" index="{{swiperIndex}}" theme="{{theme}}" bind:change="onSwiperChange" />
+
+      <view class="sample-title">W2 / Actions</view>
+      <view class="chip-row">
+        <bc-tag text="default" theme="{{theme}}" />
+        <bc-tag text="primary" variant="primary" theme="{{theme}}" />
+        <bc-tag text="closable" closable="{{true}}" theme="{{theme}}" bind:close="onTagClose" />
+      </view>
+      <view class="gap"></view>
+      <view class="chip-row">
+        <bc-fab icon="+" theme="{{theme}}" />
+        <bc-fab icon="+" text="新建" theme="{{theme}}" />
+        <bc-fab icon="✎" text="默认" variant="default" theme="{{theme}}" />
+      </view>
+
+      <view class="sample-title">W2 / Inputs</view>
+      <bc-time-picker value="{{timeValue}}" placeholder="HH:mm" theme="{{theme}}" bind:change="onTimeChange" />
+      <view class="gap"></view>
+      <bc-upload files="{{uploadFiles}}" theme="{{theme}}" bind:change="onUploadChange" />
+
+      <view class="sample-title">W2 / Data</view>
+      <bc-table columns="{{tableColumns}}" rows="{{tableRows}}" variant="striped" theme="{{theme}}" />
+      <view class="gap"></view>
+      <bc-tree items="{{treeItems}}" selectedId="{{treeSelectedId}}" expandedIds="{{treeExpandedIds}}" theme="{{theme}}" bind:select="onTreeSelect" bind:expand="onTreeExpand" />
+      <view class="gap"></view>
+      <bc-cascader options="{{cascaderOptions}}" value="{{cascaderValue}}" placeholder="请选择地区" theme="{{theme}}" bind:change="onCascaderChange" />
     </view>
   </scroll-view>
   <bc-toast message="已触发" variant="success" visible="{{toastVisible}}" theme="{{theme}}" bind:dismiss="onToastDismiss" />
   <bc-modal title="确认" message="与 RN Modal 语义对齐" visible="{{modalVisible}}" theme="{{theme}}" bind:confirm="onCloseModal" bind:cancel="onCloseModal" />
   <bc-loading-dialog visible="{{loadingVisible}}" message="加载中..." theme="{{theme}}" />
+  <bc-option-sheet title="请选择" options="{{selectOptions}}" selectedIndex="{{selectIndex}}" visible="{{optionSheetVisible}}" theme="{{theme}}" bind:select="onOptionSheetSelect" bind:cancel="onCloseOptionSheet" />
+  <bc-drawer title="Drawer" placement="bottom" visible="{{drawerVisible}}" theme="{{theme}}" bind:close="onCloseDrawer">
+    <view class="card-body">Sky Planet drawer body.</view>
+  </bc-drawer>
   <bc-sticky-footer theme="{{theme}}">
     <bc-button text="Sticky Footer Action" variant="primary" theme="{{theme}}" bind:tap="onTap" />
   </bc-sticky-footer>

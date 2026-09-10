@@ -1,0 +1,24 @@
+.bc-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  min-height: 80rpx;
+  padding: 0 24rpx;
+  border-radius: 999rpx;
+  border: 2rpx solid var(--bc-border);
+  background: var(--bc-surface);
+  box-sizing: border-box;
+}
+.bc-search-bar__icon {
+  color: var(--bc-muted);
+  font-size: 28rpx;
+  flex-shrink: 0;
+}
+.bc-search-bar__input {
+  flex: 1;
+  min-width: 0;
+  color: var(--bc-text);
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.is-disabled { opacity: 0.45; }

@@ -240,4 +240,90 @@ void main() {
     expect(find.text('41'), findsOneWidget);
     expect(find.text('连续打卡'), findsOneWidget);
   });
+
+  testWidgets('TC-FLUTTER-CASCADER-01 expands and emits leaf path', (tester) async {
+    List<String>? path;
+    List<String>? labels;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: TspCascader(
+            options: const [
+              TspCascaderOption(
+                value: 'asia',
+                label: '亚洲',
+                children: [
+                  TspCascaderOption(value: 'cn', label: '中国'),
+                  TspCascaderOption(value: 'jp', label: '日本'),
+                ],
+              ),
+              TspCascaderOption(
+                value: 'eu',
+                label: '欧洲',
+                children: [TspCascaderOption(value: 'fr', label: '法国')],
+              ),
+            ],
+            onChanged: (p, l) {
+              path = p;
+              labels = l;
+            },
+          ),
+        ),
+      ),
+    );
+    await tester.tap(find.text('请选择'));
+    await tester.pump();
+    expect(find.text('亚洲'), findsOneWidget);
+    expect(find.text('欧洲'), findsOneWidget);
+    await tester.tap(find.text('欧洲'));
+    await tester.pump();
+    expect(find.text('法国'), findsOneWidget);
+    await tester.tap(find.text('法国'));
+    await tester.pump();
+    expect(path, ['eu', 'fr']);
+    expect(labels, ['欧洲', '法国']);
+  });
+
+  testWidgets('TC-FLUTTER-AVATAR-01 shows initials', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(body: TspAvatar(text: '技趣')),
+      ),
+    );
+    expect(find.text('技趣'), findsOneWidget);
+  });
+
+  testWidgets('TC-FLUTTER-TAG-01 closable fires onClose', (tester) async {
+    var closed = 0;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: TspTag(text: 'tag', closable: true, onClose: () => closed += 1),
+        ),
+      ),
+    );
+    await tester.tap(find.text('×'));
+    await tester.pump();
+    expect(closed, 1);
+  });
+
+  testWidgets('TC-FLUTTER-INPUT-NUMBER-01 increments with clamp', (tester) async {
+    num? value;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: TspInputNumber(
+            value: 1,
+            min: 0,
+            max: 2,
+            step: 1,
+            onChanged: (v) => value = v,
+          ),
+        ),
+      ),
+    );
+    await tester.tap(find.text('+'));
+    await tester.pump();
+    expect(value, 2);
+  });
 }

@@ -135,8 +135,53 @@ const THEMES = {
   },
 };
 
+/** Island style profiles — aligns with React Web `starPlanetStyleProfiles`. */
+const STYLE_PROFILES = {
+  island_raised: {
+    key: 'island_raised',
+    buttonRaisedShadowEnabled: true,
+    shadowControlIslandLiftY: 6,
+    shadowControlPressedY: 2,
+    pressedDropY: 2,
+    hoverLiftY: -1,
+    buttonFaceHeight: 46,
+    cardIslandShadow: '0 14px 34px rgba(49, 168, 255, 0.20), 0 2px 8px rgba(23, 58, 98, 0.06)',
+  },
+  island_flat: {
+    key: 'island_flat',
+    buttonRaisedShadowEnabled: false,
+    shadowControlIslandLiftY: 0,
+    shadowControlPressedY: 0,
+    pressedDropY: 0,
+    hoverLiftY: 0,
+    buttonFaceHeight: 46,
+    cardIslandShadow: 'none',
+  },
+};
+
+function getStyleProfile(styleProfile) {
+  return STYLE_PROFILES[styleProfile] || STYLE_PROFILES.island_raised;
+}
+
+/**
+ * Color-only lookup (backward compatible).
+ * Merges `island_raised` style defaults so callers always get lift/height fields.
+ */
 function getTheme(key) {
-  return THEMES[key] || THEMES.sky;
+  return resolveTheme(key, 'island_raised');
+}
+
+/**
+ * Merge color token + style profile — aligns with React `resolveTheme(colorKey, styleProfile)`.
+ */
+function resolveTheme(colorKey, styleProfile) {
+  const colors = THEMES[colorKey] || THEMES.sky;
+  const style = getStyleProfile(styleProfile);
+  return Object.assign({}, colors, style, {
+    colorKey: colors.key,
+    styleProfile: style.key,
+    buttonHeight: style.buttonFaceHeight + style.shadowControlIslandLiftY,
+  });
 }
 
 /** Distinct class per color key: theme-sky / theme-night / theme-mint / theme-sunrise. */
@@ -145,4 +190,59 @@ function themeClass(key) {
   return `theme-${resolved}`;
 }
 
-module.exports = { THEMES, getTheme, themeClass };
+/** Optional style class: style-island_raised / style-island_flat. */
+function styleClass(styleProfile) {
+  const resolved = STYLE_PROFILES[styleProfile] ? styleProfile : 'island_raised';
+  return `style-${resolved}`;
+}
+
+/**
+ * CSS custom properties for a resolved theme (page / host binding).
+ */
+function themeVars(theme) {
+  const t = theme || resolveTheme();
+  const lift = t.shadowControlIslandLiftY ?? 6;
+  const face = t.buttonFaceHeight ?? 46;
+  return {
+    '--bc-page-start': t.pageStart,
+    '--bc-page-end': t.pageEnd,
+    '--bc-text-primary': t.textPrimary,
+    '--bc-text-secondary': t.textSecondary,
+    '--bc-text-tertiary': t.textTertiary,
+    '--bc-surface': t.surfaceRaised,
+    '--bc-surface-subtle': t.surfaceSubtle,
+    '--bc-border': t.borderDefault,
+    '--bc-brand-primary': t.brandPrimary,
+    '--bc-brand-dark': t.brandDark,
+    '--bc-brand-subtle': t.brandSubtle,
+    '--bc-success': t.success,
+    '--bc-success-subtle': t.successSubtle,
+    '--bc-warning': t.warning,
+    '--bc-selected-fill': t.selectedFill,
+    '--bc-selected-border': t.selectedBorder,
+    '--bc-emphasis-fill': t.emphasisFill,
+    '--bc-active-fill': t.activeFill,
+    '--bc-danger': t.danger,
+    '--bc-shadow-control-island-lift-y': `${lift}px`,
+    '--bc-button-face-height': `${face}px`,
+    '--bc-button-height': `${face + lift}px`,
+    '--bc-pressed-drop-y': `${t.pressedDropY ?? 2}px`,
+    '--bc-hover-lift-y': `${t.hoverLiftY ?? -1}px`,
+    '--bc-button-raised-shadow-display': t.buttonRaisedShadowEnabled === false ? 'none' : 'block',
+    '--bc-card-island-shadow': t.cardIslandShadow
+      || (t.buttonRaisedShadowEnabled === false
+        ? 'none'
+        : '0 14px 34px rgba(49, 168, 255, 0.20), 0 2px 8px rgba(23, 58, 98, 0.06)'),
+  };
+}
+
+module.exports = {
+  THEMES,
+  STYLE_PROFILES,
+  getTheme,
+  getStyleProfile,
+  resolveTheme,
+  themeClass,
+  styleClass,
+  themeVars,
+};

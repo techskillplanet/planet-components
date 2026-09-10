@@ -19,7 +19,7 @@ import com.techskillplanet.planetcomponents.theme.BasicThemeManager;
  * 蓝天星球风格顶部导航栏。
  *
  * <p>固定承载页面标题和返回入口，适合单 Activity 的轻量页面流。默认启用沉浸式顶栏：
- * 背景延伸到状态栏区域，内容自动下移 {@code statusBarInset}。</p>
+ * 状态栏区域保持透明（透出页面渐变），内容自动下移 {@code statusBarInset}。</p>
  */
 public class BasicTopBarView extends LinearLayout {
     private final ImageView backView;
@@ -31,7 +31,9 @@ public class BasicTopBarView extends LinearLayout {
     private Integer titleTextColor;
     private Integer backTextColor;
     private boolean immersiveStatusBar = true;
+    private boolean transparentStatusBand = true;
     private int statusBarInset;
+    private final android.graphics.Paint contentBandPaint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
 
     public BasicTopBarView(Context context) {
         this(context, null);
@@ -75,6 +77,7 @@ public class BasicTopBarView extends LinearLayout {
         addView(actionView);
         bottomBorder = new View(context);
         addView(bottomBorder);
+        setWillNotDraw(false);
         refreshTheme();
     }
 
@@ -111,6 +114,30 @@ public class BasicTopBarView extends LinearLayout {
             requestApplyInsets();
         }
         requestLayout();
+        invalidate();
+    }
+
+    /**
+     * 沉浸式时状态栏带是否透明（透出页面背景）。默认 true。
+     */
+    public void setTransparentStatusBand(boolean transparent) {
+        transparentStatusBand = transparent;
+        refreshTheme();
+    }
+
+    /** 当前是否让状态栏带透明。 */
+    public boolean isTransparentStatusBand() {
+        return transparentStatusBand;
+    }
+
+    /** 当前状态栏 inset（px），供测试与调试。 */
+    public int getStatusBarInsetPx() {
+        return statusBarInset;
+    }
+
+    /** 内容带填充色（不含透明状态栏带）。 */
+    public int getContentBandColor() {
+        return contentBandPaint.getColor();
     }
 
     public void setTitle(CharSequence title) {
@@ -187,7 +214,11 @@ public class BasicTopBarView extends LinearLayout {
 
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
-        setBackgroundColor(barBackgroundColor == null ? colors.backgroundSurfaceRaised : barBackgroundColor);
+        int bandColor = barBackgroundColor == null ? colors.backgroundSurfaceRaised : barBackgroundColor;
+        // Keep the View background transparent so the status-bar inset band does not paint opaque.
+        setBackgroundColor(android.graphics.Color.TRANSPARENT);
+        contentBandPaint.setStyle(android.graphics.Paint.Style.FILL);
+        contentBandPaint.setColor(bandColor);
         setPadding(0, 0, 0, 0);
 
         backView.setColorFilter(backTextColor == null ? colors.brandPrimary : backTextColor);
@@ -211,6 +242,18 @@ public class BasicTopBarView extends LinearLayout {
         secondaryActionView.setPadding(actionPadding, actionPadding, actionPadding, actionPadding);
 
         bottomBorder.setBackgroundColor(colors.borderDivider);
+        invalidate();
+    }
+
+    @Override
+    protected void onDraw(android.graphics.Canvas canvas) {
+        int border = bottomBorder.getMeasuredHeight();
+        int contentTop = (immersiveStatusBar && transparentStatusBand) ? statusBarInset : 0;
+        int contentBottom = Math.max(contentTop, getHeight() - border);
+        if (contentBottom > contentTop) {
+            canvas.drawRect(0, contentTop, getWidth(), contentBottom, contentBandPaint);
+        }
+        super.onDraw(canvas);
     }
 
     private android.view.WindowInsets onApplyWindowInsetsToTopBar(View view, android.view.WindowInsets insets) {
@@ -218,6 +261,7 @@ public class BasicTopBarView extends LinearLayout {
         if (inset != statusBarInset) {
             statusBarInset = inset;
             requestLayout();
+            invalidate();
         }
         return insets;
     }

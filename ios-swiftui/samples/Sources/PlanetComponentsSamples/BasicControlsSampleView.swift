@@ -25,7 +25,14 @@ private let componentDocs: [ComponentDoc] = [
     .init(id: "Select", category: "Inputs"),
     .init(id: "OptionSheet", category: "Inputs"),
     .init(id: "Switch", category: "Inputs"),
+    .init(id: "Checkbox", category: "Inputs"),
+    .init(id: "Radio", category: "Inputs"),
+    .init(id: "SearchBar", category: "Inputs"),
+    .init(id: "SegmentedControl", category: "Inputs"),
+    .init(id: "StarRating", category: "Inputs"),
     .init(id: "PinInput", category: "Inputs"),
+    .init(id: "Collapse", category: "Surfaces"),
+    .init(id: "Divider", category: "Surfaces"),
     .init(id: "TopBar", category: "Navigation"),
     .init(id: "BottomTab", category: "Navigation"),
     .init(id: "Tabs", category: "Navigation"),
@@ -33,7 +40,30 @@ private let componentDocs: [ComponentDoc] = [
     .init(id: "RefreshLayout", category: "Navigation"),
     .init(id: "Amount", category: "Data"),
     .init(id: "KeyValueLabel", category: "Data"),
-    .init(id: "Stepper", category: "Data")
+    .init(id: "Stepper", category: "Data"),
+    .init(id: "DatePicker", category: "Domain"),
+    .init(id: "ChildSwitcher", category: "Domain"),
+    .init(id: "ScoreRuleGrid", category: "Domain"),
+    .init(id: "RedeemCardGrid", category: "Domain"),
+    .init(id: "CalendarHeatmap", category: "Domain"),
+    .init(id: "PrintSheet", category: "Domain"),
+    .init(id: "BalanceHero", category: "Domain"),
+    .init(id: "CheckInStreakCard", category: "Domain"),
+    .init(id: "Avatar", category: "Surfaces"),
+    .init(id: "Skeleton", category: "Feedback"),
+    .init(id: "Tooltip", category: "Feedback"),
+    .init(id: "Slider", category: "Inputs"),
+    .init(id: "TextArea", category: "Inputs"),
+    .init(id: "Drawer", category: "Surfaces"),
+    .init(id: "InputNumber", category: "Inputs"),
+    .init(id: "Swiper", category: "Navigation"),
+    .init(id: "Tag", category: "Actions"),
+    .init(id: "Fab", category: "Actions"),
+    .init(id: "TimePicker", category: "Inputs"),
+    .init(id: "Upload", category: "Inputs"),
+    .init(id: "Table", category: "Data"),
+    .init(id: "Tree", category: "Data"),
+    .init(id: "Cascader", category: "Data")
 ]
 
 private let languageOptions: [(key: String, labelKey: String)] = [
@@ -50,6 +80,11 @@ public struct BasicControlsSampleView: View {
     @State private var selectedIndex = 1
     @State private var selectedTab = 0
     @State private var checked = true
+    @State private var expanded = false
+    @State private var radioValue = "a"
+    @State private var searchValue = ""
+    @State private var segmentIndex = 0
+    @State private var starValue = 3
     @State private var inputValue = ""
     @State private var showModal = false
     @State private var showToast = false
@@ -58,6 +93,18 @@ public struct BasicControlsSampleView: View {
     @State private var refreshing = false
     @State private var loadingMore = false
     @State private var refreshRows = Array(1...8)
+    @State private var dateValue = "2026-08-26"
+    @State private var childId = "1"
+    @State private var showDrawer = false
+    @State private var sliderValue = 40.0
+    @State private var textAreaValue = ""
+    @State private var inputNumberValue = 3.0
+    @State private var swiperIndex = 0
+    @State private var timeValue = "09:30"
+    @State private var uploadFiles: [TspUploadFile] = [TspUploadFile(id: "1", name: "readme.md")]
+    @State private var treeSelectedId = "a1"
+    @State private var treeExpandedIds = ["a"]
+    @State private var cascaderValue: [String] = []
     private let themes: [(String, StarPlanetTheme)] = [("Sky", .sky), ("Night", .night), ("Mint", .mint), ("Sunrise", .sunrise)]
 
     public init() {}
@@ -312,6 +359,40 @@ public struct BasicControlsSampleView: View {
                 TspSwitch(text: strings.t("sample/demo/switch/loading_short"), checked: true, loading: true, theme: theme)
                 TspSwitch(text: strings.t("sample/demo/switch/disabled_short"), checked: false, disabled: true, theme: theme)
             }
+        case "Checkbox":
+            VStack(alignment: .leading, spacing: 12) {
+                TspCheckbox(text: "Agree", checked: checked, theme: theme) { checked = $0 }
+                TspCheckbox(text: "Disabled", checked: true, disabled: true, theme: theme)
+            }
+        case "Radio":
+            VStack(alignment: .leading, spacing: 12) {
+                TspRadio(text: "Option A", checked: radioValue == "a", theme: theme) { _ in radioValue = "a" }
+                TspRadio(text: "Option B", checked: radioValue == "b", theme: theme) { _ in radioValue = "b" }
+            }
+        case "SearchBar":
+            TspSearchBar(value: $searchValue, placeholder: "Search…", theme: theme) { searchValue = $0 }
+        case "SegmentedControl":
+            TspSegmentedControl(options: ["日", "周", "月"], selectedIndex: segmentIndex, theme: theme) { index, _, _ in
+                segmentIndex = index
+            }
+        case "StarRating":
+            VStack(alignment: .leading, spacing: 12) {
+                TspStarRating(value: starValue, theme: theme) { starValue = $0 }
+                TspStarRating(value: 4, variant: "readonly", theme: theme)
+            }
+        case "Collapse":
+            TspCollapse(
+                title: "Details",
+                message: "Expanded body uses theme tokens.",
+                expanded: expanded,
+                theme: theme
+            ) { expanded = $0 }
+        case "Divider":
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Above").foregroundColor(theme.textSecondary)
+                TspDivider(text: "Section", theme: theme)
+                Text("Below").foregroundColor(theme.textSecondary)
+            }
         case "Progress":
             VStack(spacing: 10) {
                 TspProgress(progress: 38, theme: theme)
@@ -435,6 +516,178 @@ public struct BasicControlsSampleView: View {
                 }
             }
             .frame(height: 280)
+        case "DatePicker":
+            TspDatePicker(
+                value: $dateValue,
+                placeholder: strings.t("sample/demo/datepicker/placeholder"),
+                theme: theme
+            )
+        case "ChildSwitcher":
+            VStack(spacing: 10) {
+                TspChildSwitcher(
+                    items: [
+                        TspChildSwitcherItem(id: "1", label: strings.t("sample/demo/child/yue"), emoji: "👧"),
+                        TspChildSwitcherItem(id: "2", label: strings.t("sample/demo/child/you"), emoji: "👦")
+                    ],
+                    selectedId: childId,
+                    theme: theme
+                ) { childId = $0 }
+                TspChildSwitcher(
+                    items: [
+                        TspChildSwitcherItem(id: "1", label: strings.t("sample/demo/child/yue")),
+                        TspChildSwitcherItem(id: "2", label: strings.t("sample/demo/child/you"))
+                    ],
+                    selectedId: childId,
+                    variant: .tabs,
+                    theme: theme
+                ) { childId = $0 }
+            }
+        case "ScoreRuleGrid":
+            TspScoreRuleGrid(
+                rules: [
+                    TspScoreRule(id: "1", name: strings.t("sample/demo/score/homework"), icon: "📝", value: 5, count: 1, dailyLimit: 1),
+                    TspScoreRule(id: "2", name: strings.t("sample/demo/score/messy"), icon: "✏️", value: -2, count: 0, dailyLimit: 2)
+                ],
+                columns: .auto,
+                theme: theme
+            ) { _ in presentToast(strings.t("sample/toast/score_plus")) }
+        case "RedeemCardGrid":
+            TspRedeemCardGrid(
+                items: [
+                    TspRedeemItem(id: "1", name: strings.t("sample/demo/redeem/snack"), icon: "🍬", cost: 15),
+                    TspRedeemItem(id: "2", name: strings.t("sample/demo/redeem/game"), icon: "🎮", cost: 30)
+                ],
+                availablePoints: 20,
+                theme: theme
+            ) { _ in presentToast(strings.t("sample/toast/redeem")) }
+        case "CalendarHeatmap":
+            TspCalendarHeatmap(
+                yearMonth: "2026-08",
+                cells: [
+                    TspCalendarCell(date: "2026-08-01", level: "full"),
+                    TspCalendarCell(date: "2026-08-02", level: "partial"),
+                    TspCalendarCell(date: "2026-08-03", level: "exempt")
+                ],
+                theme: theme
+            )
+        case "PrintSheet":
+            TspPrintSheet(
+                title: strings.t("sample/demo/print/title"),
+                items: ["dǐng", "lù", "yàn", "xīn", "wǎn"],
+                columns: 5,
+                variant: .pinyin,
+                theme: theme
+            )
+        case "BalanceHero":
+            TspBalanceHero(
+                total: 41,
+                breakdown: [
+                    "balance": 40,
+                    "ruleScore": 11,
+                    "streakBonus": 5,
+                    "redeemTotal": 15
+                ],
+                theme: theme
+            )
+        case "CheckInStreakCard":
+            TspCheckInStreakCard(
+                streakDays: 7,
+                totalDays: 45,
+                weekProgress: 0.85,
+                theme: theme
+            ) {
+                presentToast(strings.t("sample/toast/checkin"))
+            }
+        case "Avatar":
+            HStack(spacing: 12) {
+                TspAvatar(text: "技趣", theme: theme)
+                TspAvatar(text: "SP", size: "lg", variant: "primary", theme: theme)
+                TspAvatar(text: "A", size: "sm", variant: "subtle", theme: theme)
+            }
+        case "Skeleton":
+            TspSkeleton(rows: 3, animated: true, avatar: true, theme: theme)
+        case "Tooltip":
+            TspTooltip(text: "Sky Planet tip", placement: "top", theme: theme) {
+                TspButton("Press me", theme: theme) {}
+            }
+        case "Slider":
+            TspSlider(value: $sliderValue, min: 0, max: 100, theme: theme)
+        case "TextArea":
+            TspTextArea(value: $textAreaValue, placeholder: "Write a note…", rows: 3, theme: theme)
+        case "Drawer":
+            VStack(alignment: .leading, spacing: 12) {
+                TspButton("Open Drawer", variant: .primary, theme: theme) { showDrawer = true }
+                TspDrawer(visible: showDrawer, title: "Drawer", placement: "bottom", theme: theme, onClose: { showDrawer = false }) {
+                    Text("Sky Planet drawer body.")
+                        .foregroundColor(theme.textPrimary)
+                }
+            }
+        case "InputNumber":
+            TspInputNumber(value: $inputNumberValue, min: 0, max: 10, theme: theme)
+        case "Swiper":
+            TspSwiper(items: ["Slide A", "Slide B", "Slide C"], index: $swiperIndex, theme: theme)
+        case "Tag":
+            HStack(spacing: 8) {
+                TspTag(text: "default", theme: theme)
+                TspTag(text: "primary", variant: "primary", theme: theme)
+                TspTag(text: "closable", closable: true, theme: theme)
+            }
+        case "Fab":
+            HStack(spacing: 12) {
+                TspFab(icon: "+", theme: theme)
+                TspFab(icon: "+", text: "新建", theme: theme)
+                TspFab(icon: "✎", text: "默认", variant: "default", theme: theme)
+            }
+        case "TimePicker":
+            TspTimePicker(value: $timeValue, placeholder: "HH:mm", theme: theme)
+        case "Upload":
+            TspUpload(files: uploadFiles, theme: theme, onChange: { uploadFiles = $0 })
+        case "Table":
+            TspTable(
+                columns: [
+                    TspTableColumn(title: "名称", key: "name"),
+                    TspTableColumn(title: "状态", key: "status")
+                ],
+                rows: [
+                    ["name": "Avatar", "status": "就绪"],
+                    ["name": "Tag", "status": "新增"]
+                ],
+                variant: "striped",
+                theme: theme
+            )
+        case "Tree":
+            TspTree(
+                items: [
+                    TspTreeNode(id: "a", label: "星球", children: [
+                        TspTreeNode(id: "a1", label: "天空"),
+                        TspTreeNode(id: "a2", label: "岛屿")
+                    ]),
+                    TspTreeNode(id: "b", label: "玩法", children: [
+                        TspTreeNode(id: "b1", label: "闯关")
+                    ])
+                ],
+                selectedId: treeSelectedId,
+                expandedIds: treeExpandedIds,
+                theme: theme,
+                onSelect: { id, _ in treeSelectedId = id },
+                onExpand: { treeExpandedIds = $0 }
+            )
+        case "Cascader":
+            TspCascader(
+                options: [
+                    TspCascaderOption(value: "asia", label: "亚洲", children: [
+                        TspCascaderOption(value: "cn", label: "中国"),
+                        TspCascaderOption(value: "jp", label: "日本")
+                    ]),
+                    TspCascaderOption(value: "eu", label: "欧洲", children: [
+                        TspCascaderOption(value: "fr", label: "法国")
+                    ])
+                ],
+                value: cascaderValue,
+                placeholder: "请选择地区",
+                theme: theme,
+                onChange: { value, _ in cascaderValue = value }
+            )
         default:
             EmptyView()
         }

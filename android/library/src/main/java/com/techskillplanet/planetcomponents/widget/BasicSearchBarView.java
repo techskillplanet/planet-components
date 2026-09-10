@@ -33,6 +33,7 @@ public class BasicSearchBarView extends FrameLayout {
     private final ImageView iconView;
     private final EditText editText;
     private OnQueryChangeListener queryListener;
+    private boolean basicDisabled;
 
     public BasicSearchBarView(Context context) {
         this(context, null);
@@ -93,6 +94,16 @@ public class BasicSearchBarView extends FrameLayout {
         queryListener = listener;
     }
 
+    /** 设置禁用态。 */
+    public void setBasicDisabled(boolean disabled) {
+        basicDisabled = disabled;
+        setEnabled(!disabled);
+        editText.setEnabled(!disabled);
+        editText.setFocusable(!disabled);
+        editText.setFocusableInTouchMode(!disabled);
+        refreshTheme();
+    }
+
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
@@ -103,6 +114,7 @@ public class BasicSearchBarView extends FrameLayout {
         int height = Math.round(style.searchBarHeight);
         int iconWidth = Math.round(style.searchBarIconWidth);
         int padH = Math.round(style.spaceMd);
+        boolean disabled = basicDisabled || !isEnabled();
 
         FrameLayout.LayoutParams containerParams = (FrameLayout.LayoutParams) container.getLayoutParams();
         if (containerParams == null) {
@@ -113,11 +125,12 @@ public class BasicSearchBarView extends FrameLayout {
 
         container.setPadding(padH, 0, padH, 0);
         container.setBackground(BasicDrawableFactory.roundedFillStroke(
-                colors.backgroundSurface,
-                colors.borderControl,
+                disabled ? colors.backgroundSurfaceDisabled : colors.backgroundSurface,
+                disabled ? colors.borderLight : colors.borderControl,
                 style.borderHairline,
                 style.radiusPill
         ));
+        setAlpha(disabled ? 0.45f : 1f);
 
         Drawable searchIcon = loadDrawable(R.drawable.ic_basic_search);
         if (searchIcon != null) {
@@ -132,7 +145,7 @@ public class BasicSearchBarView extends FrameLayout {
         iconParams.width = iconWidth;
         iconView.setLayoutParams(iconParams);
 
-        editText.setTextColor(colors.textPrimary);
+        editText.setTextColor(disabled ? colors.textDisabled : colors.textPrimary);
         editText.setHintTextColor(colors.textTertiary);
         editText.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
         editText.setTypeface(Typeface.DEFAULT);

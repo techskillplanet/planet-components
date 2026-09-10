@@ -1,0 +1,21 @@
+{
+  "$schema": "https://planet-components.local/schemas/android-extensions.schema.json",
+  "meta": {
+    "version": "0.2.1",
+    "policy": "Android may ship widgets beyond component_contract.json. Those widgets are extension/private: not required on other stacks, not part of the 57-component public contract, and must be listed here.",
+    "docs": "docs/ANDROID_EXTENSIONS.md"
+  },
+  "extensions": [
+    { "class": "BasicIconView", "status": "android-private", "note": "Named Planet icon glyph helper; catalog in PlanetIcons" },
+    { "class": "BasicAdPlaceholderView", "status": "android-private", "note": "Ad slot placeholder for samples/apps" },
+    { "class": "BasicChipGroup", "status": "android-private", "note": "Multi-chip layout helper around BasicChipView" },
+    { "class": "BasicChoiceDialog", "status": "android-private", "note": "Android dialog chooser; Web uses Modal/OptionSheet" },
+    { "class": "BasicCodeBlockView", "status": "android-private", "note": "Code display for samples/docs UIs" },
+    { "class": "BasicLoadingView", "status": "android-private", "note": "Inline loading; contract uses LoadingDialog" },
+    { "class": "BasicPlanetLoadingView", "status": "android-private", "note": "Branded loading animation" },
+    { "class": "BasicScannerOverlayView", "status": "android-private", "note": "Camera/scan chrome" },
+    { "class": "BasicTextView", "status": "android-private", "note": "Token-styled text helper" },
+    { "class": "BasicTypewriterView", "status": "android-private", "note": "Typewriter motion demo" },
+    { "class": "BasicUnderlineInputView", "status": "android-private", "note": "Underline input variant of Input" }
+  ]
+}

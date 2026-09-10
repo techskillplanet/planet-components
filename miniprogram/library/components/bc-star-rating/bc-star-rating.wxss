@@ -1,0 +1,15 @@
+.bc-star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+}
+.bc-star-rating__star {
+  font-size: 40rpx;
+  line-height: 1;
+  color: var(--bc-border);
+  padding: 4rpx;
+}
+.bc-star-rating__star.is-filled {
+  color: var(--bc-brand);
+}
+.is-disabled { opacity: 0.45; }

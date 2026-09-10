@@ -45,6 +45,8 @@ export function TspButton({
       onPress={inert ? undefined : onPress}
       onPressIn={() => !inert && setPressed(true)}
       onPressOut={() => setPressed(false)}
+      accessibilityRole="button"
+      accessibilityLabel={typeof text === 'string' ? text : undefined}
       accessibilityState={{ disabled: inert, busy }}
       style={[styles.button, fullWidth && styles.full, { height: buttonHeight }, inert && styles.disabled]}
     >

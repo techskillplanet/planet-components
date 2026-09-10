@@ -49,7 +49,10 @@ Load [references/platform-component-workflow.md](references/platform-component-w
    - Prefer full headless suite when many stacks changed: `./tools/headless-check.sh` (structure + web/RN/miniprogram pack/tests, Flutter analyze/test, iOS `swift build`, Android/Kuikly Gradle).
    - Or run stack-specific package/build/sample commands from `README.md`.
    - For native stacks, build real platform targets when the platform code changed.
-   - Inventory baseline: **React Web** exports ≈ **35** components (includes DatePicker + Domain-7). Keep other stacks aligned to that contract.
+   - Inventory baseline: **React Web** exports ≈ **57** components (includes DatePicker + Domain-7 + W1 + W2 common controls). Keep other stacks aligned to that contract.
+   - **Domain-7**: `ChildSwitcher`, `ScoreRuleGrid`, `RedeemCardGrid`, `CalendarHeatmap`, `PrintSheet`, `BalanceHero`, `CheckInStreakCard`.
+   - **W1 common controls**: `Avatar`, `Skeleton`, `Tooltip`, `Slider`, `TextArea`, `Drawer`, `InputNumber`, `Swiper`.
+   - **W2 common controls**: `Tag`, `Fab`, `TimePicker`, `Upload`, `Table`, `Tree`, `Cascader`.
 
 ## Visual Direction
 

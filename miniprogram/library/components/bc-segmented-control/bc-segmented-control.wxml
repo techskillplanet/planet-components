@@ -1,0 +1,12 @@
+<view
+  class="bc-segmented-control bc-segmented-control--{{variant}} {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-text: {{theme.textSecondary}}; --bc-on-text: #FFFFFF; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceSubtle || theme.pageEnd}}; --bc-brand: {{theme.brandPrimary}}; --bc-brand-dark: {{theme.brandDark}};"
+>
+  <view
+    wx:for="{{items}}"
+    wx:key="index"
+    class="bc-segmented-control__item {{index === selectedIndex ? 'is-selected' : ''}}"
+    data-index="{{index}}"
+    bindtap="onSelect"
+  >{{item.label}}</view>
+</view>

@@ -22,7 +22,7 @@ In the mini program tooling, build npm and reference components from the package
 
 ## Coverage
 
-≈ **35** `bc-*` components. Includes **DatePicker** (`bc-date-picker`) and **Domain-7**: `bc-child-switcher`, `bc-score-rule-grid`, `bc-redeem-card-grid`, `bc-calendar-heatmap`, `bc-print-sheet`, `bc-balance-hero`, `bc-check-in-streak-card`.
+≈ **57** `bc-*` components. Includes **DatePicker** (`bc-date-picker`) and **Domain-7**: `bc-child-switcher`, `bc-score-rule-grid`, `bc-redeem-card-grid`, `bc-calendar-heatmap`, `bc-print-sheet`, `bc-balance-hero`, `bc-check-in-streak-card`. W1: `bc-avatar`…`bc-swiper`. W2: `bc-tag`, `bc-fab`, `bc-time-picker`, `bc-upload`, `bc-table`, `bc-tree`, `bc-cascader`.
 
 ## Notes
 

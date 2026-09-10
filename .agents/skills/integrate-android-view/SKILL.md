@@ -30,7 +30,7 @@ BasicThemeManager.init(context, "sky_planet_day", "island_raised");
 
 ## Coverage
 
-≈ **35** `Basic*View` controls. Includes **DatePicker** (`BasicDatePickerView`) and **Domain-7**: `BasicChildSwitcherView`, `BasicScoreRuleGridView`, `BasicRedeemCardGridView`, `BasicCalendarHeatmapView`, `BasicPrintSheetView`, `BasicBalanceHeroView`, `BasicCheckInStreakCardView`.
+≈ **57** `Basic*View` controls. Includes **DatePicker** (`BasicDatePickerView`) and **Domain-7**: `BasicChildSwitcherView`, `BasicScoreRuleGridView`, `BasicRedeemCardGridView`, `BasicCalendarHeatmapView`, `BasicPrintSheetView`, `BasicBalanceHeroView`, `BasicCheckInStreakCardView`. W1: Avatar, Skeleton, Tooltip, Slider, TextArea, Drawer, InputNumber, Swiper. W2: Tag, Fab, TimePicker, Upload, Table, Tree, Cascader.
 
 ## Notes
 

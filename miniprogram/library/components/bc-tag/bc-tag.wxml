@@ -1,0 +1,8 @@
+<view
+  class="bc-tag bc-tag--{{variant}} {{selected ? 'is-selected' : ''}} {{disabled ? 'is-disabled' : ''}} {{closable ? 'is-closable' : ''}}"
+  style="--bc-text: {{theme.textPrimary}}; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-brand: {{theme.brandPrimary}}; --bc-brand-soft: {{theme.brandSubtle}}; --bc-success: {{theme.success}}; --bc-success-soft: {{theme.successSubtle}}; --bc-warn-soft: {{theme.activeFill}}; --bc-danger: {{theme.danger}}; --bc-selected-border: {{theme.selectedBorder}};"
+  bindtap="onTap"
+>
+  <text class="bc-tag__text">{{text}}</text>
+  <view wx:if="{{closable}}" class="bc-tag__close" catchtap="onClose" aria-role="button" aria-label="关闭">×</view>
+</view>

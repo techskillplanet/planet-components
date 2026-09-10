@@ -70,5 +70,9 @@ vi.mock('react-native', () => {
     Switch: View,
     Animated,
     Easing: { linear: x => x },
+    AccessibilityInfo: {
+      isReduceMotionEnabled: async () => false,
+      addEventListener: () => ({ remove() {} }),
+    },
   };
 });

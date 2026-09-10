@@ -28,12 +28,42 @@ public final class HomeSamplePage {
     }
 
     private static void addComponentList(SamplePageHost host) {
-        addComponentGroup(host, "sample/group/actions", "Button", "Chip", "IconButton", "TextLink");
-        addComponentGroup(host, "sample/group/surfaces", "Card", "ListItem", "Empty");
-        addComponentGroup(host, "sample/group/feedback", "Alert", "Badge", "Progress", "Notification", "Toast", "Modal");
-        addComponentGroup(host, "sample/group/inputs", "Input", "Select", "OptionSheet", "Switch", "PinInput");
-        addComponentGroup(host, "sample/group/navigation", "TopBar", "BottomTab", "Tabs", "StickyFooter");
-        addComponentGroup(host, "sample/group/data", "Amount", "KeyValueLabel", "Stepper");
+        addComponentGroup(host, "sample/group/actions", "Button", "Chip", "IconButton", "TextLink", "Tag", "Fab");
+        addComponentGroup(host, "sample/group/surfaces", "Card", "ListItem", "Empty", "Avatar", "Drawer", "Collapse", "Divider", "RefreshLayout");
+        addComponentGroup(host, "sample/group/feedback", "Alert", "Badge", "Progress", "Notification", "Toast", "Modal", "LoadingDialog", "Skeleton", "Tooltip");
+        addComponentGroup(
+                host,
+                "sample/group/inputs",
+                "Input",
+                "Select",
+                "OptionSheet",
+                "Switch",
+                "Checkbox",
+                "Radio",
+                "SearchBar",
+                "SegmentedControl",
+                "StarRating",
+                "PinInput",
+                "Slider",
+                "TextArea",
+                "InputNumber",
+                "TimePicker",
+                "Upload"
+        );
+        addComponentGroup(host, "sample/group/navigation", "TopBar", "BottomTab", "Tabs", "StickyFooter", "Swiper");
+        addComponentGroup(host, "sample/group/data", "Amount", "KeyValueLabel", "Stepper", "Table", "Tree", "Cascader");
+        addComponentGroup(
+                host,
+                "sample/group/domain",
+                "DatePicker",
+                "ChildSwitcher",
+                "ScoreRuleGrid",
+                "RedeemCardGrid",
+                "CalendarHeatmap",
+                "PrintSheet",
+                "BalanceHero",
+                "CheckInStreakCard"
+        );
     }
 
     private static void addComponentGroup(SamplePageHost host, String groupKey, String... componentIds) {

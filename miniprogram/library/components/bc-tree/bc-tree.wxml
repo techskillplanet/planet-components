@@ -1,0 +1,21 @@
+<view
+  class="bc-tree"
+  style="--bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textSecondary}}; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-brand: {{theme.brandPrimary}}; --bc-brand-soft: {{theme.brandSubtle}};"
+  role="tree"
+>
+  <view
+    wx:for="{{flatNodes}}"
+    wx:key="id"
+    class="bc-tree__row {{item.selected ? 'is-selected' : ''}}"
+    style="padding-left: {{item.padLeft}}rpx;"
+  >
+    <view
+      wx:if="{{item.hasKids}}"
+      class="bc-tree__twist {{item.open ? 'is-open' : ''}}"
+      data-id="{{item.id}}"
+      catchtap="onToggle"
+    >{{item.open ? '▾' : '▸'}}</view>
+    <view wx:else class="bc-tree__twist bc-tree__twist--leaf"></view>
+    <view class="bc-tree__label" data-id="{{item.id}}" bindtap="onSelect">{{item.label}}</view>
+  </view>
+</view>

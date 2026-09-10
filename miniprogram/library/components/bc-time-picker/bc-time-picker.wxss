@@ -1,0 +1,19 @@
+.bc-time-picker {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 88rpx;
+  padding: 20rpx 28rpx;
+  border: 4rpx solid var(--bc-border);
+  border-radius: 32rpx;
+  background: var(--bc-surface);
+  color: var(--bc-text);
+  font-size: 30rpx;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+.bc-time-picker__placeholder {
+  color: var(--bc-muted);
+  font-weight: 600;
+}
+.is-disabled { opacity: 0.45; }

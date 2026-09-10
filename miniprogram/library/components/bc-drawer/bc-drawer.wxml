@@ -1,0 +1,16 @@
+<view wx:if="{{visible}}" class="bc-drawer bc-drawer--{{placement}}">
+  <view class="bc-drawer__mask" bindtap="onClose"></view>
+  <view
+    class="bc-drawer__panel"
+    style="--bc-surface: {{theme.surfaceRaised}}; --bc-border: {{theme.borderDefault}}; --bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textSecondary}};"
+    catchtap="noop"
+  >
+    <view wx:if="{{title}}" class="bc-drawer__header">
+      <text class="bc-drawer__title">{{title}}</text>
+      <text class="bc-drawer__close" bindtap="onClose">×</text>
+    </view>
+    <view class="bc-drawer__body">
+      <slot></slot>
+    </view>
+  </view>
+</view>

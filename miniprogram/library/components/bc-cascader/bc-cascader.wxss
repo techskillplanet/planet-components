@@ -1,0 +1,58 @@
+.bc-cascader {
+  width: 100%;
+  box-sizing: border-box;
+}
+.bc-cascader__trigger {
+  display: flex;
+  align-items: center;
+  min-height: 88rpx;
+  padding: 20rpx 28rpx;
+  border: 4rpx solid var(--bc-border);
+  border-radius: 32rpx;
+  background: var(--bc-surface);
+  box-sizing: border-box;
+}
+.bc-cascader__value {
+  flex: 1;
+  color: var(--bc-text);
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.bc-cascader__value.is-placeholder {
+  color: var(--bc-muted);
+  font-weight: 600;
+}
+.bc-cascader__caret {
+  color: var(--bc-muted);
+  font-weight: 700;
+}
+.bc-cascader__panel {
+  margin-top: 12rpx;
+  border-radius: 24rpx;
+  border: 2rpx solid var(--bc-border);
+  background: var(--bc-menu);
+  max-height: 420rpx;
+}
+.bc-cascader__cols {
+  display: flex;
+  flex-direction: row;
+  padding: 12rpx;
+}
+.bc-cascader__col {
+  min-width: 220rpx;
+  max-height: 380rpx;
+  overflow-y: auto;
+  margin-right: 8rpx;
+}
+.bc-cascader__option {
+  padding: 18rpx 20rpx;
+  border-radius: 16rpx;
+  color: var(--bc-text);
+  font-size: 26rpx;
+  font-weight: 700;
+}
+.bc-cascader__option.is-selected {
+  background: var(--bc-brand-soft);
+  color: var(--bc-brand);
+}
+.is-disabled { opacity: 0.45; }

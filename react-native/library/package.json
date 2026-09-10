@@ -6,7 +6,9 @@
   "files": [
     "src/starPlanet/index.js",
     "src/starPlanet/theme.js",
+    "src/starPlanet/theme.generated.js",
     "src/starPlanet/components",
+    "src/starPlanet/icons",
     "src/starPlanet/utils",
     "README.md",
     "LICENSE"

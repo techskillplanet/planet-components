@@ -30,6 +30,8 @@ public class BasicTableView extends HorizontalScrollView {
     private final TableLayout tableLayout;
     private List<String> headers = new ArrayList<>();
     private List<List<String>> rows = new ArrayList<>();
+    private String variant = "default";
+    private String emptyText = "暂无数据";
 
     public BasicTableView(Context context) {
         this(context, null);
@@ -47,19 +49,38 @@ public class BasicTableView extends HorizontalScrollView {
         setData(Arrays.asList("名称", "状态", "难度"), new ArrayList<>());
     }
 
-    /** 设置表格数据。 */
+    /** 设置表格数据（headers + rows）。 */
     public void setData(List<String> headers, List<List<String>> rows) {
-        this.headers = headers == null ? new ArrayList<>() : headers;
-        this.rows = rows == null ? new ArrayList<>() : rows;
+        this.headers = headers == null ? new ArrayList<>() : new ArrayList<>(headers);
+        this.rows = rows == null ? new ArrayList<>() : new ArrayList<>(rows);
         refreshTheme();
     }
 
-    /** 当前不使用变体。 */
+    /** 对齐合约 columns：列标题列表。 */
+    public void setColumns(List<String> columns) {
+        this.headers = columns == null ? new ArrayList<>() : new ArrayList<>(columns);
+        refreshTheme();
+    }
+
+    /** 对齐合约 rows：二维单元格数据。 */
+    public void setRows(List<List<String>> rows) {
+        this.rows = rows == null ? new ArrayList<>() : new ArrayList<>(rows);
+        refreshTheme();
+    }
+
+    /** 空状态文案。 */
+    public void setEmptyText(CharSequence text) {
+        emptyText = text == null || text.length() == 0 ? "暂无数据" : text.toString();
+        refreshTheme();
+    }
+
+    /** 变体：default / striped。 */
     public void setVariant(String variant) {
+        this.variant = variant == null ? "default" : variant;
         refreshTheme();
     }
 
-    /** 空实现，表格数据请使用 setData。 */
+    /** 空实现，表格数据请使用 setData / setColumns / setRows。 */
     public void setBasicText(CharSequence text) {
         setContentDescription(text);
     }
@@ -96,6 +117,7 @@ public class BasicTableView extends HorizontalScrollView {
                 tableLayout.addView(row(rows.get(i), false, i));
             }
         }
+        setAlpha(isEnabled() ? 1f : 0.45f);
     }
 
     /** 创建一行。 */
@@ -103,10 +125,11 @@ public class BasicTableView extends HorizontalScrollView {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
         TableRow row = new TableRow(getContext());
-        row.setBackground(BasicDrawableFactory.roundedFill(
-                header ? colors.backgroundSurfaceSubtle : (index % 2 == 0 ? colors.backgroundSurfaceRaised : colors.backgroundSurfaceSubtle),
-                style.radiusMd
-        ));
+        boolean stripe = "striped".equals(variant) || !"default".equals(variant);
+        int fill = header
+                ? colors.backgroundSurfaceSubtle
+                : ((stripe && index % 2 != 0) ? colors.backgroundSurfaceSubtle : colors.backgroundSurfaceRaised);
+        row.setBackground(BasicDrawableFactory.roundedFill(fill, style.radiusMd));
         for (String value : values) {
             TextView cell = new TextView(getContext());
             cell.setText(value);
@@ -127,7 +150,7 @@ public class BasicTableView extends HorizontalScrollView {
         BasicStyle style = BasicThemeManager.style();
         TableRow row = new TableRow(getContext());
         TextView empty = new TextView(getContext());
-        empty.setText("暂无数据");
+        empty.setText(emptyText);
         empty.setGravity(Gravity.CENTER);
         empty.setTextColor(BasicThemeManager.colors().textTertiary);
         empty.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);

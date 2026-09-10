@@ -90,17 +90,26 @@ public class BasicInputView extends FrameLayout {
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
-        int fill = colors.backgroundSurface;
-        int stroke = colors.borderControl;
-        float strokeWidth = style.borderDefault;
+        // 主流登录输入：软底 + 弱边框；focus 再强调。圆角用 md（约 12）避免香肠 pill。
+        int fill = colors.backgroundSurfaceSubtle != 0
+                ? colors.backgroundSurfaceSubtle
+                : colors.backgroundSurface;
+        int stroke = colors.borderLight;
+        float strokeWidth = style.borderHairline;
         int text = colors.textPrimary;
+        float radius = style.radiusMd > 0 ? style.radiusMd : 12f;
 
         if (VARIANT_ERROR.equals(variant)) {
             stroke = colors.borderDanger;
+            strokeWidth = style.borderDefault;
+            fill = colors.backgroundSurface;
         } else if (editText.hasFocus()) {
             // focus 优先级高于默认态，这样键盘焦点移动时边框反馈足够明确。
             stroke = colors.borderFocus;
             strokeWidth = style.borderFocus;
+            fill = colors.backgroundSurfaceRaised != 0
+                    ? colors.backgroundSurfaceRaised
+                    : colors.backgroundSurface;
         }
         if (basicDisabled || !isEnabled()) {
             fill = colors.backgroundSurfaceDisabled;
@@ -112,12 +121,17 @@ public class BasicInputView extends FrameLayout {
                 fill,
                 stroke,
                 strokeWidth,
-                style.radiusControlIsland
+                radius
         ));
         editText.setTextColor(text);
         editText.setHintTextColor(colors.textTertiary);
         editText.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);
-        setPadding(Math.round(style.spaceMd), 0, Math.round(style.spaceMd), 0);
+        // 水平内边距：圆角输入至少 ~20–24dp 才不贴边（原先 spaceMd=12 过紧）
+        float gapXl = style.spaceXl > 0 ? style.spaceXl : 24f;
+        float gapLg = style.spaceLg > 0 ? style.spaceLg : 16f;
+        int hPad = Math.round(Math.max(gapXl, (style.radiusMd > 0 ? style.radiusMd : 12f) + gapLg));
+        setPadding(hPad, 0, hPad, 0);
+        editText.setPadding(0, 0, 0, 0);
     }
 
     @Override

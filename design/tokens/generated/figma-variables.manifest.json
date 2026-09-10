@@ -1,0 +1,1842 @@
+{
+  "meta": {
+    "generatedBy": "tools/build-figma-manifest.cjs",
+    "version": "0.2.1",
+    "contractComponents": 57,
+    "note": "Import into Figma as Variables; keep names stable for Code Connect."
+  },
+  "themes": [
+    "sky_planet_day",
+    "star_planet_night",
+    "mint_planet_day",
+    "sunrise_planet_day"
+  ],
+  "islandProfiles": [
+    "island_raised",
+    "island_flat"
+  ],
+  "contractThemeTokens": [
+    "pageStart",
+    "pageEnd",
+    "textPrimary",
+    "textSecondary",
+    "textTertiary",
+    "surfaceRaised",
+    "borderDefault",
+    "brandPrimary",
+    "brandDark",
+    "success",
+    "warning",
+    "danger",
+    "selectedFill",
+    "activeFill"
+  ],
+  "variables": [
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "brand/primary",
+      "tokenPath": "themes.sky_planet_day.semantic.brand.primary",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "brand/primaryHover",
+      "tokenPath": "themes.sky_planet_day.semantic.brand.primaryHover",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandHover}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "brand/primaryActive",
+      "tokenPath": "themes.sky_planet_day.semantic.brand.primaryActive",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPressed}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "brand/primarySubtle",
+      "tokenPath": "themes.sky_planet_day.semantic.brand.primarySubtle",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandSubtle}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "brand/dark",
+      "tokenPath": "themes.sky_planet_day.semantic.brand.dark",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPressed}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "status/success",
+      "tokenPath": "themes.sky_planet_day.semantic.status.success",
+      "type": "COLOR",
+      "value": "{primitive.aurora.success}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "status/successHover",
+      "tokenPath": "themes.sky_planet_day.semantic.status.successHover",
+      "type": "COLOR",
+      "value": "{primitive.aurora.successHover}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "status/successActive",
+      "tokenPath": "themes.sky_planet_day.semantic.status.successActive",
+      "type": "COLOR",
+      "value": "{primitive.aurora.successPressed}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "status/successSubtle",
+      "tokenPath": "themes.sky_planet_day.semantic.status.successSubtle",
+      "type": "COLOR",
+      "value": "{primitive.aurora.successSubtle}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "status/warning",
+      "tokenPath": "themes.sky_planet_day.semantic.status.warning",
+      "type": "COLOR",
+      "value": "{primitive.sun.highlight}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "status/warningHover",
+      "tokenPath": "themes.sky_planet_day.semantic.status.warningHover",
+      "type": "COLOR",
+      "value": "{primitive.sun.highlightSoft}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "status/warningActive",
+      "tokenPath": "themes.sky_planet_day.semantic.status.warningActive",
+      "type": "COLOR",
+      "value": "{primitive.sun.highlight}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "status/danger",
+      "tokenPath": "themes.sky_planet_day.semantic.status.danger",
+      "type": "COLOR",
+      "value": "{primitive.coral.danger}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "status/dangerHover",
+      "tokenPath": "themes.sky_planet_day.semantic.status.dangerHover",
+      "type": "COLOR",
+      "value": "{primitive.coral.dangerHover}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "status/dangerActive",
+      "tokenPath": "themes.sky_planet_day.semantic.status.dangerActive",
+      "type": "COLOR",
+      "value": "{primitive.coral.dangerPressed}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "text/primary",
+      "tokenPath": "themes.sky_planet_day.semantic.text.primary",
+      "type": "COLOR",
+      "value": "{primitive.ink.textPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "text/secondary",
+      "tokenPath": "themes.sky_planet_day.semantic.text.secondary",
+      "type": "COLOR",
+      "value": "{primitive.ink.textSecondary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "text/tertiary",
+      "tokenPath": "themes.sky_planet_day.semantic.text.tertiary",
+      "type": "COLOR",
+      "value": "{primitive.ink.textTertiary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "text/inverse",
+      "tokenPath": "themes.sky_planet_day.semantic.text.inverse",
+      "type": "COLOR",
+      "value": "{primitive.neutral.white}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "text/disabled",
+      "tokenPath": "themes.sky_planet_day.semantic.text.disabled",
+      "type": "COLOR",
+      "value": "{primitive.ink.textTertiary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "text/dialogTitle",
+      "tokenPath": "themes.sky_planet_day.semantic.text.dialogTitle",
+      "type": "COLOR",
+      "value": "{primitive.ink.textPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "text/dialogBody",
+      "tokenPath": "themes.sky_planet_day.semantic.text.dialogBody",
+      "type": "COLOR",
+      "value": "{primitive.ink.textSecondary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "background/page",
+      "tokenPath": "themes.sky_planet_day.semantic.background.page",
+      "type": "COLOR",
+      "value": "{primitive.sky.pageStart}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "background/pageGradientEnd",
+      "tokenPath": "themes.sky_planet_day.semantic.background.pageGradientEnd",
+      "type": "COLOR",
+      "value": "{primitive.sky.pageEnd}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "background/surface",
+      "tokenPath": "themes.sky_planet_day.semantic.background.surface",
+      "type": "COLOR",
+      "value": "{primitive.cloud.surface}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "background/surfaceRaised",
+      "tokenPath": "themes.sky_planet_day.semantic.background.surfaceRaised",
+      "type": "COLOR",
+      "value": "{primitive.cloud.white}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "background/surfaceSubtle",
+      "tokenPath": "themes.sky_planet_day.semantic.background.surfaceSubtle",
+      "type": "COLOR",
+      "value": "{primitive.cloud.soft}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "background/surfaceDisabled",
+      "tokenPath": "themes.sky_planet_day.semantic.background.surfaceDisabled",
+      "type": "COLOR",
+      "value": "{primitive.cloud.border}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "background/menu",
+      "tokenPath": "themes.sky_planet_day.semantic.background.menu",
+      "type": "COLOR",
+      "value": "{primitive.cloud.white}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "background/modalScrim",
+      "tokenPath": "themes.sky_planet_day.semantic.background.modalScrim",
+      "type": "COLOR",
+      "value": "{primitive.neutral.scrimBlue}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "background/selectedFill",
+      "tokenPath": "themes.sky_planet_day.semantic.background.selectedFill",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandSubtle}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "background/emphasisFill",
+      "tokenPath": "themes.sky_planet_day.semantic.background.emphasisFill",
+      "type": "COLOR",
+      "value": "{primitive.cloud.soft}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "background/activeFill",
+      "tokenPath": "themes.sky_planet_day.semantic.background.activeFill",
+      "type": "COLOR",
+      "value": "{primitive.sun.soft}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "border/default",
+      "tokenPath": "themes.sky_planet_day.semantic.border.default",
+      "type": "COLOR",
+      "value": "{primitive.sky.borderSoft}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "border/light",
+      "tokenPath": "themes.sky_planet_day.semantic.border.light",
+      "type": "COLOR",
+      "value": "{primitive.cloud.border}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "border/control",
+      "tokenPath": "themes.sky_planet_day.semantic.border.control",
+      "type": "COLOR",
+      "value": "{primitive.sky.borderSoft}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "border/focus",
+      "tokenPath": "themes.sky_planet_day.semantic.border.focus",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "border/selected",
+      "tokenPath": "themes.sky_planet_day.semantic.border.selected",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "border/warning",
+      "tokenPath": "themes.sky_planet_day.semantic.border.warning",
+      "type": "COLOR",
+      "value": "{primitive.sun.highlight}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "border/danger",
+      "tokenPath": "themes.sky_planet_day.semantic.border.danger",
+      "type": "COLOR",
+      "value": "{primitive.coral.danger}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "border/divider",
+      "tokenPath": "themes.sky_planet_day.semantic.border.divider",
+      "type": "COLOR",
+      "value": "{primitive.cloud.border}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/button/defaultBackground",
+      "tokenPath": "themes.sky_planet_day.semantic.control.button.defaultBackground",
+      "type": "COLOR",
+      "value": "{primitive.cloud.white}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/button/defaultText",
+      "tokenPath": "themes.sky_planet_day.semantic.control.button.defaultText",
+      "type": "COLOR",
+      "value": "{primitive.ink.textPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/button/primaryBackground",
+      "tokenPath": "themes.sky_planet_day.semantic.control.button.primaryBackground",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/button/primaryText",
+      "tokenPath": "themes.sky_planet_day.semantic.control.button.primaryText",
+      "type": "COLOR",
+      "value": "{primitive.neutral.white}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/button/raisedShadow",
+      "tokenPath": "themes.sky_planet_day.semantic.control.button.raisedShadow",
+      "type": "COLOR",
+      "value": "{primitive.sky.borderSoft}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/checkbox/background",
+      "tokenPath": "themes.sky_planet_day.semantic.control.checkbox.background",
+      "type": "COLOR",
+      "value": "{primitive.cloud.surface}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/checkbox/checkedBackground",
+      "tokenPath": "themes.sky_planet_day.semantic.control.checkbox.checkedBackground",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/radio/checkedDot",
+      "tokenPath": "themes.sky_planet_day.semantic.control.radio.checkedDot",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/switch/offBackground",
+      "tokenPath": "themes.sky_planet_day.semantic.control.switch.offBackground",
+      "type": "COLOR",
+      "value": "{primitive.sky.borderSoft}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/switch/offBorder",
+      "tokenPath": "themes.sky_planet_day.semantic.control.switch.offBorder",
+      "type": "COLOR",
+      "value": "{primitive.sky.borderSoft}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/switch/offText",
+      "tokenPath": "themes.sky_planet_day.semantic.control.switch.offText",
+      "type": "COLOR",
+      "value": "{primitive.ink.textSecondary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/switch/onBackground",
+      "tokenPath": "themes.sky_planet_day.semantic.control.switch.onBackground",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/switch/onBorder",
+      "tokenPath": "themes.sky_planet_day.semantic.control.switch.onBorder",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/switch/onText",
+      "tokenPath": "themes.sky_planet_day.semantic.control.switch.onText",
+      "type": "COLOR",
+      "value": "{primitive.neutral.white}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/switch/handleBackground",
+      "tokenPath": "themes.sky_planet_day.semantic.control.switch.handleBackground",
+      "type": "COLOR",
+      "value": "{primitive.cloud.surface}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/switch/handleBorder",
+      "tokenPath": "themes.sky_planet_day.semantic.control.switch.handleBorder",
+      "type": "COLOR",
+      "value": "{primitive.sky.borderSoft}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/switch/handleCheckedBorder",
+      "tokenPath": "themes.sky_planet_day.semantic.control.switch.handleCheckedBorder",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/switch/loadingSpinner",
+      "tokenPath": "themes.sky_planet_day.semantic.control.switch.loadingSpinner",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/select/selectedOptionBackground",
+      "tokenPath": "themes.sky_planet_day.semantic.control.select.selectedOptionBackground",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandSubtle}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/loading/stripePrimary",
+      "tokenPath": "themes.sky_planet_day.semantic.control.loading.stripePrimary",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandHover}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/loading/stripeSecondary",
+      "tokenPath": "themes.sky_planet_day.semantic.control.loading.stripeSecondary",
+      "type": "COLOR",
+      "value": "{primitive.sky.brandPrimary}"
+    },
+    {
+      "collection": "Planet / Colors / sky_planet_day",
+      "figmaName": "control/loading/border",
+      "tokenPath": "themes.sky_planet_day.semantic.control.loading.border",
+      "type": "COLOR",
+      "value": "{primitive.sky.borderSoft}"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/family/latin",
+      "tokenPath": "font.family.latin",
+      "type": "STRING",
+      "value": "Nunito"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/family/cjk",
+      "tokenPath": "font.family.cjk",
+      "type": "STRING",
+      "value": "HarmonyOS Sans SC"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/family/fallback",
+      "tokenPath": "font.family.fallback",
+      "type": "STRING",
+      "value": "sans-serif"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/family/androidView",
+      "tokenPath": "font.family.androidView",
+      "type": "STRING",
+      "value": "sans-serif"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/weight/regular",
+      "tokenPath": "font.weight.regular",
+      "type": "FLOAT",
+      "value": 400
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/weight/medium",
+      "tokenPath": "font.weight.medium",
+      "type": "FLOAT",
+      "value": 500
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/weight/semibold",
+      "tokenPath": "font.weight.semibold",
+      "type": "FLOAT",
+      "value": 600
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/weight/bold",
+      "tokenPath": "font.weight.bold",
+      "type": "FLOAT",
+      "value": 700
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/weight/extrabold",
+      "tokenPath": "font.weight.extrabold",
+      "type": "FLOAT",
+      "value": 800
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/size/xs",
+      "tokenPath": "font.size.xs",
+      "type": "FLOAT",
+      "value": 11
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/size/sm",
+      "tokenPath": "font.size.sm",
+      "type": "FLOAT",
+      "value": 12
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/size/md",
+      "tokenPath": "font.size.md",
+      "type": "FLOAT",
+      "value": 14
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/size/lg",
+      "tokenPath": "font.size.lg",
+      "type": "FLOAT",
+      "value": 16
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/size/xl",
+      "tokenPath": "font.size.xl",
+      "type": "FLOAT",
+      "value": 18
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/size/title",
+      "tokenPath": "font.size.title",
+      "type": "FLOAT",
+      "value": 20
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/size/dialogTitle",
+      "tokenPath": "font.size.dialogTitle",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/size/display",
+      "tokenPath": "font.size.display",
+      "type": "FLOAT",
+      "value": 32
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/lineHeight/compact",
+      "tokenPath": "font.lineHeight.compact",
+      "type": "FLOAT",
+      "value": 1
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/lineHeight/tight",
+      "tokenPath": "font.lineHeight.tight",
+      "type": "FLOAT",
+      "value": 1.25
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/lineHeight/normal",
+      "tokenPath": "font.lineHeight.normal",
+      "type": "FLOAT",
+      "value": 1.57
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/lineHeight/relaxed",
+      "tokenPath": "font.lineHeight.relaxed",
+      "type": "FLOAT",
+      "value": 1.85
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/letterSpacing/none",
+      "tokenPath": "font.letterSpacing.none",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "font/letterSpacing/button",
+      "tokenPath": "font.letterSpacing.button",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "space/0",
+      "tokenPath": "space.0",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "space/1",
+      "tokenPath": "space.1",
+      "type": "FLOAT",
+      "value": 4
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "space/2",
+      "tokenPath": "space.2",
+      "type": "FLOAT",
+      "value": 8
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "space/3",
+      "tokenPath": "space.3",
+      "type": "FLOAT",
+      "value": 12
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "space/4",
+      "tokenPath": "space.4",
+      "type": "FLOAT",
+      "value": 16
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "space/5",
+      "tokenPath": "space.5",
+      "type": "FLOAT",
+      "value": 20
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "space/6",
+      "tokenPath": "space.6",
+      "type": "FLOAT",
+      "value": 24
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "space/8",
+      "tokenPath": "space.8",
+      "type": "FLOAT",
+      "value": 32
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "space/10",
+      "tokenPath": "space.10",
+      "type": "FLOAT",
+      "value": 40
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "space/12",
+      "tokenPath": "space.12",
+      "type": "FLOAT",
+      "value": 48
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "space/16",
+      "tokenPath": "space.16",
+      "type": "FLOAT",
+      "value": 64
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "spacing/form/labelGap",
+      "tokenPath": "spacing.form.labelGap",
+      "type": "FLOAT",
+      "value": 6
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "spacing/form/fieldGap",
+      "tokenPath": "spacing.form.fieldGap",
+      "type": "FLOAT",
+      "value": 16
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "spacing/form/actionGap",
+      "tokenPath": "spacing.form.actionGap",
+      "type": "FLOAT",
+      "value": 20
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "spacing/form/hintGap",
+      "tokenPath": "spacing.form.hintGap",
+      "type": "FLOAT",
+      "value": 8
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "spacing/form/hintMinHeight",
+      "tokenPath": "spacing.form.hintMinHeight",
+      "type": "FLOAT",
+      "value": 40
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "spacing/form/stackPadding",
+      "tokenPath": "spacing.form.stackPadding",
+      "type": "FLOAT",
+      "value": 8
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/none",
+      "tokenPath": "radius.none",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/xs",
+      "tokenPath": "radius.xs",
+      "type": "FLOAT",
+      "value": 4
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/sm",
+      "tokenPath": "radius.sm",
+      "type": "FLOAT",
+      "value": 8
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/md",
+      "tokenPath": "radius.md",
+      "type": "FLOAT",
+      "value": 12
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/lg",
+      "tokenPath": "radius.lg",
+      "type": "FLOAT",
+      "value": 18
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/xl",
+      "tokenPath": "radius.xl",
+      "type": "FLOAT",
+      "value": 24
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/xxl",
+      "tokenPath": "radius.xxl",
+      "type": "FLOAT",
+      "value": 30
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/menu",
+      "tokenPath": "radius.menu",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/cardOrganic",
+      "tokenPath": "radius.cardOrganic",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/dialogOrganic",
+      "tokenPath": "radius.dialogOrganic",
+      "type": "FLOAT",
+      "value": 24
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/controlIsland",
+      "tokenPath": "radius.controlIsland",
+      "type": "FLOAT",
+      "value": 22
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/pill",
+      "tokenPath": "radius.pill",
+      "type": "FLOAT",
+      "value": 999
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "radius/circle",
+      "tokenPath": "radius.circle",
+      "type": "FLOAT",
+      "value": 999
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "border/width/none",
+      "tokenPath": "border.width.none",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "border/width/hairline",
+      "tokenPath": "border.width.hairline",
+      "type": "FLOAT",
+      "value": 1
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "border/width/default",
+      "tokenPath": "border.width.default",
+      "type": "FLOAT",
+      "value": 2
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "border/width/strong",
+      "tokenPath": "border.width.strong",
+      "type": "FLOAT",
+      "value": 2
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "border/width/focus",
+      "tokenPath": "border.width.focus",
+      "type": "FLOAT",
+      "value": 2
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "border/width/loading",
+      "tokenPath": "border.width.loading",
+      "type": "FLOAT",
+      "value": 4
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "border/width/switch",
+      "tokenPath": "border.width.switch",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "border/style/solid",
+      "tokenPath": "border.style.solid",
+      "type": "STRING",
+      "value": "solid"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "border/style/dashed",
+      "tokenPath": "border.style.dashed",
+      "type": "STRING",
+      "value": "dashed"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/controlHeight/sm",
+      "tokenPath": "size.controlHeight.sm",
+      "type": "FLOAT",
+      "value": 32
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/controlHeight/md",
+      "tokenPath": "size.controlHeight.md",
+      "type": "FLOAT",
+      "value": 40
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/controlHeight/buttonMedium",
+      "tokenPath": "size.controlHeight.buttonMedium",
+      "type": "FLOAT",
+      "value": 46
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/controlHeight/lg",
+      "tokenPath": "size.controlHeight.lg",
+      "type": "FLOAT",
+      "value": 48
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/buttonMinWidth/sm",
+      "tokenPath": "size.buttonMinWidth.sm",
+      "type": "FLOAT",
+      "value": 72
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/buttonMinWidth/md",
+      "tokenPath": "size.buttonMinWidth.md",
+      "type": "FLOAT",
+      "value": 88
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/buttonMinWidth/lg",
+      "tokenPath": "size.buttonMinWidth.lg",
+      "type": "FLOAT",
+      "value": 104
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/icon/xs",
+      "tokenPath": "size.icon.xs",
+      "type": "FLOAT",
+      "value": 12
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/icon/sm",
+      "tokenPath": "size.icon.sm",
+      "type": "FLOAT",
+      "value": 16
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/icon/md",
+      "tokenPath": "size.icon.md",
+      "type": "FLOAT",
+      "value": 20
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/icon/lg",
+      "tokenPath": "size.icon.lg",
+      "type": "FLOAT",
+      "value": 24
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/icon/xl",
+      "tokenPath": "size.icon.xl",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/icon/close",
+      "tokenPath": "size.icon.close",
+      "type": "FLOAT",
+      "value": 32
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/checkbox/sm",
+      "tokenPath": "size.checkbox.sm",
+      "type": "FLOAT",
+      "value": 18
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/checkbox/md",
+      "tokenPath": "size.checkbox.md",
+      "type": "FLOAT",
+      "value": 22
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/checkbox/lg",
+      "tokenPath": "size.checkbox.lg",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/checkbox/indicatorSm",
+      "tokenPath": "size.checkbox.indicatorSm",
+      "type": "FLOAT",
+      "value": 10
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/checkbox/indicatorMd",
+      "tokenPath": "size.checkbox.indicatorMd",
+      "type": "FLOAT",
+      "value": 12
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/checkbox/indicatorLg",
+      "tokenPath": "size.checkbox.indicatorLg",
+      "type": "FLOAT",
+      "value": 16
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/switch/sm/width",
+      "tokenPath": "size.switch.sm.width",
+      "type": "FLOAT",
+      "value": 40
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/switch/sm/height",
+      "tokenPath": "size.switch.sm.height",
+      "type": "FLOAT",
+      "value": 22
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/switch/sm/handle",
+      "tokenPath": "size.switch.sm.handle",
+      "type": "FLOAT",
+      "value": 18
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/switch/sm/innerText",
+      "tokenPath": "size.switch.sm.innerText",
+      "type": "FLOAT",
+      "value": 9
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/switch/md/width",
+      "tokenPath": "size.switch.md.width",
+      "type": "FLOAT",
+      "value": 52
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/switch/md/height",
+      "tokenPath": "size.switch.md.height",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/switch/md/handle",
+      "tokenPath": "size.switch.md.handle",
+      "type": "FLOAT",
+      "value": 24
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/switch/md/innerText",
+      "tokenPath": "size.switch.md.innerText",
+      "type": "FLOAT",
+      "value": 11
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/select/minWidth",
+      "tokenPath": "size.select.minWidth",
+      "type": "FLOAT",
+      "value": 140
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/select/menuMinWidth",
+      "tokenPath": "size.select.menuMinWidth",
+      "type": "FLOAT",
+      "value": 160
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/select/pillHeight",
+      "tokenPath": "size.select.pillHeight",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/modal/minWidth",
+      "tokenPath": "size.modal.minWidth",
+      "type": "FLOAT",
+      "value": 320
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/modal/defaultWidth",
+      "tokenPath": "size.modal.defaultWidth",
+      "type": "FLOAT",
+      "value": 560
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/modal/maxWidthInset",
+      "tokenPath": "size.modal.maxWidthInset",
+      "type": "FLOAT",
+      "value": 32
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/modal/maxHeightInset",
+      "tokenPath": "size.modal.maxHeightInset",
+      "type": "FLOAT",
+      "value": 64
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/modal/paddingTop",
+      "tokenPath": "size.modal.paddingTop",
+      "type": "FLOAT",
+      "value": 48
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/modal/paddingHorizontal",
+      "tokenPath": "size.modal.paddingHorizontal",
+      "type": "FLOAT",
+      "value": 48
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/modal/paddingBottom",
+      "tokenPath": "size.modal.paddingBottom",
+      "type": "FLOAT",
+      "value": 32
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/modal/headerBottom",
+      "tokenPath": "size.modal.headerBottom",
+      "type": "FLOAT",
+      "value": 15
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/modal/bodyBottom",
+      "tokenPath": "size.modal.bodyBottom",
+      "type": "FLOAT",
+      "value": 20
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/collapse/icon",
+      "tokenPath": "size.collapse.icon",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/badge/height",
+      "tokenPath": "size.badge.height",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/badge/minWidth",
+      "tokenPath": "size.badge.minWidth",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/tag/height",
+      "tokenPath": "size.tag.height",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/chip/height",
+      "tokenPath": "size.chip.height",
+      "type": "FLOAT",
+      "value": 32
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/chip/closeIcon",
+      "tokenPath": "size.chip.closeIcon",
+      "type": "FLOAT",
+      "value": 16
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/chip/gap",
+      "tokenPath": "size.chip.gap",
+      "type": "FLOAT",
+      "value": 6
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/toast/minHeight",
+      "tokenPath": "size.toast.minHeight",
+      "type": "FLOAT",
+      "value": 44
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/toast/maxWidth",
+      "tokenPath": "size.toast.maxWidth",
+      "type": "FLOAT",
+      "value": 320
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/navigation/headerHeight",
+      "tokenPath": "size.navigation.headerHeight",
+      "type": "FLOAT",
+      "value": 56
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/navigation/bottomHeight",
+      "tokenPath": "size.navigation.bottomHeight",
+      "type": "FLOAT",
+      "value": 64
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/navigation/tabHeight",
+      "tokenPath": "size.navigation.tabHeight",
+      "type": "FLOAT",
+      "value": 40
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/navigation/breadcrumbHeight",
+      "tokenPath": "size.navigation.breadcrumbHeight",
+      "type": "FLOAT",
+      "value": 32
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/drawer/minHeight",
+      "tokenPath": "size.drawer.minHeight",
+      "type": "FLOAT",
+      "value": 240
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/drawer/cornerRadiusTop",
+      "tokenPath": "size.drawer.cornerRadiusTop",
+      "type": "FLOAT",
+      "value": 30
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/table/headerHeight",
+      "tokenPath": "size.table.headerHeight",
+      "type": "FLOAT",
+      "value": 44
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/table/rowHeight",
+      "tokenPath": "size.table.rowHeight",
+      "type": "FLOAT",
+      "value": 52
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/table/cellMinWidth",
+      "tokenPath": "size.table.cellMinWidth",
+      "type": "FLOAT",
+      "value": 96
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/upload/dropzoneHeight",
+      "tokenPath": "size.upload.dropzoneHeight",
+      "type": "FLOAT",
+      "value": 128
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/banner/height",
+      "tokenPath": "size.banner.height",
+      "type": "FLOAT",
+      "value": 160
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/banner/heroHeight",
+      "tokenPath": "size.banner.heroHeight",
+      "type": "FLOAT",
+      "value": 220
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/avatar/sm",
+      "tokenPath": "size.avatar.sm",
+      "type": "FLOAT",
+      "value": 32
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/avatar/md",
+      "tokenPath": "size.avatar.md",
+      "type": "FLOAT",
+      "value": 44
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/avatar/lg",
+      "tokenPath": "size.avatar.lg",
+      "type": "FLOAT",
+      "value": 64
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/rating/star",
+      "tokenPath": "size.rating.star",
+      "type": "FLOAT",
+      "value": 20
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/searchBar/height",
+      "tokenPath": "size.searchBar.height",
+      "type": "FLOAT",
+      "value": 44
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/searchBar/iconWidth",
+      "tokenPath": "size.searchBar.iconWidth",
+      "type": "FLOAT",
+      "value": 40
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "size/searchBar/iconSize",
+      "tokenPath": "size.searchBar.iconSize",
+      "type": "FLOAT",
+      "value": 20
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/sm/x",
+      "tokenPath": "shadow.sm.x",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/sm/y",
+      "tokenPath": "shadow.sm.y",
+      "type": "FLOAT",
+      "value": 2
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/sm/blur",
+      "tokenPath": "shadow.sm.blur",
+      "type": "FLOAT",
+      "value": 6
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/sm/spread",
+      "tokenPath": "shadow.sm.spread",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/sm/color",
+      "tokenPath": "shadow.sm.color",
+      "type": "STRING",
+      "value": "rgba(49,168,255,0.06)"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/md/x",
+      "tokenPath": "shadow.md.x",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/md/y",
+      "tokenPath": "shadow.md.y",
+      "type": "FLOAT",
+      "value": 12
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/md/blur",
+      "tokenPath": "shadow.md.blur",
+      "type": "FLOAT",
+      "value": 28
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/md/spread",
+      "tokenPath": "shadow.md.spread",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/md/color",
+      "tokenPath": "shadow.md.color",
+      "type": "STRING",
+      "value": "rgba(49,168,255,0.08)"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/lg/x",
+      "tokenPath": "shadow.lg.x",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/lg/y",
+      "tokenPath": "shadow.lg.y",
+      "type": "FLOAT",
+      "value": 18
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/lg/blur",
+      "tokenPath": "shadow.lg.blur",
+      "type": "FLOAT",
+      "value": 42
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/lg/spread",
+      "tokenPath": "shadow.lg.spread",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/lg/color",
+      "tokenPath": "shadow.lg.color",
+      "type": "STRING",
+      "value": "rgba(49,168,255,0.12)"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/buttonRaisedRest/x",
+      "tokenPath": "shadow.buttonRaisedRest.x",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/buttonRaisedRest/y",
+      "tokenPath": "shadow.buttonRaisedRest.y",
+      "type": "FLOAT",
+      "value": 4
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/buttonRaisedRest/blur",
+      "tokenPath": "shadow.buttonRaisedRest.blur",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/buttonRaisedRest/spread",
+      "tokenPath": "shadow.buttonRaisedRest.spread",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/buttonRaisedRest/colorToken",
+      "tokenPath": "shadow.buttonRaisedRest.colorToken",
+      "type": "STRING",
+      "value": "control.button.raisedShadow"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/surfaceCloudLift/x",
+      "tokenPath": "shadow.surfaceCloudLift.x",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/surfaceCloudLift/y",
+      "tokenPath": "shadow.surfaceCloudLift.y",
+      "type": "FLOAT",
+      "value": 6
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/surfaceCloudLift/blur",
+      "tokenPath": "shadow.surfaceCloudLift.blur",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/surfaceCloudLift/spread",
+      "tokenPath": "shadow.surfaceCloudLift.spread",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/surfaceCloudLift/color",
+      "tokenPath": "shadow.surfaceCloudLift.color",
+      "type": "STRING",
+      "value": "rgba(200,234,255,0.72)"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/controlIslandLift/x",
+      "tokenPath": "shadow.controlIslandLift.x",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/controlIslandLift/y",
+      "tokenPath": "shadow.controlIslandLift.y",
+      "type": "FLOAT",
+      "value": 6
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/controlIslandLift/blur",
+      "tokenPath": "shadow.controlIslandLift.blur",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/controlIslandLift/spread",
+      "tokenPath": "shadow.controlIslandLift.spread",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/controlIslandLift/color",
+      "tokenPath": "shadow.controlIslandLift.color",
+      "type": "STRING",
+      "value": "rgba(143,205,235,0.72)"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/controlPressed/x",
+      "tokenPath": "shadow.controlPressed.x",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/controlPressed/y",
+      "tokenPath": "shadow.controlPressed.y",
+      "type": "FLOAT",
+      "value": 2
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/controlPressed/blur",
+      "tokenPath": "shadow.controlPressed.blur",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/controlPressed/spread",
+      "tokenPath": "shadow.controlPressed.spread",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "shadow/controlPressed/color",
+      "tokenPath": "shadow.controlPressed.color",
+      "type": "STRING",
+      "value": "rgba(143,205,235,0.9)"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/duration/fast",
+      "tokenPath": "motion.duration.fast",
+      "type": "FLOAT",
+      "value": 150
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/duration/base",
+      "tokenPath": "motion.duration.base",
+      "type": "FLOAT",
+      "value": 220
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/duration/slow",
+      "tokenPath": "motion.duration.slow",
+      "type": "FLOAT",
+      "value": 320
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/duration/pageEnter",
+      "tokenPath": "motion.duration.pageEnter",
+      "type": "FLOAT",
+      "value": 200
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/duration/modalEnter",
+      "tokenPath": "motion.duration.modalEnter",
+      "type": "FLOAT",
+      "value": 280
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/duration/loadingLoop",
+      "tokenPath": "motion.duration.loadingLoop",
+      "type": "FLOAT",
+      "value": 1000
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/easing/standard",
+      "tokenPath": "motion.easing.standard",
+      "type": "STRING",
+      "value": "cubic-bezier(0.4,0,0.2,1)"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/easing/easeOut",
+      "tokenPath": "motion.easing.easeOut",
+      "type": "STRING",
+      "value": "cubic-bezier(0,0,0.2,1)"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/easing/pressPop",
+      "tokenPath": "motion.easing.pressPop",
+      "type": "STRING",
+      "value": "cubic-bezier(0.34,1.56,0.64,1)"
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/interaction/hoverLiftY",
+      "tokenPath": "motion.interaction.hoverLiftY",
+      "type": "FLOAT",
+      "value": -2
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/interaction/pressedDropY",
+      "tokenPath": "motion.interaction.pressedDropY",
+      "type": "FLOAT",
+      "value": 2
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/interaction/modalEnterScaleFrom",
+      "tokenPath": "motion.interaction.modalEnterScaleFrom",
+      "type": "FLOAT",
+      "value": 0.97
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/interaction/pageEnterTranslateY",
+      "tokenPath": "motion.interaction.pageEnterTranslateY",
+      "type": "FLOAT",
+      "value": 8
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/stagger/step",
+      "tokenPath": "motion.stagger.step",
+      "type": "FLOAT",
+      "value": 45
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/stagger/maxLevels",
+      "tokenPath": "motion.stagger.maxLevels",
+      "type": "FLOAT",
+      "value": 3
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/switch/duration",
+      "tokenPath": "motion.switch.duration",
+      "type": "FLOAT",
+      "value": 180
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/rules/pressPopOnlyOnActiveRelease",
+      "tokenPath": "motion.rules.pressPopOnlyOnActiveRelease",
+      "type": "STRING",
+      "value": true
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/rules/noInfiniteDecorativeMotion",
+      "tokenPath": "motion.rules.noInfiniteDecorativeMotion",
+      "type": "STRING",
+      "value": true
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "motion/rules/respectPrefersReducedMotion",
+      "tokenPath": "motion.rules.respectPrefersReducedMotion",
+      "type": "STRING",
+      "value": true
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "opacity/switch/enabled",
+      "tokenPath": "opacity.switch.enabled",
+      "type": "FLOAT",
+      "value": 1
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "opacity/switch/loading",
+      "tokenPath": "opacity.switch.loading",
+      "type": "FLOAT",
+      "value": 0.7
+    },
+    {
+      "collection": "Planet / Style",
+      "figmaName": "opacity/switch/disabled",
+      "tokenPath": "opacity.switch.disabled",
+      "type": "FLOAT",
+      "value": 0.5
+    },
+    {
+      "collection": "Planet / Island / island_raised",
+      "figmaName": "islandStyle/rules/buttonRaisedShadowEnabled",
+      "tokenPath": "themes.island_raised.islandStyle.rules.buttonRaisedShadowEnabled",
+      "type": "STRING",
+      "value": true
+    },
+    {
+      "collection": "Planet / Island / island_raised",
+      "figmaName": "shadow/controlIslandLift/y",
+      "tokenPath": "themes.island_raised.shadow.controlIslandLift.y",
+      "type": "FLOAT",
+      "value": 6
+    },
+    {
+      "collection": "Planet / Island / island_raised",
+      "figmaName": "shadow/controlPressed/y",
+      "tokenPath": "themes.island_raised.shadow.controlPressed.y",
+      "type": "FLOAT",
+      "value": 2
+    },
+    {
+      "collection": "Planet / Island / island_raised",
+      "figmaName": "motion/interaction/pressedDropY",
+      "tokenPath": "themes.island_raised.motion.interaction.pressedDropY",
+      "type": "FLOAT",
+      "value": 2
+    },
+    {
+      "collection": "Planet / Island / island_raised",
+      "figmaName": "motion/interaction/hoverLiftY",
+      "tokenPath": "themes.island_raised.motion.interaction.hoverLiftY",
+      "type": "FLOAT",
+      "value": -1
+    },
+    {
+      "collection": "Planet / Island / island_flat",
+      "figmaName": "islandStyle/rules/buttonRaisedShadowEnabled",
+      "tokenPath": "themes.island_flat.islandStyle.rules.buttonRaisedShadowEnabled",
+      "type": "STRING",
+      "value": false
+    },
+    {
+      "collection": "Planet / Island / island_flat",
+      "figmaName": "shadow/controlIslandLift/y",
+      "tokenPath": "themes.island_flat.shadow.controlIslandLift.y",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Island / island_flat",
+      "figmaName": "shadow/controlPressed/y",
+      "tokenPath": "themes.island_flat.shadow.controlPressed.y",
+      "type": "FLOAT",
+      "value": 0
+    },
+    {
+      "collection": "Planet / Island / island_flat",
+      "figmaName": "motion/interaction/pressedDropY",
+      "tokenPath": "themes.island_flat.motion.interaction.pressedDropY",
+      "type": "FLOAT",
+      "value": 0
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+.bc-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  min-width: 104rpx;
+  min-height: 104rpx;
+  padding: 0;
+  border-radius: 999rpx;
+  border: 2rpx solid var(--bc-brand);
+  background: var(--bc-brand);
+  color: #fff;
+  box-shadow: 0 8rpx 20rpx rgba(23, 58, 98, 0.18);
+  box-sizing: border-box;
+}
+.bc-fab.is-extended {
+  padding: 0 36rpx;
+}
+.bc-fab--default {
+  background: var(--bc-surface);
+  border-color: var(--bc-border);
+  color: var(--bc-text);
+}
+.bc-fab__icon {
+  font-size: 40rpx;
+  font-weight: 800;
+  line-height: 1;
+}
+.bc-fab__text {
+  font-size: 28rpx;
+  font-weight: 800;
+}
+.is-disabled { opacity: 0.45; }

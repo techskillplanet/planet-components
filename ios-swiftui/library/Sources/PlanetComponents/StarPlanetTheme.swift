@@ -1,6 +1,64 @@
 import SwiftUI
 
+/// Island control style profile — aligns with React Web `starPlanetStyleProfiles`.
+public struct StarPlanetStyleProfile: Equatable {
+    public var key: String
+    public var buttonRaisedShadowEnabled: Bool
+    public var shadowControlIslandLiftY: CGFloat
+    public var shadowControlPressedY: CGFloat
+    public var pressedDropY: CGFloat
+    public var hoverLiftY: CGFloat
+    public var buttonFaceHeight: CGFloat
+    public var cardIslandShadow: String
+
+    public var buttonHeight: CGFloat { buttonFaceHeight + shadowControlIslandLiftY }
+
+    public init(
+        key: String,
+        buttonRaisedShadowEnabled: Bool = true,
+        shadowControlIslandLiftY: CGFloat = 6,
+        shadowControlPressedY: CGFloat = 2,
+        pressedDropY: CGFloat = 2,
+        hoverLiftY: CGFloat = -1,
+        buttonFaceHeight: CGFloat = 46,
+        cardIslandShadow: String = "0 14px 34px rgba(49, 168, 255, 0.20), 0 2px 8px rgba(23, 58, 98, 0.06)"
+    ) {
+        self.key = key
+        self.buttonRaisedShadowEnabled = buttonRaisedShadowEnabled
+        self.shadowControlIslandLiftY = shadowControlIslandLiftY
+        self.shadowControlPressedY = shadowControlPressedY
+        self.pressedDropY = pressedDropY
+        self.hoverLiftY = hoverLiftY
+        self.buttonFaceHeight = buttonFaceHeight
+        self.cardIslandShadow = cardIslandShadow
+    }
+
+    public static let islandRaised = StarPlanetStyleProfile(key: "island_raised")
+
+    public static let islandFlat = StarPlanetStyleProfile(
+        key: "island_flat",
+        buttonRaisedShadowEnabled: false,
+        shadowControlIslandLiftY: 0,
+        shadowControlPressedY: 0,
+        pressedDropY: 0,
+        hoverLiftY: 0,
+        buttonFaceHeight: 46,
+        cardIslandShadow: "none"
+    )
+
+    public static let profileKeys = ["island_raised", "island_flat"]
+
+    public static func resolve(_ styleProfile: String) -> StarPlanetStyleProfile {
+        switch styleProfile {
+        case "island_flat": return .islandFlat
+        default: return .islandRaised
+        }
+    }
+}
+
 public struct StarPlanetTheme {
+    public var colorKey: String
+    public var styleProfile: String
     public var pageStart: Color
     public var pageEnd: Color
     public var textPrimary: Color
@@ -35,8 +93,20 @@ public struct StarPlanetTheme {
     public var switchHandleBorder: Color
     public var switchHandleCheckedBorder: Color
     public var switchSpinner: Color
+    // Style profile defaults match `island_raised`.
+    public var buttonRaisedShadowEnabled: Bool
+    public var shadowControlIslandLiftY: CGFloat
+    public var shadowControlPressedY: CGFloat
+    public var pressedDropY: CGFloat
+    public var hoverLiftY: CGFloat
+    public var buttonFaceHeight: CGFloat
+    public var cardIslandShadow: String
+
+    public var buttonHeight: CGFloat { buttonFaceHeight + shadowControlIslandLiftY }
 
     public init(
+        colorKey: String = "sky",
+        styleProfile: String = "island_raised",
         pageStart: Color = Color(hex: 0xDDF4FF),
         pageEnd: Color = Color(hex: 0xF9FDFF),
         textPrimary: Color = Color(hex: 0x173A62),
@@ -65,8 +135,17 @@ public struct StarPlanetTheme {
         switchHandleBackground: Color = .white,
         switchHandleBorder: Color = Color(hex: 0xC8EAFF),
         switchHandleCheckedBorder: Color = Color(hex: 0x31A8FF),
-        switchSpinner: Color = .white
+        switchSpinner: Color = .white,
+        buttonRaisedShadowEnabled: Bool = true,
+        shadowControlIslandLiftY: CGFloat = 6,
+        shadowControlPressedY: CGFloat = 2,
+        pressedDropY: CGFloat = 2,
+        hoverLiftY: CGFloat = -1,
+        buttonFaceHeight: CGFloat = 46,
+        cardIslandShadow: String = "0 14px 34px rgba(49, 168, 255, 0.20), 0 2px 8px rgba(23, 58, 98, 0.06)"
     ) {
+        self.colorKey = colorKey
+        self.styleProfile = styleProfile
         self.pageStart = pageStart
         self.pageEnd = pageEnd
         self.textPrimary = textPrimary
@@ -96,11 +175,32 @@ public struct StarPlanetTheme {
         self.switchHandleBorder = switchHandleBorder
         self.switchHandleCheckedBorder = switchHandleCheckedBorder
         self.switchSpinner = switchSpinner
+        self.buttonRaisedShadowEnabled = buttonRaisedShadowEnabled
+        self.shadowControlIslandLiftY = shadowControlIslandLiftY
+        self.shadowControlPressedY = shadowControlPressedY
+        self.pressedDropY = pressedDropY
+        self.hoverLiftY = hoverLiftY
+        self.buttonFaceHeight = buttonFaceHeight
+        self.cardIslandShadow = cardIslandShadow
     }
 
-    public static let sky = StarPlanetTheme()
+    public func withStyle(_ profile: StarPlanetStyleProfile) -> StarPlanetTheme {
+        var next = self
+        next.styleProfile = profile.key
+        next.buttonRaisedShadowEnabled = profile.buttonRaisedShadowEnabled
+        next.shadowControlIslandLiftY = profile.shadowControlIslandLiftY
+        next.shadowControlPressedY = profile.shadowControlPressedY
+        next.pressedDropY = profile.pressedDropY
+        next.hoverLiftY = profile.hoverLiftY
+        next.buttonFaceHeight = profile.buttonFaceHeight
+        next.cardIslandShadow = profile.cardIslandShadow
+        return next
+    }
+
+    public static let sky = StarPlanetTheme(colorKey: "sky")
 
     public static let night = StarPlanetTheme(
+        colorKey: "night",
         pageStart: Color(hex: 0x0F1A2E),
         pageEnd: Color(hex: 0x141E32),
         textPrimary: Color(hex: 0xE8F4FF),
@@ -121,6 +221,7 @@ public struct StarPlanetTheme {
     )
 
     public static let mint = StarPlanetTheme(
+        colorKey: "mint",
         pageStart: Color(hex: 0xDFFAF2),
         pageEnd: Color(hex: 0xF8FFFC),
         textPrimary: Color(hex: 0x123F3A),
@@ -146,6 +247,7 @@ public struct StarPlanetTheme {
     )
 
     public static let sunrise = StarPlanetTheme(
+        colorKey: "sunrise",
         pageStart: Color(hex: 0xFFE8D6),
         pageEnd: Color(hex: 0xFFFDF8),
         textPrimary: Color(hex: 0x4A2B1A),
@@ -173,6 +275,7 @@ public struct StarPlanetTheme {
     /// Built-in color keys aligned with React `starPlanetThemes`.
     public static let themeKeys = ["sky", "night", "mint", "sunrise"]
 
+    /// Resolve color theme only (backward compatible). Defaults to raised style.
     public static func resolve(_ colorKey: String) -> StarPlanetTheme {
         switch colorKey {
         case "night": return .night
@@ -180,6 +283,11 @@ public struct StarPlanetTheme {
         case "sunrise": return .sunrise
         default: return .sky
         }
+    }
+
+    /// Merge color + style profile — aligns with React `resolveTheme(colorKey, styleProfile)`.
+    public static func resolve(color: String = "sky", style: String = "island_raised") -> StarPlanetTheme {
+        resolve(color).withStyle(StarPlanetStyleProfile.resolve(style))
     }
 }
 

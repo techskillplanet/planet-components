@@ -16,6 +16,16 @@ pnpm add @techskillplanet/planet-components-react
 
 **Peer Dependency:** React >= 18
 
+## Local Storybook
+
+```bash
+cd react-web/library
+npm install
+npm run storybook
+```
+
+Stories live in `stories/`. Accessibility baseline: [`docs/A11Y.md`](../../docs/A11Y.md) · axe gate: `npm test` (`tests/a11y.test.js`).
+
 ## Quick Start
 
 ```jsx

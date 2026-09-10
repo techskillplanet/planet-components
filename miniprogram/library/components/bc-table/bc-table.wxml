@@ -1,0 +1,27 @@
+<scroll-view
+  scroll-x
+  class="bc-table-wrap bc-table--{{variant}}"
+  style="--bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textSecondary}}; --bc-tertiary: {{theme.textTertiary}}; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-subtle: {{theme.surfaceSubtle}};"
+>
+  <view class="bc-table">
+    <view class="bc-table__row bc-table__row--header">
+      <view wx:for="{{columns}}" wx:key="index" class="bc-table__cell bc-table__cell--header">
+        {{item.title || item.label || item.key || item}}
+      </view>
+    </view>
+    <block wx:if="{{viewRows.length}}">
+      <view
+        wx:for="{{viewRows}}"
+        wx:for-item="row"
+        wx:for-index="ri"
+        wx:key="ri"
+        class="bc-table__row {{variant === 'striped' && ri % 2 === 1 ? 'is-stripe' : ''}}"
+      >
+        <view wx:for="{{row}}" wx:for-item="cell" wx:key="*this" class="bc-table__cell">{{cell}}</view>
+      </view>
+    </block>
+    <view wx:else class="bc-table__row">
+      <view class="bc-table__cell bc-table__empty">{{emptyText}}</view>
+    </view>
+  </view>
+</scroll-view>

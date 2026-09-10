@@ -1,0 +1,24 @@
+<view
+  class="bc-swiper"
+  style="--bc-text: {{theme.textPrimary}}; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-brand: {{theme.brandPrimary}};"
+>
+  <swiper
+    class="bc-swiper__viewport"
+    current="{{current}}"
+    autoplay="{{autoplay}}"
+    interval="3200"
+    circular="{{items.length > 1}}"
+    bindchange="onChange"
+  >
+    <swiper-item wx:for="{{items}}" wx:key="index">
+      <view class="bc-swiper__slide">{{item.content || item.label || item}}</view>
+    </swiper-item>
+  </swiper>
+  <view wx:if="{{items.length > 1}}" class="bc-swiper__dots">
+    <view
+      wx:for="{{items}}"
+      wx:key="index"
+      class="bc-swiper__dot {{index === current ? 'is-active' : ''}}"
+    ></view>
+  </view>
+</view>

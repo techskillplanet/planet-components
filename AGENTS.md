@@ -56,13 +56,21 @@ This repository contains cross-platform basic component libraries for TechSkillP
 
 ## Verification
 
+Inventory baseline ≈ **57** cross-stack contract components (`component_contract.json`).
+
 Always run the broad structure check after structural changes:
 
 ```bash
 node tools/check-structure.cjs
+node tools/check-token-drift.cjs
+node tools/check-contract-inventory.cjs
+node tools/check-android-extensions.cjs
+node tools/check-skills-contract.cjs
+node tools/check-icon-catalog.cjs
+node tools/build-api-docs.cjs
 ```
 
-Run platform checks for changed stacks. Current expected commands are documented in `README.md` and `docs/PLATFORM_STRUCTURE.md`.
+Run platform checks for changed stacks. Prefer `./tools/headless-check.sh` when many stacks changed. CI: `.github/workflows/ci.yml`.
 
 ## Agent plugin and skills
 

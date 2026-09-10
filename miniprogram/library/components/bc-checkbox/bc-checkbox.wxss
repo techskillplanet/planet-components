@@ -1,0 +1,30 @@
+.bc-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 8rpx 0;
+}
+.bc-checkbox__box {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 12rpx;
+  border: 4rpx solid var(--bc-border);
+  background: var(--bc-surface);
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.bc-checkbox.is-checked .bc-checkbox__box {
+  background: var(--bc-brand);
+  border-color: var(--bc-brand);
+}
+.bc-checkbox__label {
+  color: var(--bc-text);
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.is-disabled { opacity: 0.45; }

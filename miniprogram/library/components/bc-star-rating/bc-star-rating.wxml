@@ -1,0 +1,12 @@
+<view
+  class="bc-star-rating bc-star-rating--{{variant}} {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-brand: {{theme.brandPrimary}}; --bc-border: {{theme.borderDefault}};"
+>
+  <text
+    wx:for="{{stars}}"
+    wx:key="index"
+    class="bc-star-rating__star {{item.filled ? 'is-filled' : ''}}"
+    data-index="{{item.index}}"
+    bindtap="onSelect"
+  >★</text>
+</view>

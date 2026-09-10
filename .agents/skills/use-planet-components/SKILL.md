@@ -29,10 +29,12 @@ Local `main` may include **DatePicker + Domain-7** ahead of registries until the
 
 ## Public API surface
 
-≈ **35** `Tsp*` / `bc-*` / `Basic*View` controls (React Web inventory baseline), including:
+≈ **57** `Tsp*` / `bc-*` / `Basic*View` controls (React Web inventory baseline), including:
 
 - **DatePicker**
 - **Domain-7**: ChildSwitcher, ScoreRuleGrid, RedeemCardGrid, CalendarHeatmap, PrintSheet, BalanceHero, CheckInStreakCard
+- **W1**: Avatar, Skeleton, Tooltip, Slider, TextArea, Drawer, InputNumber, Swiper
+- **W2**: Tag, Fab, TimePicker, Upload, Table, Tree, Cascader
 
 ## Themes
 

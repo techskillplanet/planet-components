@@ -1,3 +1,38 @@
+/* Default island style vars (raised). Override with .style-island_flat. */
+page,
+.theme-sky,
+.theme-night,
+.theme-mint,
+.theme-sunrise {
+  --bc-shadow-control-island-lift-y: 6px;
+  --bc-button-face-height: 46px;
+  --bc-button-height: 52px;
+  --bc-pressed-drop-y: 2px;
+  --bc-hover-lift-y: -1px;
+  --bc-button-raised-shadow-display: block;
+  --bc-card-island-shadow: 0 14px 34px rgba(49, 168, 255, 0.20), 0 2px 8px rgba(23, 58, 98, 0.06);
+}
+
+.style-island_raised {
+  --bc-shadow-control-island-lift-y: 6px;
+  --bc-button-face-height: 46px;
+  --bc-button-height: 52px;
+  --bc-pressed-drop-y: 2px;
+  --bc-hover-lift-y: -1px;
+  --bc-button-raised-shadow-display: block;
+  --bc-card-island-shadow: 0 14px 34px rgba(49, 168, 255, 0.20), 0 2px 8px rgba(23, 58, 98, 0.06);
+}
+
+.style-island_flat {
+  --bc-shadow-control-island-lift-y: 0px;
+  --bc-button-face-height: 46px;
+  --bc-button-height: 46px;
+  --bc-pressed-drop-y: 0px;
+  --bc-hover-lift-y: 0px;
+  --bc-button-raised-shadow-display: none;
+  --bc-card-island-shadow: none;
+}
+
 /* Page-level theme classes — distinct for sky / night / mint / sunrise. */
 .theme-sky {
   --bc-page-start: #DDF4FF;
@@ -85,4 +120,24 @@
   --bc-emphasis-fill: #FFF8F2;
   --bc-active-fill: #FFF7D7;
   --bc-danger: #E24C5C;
+}
+
+/* Honor reduced motion when the host sets prefers-reduced-motion (devtools / accessible builds). */
+@media (prefers-reduced-motion: reduce) {
+  page,
+  .theme-sky,
+  .theme-night,
+  .theme-mint,
+  .theme-sunrise {
+    --bc-pressed-drop-y: 0px;
+    --bc-hover-lift-y: 0px;
+  }
+
+  .bc-button,
+  .bc-switch,
+  .bc-collapse,
+  .bc-segmented__item {
+    transition: none !important;
+    animation: none !important;
+  }
 }

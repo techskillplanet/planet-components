@@ -28,6 +28,9 @@ public struct TspButton: View {
     private var inert: Bool { disabled || loading }
 
     public var body: some View {
+        let faceHeight = theme.buttonFaceHeight
+        let lift = theme.buttonRaisedShadowEnabled ? theme.shadowControlIslandLiftY : 0
+        let isTextLike = variant == .text || variant == .link
         Button(action: { if !inert { action() } }) {
             HStack(spacing: 8) {
                 if loading {
@@ -39,14 +42,23 @@ public struct TspButton: View {
                     .font(.system(size: 15, weight: .bold))
                     .foregroundColor(textColor)
             }
-            .frame(maxWidth: .infinity, minHeight: 46)
+            .frame(maxWidth: .infinity, minHeight: faceHeight)
             .background(face)
             .clipShape(Capsule())
         }
         .buttonStyle(.plain)
         .opacity(inert ? 0.45 : 1)
         .disabled(inert)
-        .background(Capsule().fill(theme.borderDefault).offset(y: 5))
+        .accessibilityLabel(text)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityValue(loading ? Text("Loading") : Text(""))
+        .background(
+            Group {
+                if !isTextLike && theme.buttonRaisedShadowEnabled {
+                    Capsule().fill(theme.borderDefault).offset(y: lift)
+                }
+            }
+        )
     }
 
     private var face: Color {

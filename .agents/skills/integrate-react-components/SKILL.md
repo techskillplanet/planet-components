@@ -117,19 +117,23 @@ const customTheme = {
 
 ## Coverage
 
-Inventory baseline ≈ **35** `Tsp*` controls. Themes: `starPlanetThemes.sky|night|mint|sunrise`. `TspButton` supports `loading`.
+Inventory baseline ≈ **57** `Tsp*` controls. Themes: `starPlanetThemes.sky|night|mint|sunrise`. `TspButton` supports `loading`.
 
 ### DatePicker + Domain-7
 - `TspDatePicker`
 - `TspChildSwitcher`, `TspScoreRuleGrid`, `TspRedeemCardGrid`, `TspCalendarHeatmap`, `TspPrintSheet`, `TspBalanceHero`, `TspCheckInStreakCard`
 
+### W1 / W2 common controls
+- **W1**: `TspAvatar`, `TspSkeleton`, `TspTooltip`, `TspSlider`, `TspTextArea`, `TspDrawer`, `TspInputNumber`, `TspSwiper`
+- **W2**: `TspTag`, `TspFab`, `TspTimePicker`, `TspUpload`, `TspTable`, `TspTree`, `TspCascader`
+
 ### Core catalog
-- Actions: `TspButton` (`loading`), `TspChip`, `TspIconButton`, `TspTextLink`
+- Actions: `TspButton` (`loading`), `TspChip`, `TspIconButton`, `TspTextLink`, `TspTag`, `TspFab`
 - Surfaces: `TspCard`, `TspListItem`, `TspEmpty`
 - Feedback: `TspAlert`, `TspBadge`, `TspProgress`, `TspNotification`, `TspToast`, `TspModal`, `TspLoadingDialog`
-- Inputs: `TspInput`, `TspSelect`, `TspOptionSheet`, `TspSwitch`, `TspPinInput`
+- Inputs: `TspInput`, `TspSelect`, `TspOptionSheet`, `TspSwitch`, `TspPinInput`, `TspTimePicker`, `TspUpload`
 - Navigation: `TspTopBar`, `TspBottomTab`, `TspTabs`, `TspStickyFooter`
-- Data: `TspAmount`, `TspKeyValueLabel`, `TspStepper`
+- Data: `TspAmount`, `TspKeyValueLabel`, `TspStepper`, `TspTable`, `TspTree`, `TspCascader`
 - Also: `TspRefreshLayout`
 
 ## Common Patterns

@@ -35,6 +35,69 @@ data class PhonicsColors(
     val dangerSoft: Long get() = if (dark) 0xFF3A2430 else 0xFFFFF0F2
 }
 
+/**
+ * Island control style profile — aligns with React Web `starPlanetStyleProfiles`.
+ */
+data class PhonicsStyleProfile(
+    val key: String,
+    val buttonRaisedShadowEnabled: Boolean,
+    val shadowControlIslandLiftY: Float,
+    val shadowControlPressedY: Float,
+    val pressedDropY: Float,
+    val hoverLiftY: Float,
+    val buttonFaceHeight: Float,
+    val cardIslandShadow: String = "",
+) {
+    val buttonHeight: Float get() = buttonFaceHeight + shadowControlIslandLiftY
+
+    companion object {
+        val IslandRaised = PhonicsStyleProfile(
+            key = "island_raised",
+            buttonRaisedShadowEnabled = true,
+            shadowControlIslandLiftY = 6f,
+            shadowControlPressedY = 2f,
+            pressedDropY = 2f,
+            hoverLiftY = -1f,
+            buttonFaceHeight = 46f,
+            cardIslandShadow = "0 14px 34px rgba(49, 168, 255, 0.20), 0 2px 8px rgba(23, 58, 98, 0.06)",
+        )
+
+        val IslandFlat = PhonicsStyleProfile(
+            key = "island_flat",
+            buttonRaisedShadowEnabled = false,
+            shadowControlIslandLiftY = 0f,
+            shadowControlPressedY = 0f,
+            pressedDropY = 0f,
+            hoverLiftY = 0f,
+            buttonFaceHeight = 46f,
+            cardIslandShadow = "none",
+        )
+
+        val All = listOf(IslandRaised, IslandFlat)
+
+        fun get(key: String): PhonicsStyleProfile =
+            All.firstOrNull { it.key == key } ?: IslandRaised
+    }
+}
+
+/**
+ * Merged color + style for consumers that need both (mirrors React `resolveTheme`).
+ * Existing APIs that take [PhonicsColors] remain unchanged.
+ */
+data class PhonicsResolvedTheme(
+    val colors: PhonicsColors,
+    val style: PhonicsStyleProfile = PhonicsStyleProfile.IslandRaised,
+) {
+    val colorKey: String get() = colors.key
+    val styleProfile: String get() = style.key
+    val buttonHeight: Float get() = style.buttonHeight
+    val buttonFaceHeight: Float get() = style.buttonFaceHeight
+    val shadowControlIslandLiftY: Float get() = style.shadowControlIslandLiftY
+    val buttonRaisedShadowEnabled: Boolean get() = style.buttonRaisedShadowEnabled
+    val pressedDropY: Float get() = style.pressedDropY
+    val hoverLiftY: Float get() = style.hoverLiftY
+}
+
 object PhonicsTheme {
     val Sky = PhonicsColors(
         key = "sky",
@@ -135,4 +198,14 @@ object PhonicsTheme {
     val All = listOf(Sky, Night, Mint, Sunrise)
 
     fun get(key: String): PhonicsColors = All.firstOrNull { it.key == key } ?: Sky
+
+    fun resolve(
+        colors: PhonicsColors,
+        style: PhonicsStyleProfile = PhonicsStyleProfile.IslandRaised,
+    ): PhonicsResolvedTheme = PhonicsResolvedTheme(colors = colors, style = style)
+
+    fun resolve(
+        colorKey: String = "sky",
+        styleProfile: String = "island_raised",
+    ): PhonicsResolvedTheme = resolve(get(colorKey), PhonicsStyleProfile.get(styleProfile))
 }

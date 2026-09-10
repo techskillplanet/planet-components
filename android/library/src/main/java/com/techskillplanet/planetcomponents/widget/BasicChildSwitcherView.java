@@ -127,6 +127,9 @@ public class BasicChildSwitcherView extends HorizontalScrollView {
         BasicStyle style = BasicThemeManager.style();
         boolean useTabs = "tabs".equals(variant);
         container.removeAllViews();
+        if (selectedId.isEmpty() && !items.isEmpty()) {
+            selectedId = items.get(0).id;
+        }
         int gap = Math.round(style.spaceSm);
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
@@ -138,7 +141,7 @@ public class BasicChildSwitcherView extends HorizontalScrollView {
             chip.setText(label);
             chip.setSingleLine(true);
             chip.setGravity(Gravity.CENTER);
-            chip.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+            chip.setTypeface(Typeface.DEFAULT, selected ? Typeface.BOLD : Typeface.NORMAL);
             chip.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textSm);
             chip.setMinHeight(dp(44));
             int padH = Math.round(style.spaceMd);
@@ -156,6 +159,9 @@ public class BasicChildSwitcherView extends HorizontalScrollView {
             final String id = item.id;
             chip.setOnClickListener(v -> {
                 if (basicDisabled) {
+                    return;
+                }
+                if (id.equals(selectedId)) {
                     return;
                 }
                 setSelectedId(id);
@@ -182,6 +188,30 @@ public class BasicChildSwitcherView extends HorizontalScrollView {
                     : ViewGroup.LayoutParams.WRAP_CONTENT;
             container.setLayoutParams(containerLp);
         }
+        requestLayout();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        if (!"tabs".equals(variant)) {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+            return;
+        }
+        // HorizontalScrollView + weight 等宽分段需要强制子容器吃满父宽，否则选中态布局错乱。
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
+        container.measure(childWidthSpec, heightMeasureSpec);
+        int height = Math.max(dp(44), container.getMeasuredHeight());
+        setMeasuredDimension(width, resolveSize(height, heightMeasureSpec));
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        if ("tabs".equals(variant)) {
+            container.layout(0, 0, r - l, b - t);
+            return;
+        }
+        super.onLayout(changed, l, t, r, b);
     }
 
     private int dp(float value) {

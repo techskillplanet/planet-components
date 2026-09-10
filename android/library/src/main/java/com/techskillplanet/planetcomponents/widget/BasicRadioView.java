@@ -23,9 +23,15 @@ import com.techskillplanet.planetcomponents.theme.BasicThemeManager;
  * 这样它既能用于 RadioGroup，也能用于卡片式单选列表。</p>
  */
 public class BasicRadioView extends LinearLayout {
+    /** 选中状态变化回调，对齐合约 onChange。 */
+    public interface OnCheckedChangeListener {
+        void onCheckedChanged(BasicRadioView view, boolean checked);
+    }
+
     private final View indicatorView;
     private final TextView labelView;
     private boolean basicDisabled;
+    private OnCheckedChangeListener checkedChangeListener;
 
     public BasicRadioView(Context context) {
         this(context, null);
@@ -63,10 +69,19 @@ public class BasicRadioView extends LinearLayout {
         labelView.setText(text);
     }
 
+    /** 设置选中状态变化监听。 */
+    public void setOnCheckedChangeListener(OnCheckedChangeListener listener) {
+        checkedChangeListener = listener;
+    }
+
     /** 设置是否选中。 */
     public void setSelectedState(boolean selected) {
+        boolean changed = isSelected() != selected;
         setSelected(selected);
         refreshTheme();
+        if (changed && checkedChangeListener != null) {
+            checkedChangeListener.onCheckedChanged(this, selected);
+        }
     }
 
     /** 设置禁用态。 */

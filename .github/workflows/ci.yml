@@ -1,0 +1,134 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    name: Structure · tokens · contract · JS stacks
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Structure
+        run: node tools/check-structure.cjs
+
+      - name: Build tokens
+        run: node tools/build-tokens.cjs
+
+      - name: Sync icons
+        run: node tools/sync-icons.cjs
+
+      - name: Build API reference
+        run: node tools/build-api-docs.cjs
+
+      - name: Build Figma Variables manifest
+        run: node tools/build-figma-manifest.cjs
+
+      - name: Token drift
+        run: node tools/check-token-drift.cjs
+
+      - name: Contract inventory
+        run: node tools/check-contract-inventory.cjs
+
+      - name: Android extensions catalog
+        run: node tools/check-android-extensions.cjs
+
+      - name: Skills ↔ contract
+        run: node tools/check-skills-contract.cjs
+
+      - name: Icon catalog
+        run: node tools/check-icon-catalog.cjs
+
+      - name: React Web
+        working-directory: react-web/library
+        run: npm install && npm run check && npm test && npm run pack:dry
+
+      - name: Vue Web
+        working-directory: vue-web/library
+        run: npm install && npm run check && npm test && npm run pack:dry
+
+      - name: React Native library
+        working-directory: react-native/library
+        run: npm install && npm test && npm run pack:dry
+
+      - name: Mini Program pack
+        working-directory: miniprogram/library
+        run: npm install && npm run pack:dry
+
+  chromatic:
+    name: Chromatic visual regression
+    needs: quality-gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Chromatic
+        working-directory: react-web/library
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: |
+          npm install
+          if [ -z "$CHROMATIC_PROJECT_TOKEN" ]; then
+            echo "CHROMATIC_PROJECT_TOKEN not set — skip Chromatic upload"
+            npm run build-storybook
+            exit 0
+          fi
+          npx chromatic --project-token="$CHROMATIC_PROJECT_TOKEN" --exit-zero-on-changes --exit-once-uploaded
+
+  # Native stacks need SDKs; run on demand or after JS gate on main.
+  headless-native:
+    name: Native headless (Flutter / Android / Kuikly)
+    needs: quality-gate
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter analyze + test
+        run: |
+          cd flutter/library && flutter pub get && flutter analyze && flutter test
+          cd ../samples && flutter pub get && flutter analyze
+
+      - name: Android library + samples
+        run: cd android && ./gradlew :library:testDebugUnitTest :library:assembleRelease :samples:assembleDebug --console=plain
+
+      - name: Kuikly compile
+        run: cd kuikly && ./gradlew :shared:compileDebugKotlinAndroid :androidApp:assembleDebug --console=plain

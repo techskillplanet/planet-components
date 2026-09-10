@@ -1,8 +1,10 @@
 package com.techskillplanet.planetcomponents.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -22,7 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 底部 Tab，对齐 RN TspBottomTab：顶部分割线、无选中 pill、选中色 brandPrimary、标签始终加粗。
+ * 底部 Tab，对齐 Web/RN TspBottomTab：
+ * 顶部分割线、选中「贴纸岛」（圆角渐变 + inset 描边）、选中色 brandDark、标签加粗。
  */
 public class BasicBottomTabView extends LinearLayout {
     public interface OnTabSelectedListener {
@@ -90,13 +93,10 @@ public class BasicBottomTabView extends LinearLayout {
         if (style == null) {
             return;
         }
-        contentRow.setPadding(
-                Math.round(style.spaceMd),
-                dp(8),
-                Math.round(style.spaceMd),
-                dp(8)
-        );
-        contentRow.setMinimumHeight(dp(52));
+        // 对齐 Web --sp-chrome-gap：首尾选中岛不贴屏边
+        int chrome = Math.max(dp(10), Math.round(style.spaceMd));
+        contentRow.setPadding(chrome, dp(6), chrome, dp(6));
+        contentRow.setMinimumHeight(dp(56));
         setPadding(0, 0, 0, navigationBarInset);
     }
 
@@ -111,6 +111,10 @@ public class BasicBottomTabView extends LinearLayout {
     public void setSelectedIndex(int index) {
         selectedIndex = Math.max(0, Math.min(index, Math.max(0, tabs.size() - 1)));
         refreshSelection();
+    }
+
+    public int getSelectedIndex() {
+        return selectedIndex;
     }
 
     public void setOnTabSelectedListener(OnTabSelectedListener listener) {
@@ -142,7 +146,7 @@ public class BasicBottomTabView extends LinearLayout {
             item.setGravity(Gravity.CENTER);
             item.setClickable(true);
             item.setFocusable(true);
-            item.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+            item.setPadding(dp(4), dp(6), dp(4), dp(6));
             item.setOnClickListener(view -> {
                 if (selectedIndex != index) {
                     selectedIndex = index;
@@ -177,7 +181,9 @@ public class BasicBottomTabView extends LinearLayout {
             label.setIncludeFontPadding(false);
             label.setTypeface(Typeface.DEFAULT_BOLD);
             label.setText(BasicI18nManager.text(tab.textKey, tab.fallback));
-            item.addView(label, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            LayoutParams labelLp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            labelLp.topMargin = dp(2);
+            item.addView(label, labelLp);
 
             contentRow.addView(item, new LayoutParams(0, LayoutParams.MATCH_PARENT, 1f));
         }
@@ -186,15 +192,30 @@ public class BasicBottomTabView extends LinearLayout {
 
     private void refreshSelection() {
         BasicColors colors = BasicThemeManager.colors();
+        if (colors == null) {
+            return;
+        }
+        int selectedColor = colors.brandDark != 0 ? colors.brandDark : colors.brandPrimary;
+        int idleColor = colors.textTertiary;
         for (int i = 0; i < contentRow.getChildCount(); i++) {
             View child = contentRow.getChildAt(i);
             boolean selected = i == selectedIndex;
             child.setSelected(selected);
-            child.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+            if (selected) {
+                child.setBackground(createSelectedIsland(colors));
+            } else {
+                child.setBackground(null);
+            }
+            if (!(child instanceof LinearLayout)) {
+                continue;
+            }
             LinearLayout item = (LinearLayout) child;
+            if (item.getChildCount() < 2) {
+                continue;
+            }
             View icon = item.getChildAt(0);
             TextView label = (TextView) item.getChildAt(1);
-            int textColor = selected ? colors.brandPrimary : colors.textTertiary;
+            int textColor = selected ? selectedColor : idleColor;
             if (icon instanceof TextView) {
                 TextView iconText = (TextView) icon;
                 iconText.setTextColor(textColor);
@@ -205,7 +226,29 @@ public class BasicBottomTabView extends LinearLayout {
             label.setTextColor(textColor);
             label.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
             label.setTypeface(Typeface.DEFAULT_BOLD);
+            // 选中轻微上浮，对齐 Web icon pop
+            icon.setTranslationY(selected ? -dp(1) : 0);
+            icon.setScaleX(selected ? 1.08f : 1f);
+            icon.setScaleY(selected ? 1.08f : 1f);
         }
+    }
+
+    /** Web 贴纸岛：白→主色浅竖向渐变 + inset 主色描边。 */
+    private Drawable createSelectedIsland(BasicColors colors) {
+        int soft = colors.brandPrimarySubtle != 0
+                ? colors.brandPrimarySubtle
+                : withAlpha(colors.brandPrimary, 26);
+        GradientDrawable g = new GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM,
+                new int[]{Color.WHITE, soft}
+        );
+        g.setCornerRadius(dp(16));
+        g.setStroke(Math.max(1, dp(1.5f)), withAlpha(colors.brandPrimary, 107));
+        return g;
+    }
+
+    private static int withAlpha(int color, int alpha) {
+        return (color & 0x00FFFFFF) | ((alpha & 0xFF) << 24);
     }
 
     private int dp(float value) {
@@ -227,8 +270,9 @@ public class BasicBottomTabView extends LinearLayout {
         if (drawable == null) {
             return;
         }
+        Drawable d = drawable.mutate();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            drawable.setTint(color);
+            d.setTint(color);
         }
     }
 

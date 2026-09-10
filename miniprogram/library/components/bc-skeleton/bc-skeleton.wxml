@@ -1,0 +1,14 @@
+<view
+  class="bc-skeleton bc-skeleton--{{variant}} {{animated || variant === 'pulse' ? 'is-animated' : ''}}"
+  style="--bc-fill: {{theme.surfaceSubtle}}; --bc-brand: {{theme.brandPrimary}};"
+  aria-hidden="true"
+>
+  <view wx:if="{{avatar}}" class="bc-skeleton__avatar"></view>
+  <view class="bc-skeleton__body">
+    <view
+      wx:for="{{lineIndexes}}"
+      wx:key="*this"
+      class="bc-skeleton__line {{index === lineIndexes.length - 1 ? 'is-short' : ''}}"
+    ></view>
+  </view>
+</view>

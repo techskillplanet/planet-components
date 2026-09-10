@@ -1,0 +1,8 @@
+<view
+  class="bc-checkbox bc-checkbox--{{variant}} {{checked ? 'is-checked' : ''}} {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-text: {{theme.textPrimary}}; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-brand: {{theme.brandPrimary}};"
+  bindtap="onTap"
+>
+  <view class="bc-checkbox__box">{{checked ? '✓' : ''}}</view>
+  <text wx:if="{{text}}" class="bc-checkbox__label">{{text}}</text>
+</view>

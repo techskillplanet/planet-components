@@ -1,0 +1,25 @@
+<view
+  class="bc-cascader {{open ? 'is-open' : ''}} {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textTertiary}}; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-menu: {{theme.surfaceSubtle}}; --bc-brand: {{theme.brandPrimary}}; --bc-brand-soft: {{theme.brandSubtle}};"
+>
+  <view class="bc-cascader__trigger" bindtap="onToggle">
+    <text class="bc-cascader__value {{display ? '' : 'is-placeholder'}}">{{display || placeholder}}</text>
+    <text class="bc-cascader__caret">▾</text>
+  </view>
+  <scroll-view wx:if="{{open}}" scroll-x class="bc-cascader__panel">
+    <view class="bc-cascader__cols">
+      <view wx:for="{{columns}}" wx:for-item="col" wx:for-index="ci" wx:key="ci" class="bc-cascader__col">
+        <view
+          wx:for="{{col}}"
+          wx:for-item="opt"
+          wx:for-index="oi"
+          wx:key="id"
+          class="bc-cascader__option {{opt.active ? 'is-selected' : ''}}"
+          data-col="{{ci}}"
+          data-opt="{{oi}}"
+          bindtap="onPick"
+        >{{opt.label}}</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

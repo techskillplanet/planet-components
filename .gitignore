@@ -10,6 +10,7 @@ build/
 .gradle/
 .cxx/
 dist/
+storybook-static/
 *.apk
 *.aab
 *.aar

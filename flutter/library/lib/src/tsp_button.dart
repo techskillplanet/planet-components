@@ -35,10 +35,11 @@ class _TspButtonState extends State<TspButton> {
 
   @override
   Widget build(BuildContext context) {
-    const faceHeight = 46.0;
-    const shadowLift = 5.0;
-    const pressedDrop = 2.0;
     final theme = widget.theme;
+    final faceHeight = theme.buttonFaceHeight;
+    final showRaisedShadow = theme.buttonRaisedShadowEnabled;
+    final shadowLift = showRaisedShadow ? theme.shadowControlIslandLiftY : 0.0;
+    final pressedDrop = theme.pressedDropY;
     final isFlat = widget.variant == TspButtonVariant.text || widget.variant == TspButtonVariant.link;
     final faceColor = switch (widget.variant) {
       TspButtonVariant.primary => theme.brandPrimary,
@@ -52,19 +53,31 @@ class _TspButtonState extends State<TspButton> {
       TspButtonVariant.standard => theme.textPrimary,
     };
     final borderColor = isFlat ? Colors.transparent : theme.borderDefault;
-    final faceTop = (!isFlat && _pressed) ? pressedDrop : 0.0;
-    final button = Opacity(
+    final disableAnim = MediaQuery.disableAnimationsOf(context);
+    final faceTop =
+        (!isFlat && showRaisedShadow && _pressed && !disableAnim) ? pressedDrop : 0.0;
+    final button = Semantics(
+      button: true,
+      enabled: !_inert,
+      label: widget.text,
+      child: Opacity(
       opacity: widget.disabled ? .45 : (widget.loading ? .7 : 1),
       child: GestureDetector(
         onTap: _inert ? null : widget.onTap,
-        onTapDown: _inert || isFlat ? null : (_) => setState(() => _pressed = true),
-        onTapUp: _inert || isFlat ? null : (_) => setState(() => _pressed = false),
-        onTapCancel: _inert || isFlat ? null : () => setState(() => _pressed = false),
+        onTapDown: _inert || isFlat || !showRaisedShadow || disableAnim
+            ? null
+            : (_) => setState(() => _pressed = true),
+        onTapUp: _inert || isFlat || !showRaisedShadow || disableAnim
+            ? null
+            : (_) => setState(() => _pressed = false),
+        onTapCancel: _inert || isFlat || !showRaisedShadow || disableAnim
+            ? null
+            : () => setState(() => _pressed = false),
         child: SizedBox(
           height: isFlat ? faceHeight : faceHeight + shadowLift,
           child: Stack(
             children: [
-              if (!isFlat)
+              if (!isFlat && showRaisedShadow)
                 Positioned(
                   left: 0,
                   right: 0,
@@ -109,6 +122,7 @@ class _TspButtonState extends State<TspButton> {
           ),
         ),
       ),
+    ),
     );
     return widget.fullWidth ? SizedBox(width: double.infinity, child: button) : button;
   }

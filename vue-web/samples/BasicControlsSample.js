@@ -8,10 +8,13 @@ import {
   starPlanetThemes,
   themed,
   TspAlert, TspAmount, TspBadge, TspBalanceHero, TspBottomTab, TspButton, TspCalendarHeatmap,
-  TspCard, TspCheckInStreakCard, TspChildSwitcher, TspChip, TspDatePicker, TspEmpty,
-  TspIconButton, TspInput, TspKeyValueLabel, TspListItem, TspModal, TspNotification,
-  TspOptionSheet, TspPinInput, TspPrintSheet, TspProgress, TspRedeemCardGrid, TspScoreRuleGrid,
-  TspSelect, TspStepper, TspSwitch, TspTabs, TspTextLink, TspToast, TspTopBar
+  TspCard, TspCheckInStreakCard, TspCheckbox, TspChildSwitcher, TspChip, TspCollapse, TspDatePicker,
+  TspDivider, TspEmpty, TspIconButton, TspInput, TspKeyValueLabel, TspListItem, TspLoadingDialog, TspModal,
+  TspNotification, TspOptionSheet, TspPinInput, TspPrintSheet, TspProgress, TspRadio,
+  TspRedeemCardGrid, TspRefreshLayout, TspScoreRuleGrid, TspSearchBar, TspSegmentedControl, TspSelect, TspStarRating,
+  TspStepper, TspSwitch, TspTabs, TspTextLink, TspToast, TspTopBar,
+  TspAvatar, TspSkeleton, TspTooltip, TspSlider, TspTextArea, TspDrawer, TspInputNumber, TspSwiper,
+  TspTag, TspFab, TspTimePicker, TspUpload, TspTable, TspTree, TspCascader
 } from '@techskillplanet/planet-components-vue';
 
 const sampleLocales = {
@@ -86,6 +89,41 @@ function renderVueDocPreview(name, theme, state) {
       example('loading', h(TspSwitch, { text: 'Loading', checked: true, loading: true, ...common })),
       example('disabled', h(TspSwitch, { text: 'Disabled', checked: false, disabled: true, ...common }))
     ]);
+    case 'Checkbox': return h('div', { class: 'bc-example-stack' }, [
+      example('default', h(TspCheckbox, { text: 'Agree', checked: state.checkboxChecked.value, onChange: (value) => { state.checkboxChecked.value = value; }, ...common })),
+      example('disabled', h(TspCheckbox, { text: 'Disabled', checked: true, disabled: true, ...common }))
+    ]);
+    case 'Radio': return h('div', { class: 'bc-example-stack' }, [
+      example('A', h(TspRadio, { text: 'Option A', checked: state.radioValue.value === 'A', onChange: () => { state.radioValue.value = 'A'; }, ...common })),
+      example('B', h(TspRadio, { text: 'Option B', checked: state.radioValue.value === 'B', onChange: () => { state.radioValue.value = 'B'; }, ...common }))
+    ]);
+    case 'SearchBar': return h(TspSearchBar, {
+      value: state.searchValue.value,
+      placeholder: 'Search…',
+      onChange: (value) => { state.searchValue.value = value; },
+      ...common
+    });
+    case 'SegmentedControl': return h(TspSegmentedControl, {
+      options: ['Day', 'Week', 'Month'],
+      selectedIndex: state.segmentIndex.value,
+      onSelect: (index) => { state.segmentIndex.value = index; },
+      ...common
+    });
+    case 'StarRating': return h('div', { class: 'bc-example-stack' }, [
+      example('interactive', h(TspStarRating, { value: state.ratingValue.value, max: 5, onChange: (value) => { state.ratingValue.value = value; }, ...common })),
+      example('readonly', h(TspStarRating, { value: 4, max: 5, variant: 'readonly', ...common }))
+    ]);
+    case 'Collapse': return h(TspCollapse, {
+      title: 'Details',
+      message: 'Sky Planet token-driven panel.',
+      expanded: state.collapseExpanded.value,
+      onChange: (value) => { state.collapseExpanded.value = value; },
+      ...common
+    });
+    case 'Divider': return h('div', { class: 'bc-example-stack' }, [
+      example('default', h(TspDivider, { ...common })),
+      example('labeled', h(TspDivider, { text: 'or', ...common }))
+    ]);
     case 'Progress': return h('div', { class: 'bc-example-stack' }, ['primary', 'success', 'warning', 'danger'].map((variant, index) => example(variant, h(TspProgress, { progress: [38, 68, 52, 82][index], variant, ...common }))));
     case 'TopBar': return h(TspTopBar, { title: '基础组件', showBack: true, ...common });
     case 'BottomTab': return h('div', { class: 'bc-doc-sticky-demo' }, h(TspBottomTab, { tabs: state.tabs, selectedKey: state.tab.value, onSelect: (key) => { state.tab.value = key; }, ...common }));
@@ -102,6 +140,55 @@ function renderVueDocPreview(name, theme, state) {
     case 'Empty': return h(TspEmpty, { title: '空状态', message: '暂无记录。', actionText: '操作', ...common });
     case 'Toast': return h(TspButton, { text: 'Show Toast', variant: 'primary', onTap: () => state.showToast('已保存', 'success'), ...common });
     case 'Modal': return h(TspButton, { text: 'Open Modal', onTap: () => { state.showModal.value = true; }, ...common });
+    case 'LoadingDialog': return h('div', { class: 'bc-example-stack' }, [
+      example('default', h(TspButton, {
+        text: 'Show Loading',
+        variant: 'primary',
+        onTap: () => {
+          state.showLoading.value = true;
+          setTimeout(() => { state.showLoading.value = false; }, 1400);
+        },
+        ...common
+      })),
+      example('compact', h(TspButton, {
+        text: 'Compact Loading',
+        onTap: () => {
+          state.showLoading.value = 'compact';
+          setTimeout(() => { state.showLoading.value = false; }, 1400);
+        },
+        ...common
+      }))
+    ]);
+    case 'RefreshLayout': return h('div', { style: { height: '280px' } }, [
+      h(TspRefreshLayout, {
+        theme,
+        refreshing: Boolean(state.refreshing.value),
+        loadingMore: Boolean(state.loadingMore.value),
+        onRefresh: () => {
+          state.refreshing.value = true;
+          setTimeout(() => {
+            state.refreshItems.value = [1, 2, 3, 4, 5, 6];
+            state.refreshing.value = false;
+            state.showToast?.('已刷新', 'success');
+          }, 900);
+        },
+        onLoadMore: () => {
+          if (state.loadingMore.value || state.refreshing.value) return;
+          state.loadingMore.value = true;
+          setTimeout(() => {
+            const items = state.refreshItems.value || [1, 2, 3, 4, 5, 6];
+            state.refreshItems.value = [...items, items.length + 1, items.length + 2];
+            state.loadingMore.value = false;
+          }, 900);
+        }
+      }, () => (state.refreshItems.value || [1, 2, 3, 4, 5, 6]).map((item) => h(TspListItem, {
+        key: item,
+        title: `列表项 ${item}`,
+        message: '下拉刷新，上拉加载更多',
+        trailing: '›',
+        theme
+      })))
+    ]);
     case 'DatePicker': return h(TspDatePicker, {
       value: state.dateValue?.value || '2026-08-26',
       onChange: (value) => { if (state.dateValue) state.dateValue.value = value; },
@@ -162,6 +249,98 @@ function renderVueDocPreview(name, theme, state) {
       onOpen: () => state.showToast?.('打开打卡', 'info'),
       ...common
     });
+    case 'Avatar': return h('div', { class: 'bc-row' }, [
+      h(TspAvatar, { text: '技趣', ...common }),
+      h(TspAvatar, { text: 'SP', variant: 'primary', size: 'lg', ...common }),
+      h(TspAvatar, { text: 'A', variant: 'subtle', size: 'sm', ...common })
+    ]);
+    case 'Skeleton': return h(TspSkeleton, { rows: 3, animated: true, avatar: true, ...common });
+    case 'Tooltip': return h(TspTooltip, { text: 'Sky Planet tip', placement: 'top', ...common }, () =>
+      h(TspButton, { text: 'Hover me', variant: 'default', ...common })
+    );
+    case 'Slider': return h(TspSlider, {
+      value: state.sliderValue.value,
+      min: 0,
+      max: 100,
+      step: 1,
+      onChange: (value) => { state.sliderValue.value = value; },
+      ...common
+    });
+    case 'TextArea': return h(TspTextArea, {
+      value: state.textAreaValue.value,
+      placeholder: 'Write a note…',
+      rows: 3,
+      onChange: (value) => { state.textAreaValue.value = value; },
+      ...common
+    });
+    case 'Drawer': return h(TspButton, {
+      text: 'Open Drawer',
+      variant: 'primary',
+      onTap: () => { state.showDrawer.value = true; },
+      ...common
+    });
+    case 'InputNumber': return h(TspInputNumber, {
+      value: state.inputNumberValue.value,
+      min: 0,
+      max: 10,
+      step: 1,
+      onChange: (value) => { state.inputNumberValue.value = value; },
+      ...common
+    });
+    case 'Swiper': return h(TspSwiper, {
+      items: ['Slide A', 'Slide B', 'Slide C'],
+      index: state.swiperIndex.value,
+      onChange: (index) => { state.swiperIndex.value = index; },
+      ...common
+    });
+    case 'Tag': return h('div', { class: 'bc-row' }, [
+      h(TspTag, { text: 'default', ...common }),
+      h(TspTag, { text: 'primary', variant: 'primary', ...common }),
+      h(TspTag, { text: 'closable', closable: true, onClose: () => state.showToast('closed', 'info'), ...common })
+    ]);
+    case 'Fab': return h('div', { class: 'bc-row' }, [
+      h(TspFab, { icon: '+', ...common }),
+      h(TspFab, { icon: '+', text: '新建', ...common }),
+      h(TspFab, { icon: '✎', text: '默认', variant: 'default', ...common })
+    ]);
+    case 'TimePicker': return h(TspTimePicker, {
+      value: state.timeValue.value,
+      placeholder: 'HH:mm',
+      onChange: (value) => { state.timeValue.value = value; },
+      ...common
+    });
+    case 'Upload': return h(TspUpload, {
+      files: state.uploadFiles.value,
+      onChange: (files) => { state.uploadFiles.value = files; },
+      ...common
+    });
+    case 'Table': return h(TspTable, {
+      columns: [{ key: 'name', title: '名称' }, { key: 'status', title: '状态' }],
+      rows: [{ name: 'Avatar', status: '就绪' }, { name: 'Tag', status: '新增' }],
+      variant: 'striped',
+      ...common
+    });
+    case 'Tree': return h(TspTree, {
+      items: [
+        { id: 'a', label: '星球', children: [{ id: 'a1', label: '天空' }, { id: 'a2', label: '岛屿' }] },
+        { id: 'b', label: '玩法', children: [{ id: 'b1', label: '闯关' }] }
+      ],
+      selectedId: state.treeSelectedId.value,
+      expandedIds: state.treeExpandedIds.value,
+      onSelect: (id) => { state.treeSelectedId.value = id; },
+      onExpand: (ids) => { state.treeExpandedIds.value = ids; },
+      ...common
+    });
+    case 'Cascader': return h(TspCascader, {
+      options: [
+        { value: 'asia', label: '亚洲', children: [{ value: 'cn', label: '中国' }, { value: 'jp', label: '日本' }] },
+        { value: 'eu', label: '欧洲', children: [{ value: 'fr', label: '法国' }] }
+      ],
+      value: state.cascaderValue.value,
+      placeholder: '请选择地区',
+      onChange: (value) => { state.cascaderValue.value = value; },
+      ...common
+    });
     default: return null;
   }
 }
@@ -212,7 +391,20 @@ function renderVueDocPage(doc, theme, state, onBack, layoutClass) {
       theme,
       onConfirm: () => { state.showModal.value = false; },
       onCancel: () => { state.showModal.value = false; }
-    })
+    }),
+    h(TspLoadingDialog, {
+      visible: Boolean(state.showLoading.value),
+      variant: state.showLoading.value === 'compact' ? 'compact' : 'default',
+      message: '同步主题中...',
+      theme
+    }),
+    h(TspDrawer, {
+      visible: state.showDrawer.value,
+      title: 'Drawer',
+      placement: 'bottom',
+      theme,
+      onClose: () => { state.showDrawer.value = false; }
+    }, () => 'Sky Planet drawer body.')
   ]);
 }
 
@@ -240,6 +432,12 @@ export const BasicControlsSample = defineComponent({
     const platformMode = ref('auto');
     const autoPlatform = ref(detectPlatform());
     const checked = ref(true);
+    const checkboxChecked = ref(true);
+    const radioValue = ref('A');
+    const searchValue = ref('');
+    const segmentIndex = ref(1);
+    const ratingValue = ref(4);
+    const collapseExpanded = ref(true);
     const tab = ref('learn');
     const selectedTab = ref(0);
     const selectedOption = ref(1);
@@ -250,7 +448,21 @@ export const BasicControlsSample = defineComponent({
     const showSheet = ref(false);
     const selectedDocName = ref(typeof window !== 'undefined' ? window.location.hash.replace(/^#/, '') : '');
     const showModal = ref(false);
+    const showLoading = ref(false);
+    const refreshing = ref(false);
+    const loadingMore = ref(false);
+    const refreshItems = ref([1, 2, 3, 4, 5, 6]);
     const toast = ref(null);
+    const showDrawer = ref(false);
+    const sliderValue = ref(40);
+    const textAreaValue = ref('');
+    const inputNumberValue = ref(3);
+    const swiperIndex = ref(0);
+    const timeValue = ref('09:30');
+    const uploadFiles = ref([{ id: '1', name: 'readme.md' }]);
+    const treeSelectedId = ref('a1');
+    const treeExpandedIds = ref(['a']);
+    const cascaderValue = ref([]);
     const tabs = [{ key: 'learn', title: '学习', icon: '⌂' }, { key: 'settings', title: '设置', icon: '⚙' }];
     let toastTimer = 0;
     let mediaQuery;
@@ -289,8 +501,11 @@ export const BasicControlsSample = defineComponent({
       const t = (key) => sampleLocales[locale.value][key] ?? sampleLocales.en[key] ?? key;
       const selectedDoc = componentDocs.find((doc) => doc.name === selectedDocName.value);
       const previewState = {
-        checked, inputValue, selectedOption, selectedTab, pinValue, dateValue, childId,
-        showSheet, showModal, toast, tabs, tab, showToast
+        checked, checkboxChecked, radioValue, searchValue, segmentIndex, ratingValue, collapseExpanded,
+        inputValue, selectedOption, selectedTab, pinValue, dateValue, childId,
+        showSheet, showModal, showLoading, refreshing, loadingMore, refreshItems, toast, tabs, tab, showToast,
+        showDrawer, sliderValue, textAreaValue, inputNumberValue, swiperIndex,
+        timeValue, uploadFiles, treeSelectedId, treeExpandedIds, cascaderValue
       };
       const layoutClass = resolveLayoutClass();
       platformOptions[0].title = t('auto');

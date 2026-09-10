@@ -1,0 +1,13 @@
+<view
+  class="bc-search-bar bc-search-bar--{{variant}} {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-text: {{theme.textPrimary}}; --bc-muted: {{theme.textTertiary}}; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}};"
+>
+  <text class="bc-search-bar__icon">⌕</text>
+  <input
+    class="bc-search-bar__input"
+    value="{{value}}"
+    placeholder="{{placeholder}}"
+    disabled="{{disabled}}"
+    bindinput="onInput"
+  />
+</view>

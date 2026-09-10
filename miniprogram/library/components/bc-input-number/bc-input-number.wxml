@@ -1,0 +1,8 @@
+<view
+  class="bc-input-number {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-text: {{theme.textPrimary}}; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}};"
+>
+  <view class="bc-input-number__btn" bindtap="onMinus">−</view>
+  <text class="bc-input-number__value">{{value}}</text>
+  <view class="bc-input-number__btn" bindtap="onPlus">+</view>
+</view>

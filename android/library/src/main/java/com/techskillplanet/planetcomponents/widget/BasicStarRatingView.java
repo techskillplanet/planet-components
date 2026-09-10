@@ -24,6 +24,7 @@ public class BasicStarRatingView extends LinearLayout {
 
     private int starCount = MAX_STARS;
     private int selectedStars;
+    private boolean basicDisabled;
     private OnRatingSelectedListener listener;
 
     public BasicStarRatingView(Context context) {
@@ -59,6 +60,13 @@ public class BasicStarRatingView extends LinearLayout {
         this.listener = listener;
     }
 
+    /** 设置禁用态（禁用后不可改分）。 */
+    public void setBasicDisabled(boolean disabled) {
+        basicDisabled = disabled;
+        setEnabled(!disabled);
+        refreshTheme();
+    }
+
     public void refreshTheme() {
         refreshSelection();
     }
@@ -77,6 +85,9 @@ public class BasicStarRatingView extends LinearLayout {
             star.setClickable(true);
             star.setFocusable(true);
             star.setOnClickListener(v -> {
+                if (basicDisabled || !isEnabled()) {
+                    return;
+                }
                 selectedStars = starIndex;
                 refreshSelection();
                 if (listener != null) {
@@ -95,10 +106,14 @@ public class BasicStarRatingView extends LinearLayout {
         if (colors == null) {
             return;
         }
+        boolean disabled = basicDisabled || !isEnabled();
+        setAlpha(disabled ? 0.45f : 1f);
         for (int i = 0; i < getChildCount(); i++) {
             TextView star = (TextView) getChildAt(i);
             boolean filled = i < selectedStars;
             star.setTextColor(filled ? colors.brandPrimary : colors.borderControl);
+            star.setEnabled(!disabled);
+            star.setClickable(!disabled);
         }
     }
 

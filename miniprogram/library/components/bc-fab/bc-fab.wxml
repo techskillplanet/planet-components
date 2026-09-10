@@ -1,0 +1,10 @@
+<view
+  class="bc-fab bc-fab--{{variant}} {{text ? 'is-extended' : ''}} {{disabled ? 'is-disabled' : ''}}"
+  style="--bc-text: {{theme.textPrimary}}; --bc-border: {{theme.borderDefault}}; --bc-surface: {{theme.surfaceRaised}}; --bc-brand: {{theme.brandPrimary}};"
+  bindtap="onTap"
+  aria-role="button"
+  aria-label="{{text || icon}}"
+>
+  <text class="bc-fab__icon">{{icon}}</text>
+  <text wx:if="{{text}}" class="bc-fab__text">{{text}}</text>
+</view>

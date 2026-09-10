@@ -34,6 +34,11 @@ public final class BasicEdgeToEdgeHelper {
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.setDecorFitsSystemWindows(false);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            View decor = window.getDecorView();
+            int flags = decor.getSystemUiVisibility();
+            flags |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decor.setSystemUiVisibility(flags);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -54,7 +59,8 @@ public final class BasicEdgeToEdgeHelper {
         if (colors == null) {
             return true;
         }
-        return relativeLuminance(colors.backgroundSurfaceRaised) >= 0.55d;
+        // Immersive TopBar keeps the status band transparent over the page gradient.
+        return relativeLuminance(colors.backgroundPage) >= 0.55d;
     }
 
     /**
