@@ -67,6 +67,8 @@ node tools/check-contract-inventory.cjs
 node tools/check-android-extensions.cjs
 node tools/check-skills-contract.cjs
 node tools/check-icon-catalog.cjs
+node tools/check-test-matrix.cjs
+node tools/check-docs-i18n.cjs
 node tools/build-api-docs.cjs
 ```
 

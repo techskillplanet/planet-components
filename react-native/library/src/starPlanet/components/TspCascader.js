@@ -23,9 +23,11 @@ function findPathLabels(options, valuePath) {
 }
 
 /** Multi-level cascader — trigger + Modal multi-column panel. */
+const EMPTY_PATH = [];
+
 export function TspCascader({
   options = [],
-  value = [],
+  value,
   placeholder = '请选择',
   disabled = false,
   theme,
@@ -33,7 +35,11 @@ export function TspCascader({
 }) {
   const t = withTheme(theme);
   const opts = Array.isArray(options) ? options : [];
-  const path = Array.isArray(value) ? value.map(String) : [];
+  const pathKey = Array.isArray(value) ? value.map(String).join('\0') : '';
+  const path = useMemo(
+    () => (pathKey ? pathKey.split('\0') : EMPTY_PATH),
+    [pathKey]
+  );
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState(path);
 

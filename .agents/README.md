@@ -2,6 +2,18 @@
 
 内置 AI Agent Skills（与 Cursor / Claude / Codex 日常 skill 同格式）。清单版本见 [`plugin-manifest.json`](plugin-manifest.json)（**0.2.1**）。
 
+## 加载方式
+
+| 方式 | 命令 / 操作 |
+| --- | --- |
+| 公共安装 | `npx skills add techskillplanet/planet-components` |
+| 列出 skill | `npx skills add techskillplanet/planet-components -l` |
+| Cursor Plugins | Settings → Plugins → 添加本仓库根目录 |
+| 本机符号链接 | `./tools/install-ai-plugin.sh` |
+| 项目内 | 打开含 `.agents/skills` 的本仓库即可 |
+
+完整说明：[`docs/AI_PLUGIN.md`](../docs/AI_PLUGIN.md)。
+
 ## 公共安装
 
 ```bash
@@ -27,7 +39,7 @@ npx skills add techskillplanet/planet-components -l   # 仅列出
 | `integrate-miniprogram` | 微信小程序 npm |
 | `integrate-kuikly` | Kuikly Maven 消费 |
 
-覆盖：DatePicker + Domain-7、主题 sky/night/mint/sunrise、`Button.loading`。组件库目标版本 **0.2.1**，下次发组件需升 semver。
+覆盖：DatePicker + Domain-7、主题 sky/night/mint/sunrise、`Button.loading`。组件库公开版本 **0.2.1**（八栈 registry 已对齐）。
 
 零基础文档：[`docs/AI_FOR_EVERYONE.md`](../docs/AI_FOR_EVERYONE.md) · 提示词：[`docs/prompts/`](../docs/prompts/)
 

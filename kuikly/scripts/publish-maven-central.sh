@@ -253,7 +253,11 @@ if [[ "$UPLOAD_ONLY" -eq 0 ]]; then
     exit 0
   fi
   echo "==> Gradle publish → OSSRH Staging API"
-  "$GRADLE_BIN" "${GRADLE_PROXY_ARGS[@]}" "${GRADLE_P_ARGS[@]}" "$GRADLE_TASK"
+  if ((${#GRADLE_PROXY_ARGS[@]} > 0)); then
+    "$GRADLE_BIN" "${GRADLE_PROXY_ARGS[@]}" "${GRADLE_P_ARGS[@]}" "$GRADLE_TASK"
+  else
+    "$GRADLE_BIN" "${GRADLE_P_ARGS[@]}" "$GRADLE_TASK"
+  fi
 fi
 
 echo "==> Search staging repositories"

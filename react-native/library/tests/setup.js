@@ -45,6 +45,20 @@ vi.mock('react-native', () => {
     View,
     Value: AnimatedValue,
     timing,
+    sequence: anims => ({
+      start(cb) {
+        (anims || []).forEach(a => a?.start?.());
+        cb?.({ finished: true });
+      },
+      stop() {},
+    }),
+    parallel: anims => ({
+      start(cb) {
+        (anims || []).forEach(a => a?.start?.());
+        cb?.({ finished: true });
+      },
+      stop() {},
+    }),
     loop: anim => ({
       start() {
         anim?.start?.();
@@ -54,6 +68,14 @@ vi.mock('react-native', () => {
       },
     }),
   };
+
+  const PanResponder = {
+    create: () => ({
+      panHandlers: {},
+    }),
+  };
+
+  const useWindowDimensions = () => ({ width: 390, height: 844, scale: 2, fontScale: 1 });
 
   return {
     StyleSheet,
@@ -69,6 +91,8 @@ vi.mock('react-native', () => {
     RefreshControl: View,
     Switch: View,
     Animated,
+    PanResponder,
+    useWindowDimensions,
     Easing: { linear: x => x },
     AccessibilityInfo: {
       isReduceMotionEnabled: async () => false,

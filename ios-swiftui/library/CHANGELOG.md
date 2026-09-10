@@ -2,6 +2,7 @@
 
 ## 0.2.1
 
+- Cross-stack contract test matrix + sample/docs i18n coverage for catalog UX.
 - Add DatePicker + Domain-7: ChildSwitcher, ScoreRuleGrid, RedeemCardGrid, CalendarHeatmap, PrintSheet, BalanceHero, CheckInStreakCard.
 - Align theme tokens with React Web; add sunrise palette.
 - Add `loading` support on `TspButton`.

@@ -15,13 +15,15 @@
 ### ① 准备工具（一次性）
 
 1. 安装 [Cursor](https://cursor.com/)（或你已有的 Claude / Codex）。  
-2. 在终端安装技趣星球 Agent Skills（任意项目目录即可）：
+2. 用下面 **任一方式** 加载技趣星球 Agent Skills：
 
-```bash
-npx skills add techskillplanet/planet-components
-```
+| 方式 | 怎么做 |
+| --- | --- |
+| 推荐 | 终端执行 `npx skills add techskillplanet/planet-components` |
+| Cursor | Settings → Plugins，添加本仓库；或直接打开本仓库 |
+| 维护者 | 在本仓库根目录执行 `./tools/install-ai-plugin.sh` |
 
-若你在本仓库里改组件库，也可用 `./tools/install-ai-plugin.sh` 做本机符号链接。
+更多细节见 [`AI_PLUGIN.md`](AI_PLUGIN.md#加载方式一览任选其一)。
 
 3. **新开一个 AI 对话**（很重要，旧对话可能读不到新技能）。
 

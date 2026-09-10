@@ -54,6 +54,12 @@ jobs:
       - name: Icon catalog
         run: node tools/check-icon-catalog.cjs
 
+      - name: Contract test matrix
+        run: node tools/check-test-matrix.cjs
+
+      - name: Docs i18n coverage
+        run: node tools/check-docs-i18n.cjs
+
       - name: React Web
         working-directory: react-web/library
         run: npm install && npm run check && npm test && npm run pack:dry

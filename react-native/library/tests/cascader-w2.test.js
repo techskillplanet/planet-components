@@ -22,17 +22,6 @@ function textsOf(root) {
 }
 
 function pressByLabel(root, label) {
-  const nodes = root.findAll(
-    (n) =>
-      n.props?.onPress &&
-      (n.props.accessibilityLabel === label ||
-        (Array.isArray(n.children) === false &&
-          n.findAllByType?.('Text')?.some?.((t) => {
-            const c = t.props.children;
-            return c === label || (Array.isArray(c) && c.includes(label));
-          })))
-  );
-  // Prefer Pressable whose Text child equals label
   const byText = root.findAll((n) => {
     if (!n.props?.onPress) return false;
     try {
@@ -45,7 +34,10 @@ function pressByLabel(root, label) {
       return false;
     }
   });
-  const target = byText[0] || nodes[0];
+  const byA11y = root.findAll(
+    (n) => n.props?.onPress && n.props.accessibilityLabel === label
+  );
+  const target = byText[0] || byA11y[0];
   expect(target).toBeTruthy();
   act(() => {
     target.props.onPress();

@@ -34,26 +34,40 @@
 | **一套视觉语言** | `design/tokens/` 语义 Token，Android / iOS / Web / Flutter / 小程序 / Kuikly 同名同义 |
 | **八栈可独立发版** | 每栈 `library` + 可运行 `samples`（samples 只依赖本地 library） |
 | **小而一致的 API** | 常用：`variant`、`disabled`、`selected` / `checked`、`text` / `title` / `message`、运行时换肤 |
-| **已公开上架** | MIT · 全栈 **0.2.0**（npm / Maven Central / pub.dev / SPM / CocoaPods） |
+| **已公开上架** | MIT · 全栈 **0.2.1**（npm / Maven Central / pub.dev / SPM / CocoaPods） |
 
 ---
 
 ## 发布状态（公开渠道）
 
-当前公开版本统一为 **0.2.0**（2026-09-08 实查）：
+当前公开版本统一为 **0.2.1**（2026-09-10 全栈发版）：
 
 | 技术栈 | 包坐标 / 渠道 | 状态 |
 | --- | --- | --- |
-| Android View | Maven Central `io.github.techskillplanet:planet-components-android` | 已发布 |
-| iOS SwiftUI | SPM（GitHub tag）+ CocoaPods `PlanetComponents` | 已发布 |
-| React Web | npm `@techskillplanet/planet-components-react` | 已发布 |
-| Vue Web | npm `@techskillplanet/planet-components-vue` | 已发布 |
-| React Native | npm `@techskillplanet/planet-components-react-native` | 已发布 |
-| Flutter | pub.dev `tech_skill_planet_components` | 已发布 |
-| 微信小程序 | npm `@techskillplanet/planet-components-miniprogram` | 已发布 |
-| Kuikly | Maven Central `io.github.techskillplanet:planet-components-kuikly` | 已发布 |
+| Android View | Maven Central `io.github.techskillplanet:planet-components-android` | 已发布 0.2.1 |
+| iOS SwiftUI | SPM（GitHub tag）+ CocoaPods `PlanetComponents` | 已发布 0.2.1 |
+| React Web | npm `@techskillplanet/planet-components-react` | 已发布 0.2.1 |
+| Vue Web | npm `@techskillplanet/planet-components-vue` | 已发布 0.2.1 |
+| React Native | npm `@techskillplanet/planet-components-react-native` | 已发布 0.2.1 |
+| Flutter | pub.dev `tech_skill_planet_components` | 已发布 0.2.1 |
+| 微信小程序 | npm `@techskillplanet/planet-components-miniprogram` | 已发布 0.2.1 |
+| Kuikly | Maven Central `io.github.techskillplanet:planet-components-kuikly` | 已发布 0.2.1 |
 
 发版流程：[`PUBLISHING.md`](PUBLISHING.md)。iOS 双渠道：[`ios-swiftui/library/PUBLISHING.md`](ios-swiftui/library/PUBLISHING.md)。
+
+---
+
+## AI 技能加载方式（任选其一）
+
+| 方式 | 适用场景 | 命令 / 操作 |
+| --- | --- | --- |
+| **A. 公共安装（推荐）** | 任意业务项目 | `npx skills add techskillplanet/planet-components` |
+| **B. Cursor 插件目录** | 本仓开发 | Cursor → Settings → Plugins → 添加本仓库根目录 |
+| **C. 本机符号链接** | 维护者改 skill 即时生效 | `./tools/install-ai-plugin.sh` |
+| **D. 克隆即用** | 打开 monorepo | 仓库内已有 `.agents/skills` / `.cursor/skills`，新开 Agent 对话即可 |
+| **E. 手动拷贝** | 无 npx / 内网 | 将 `.agents/skills/*` 拷到 `~/.cursor/skills`、`~/.claude/skills` 或 `~/.codex/skills` |
+
+非技术同学：[`docs/AI_FOR_EVERYONE.md`](docs/AI_FOR_EVERYONE.md)。完整说明：[`docs/AI_PLUGIN.md`](docs/AI_PLUGIN.md)。
 
 ---
 

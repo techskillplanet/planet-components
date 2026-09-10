@@ -55,6 +55,22 @@ Full install snippets: **[简体中文（完整）](README.zh-CN.md#三方接入
 
 ---
 
+
+## Release status (public registries)
+
+**0.2.1** published 2026-09-10 across all eight stacks (npm · Maven Central · pub.dev · SPM / CocoaPods).
+
+| Stack | Package | Status |
+| --- | --- | --- |
+| Android View | `io.github.techskillplanet:planet-components-android:0.2.1` | Published |
+| iOS SwiftUI | `PlanetComponents` `0.2.1` (SPM tag + CocoaPods) | Published |
+| React Web | `@techskillplanet/planet-components-react@0.2.1` | Published |
+| Vue Web | `@techskillplanet/planet-components-vue@0.2.1` | Published |
+| React Native | `@techskillplanet/planet-components-react-native@0.2.1` | Published |
+| Flutter | `tech_skill_planet_components` `0.2.1` | Published |
+| Mini Program | `@techskillplanet/planet-components-miniprogram@0.2.1` | Published |
+| Kuikly | `io.github.techskillplanet:planet-components-kuikly:0.2.1` | Published |
+
 ## Quick start
 
 Pick your stack — all examples use the public **0.2.1** packages.
@@ -161,7 +177,7 @@ Each stack: **`library/`** (publishable) + **`samples/`** (local dependency only
 | [docs/COMPONENT_CONTRACT.md](docs/COMPONENT_CONTRACT.md) | Cross-platform component contract |
 | [docs/AI_FOR_EVERYONE.md](docs/AI_FOR_EVERYONE.md) | Non-engineers: build pages with AI (Chinese) |
 | [docs/prompts/](docs/prompts/) | Copy-paste prompts (zh / en) |
-| [docs/AI_PLUGIN.md](docs/AI_PLUGIN.md) | Agent Skills: `npx skills add techskillplanet/planet-components` |
+| [docs/AI_PLUGIN.md](docs/AI_PLUGIN.md) | Agent Skills load paths: `npx skills` / Cursor Plugins / `install-ai-plugin.sh` |
 | [.agents/README.md](.agents/README.md) | Built-in skill catalog (v0.2.1) |
 | [AGENTS.md](AGENTS.md) | Repo rules for coding agents |
 

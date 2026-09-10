@@ -36,17 +36,24 @@ function buildColumns(options, walk) {
   return columns;
 }
 
+const EMPTY_PATH = [];
+
 /** Multi-level cascader picker. */
 export function TspCascader({
   options = [],
-  value = [],
+  value,
   placeholder = '请选择',
   disabled = false,
   theme = starPlanetTheme,
   onChange,
 }) {
   const opts = Array.isArray(options) ? options : [];
-  const path = Array.isArray(value) ? value.map(String) : [];
+  // Stabilize path so closing the panel does not infinite-loop via useEffect deps.
+  const pathKey = Array.isArray(value) ? value.map(String).join('\0') : '';
+  const path = useMemo(
+    () => (pathKey ? pathKey.split('\0') : EMPTY_PATH),
+    [pathKey]
+  );
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState(path);
   const rootRef = useRef(null);

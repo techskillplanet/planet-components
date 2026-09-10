@@ -2,6 +2,7 @@
 
 ## 0.2.1
 
+- Add contract matrix tests aligned with shared TC IDs.
 - Add DatePicker + Domain-7 widgets: ChildSwitcher, ScoreRuleGrid, RedeemCardGrid, CalendarHeatmap, PrintSheet, BalanceHero, CheckInStreakCard.
 - Align sky/night/mint semantic colors with React Web; add sunrise theme.
 - Add `loading` support on `TspButton`.

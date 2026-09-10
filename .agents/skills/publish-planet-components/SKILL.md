@@ -24,7 +24,7 @@ Publish **library** packages only. Samples stay on path/local library deps.
 | Flutter | `tech_skill_planet_components` | pub.dev |
 | iOS SwiftUI | `PlanetComponents` | SPM git tag + CocoaPods |
 
-**Target release: **0.2.1**.** Local `main` may include DatePicker + Domain-7 + sunrise + `Button.loading` not yet on registries — **bump version before the next publish** (recommended `0.2.1` or `0.3.0`).
+**Target release: **0.2.1** (published 2026-09-10). Next release: bump all eight libraries to a new semver before publishing.
 
 Catalog baseline: React Web ≈ **57** `Tsp*` (see `component_contract.json`). Themes: `sky` / `night` / `mint` / `sunrise` (Android keys: `sky_planet_day`, `star_planet_night`, `mint_planet_day`, `sunrise_planet_day`).
 

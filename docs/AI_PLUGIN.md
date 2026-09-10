@@ -18,7 +18,20 @@
     └── integrate-*/ …
 ```
 
-当前插件版本：**0.2.1**（见 `plugin-manifest.json`）。组件库目标版本 **0.2.1**；本地已含 Domain-7 等时，下次发版需升组件 semver。
+当前插件版本：**0.2.1**（见 `plugin-manifest.json`）。组件库公开版本 **0.2.1**（与八栈 registry 对齐）。
+
+## 加载方式一览（任选其一）
+
+| 方式 | 适用场景 | 命令 / 操作 |
+| --- | --- | --- |
+| **A. `npx skills`（推荐）** | 任意业务项目，不克隆本仓 | `npx skills add techskillplanet/planet-components` |
+| **B. Cursor Plugins** | Cursor 图形界面 | Settings → Plugins → 添加本仓库根目录；或打开本仓后新开 Agent 对话 |
+| **C. 本机符号链接** | 本仓维护者，改 skill 即时生效 | `./tools/install-ai-plugin.sh`（可 `--target cursor\|claude\|codex`） |
+| **D. 手动落到产品目录** | 无法用 npx / 内网离线 | 把 `.agents/skills/<name>` 拷到或链到 `~/.cursor/skills`、`~/.claude/skills`、`~/.codex/skills` |
+| **E. 仅项目内发现** | 协作者 clone 本仓 | 保证有 `.agents/skills`（及 `.cursor/skills` 链）；打开仓库即可被 Agent 发现 |
+| **F. 非技术同学提示词** | 产品 / 运营 / 老师 | 先装 A 或 B，再复制 [`docs/prompts/zh-quickstart.md`](prompts/zh-quickstart.md) |
+
+装完后务必 **新开对话**。Skill 不是 npm UI 包，不要发到 Maven / pub.dev。
 
 ## 公共安装（推荐 · 日常用法）
 
@@ -75,7 +88,7 @@ Agent Skill **不是** npm 包。公开路径：
 2. 把 `<name>` 写入 `.agents/plugin-manifest.json` 的 `skills` 数组；升 `version`（建议与组件发版对齐）。  
 3. **自包含**：消费向 skill 不要依赖 `../../../docs/...` 这种 monorepo 相对路径；外链用  
    `https://github.com/techskillplanet/planet-components/blob/main/...`，或把短提示词写进 `SKILL.md`。  
-4. 提交并推送到 `techskillplanet/planet-components`（public）；打 git tag（例如随 `0.2.0`）。  
+4. 提交并推送到 `techskillplanet/planet-components`（public）；打 git tag（例如随 `0.2.1`）。  
 5. 使用者：`npx skills add techskillplanet/planet-components`。
 
 [skills.sh](https://skills.sh) 靠 `npx skills add` 的安装遥测进入索引，没有单独的「上架表单」。装的人多了才会出现在搜索/排行。
@@ -109,7 +122,7 @@ Agent Skill **不是** npm 包。公开路径：
 | UI 组件库 | npm / Maven Central / pub.dev / SPM / CocoaPods（见 `PUBLISHING.md`） |
 | Agent Skills | 公开 GitHub + `npx skills add techskillplanet/planet-components` |
 
-组件 `0.2.0` 已上架时，保持 `plugin-manifest.json` 的 `version` 为 `0.2.0`，发版说明中提一句「Agent skills 已更新」。
+组件 `0.2.1` 已上架时，保持 `plugin-manifest.json` 的 `version` 为 `0.2.1`，发版说明中提一句「Agent skills 已更新」。
 
 ## 校验
 

@@ -4,8 +4,10 @@
  */
 import React, { useEffect, useMemo, useState } from 'react';
 import { componentCategories, componentDocs } from '../shared/componentDocs.js';
+import { localizeDocs } from '../shared/componentDocs.i18n.js';
+import { sampleT } from '../shared/sampleLocales.js';
 import {
-  starPlanetTheme, starPlanetThemes, themeVars,
+  starPlanetThemes, themeVars,
   TspAlert, TspAmount, TspBadge, TspBottomTab, TspButton, TspCard, TspChip,
   TspEmpty, TspIconButton, TspInput, TspKeyValueLabel, TspListItem, TspLoadingDialog, TspModal,
   TspNotification, TspOptionSheet, TspPinInput, TspProgress, TspRefreshLayout, TspSelect,
@@ -20,193 +22,61 @@ import {
 const h = React.createElement;
 const themed = (theme, style) => ({ ...themeVars(theme), ...style });
 
-const sampleLocales = {
-  'zh-CN': {
-    title: '基础组件', themeSwitch: '主题切换', languageSwitch: '语言切换',
-    pageSwitch: '页面切换', themeHint: '切换主题后，页面、组件、弹窗和 Toast 同步变更。',
-    languageHint: '切换语言后，样例文案从内置 JSON 字典读取。',
-    primary: '主按钮', default: '默认按钮', danger: '危险按钮',
-    card: '卡片', cardBody: '星球主题内容卡片。', success: '成功',
-    applied: '主题已应用。', badge: '徽标', chip: '标签', input: '输入框',
-    switch: '开关', progress: '进度', notice: '通知', noticeBody: '继续学习。',
-    listItem: '列表项', selectedState: '选中状态', empty: '空状态',
-    emptyBody: '暂无记录。', action: '操作', showToast: '显示 Toast',
-    openModal: '打开弹窗', stickyFooter: '底部固定操作', modalTitle: '确认',
-    platformSwitch: '平台预览', platformHint: '切换手机 / 桌面布局，验证全场景展示。',
-    modalBody: '弹窗遵循同一套组件契约，并验证移动端高度、滚动和底部按钮完整显示。',
-    cancel: '取消', ok: '确定', auto: '自动', mobile: '手机', desktop: '桌面',
-    learn: '学习', settings: '设置', selectTitle: '请选择'
-  },
-  en: {
-    title: 'Basic Controls', themeSwitch: 'Theme Switch', languageSwitch: 'Language Switch',
-    pageSwitch: 'Page Switch', themeHint: 'Theme changes update the page, components, modal and toast.',
-    languageHint: 'Sample text is loaded from the built-in JSON dictionary.',
-    primary: 'Primary', default: 'Default', danger: 'Danger', card: 'Card',
-    cardBody: 'Star Planet surface card.', success: 'Success', applied: 'Theme is applied.',
-    badge: 'Badge', chip: 'Chip', input: 'Input', switch: 'Switch', progress: 'Progress',
-    notice: 'Notice', noticeBody: 'Keep learning.', listItem: 'List item',
-    selectedState: 'Selected state', empty: 'Empty', emptyBody: 'No records yet.',
-    action: 'Action', showToast: 'Show Toast', openModal: 'Open Modal',
-    stickyFooter: 'Sticky Footer', modalTitle: 'Confirm',
-    platformSwitch: 'Platform Preview', platformHint: 'Switch mobile / desktop layout for full coverage.',
-    modalBody: 'The modal follows the same contract and verifies mobile height, scrolling and visible actions.',
-    cancel: 'Cancel', ok: 'OK', auto: 'Auto', mobile: 'Mobile', desktop: 'Desktop',
-    learn: 'Learn', settings: 'Settings', selectTitle: 'Choose'
-  },
-  ja: {
-    title: '基本コンポーネント', themeSwitch: 'テーマ切替', languageSwitch: '言語切替',
-    pageSwitch: 'ページ切替', themeHint: 'テーマ変更はページ、部品、モーダル、トーストへ反映されます。',
-    languageHint: 'サンプル文言は内蔵 JSON 辞書から読み込みます。',
-    primary: '主要ボタン', default: '標準ボタン', danger: '危険ボタン',
-    card: 'カード', cardBody: '星球テーマのカード。', success: '成功',
-    applied: 'テーマを適用しました。', badge: 'バッジ', chip: 'チップ',
-    input: '入力', switch: 'スイッチ', progress: '進捗', notice: '通知',
-    noticeBody: '学習を続けましょう。', listItem: 'リスト項目',
-    selectedState: '選択状態', empty: '空状態', emptyBody: '記録はありません。',
-    action: '操作', showToast: 'Toast 表示', openModal: 'モーダルを開く',
-    stickyFooter: '固定フッター', modalTitle: '確認',
-    platformSwitch: 'プラットフォーム', platformHint: 'モバイル / デスクトップ表示を切替えて検証します。',
-    modalBody: 'モーダルは同じ契約に従い、モバイル高さとスクロールを検証します。',
-    cancel: '取消', ok: 'OK', auto: '自動', mobile: 'モバイル', desktop: 'デスクトップ',
-    learn: '学習', settings: '設定', selectTitle: '選択'
-  },
-  'zh-TW': {
-    title: '基礎元件', themeSwitch: '主題切換', languageSwitch: '語言切換',
-    pageSwitch: '頁面切換', themeHint: '切換主題後，頁面、元件、彈窗和 Toast 同步變更。',
-    languageHint: '切換語言後，樣例文案從內建字典讀取。',
-    primary: '主按鈕', default: '預設按鈕', danger: '危險按鈕',
-    card: '卡片', cardBody: '星球主題內容卡片。', success: '成功',
-    applied: '主題已套用。', badge: '徽標', chip: '標籤', input: '輸入框',
-    switch: '開關', progress: '進度', notice: '通知', noticeBody: '繼續學習。',
-    listItem: '列表項', selectedState: '選中狀態', empty: '空狀態',
-    emptyBody: '暫無紀錄。', action: '操作', showToast: '顯示 Toast',
-    openModal: '開啟彈窗', stickyFooter: '底部固定操作', modalTitle: '確認',
-    platformSwitch: '平台預覽', platformHint: '切換手機 / 桌面佈局，驗證全場景展示。',
-    modalBody: '彈窗遵循同一套元件契約，並驗證行動端高度、捲動和底部按鈕完整顯示。',
-    cancel: '取消', ok: '確定', auto: '自動', mobile: '手機', desktop: '桌面',
-    learn: '學習', settings: '設定', selectTitle: '請選擇'
-  },
-  ko: {
-    title: '기본 컴포넌트', themeSwitch: '테마 전환', languageSwitch: '언어 전환',
-    pageSwitch: '페이지 전환', themeHint: '테마를 바꾸면 페이지, 컴포넌트, 모달, Toast가 함께 변경됩니다.',
-    languageHint: '언어를 바꾸면 샘플 문구가 내장 사전에서 읽힙니다.',
-    primary: '기본 버튼', default: '기본값', danger: '위험 버튼',
-    card: '카드', cardBody: 'Sky Planet 콘텐츠 카드.', success: '성공',
-    applied: '테마가 적용되었습니다.', badge: '배지', chip: '칩', input: '입력',
-    switch: '스위치', progress: '진행률', notice: '알림', noticeBody: '학습을 계속하세요.',
-    listItem: '리스트 항목', selectedState: '선택 상태', empty: '빈 상태',
-    emptyBody: '기록이 없습니다.', action: '작업', showToast: 'Toast 표시',
-    openModal: '모달 열기', stickyFooter: '하단 고정 작업', modalTitle: '확인',
-    platformSwitch: '플랫폼 미리보기', platformHint: '모바일 / 데스크톱 레이아웃을 전환해 전체 시나리오를 검증합니다.',
-    modalBody: '모달은 동일한 계약을 따르며 모바일 높이, 스크롤, 하단 버튼 표시를 검증합니다.',
-    cancel: '취소', ok: '확인', auto: '자동', mobile: '모바일', desktop: '데스크톱',
-    learn: '학습', settings: '설정', selectTitle: '선택'
-  },
-  es: {
-    title: 'Controles básicos', themeSwitch: 'Cambio de tema', languageSwitch: 'Cambio de idioma',
-    pageSwitch: 'Cambio de página', themeHint: 'Al cambiar el tema se actualizan página, componentes, modal y toast.',
-    languageHint: 'El texto del sample se carga desde el diccionario integrado.',
-    primary: 'Principal', default: 'Predeterminado', danger: 'Peligro', card: 'Tarjeta',
-    cardBody: 'Tarjeta de superficie Sky Planet.', success: 'Correcto', applied: 'Tema aplicado.',
-    badge: 'Insignia', chip: 'Chip', input: 'Entrada', switch: 'Interruptor', progress: 'Progreso',
-    notice: 'Aviso', noticeBody: 'Sigue aprendiendo.', listItem: 'Elemento de lista',
-    selectedState: 'Estado seleccionado', empty: 'Vacío', emptyBody: 'Aún no hay registros.',
-    action: 'Acción', showToast: 'Mostrar Toast', openModal: 'Abrir modal',
-    stickyFooter: 'Pie fijo', modalTitle: 'Confirmar',
-    platformSwitch: 'Vista de plataforma', platformHint: 'Cambia entre móvil y escritorio para cubrir todos los escenarios.',
-    modalBody: 'El modal sigue el mismo contrato y verifica altura, desplazamiento y acciones visibles en móvil.',
-    cancel: 'Cancelar', ok: 'Aceptar', auto: 'Auto', mobile: 'Móvil', desktop: 'Escritorio',
-    learn: 'Aprender', settings: 'Ajustes', selectTitle: 'Elegir'
-  },
-  fr: {
-    title: 'Contrôles de base', themeSwitch: 'Changement de thème', languageSwitch: 'Changement de langue',
-    pageSwitch: 'Changement de page', themeHint: 'Le thème met à jour la page, les composants, la modale et le toast.',
-    languageHint: 'Les textes du sample viennent du dictionnaire intégré.',
-    primary: 'Principal', default: 'Par défaut', danger: 'Danger', card: 'Carte',
-    cardBody: 'Carte de surface Sky Planet.', success: 'Succès', applied: 'Thème appliqué.',
-    badge: 'Badge', chip: 'Chip', input: 'Saisie', switch: 'Interrupteur', progress: 'Progression',
-    notice: 'Notification', noticeBody: 'Continuez à apprendre.', listItem: 'Élément de liste',
-    selectedState: 'État sélectionné', empty: 'Vide', emptyBody: 'Aucun enregistrement.',
-    action: 'Action', showToast: 'Afficher le toast', openModal: 'Ouvrir la modale',
-    stickyFooter: 'Pied fixe', modalTitle: 'Confirmer',
-    platformSwitch: 'Aperçu plateforme', platformHint: 'Basculez mobile / bureau pour couvrir tous les scénarios.',
-    modalBody: 'La modale suit le même contrat et vérifie hauteur, défilement et actions visibles sur mobile.',
-    cancel: 'Annuler', ok: 'OK', auto: 'Auto', mobile: 'Mobile', desktop: 'Bureau',
-    learn: 'Apprendre', settings: 'Réglages', selectTitle: 'Choisir'
-  },
-  de: {
-    title: 'Basis-Controls', themeSwitch: 'Thema wechseln', languageSwitch: 'Sprache wechseln',
-    pageSwitch: 'Seite wechseln', themeHint: 'Themenwechsel aktualisiert Seite, Komponenten, Modal und Toast.',
-    languageHint: 'Sample-Texte kommen aus dem integrierten Wörterbuch.',
-    primary: 'Primär', default: 'Standard', danger: 'Gefahr', card: 'Karte',
-    cardBody: 'Sky-Planet-Inhaltskarte.', success: 'Erfolg', applied: 'Thema angewendet.',
-    badge: 'Badge', chip: 'Chip', input: 'Eingabe', switch: 'Schalter', progress: 'Fortschritt',
-    notice: 'Hinweis', noticeBody: 'Weiterlernen.', listItem: 'Listeneintrag',
-    selectedState: 'Ausgewählt', empty: 'Leer', emptyBody: 'Noch keine Einträge.',
-    action: 'Aktion', showToast: 'Toast anzeigen', openModal: 'Modal öffnen',
-    stickyFooter: 'Fixierte Fußleiste', modalTitle: 'Bestätigen',
-    platformSwitch: 'Plattformvorschau', platformHint: 'Zwischen Mobil und Desktop wechseln, um alle Szenarien zu prüfen.',
-    modalBody: 'Das Modal folgt demselben Vertrag und prüft Höhe, Scrollen und sichtbare Aktionen auf Mobilgeräten.',
-    cancel: 'Abbrechen', ok: 'OK', auto: 'Auto', mobile: 'Mobil', desktop: 'Desktop',
-    learn: 'Lernen', settings: 'Einstellungen', selectTitle: 'Auswählen'
-  }
-};
-
 function detectPlatform() {
   if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return 'mobile';
   return window.matchMedia('(min-width: 1024px)').matches ? 'desktop' : 'mobile';
 }
 
-function TspDocPreview({ name, theme, state }) {
+function TspDocPreview({ name, theme, state, t }) {
   const common = { theme };
   const example = (title, node) => h('div', { key: title, className: 'bc-example-item' }, h('div', { className: 'bc-example-title' }, title), node);
   switch (name) {
     case 'Button': return h('div', { className: 'bc-example-stack' }, ['primary', 'default', 'danger', 'text'].map((variant) => example(variant, h(TspButton, { text: variant, variant, ...common }))));
-    case 'Card': return h('div', { className: 'bc-example-stack' }, [example('default', h(TspCard, common, h('strong', null, 'Card'), h('p', null, 'Star Planet card.'))), example('selected', h(TspCard, { selected: true, ...common }, 'Selected card'))]);
-    case 'Alert': return h('div', { className: 'bc-example-stack' }, ['info', 'success', 'warning', 'error'].map((variant) => example(variant, h(TspAlert, { title: variant, message: 'Theme is applied.', variant, ...common }))));
+    case 'Card': return h('div', { className: 'bc-example-stack' }, [example('default', h(TspCard, common, h('strong', null, t('card')), h('p', null, t('starPlanetCard')))), example('selected', h(TspCard, { selected: true, ...common }, t('cardSelected')))]);
+    case 'Alert': return h('div', { className: 'bc-example-stack' }, ['info', 'success', 'warning', 'error'].map((variant) => example(variant, h(TspAlert, { title: variant, message: t('applied'), variant, ...common }))));
     case 'Badge': return h('div', { className: 'bc-row' }, ['default', 'primary', 'success', 'warning', 'danger'].map((variant) => h(TspBadge, { key: variant, text: variant, variant, ...common })));
-    case 'Chip': return h('div', { className: 'bc-row' }, [h(TspChip, { key: 'default', text: 'Default', ...common }), h(TspChip, { key: 'selected', text: 'Selected', selected: true, ...common }), h(TspChip, { key: 'disabled', text: 'Disabled', disabled: true, ...common })]);
-    case 'Input': return h('div', { className: 'bc-example-stack' }, [example('default', h(TspInput, { value: state.inputValue, placeholder: 'Input', onChange: state.setInputValue, ...common })), example('error', h(TspInput, { value: '', placeholder: 'Required', variant: 'error', ...common }))]);
+    case 'Chip': return h('div', { className: 'bc-row' }, [h(TspChip, { key: 'default', text: t('default'), ...common }), h(TspChip, { key: 'selected', text: t('selected'), selected: true, ...common }), h(TspChip, { key: 'disabled', text: t('disabled'), disabled: true, ...common })]);
+    case 'Input': return h('div', { className: 'bc-example-stack' }, [example('default', h(TspInput, { value: state.inputValue, placeholder: t('input'), onChange: state.setInputValue, ...common })), example('error', h(TspInput, { value: '', placeholder: t('required'), variant: 'error', ...common }))]);
     case 'Select': return h(TspSelect, { options: ['A', 'B', 'C'], selectedIndex: state.selectedOption, onSelect: state.setSelectedOption, ...common });
-    case 'OptionSheet': return h(TspButton, { text: 'Open OptionSheet', variant: 'primary', onTap: () => state.setShowSheet(true), ...common });
+    case 'OptionSheet': return h(TspButton, { text: t('openOptionSheet'), variant: 'primary', onTap: () => state.setShowSheet(true), ...common });
     case 'Switch': return h('div', { className: 'bc-example-stack' }, [
-      example('md', h(TspSwitch, { text: 'Switch', checked: state.checked, onChange: state.setChecked, ...common })),
-      example('sm', h(TspSwitch, { text: 'Small', checked: state.checked, onChange: state.setChecked, variant: 'sm', ...common })),
-      example('loading', h(TspSwitch, { text: 'Loading', checked: true, loading: true, ...common })),
-      example('disabled', h(TspSwitch, { text: 'Disabled', checked: false, disabled: true, ...common }))
+      example('md', h(TspSwitch, { text: t('switch'), checked: state.checked, onChange: state.setChecked, ...common })),
+      example('sm', h(TspSwitch, { text: t('small'), checked: state.checked, onChange: state.setChecked, variant: 'sm', ...common })),
+      example('loading', h(TspSwitch, { text: t('loading'), checked: true, loading: true, ...common })),
+      example('disabled', h(TspSwitch, { text: t('disabled'), checked: false, disabled: true, ...common }))
     ]);
     case 'Checkbox': return h('div', { className: 'bc-example-stack' }, [
-      example('checked', h(TspCheckbox, { text: 'Agree', checked: state.checked, onChange: state.setChecked, ...common })),
-      example('disabled', h(TspCheckbox, { text: 'Disabled', checked: true, disabled: true, ...common }))
+      example('checked', h(TspCheckbox, { text: t('agree'), checked: state.checked, onChange: state.setChecked, ...common })),
+      example('disabled', h(TspCheckbox, { text: t('disabled'), checked: true, disabled: true, ...common }))
     ]);
     case 'Radio': return h('div', { className: 'bc-example-stack' }, [
-      example('a', h(TspRadio, { text: 'Option A', checked: (state.selectedOption || 0) === 0, onChange: () => state.setSelectedOption(0), ...common })),
-      example('b', h(TspRadio, { text: 'Option B', checked: state.selectedOption === 1, onChange: () => state.setSelectedOption(1), ...common }))
+      example('a', h(TspRadio, { text: t('optionA'), checked: (state.selectedOption || 0) === 0, onChange: () => state.setSelectedOption(0), ...common })),
+      example('b', h(TspRadio, { text: t('optionB'), checked: state.selectedOption === 1, onChange: () => state.setSelectedOption(1), ...common }))
     ]);
-    case 'Collapse': return h(TspCollapse, { title: 'Details', message: 'Sky Planet panel body.', expanded: Boolean(state.checked), onChange: state.setChecked, ...common });
-    case 'Divider': return h(TspDivider, { text: 'Section', ...common });
-    case 'SearchBar': return h(TspSearchBar, { value: state.inputValue || '', placeholder: 'Search…', onChange: state.setInputValue, ...common });
-    case 'SegmentedControl': return h(TspSegmentedControl, { options: ['Day', 'Week', 'Month'], selectedIndex: state.selectedTab || 0, onSelect: state.setSelectedTab, ...common });
+    case 'Collapse': return h(TspCollapse, { title: t('details'), message: t('cardBody'), expanded: Boolean(state.checked), onChange: state.setChecked, ...common });
+    case 'Divider': return h(TspDivider, { text: t('sectionLabel'), ...common });
+    case 'SearchBar': return h(TspSearchBar, { value: state.inputValue || '', placeholder: t('search'), onChange: state.setInputValue, ...common });
+    case 'SegmentedControl': return h(TspSegmentedControl, { options: [t('day'), t('week'), t('month')], selectedIndex: state.selectedTab || 0, onSelect: state.setSelectedTab, ...common });
     case 'StarRating': return h(TspStarRating, { value: state.selectedOption || 3, max: 5, onChange: state.setSelectedOption, ...common });
     case 'Progress': return h('div', { className: 'bc-example-stack' }, ['primary', 'success', 'warning', 'danger'].map((variant, index) => example(variant, h(TspProgress, { progress: [38, 68, 52, 82][index], variant, ...common }))));
-    case 'TopBar': return h(TspTopBar, { title: '基础组件', showBack: true, ...common });
+    case 'TopBar': return h(TspTopBar, { title: t('title'), showBack: true, ...common });
     case 'BottomTab': return h('div', { className: 'bc-doc-sticky-demo' }, h(TspBottomTab, { tabs: state.tabs, selectedKey: state.tab, onSelect: state.setTab, ...common }));
-    case 'Tabs': return h(TspTabs, { tabs: ['全部', '已学', '未学'], selectedIndex: state.selectedTab, onSelect: state.setSelectedTab, ...common });
-    case 'Amount': return h('div', { className: 'bc-example-stack' }, [example('monthly', h(TspAmount, { symbol: '$', value: '128.80', cycle: 'month', ...common })), example('strike', h(TspAmount, { symbol: '$', value: '199.00', strikeThrough: true, ...common }))]);
+    case 'Tabs': return h(TspTabs, { tabs: [t('tabAll'), t('tabLearned'), t('tabTodo')], selectedIndex: state.selectedTab, onSelect: state.setSelectedTab, ...common });
+    case 'Amount': return h('div', { className: 'bc-example-stack' }, [example(t('monthly'), h(TspAmount, { symbol: '$', value: '128.80', cycle: 'month', ...common })), example(t('strike'), h(TspAmount, { symbol: '$', value: '199.00', strikeThrough: true, ...common }))]);
     case 'IconButton': return h('div', { className: 'bc-row' }, [h(TspIconButton, { key: 'selected', icon: '♪', selected: true, ...common }), h(TspIconButton, { key: 'primary', icon: '✓', variant: 'primary', ...common }), h(TspIconButton, { key: 'disabled', icon: '×', disabled: true, ...common })]);
-    case 'KeyValueLabel': return h(TspKeyValueLabel, { label: 'Progress', value: '12/48', ...common });
-    case 'Notification': return h('div', { className: 'bc-example-stack' }, [example('info', h(TspNotification, { title: '通知', message: '继续学习。', ...common })), example('alert', h(TspNotification, { title: '提醒', message: '今日任务未完成。', variant: 'alert', ...common }))]);
-    case 'TextLink': return h('div', { className: 'bc-row' }, [h(TspTextLink, { key: 'default', text: 'Text Link', ...common }), h(TspTextLink, { key: 'inverse', text: 'Inverse', inverse: true, ...common })]);
-    case 'Stepper': return h('div', { className: 'bc-example-stack' }, [example('3 steps', h(TspStepper, { stepCount: 3, currentStep: 2, ...common })), example('5 steps', h(TspStepper, { stepCount: 5, currentStep: 3, ...common }))]);
-    case 'StickyFooter': return h('div', { className: 'bc-doc-sticky-demo' }, h(TspButton, { text: 'Sticky Footer', variant: 'primary', ...common }));
-    case 'PinInput': return h('div', { className: 'bc-example-stack' }, [example('secure', h(TspPinInput, { value: state.pinValue, cellCount: 4, secure: true, onChange: state.setPinValue, ...common })), example('6 cells', h(TspPinInput, { value: '123', cellCount: 6, ...common }))]);
-    case 'ListItem': return h('div', { className: 'bc-example-stack' }, [example('selected', h(TspListItem, { title: '列表项', message: '选中状态', trailing: '›', selected: true, ...common })), example('disabled', h(TspListItem, { title: '不可点击', message: '禁用状态', disabled: true, ...common }))]);
-    case 'Empty': return h(TspEmpty, { title: '空状态', message: '暂无记录。', actionText: '操作', ...common });
-    case 'Toast': return h(TspButton, { text: 'Show Toast', variant: 'primary', onTap: () => state.showToast('已保存', 'success'), ...common });
-    case 'Modal': return h(TspButton, { text: 'Open Modal', onTap: () => state.setShowModal(true), ...common });
+    case 'KeyValueLabel': return h(TspKeyValueLabel, { label: t('progressLabel'), value: '12/48', ...common });
+    case 'Notification': return h('div', { className: 'bc-example-stack' }, [example('info', h(TspNotification, { title: t('notice'), message: t('noticeBody'), ...common })), example('alert', h(TspNotification, { title: t('reminder'), message: t('taskIncomplete'), variant: 'alert', ...common }))]);
+    case 'TextLink': return h('div', { className: 'bc-row' }, [h(TspTextLink, { key: 'default', text: t('textLink'), ...common }), h(TspTextLink, { key: 'inverse', text: t('inverseLabel'), inverse: true, ...common })]);
+    case 'Stepper': return h('div', { className: 'bc-example-stack' }, [example(t('steps3'), h(TspStepper, { stepCount: 3, currentStep: 2, ...common })), example(t('steps5'), h(TspStepper, { stepCount: 5, currentStep: 3, ...common }))]);
+    case 'StickyFooter': return h('div', { className: 'bc-doc-sticky-demo' }, h(TspStickyFooter, { theme }, h(TspButton, { text: t('stickyFooter'), variant: 'primary', fullWidth: true, ...common })));
+    case 'PinInput': return h('div', { className: 'bc-example-stack' }, [example(t('secure'), h(TspPinInput, { value: state.pinValue, cellCount: 4, secure: true, onChange: state.setPinValue, ...common })), example(t('cells6'), h(TspPinInput, { value: '123', cellCount: 6, ...common }))]);
+    case 'ListItem': return h('div', { className: 'bc-example-stack' }, [example('selected', h(TspListItem, { title: t('listItem'), message: t('selectedState'), trailing: '›', selected: true, ...common })), example('disabled', h(TspListItem, { title: t('cannotClick'), message: t('disabledState'), disabled: true, ...common }))]);
+    case 'Empty': return h(TspEmpty, { title: t('empty'), message: t('emptyBody'), actionText: t('action'), ...common });
+    case 'Toast': return h(TspButton, { text: t('showToast'), variant: 'primary', onTap: () => state.showToast(t('saved'), 'success'), ...common });
+    case 'Modal': return h(TspButton, { text: t('openModal'), onTap: () => state.setShowModal(true), ...common });
     case 'LoadingDialog': return h('div', { className: 'bc-example-stack' }, [
       example('default', h(TspButton, {
-        text: 'Show Loading',
+        text: t('showLoading'),
         variant: 'primary',
         onTap: () => {
           state.setShowLoading(true);
@@ -215,7 +85,7 @@ function TspDocPreview({ name, theme, state }) {
         ...common
       })),
       example('compact', h(TspButton, {
-        text: 'Compact Loading',
+        text: t('compactLoading'),
         onTap: () => {
           state.setShowLoading('compact');
           setTimeout(() => state.setShowLoading(false), 1400);
@@ -232,7 +102,7 @@ function TspDocPreview({ name, theme, state }) {
         setTimeout(() => {
           state.setRefreshItems([1, 2, 3, 4, 5, 6]);
           state.setRefreshing(false);
-          state.showToast?.('已刷新', 'success');
+          state.showToast?.(t('refreshed'), 'success');
         }, 900);
       },
       onLoadMore: () => {
@@ -246,29 +116,29 @@ function TspDocPreview({ name, theme, state }) {
       }
     }, (state.refreshItems || [1, 2, 3, 4, 5, 6]).map((item) => h(TspListItem, {
       key: item,
-      title: `列表项 ${item}`,
-      message: '下拉刷新，上拉加载更多',
+      title: t('listItemN', { n: item }),
+      message: t('pullRefreshHint'),
       trailing: '›',
       theme
     }))));
-    case 'DatePicker': return h(TspDatePicker, { value: state.dateValue || '2026-08-26', onChange: state.setDateValue, placeholder: '选择日期', ...common });
+    case 'DatePicker': return h(TspDatePicker, { value: state.dateValue || '2026-08-26', onChange: state.setDateValue, placeholder: t('pickDate'), ...common });
     case 'ChildSwitcher': return h('div', { className: 'bc-example-stack' }, [
-      example('chip', h(TspChildSwitcher, { items: [{ id: 1, label: '悦悦', emoji: '👧' }, { id: 2, label: '佑佑', emoji: '👦' }], selectedId: state.childId || 1, onChange: state.setChildId, ...common })),
-      example('tabs', h(TspChildSwitcher, { variant: 'tabs', items: [{ id: 1, label: '悦悦' }, { id: 2, label: '佑佑' }], selectedId: state.childId || 1, onChange: state.setChildId, ...common }))
+      example('chip', h(TspChildSwitcher, { items: [{ id: 1, label: t('childOne'), emoji: '👧' }, { id: 2, label: t('childTwo'), emoji: '👦' }], selectedId: state.childId || 1, onChange: state.setChildId, ...common })),
+      example('tabs', h(TspChildSwitcher, { variant: 'tabs', items: [{ id: 1, label: t('childOne') }, { id: 2, label: t('childTwo') }], selectedId: state.childId || 1, onChange: state.setChildId, ...common }))
     ]);
     case 'ScoreRuleGrid': return h(TspScoreRuleGrid, {
       rules: [
-        { id: 1, name: '按时认真完成作业', icon: '📝', value: 5, count: 1, dailyLimit: 1 },
-        { id: 2, name: '作业潦草', icon: '✏️', value: -2, count: 0, dailyLimit: 2 }
+        { id: 1, name: t('homeworkDone'), icon: '📝', value: 5, count: 1, dailyLimit: 1 },
+        { id: 2, name: t('messyHomework'), icon: '✏️', value: -2, count: 0, dailyLimit: 2 }
       ],
       columns: 'auto',
       onIncrement: () => state.showToast?.('+1', 'success'),
       ...common
     });
     case 'RedeemCardGrid': return h(TspRedeemCardGrid, {
-      items: [{ id: 1, name: '零食', icon: '🍬', cost: 15 }, { id: 2, name: '游戏', icon: '🎮', cost: 30 }],
+      items: [{ id: 1, name: t('snack'), icon: '🍬', cost: 15 }, { id: 2, name: t('game'), icon: '🎮', cost: 30 }],
       availablePoints: 20,
-      onRedeem: () => state.showToast?.('兑换', 'success'),
+      onRedeem: () => state.showToast?.(t('redeem'), 'success'),
       ...common
     });
     case 'CalendarHeatmap': return h(TspCalendarHeatmap, {
@@ -277,7 +147,7 @@ function TspDocPreview({ name, theme, state }) {
       ...common
     });
     case 'PrintSheet': return h(TspPrintSheet, {
-      title: '错字默写',
+      title: t('dictationTitle'),
       variant: 'pinyin',
       items: [{ prompt: 'dǐng' }, { prompt: 'lù' }, { prompt: 'yàn' }, { prompt: 'xīn' }, { prompt: 'wǎn' }],
       columns: 5,
@@ -292,7 +162,7 @@ function TspDocPreview({ name, theme, state }) {
       streakDays: 7,
       totalDays: 45,
       weekProgress: 0.85,
-      onOpen: () => state.showToast?.('打开打卡', 'info'),
+      onOpen: () => state.showToast?.(t('openCheckIn'), 'info'),
       ...common
     });
     case 'Avatar': return h('div', { className: 'bc-row' }, [
@@ -301,8 +171,8 @@ function TspDocPreview({ name, theme, state }) {
       h(TspAvatar, { key: 'subtle', text: 'A', variant: 'subtle', size: 'sm', ...common })
     ]);
     case 'Skeleton': return h(TspSkeleton, { rows: 3, animated: true, avatar: true, ...common });
-    case 'Tooltip': return h(TspTooltip, { text: 'Sky Planet tip', placement: 'top', ...common },
-      h(TspButton, { text: 'Hover me', variant: 'default', ...common })
+    case 'Tooltip': return h(TspTooltip, { text: t('tooltipText'), placement: 'top', ...common },
+      h(TspButton, { text: t('hoverMe'), variant: 'default', ...common })
     );
     case 'Slider': return h(TspSlider, {
       value: state.sliderValue ?? 40,
@@ -314,13 +184,13 @@ function TspDocPreview({ name, theme, state }) {
     });
     case 'TextArea': return h(TspTextArea, {
       value: state.textAreaValue || '',
-      placeholder: 'Write a note…',
+      placeholder: t('writeNote'),
       rows: 3,
       onChange: state.setTextAreaValue,
       ...common
     });
     case 'Drawer': return h(TspButton, {
-      text: 'Open Drawer',
+      text: t('openDrawer'),
       variant: 'primary',
       onTap: () => state.setShowDrawer(true),
       ...common
@@ -334,7 +204,7 @@ function TspDocPreview({ name, theme, state }) {
       ...common
     });
     case 'Swiper': return h(TspSwiper, {
-      items: ['Slide A', 'Slide B', 'Slide C'],
+      items: [t('slideA'), t('slideB'), t('slideC')],
       index: state.swiperIndex || 0,
       onChange: state.setSwiperIndex,
       ...common
@@ -342,12 +212,12 @@ function TspDocPreview({ name, theme, state }) {
     case 'Tag': return h('div', { className: 'bc-row' }, [
       h(TspTag, { key: 'default', text: 'default', ...common }),
       h(TspTag, { key: 'primary', text: 'primary', variant: 'primary', ...common }),
-      h(TspTag, { key: 'closable', text: 'closable', closable: true, onClose: () => state.showToast?.('closed', 'info'), ...common })
+      h(TspTag, { key: 'closable', text: t('closableLabel'), closable: true, onClose: () => state.showToast?.(t('closedToast'), 'info'), ...common })
     ]);
     case 'Fab': return h('div', { className: 'bc-row' }, [
       h(TspFab, { key: 'icon', icon: '+', ...common }),
-      h(TspFab, { key: 'ext', icon: '+', text: '新建', ...common }),
-      h(TspFab, { key: 'default', icon: '✎', text: '默认', variant: 'default', ...common })
+      h(TspFab, { key: 'ext', icon: '+', text: t('createNew'), ...common }),
+      h(TspFab, { key: 'default', icon: '✎', text: t('defaultFab'), variant: 'default', ...common })
     ]);
     case 'TimePicker': return h(TspTimePicker, {
       value: state.timeValue || '09:30',
@@ -361,15 +231,15 @@ function TspDocPreview({ name, theme, state }) {
       ...common
     });
     case 'Table': return h(TspTable, {
-      columns: [{ key: 'name', title: '名称' }, { key: 'status', title: '状态' }],
-      rows: [{ name: 'Avatar', status: '就绪' }, { name: 'Tag', status: '新增' }],
+      columns: [{ key: 'name', title: t('nameCol') }, { key: 'status', title: t('statusCol') }],
+      rows: [{ name: 'Avatar', status: t('ready') }, { name: 'Tag', status: t('newlyAdded') }],
       variant: 'striped',
       ...common
     });
     case 'Tree': return h(TspTree, {
       items: [
-        { id: 'a', label: '星球', children: [{ id: 'a1', label: '天空' }, { id: 'a2', label: '岛屿' }] },
-        { id: 'b', label: '玩法', children: [{ id: 'b1', label: '闯关' }] }
+        { id: 'a', label: t('planet'), children: [{ id: 'a1', label: t('sky') }, { id: 'a2', label: t('island') }] },
+        { id: 'b', label: t('gameplay'), children: [{ id: 'b1', label: t('challenge') }] }
       ],
       selectedId: state.treeSelectedId || 'a1',
       expandedIds: state.treeExpandedIds || ['a'],
@@ -379,11 +249,11 @@ function TspDocPreview({ name, theme, state }) {
     });
     case 'Cascader': return h(TspCascader, {
       options: [
-        { value: 'asia', label: '亚洲', children: [{ value: 'cn', label: '中国' }, { value: 'jp', label: '日本' }] },
-        { value: 'eu', label: '欧洲', children: [{ value: 'fr', label: '法国' }] }
+        { value: 'asia', label: t('asia'), children: [{ value: 'cn', label: t('china') }, { value: 'jp', label: t('japan') }] },
+        { value: 'eu', label: t('europe'), children: [{ value: 'fr', label: t('france') }] }
       ],
       value: state.cascaderValue || [],
-      placeholder: '请选择地区',
+      placeholder: t('chooseRegion'),
       onChange: state.setCascaderValue,
       ...common
     });
@@ -391,7 +261,7 @@ function TspDocPreview({ name, theme, state }) {
   }
 }
 
-function ComponentDocPage({ doc, theme, state, onBack, layoutClass }) {
+function ComponentDocPage({ doc, theme, state, onBack, layoutClass, t }) {
   return h(
     'main', {
       className: `bc-sample ${layoutClass}`,
@@ -401,42 +271,42 @@ function ComponentDocPage({ doc, theme, state, onBack, layoutClass }) {
     h(TspTopBar, { title: doc.component, showBack: true, theme, onBack }),
     h('section', { className: 'bc-sample__grid bc-doc-page' },
       h(TspCard, { theme },
-        h('div', { className: 'bc-doc-eyebrow' }, doc.category),
+        h('div', { className: 'bc-doc-eyebrow' }, doc.categoryLabel || doc.category),
         h('h1', { className: 'bc-doc-title' }, doc.component),
         h('p', { className: 'bc-doc-desc' }, doc.description)
       ),
       h(TspCard, { theme },
-        h('strong', null, '使用案例'),
-        h('div', { className: 'bc-doc-preview' }, h(TspDocPreview, { name: doc.name, theme, state }))
+        h('strong', null, t('usageExamples')),
+        h('div', { className: 'bc-doc-preview' }, h(TspDocPreview, { name: doc.name, theme, state, t }))
       ),
       h(TspCard, { theme },
-        h('strong', null, 'API'),
-        h('div', { className: 'bc-doc-section-title' }, 'Props'),
+        h('strong', null, t('apiSection')),
+        h('div', { className: 'bc-doc-section-title' }, t('propsSection')),
         h('div', { className: 'bc-doc-chip-row' }, doc.props.map((prop) => h('span', { key: prop, className: 'bc-doc-chip' }, prop))),
-        h('div', { className: 'bc-doc-section-title' }, 'Variants'),
+        h('div', { className: 'bc-doc-section-title' }, t('variantsSection')),
         h('div', { className: 'bc-doc-chip-row' }, doc.variants.map((variant) => h('span', { key: variant, className: 'bc-doc-chip' }, variant)))
       ),
       h(TspCard, { theme },
-        h('strong', null, '技术栈同步'),
+        h('strong', null, t('platformsSync')),
         h('div', { className: 'bc-doc-chip-row' }, doc.platforms.map((platform) => h('span', { key: platform, className: 'bc-doc-chip' }, platform)))
       )
     ),
-    state.showSheet && h(TspOptionSheet, { title: '请选择', options: ['A', 'B', 'C'], selectedIndex: state.selectedOption, theme, visible: true, onCancel: () => state.setShowSheet(false), onSelect: (index) => { state.setSelectedOption(index); state.setShowSheet(false); } }),
+    state.showSheet && h(TspOptionSheet, { title: t('selectTitle'), options: ['A', 'B', 'C'], selectedIndex: state.selectedOption, theme, visible: true, onCancel: () => state.setShowSheet(false), onSelect: (index) => { state.setSelectedOption(index); state.setShowSheet(false); } }),
     state.toast && h('div', { className: 'bc-toast-layer', key: state.toast.id }, h(TspToast, { message: state.toast.message, variant: state.toast.variant, theme })),
-    state.showModal && h(TspModal, { title: '确认', message: '组件弹窗在详情页中也需要完整显示。', confirmText: '确定', cancelText: '取消', theme, onConfirm: () => state.setShowModal(false), onCancel: () => state.setShowModal(false) }),
+    state.showModal && h(TspModal, { title: t('modalTitle'), message: t('modalBody'), confirmText: t('ok'), cancelText: t('cancel'), theme, onConfirm: () => state.setShowModal(false), onCancel: () => state.setShowModal(false) }),
     h(TspLoadingDialog, {
       visible: Boolean(state.showLoading),
       variant: state.showLoading === 'compact' ? 'compact' : 'default',
-      message: '同步主题中...',
+      message: t('loadingSync'),
       theme
     }),
     h(TspDrawer, {
       visible: Boolean(state.showDrawer),
-      title: 'Drawer',
+      title: t('drawerTitle'),
       placement: 'bottom',
       theme,
       onClose: () => state.setShowDrawer(false)
-    }, 'Sky Planet drawer body.')
+    }, t('drawerBody'))
   );
 }
 
@@ -452,7 +322,14 @@ export function BasicControlsSample({
     { key: 'mint', title: 'Mint' }, { key: 'sunrise', title: 'Sunrise' }
   ], []);
   const languageOptions = useMemo(() => [
-    { key: 'zh-CN', title: '简体中文' }, { key: 'en', title: 'English' }, { key: 'ja', title: '日本語' }
+    { key: 'zh-CN', title: '简体中文' },
+    { key: 'zh-TW', title: '繁體中文' },
+    { key: 'en', title: 'English' },
+    { key: 'ja', title: '日本語' },
+    { key: 'ko', title: '한국어' },
+    { key: 'es', title: 'Español' },
+    { key: 'fr', title: 'Français' },
+    { key: 'de', title: 'Deutsch' }
   ], []);
   const [themeKeyState, setThemeKeyState] = useState('sky');
   const [localeState, setLocaleState] = useState('zh-CN');
@@ -469,7 +346,11 @@ export function BasicControlsSample({
   const [platformMode, setPlatformMode] = useState('auto');
   const [autoPlatform, setAutoPlatform] = useState(() => detectPlatform());
   const theme = starPlanetThemes[themeKey];
-  const t = (key) => (sampleLocales[locale] || sampleLocales.en)[key] ?? sampleLocales.en[key] ?? key;
+  const t = (key, vars) => sampleT(locale, key, vars);
+  const { localizedCategories, localizedDocs } = useMemo(
+    () => localizeDocs(componentDocs, componentCategories, locale),
+    [locale]
+  );
   const platformOptions = useMemo(() => [
     { key: 'auto', title: t('auto') }, { key: 'mobile', title: t('mobile') }, { key: 'desktop', title: t('desktop') }
   ], [locale]);
@@ -531,22 +412,22 @@ export function BasicControlsSample({
   const routeName = selectedDocName;
   const selectedDoc = ['', 'top', 'preview', 'platforms', 'features', 'skills', 'install'].includes(routeName)
     ? undefined
-    : componentDocs.find((doc) => doc.name === routeName);
+    : localizedDocs.find((doc) => doc.name === routeName);
   const previewState = { checked, setChecked, inputValue, setInputValue, dateValue, setDateValue, childId, setChildId, selectedOption, setSelectedOption, selectedTab, setSelectedTab, pinValue, setPinValue, showSheet, setShowSheet, showModal, setShowModal, showLoading, setShowLoading, refreshing, setRefreshing, loadingMore, setLoadingMore, refreshItems, setRefreshItems, toast, tabs, tab, setTab, showToast, showDrawer, setShowDrawer, sliderValue, setSliderValue, textAreaValue, setTextAreaValue, inputNumberValue, setInputNumberValue, swiperIndex, setSwiperIndex, timeValue, setTimeValue, uploadFiles, setUploadFiles, treeSelectedId, setTreeSelectedId, treeExpandedIds, setTreeExpandedIds, cascaderValue, setCascaderValue };
   const resolvedPlatform = forcePlatform ?? (platformMode === 'auto' ? autoPlatform : platformMode);
   const layoutClass = resolvedPlatform === 'desktop' ? 'bc-sample--force-desktop' : 'bc-sample--force-mobile';
   if (selectedDoc) {
-    return h(ComponentDocPage, { doc: selectedDoc, theme, state: previewState, onBack: closeDoc, layoutClass });
+    return h(ComponentDocPage, { doc: selectedDoc, theme, state: previewState, onBack: closeDoc, layoutClass, t });
   }
   const settingsPage = h(React.Fragment, null,
     !forcePlatform && h(TspCard, { theme }, h('strong', null, t('platformSwitch')), h('p', null, t('platformHint')), h(TspSelect, { options: platformOptions, selectedIndex: platformOptions.findIndex((item) => item.key === platformMode), theme, title: t('selectTitle'), onSelect: (_, option) => setPlatformMode(option.key) })),
     h(TspCard, { theme }, h('strong', null, t('themeSwitch')), h('p', null, t('themeHint')), h(TspSelect, { options: themeOptions, selectedIndex: themeOptions.findIndex((item) => item.key === themeKey), theme, title: t('themeSwitch'), onSelect: (_, option) => setThemeKey(option.key) })),
     h(TspCard, { theme }, h('strong', null, t('languageSwitch')), h('p', null, t('languageHint')), h(TspSelect, { options: languageOptions, selectedIndex: languageOptions.findIndex((item) => item.key === locale), theme, title: t('languageSwitch'), onSelect: (_, option) => setLocale(option.key) }))
   );
-  const learnPage = componentCategories.map((category) => h('section', { key: category, className: 'bc-doc-home-section' },
-    h('div', { className: 'bc-doc-section-title' }, category),
+  const learnPage = componentCategories.map((category, categoryIndex) => h('section', { key: category, className: 'bc-doc-home-section' },
+    h('div', { className: 'bc-doc-section-title' }, localizedCategories[categoryIndex] || category),
     h('div', { className: 'bc-doc-list' },
-      componentDocs.filter((doc) => doc.category === category).map((doc) => h(TspListItem, { key: doc.name, title: doc.component, message: doc.description, trailing: '›', theme, onTap: () => openDoc(doc.name) }))
+      localizedDocs.filter((doc) => doc.category === category).map((doc) => h(TspListItem, { key: doc.name, title: doc.component, message: doc.description, trailing: '›', theme, onTap: () => openDoc(doc.name) }))
     )
   ));
   return h(

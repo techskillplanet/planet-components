@@ -26,6 +26,8 @@ run contract-inventory node tools/check-contract-inventory.cjs
 run android-extensions node tools/check-android-extensions.cjs
 run skills-contract node tools/check-skills-contract.cjs
 run icon-catalog node tools/check-icon-catalog.cjs
+run test-matrix node tools/check-test-matrix.cjs
+run docs-i18n node tools/check-docs-i18n.cjs
 
 run react-web-lib bash -lc 'cd react-web/library && npm run check && npm test && npm run pack:dry'
 run react-web-sample bash -lc 'cd react-web/samples && npx --yes esbuild@0.25.0 preview-entry.js --bundle --format=iife --outfile=dist/preview.js --platform=browser --alias:react=./node_modules/react/index.js --alias:react-dom=./node_modules/react-dom/index.js --alias:react-dom/client=./node_modules/react-dom/client.js && cp node_modules/@techskillplanet/planet-components-react/src/styles.css dist/styles.css'

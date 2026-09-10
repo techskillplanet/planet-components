@@ -1,0 +1,36 @@
+{
+  "$schema": "https://planet-components.local/schemas/contract-test-matrix.schema.json",
+  "meta": {
+    "version": "1.0.0",
+    "policy": "Every supported stack must implement the same TC ids below. Extra stack-specific tests (a11y/visual/utils) are allowed on top, but the shared matrix is the parity baseline.",
+    "docs": "docs/TEST_MATRIX.md"
+  },
+  "stacks": ["react-web", "vue-web", "react-native", "flutter", "android", "ios-swiftui", "miniprogram", "kuikly"],
+  "smoke": {
+    "idPattern": "TC-CONTRACT-{Component}-01",
+    "rule": "Each contract component must have one render/smoke case with this id in test source.",
+    "components": "from:component_contract.json"
+  },
+  "interactions": [
+    { "id": "TC-CONTRACT-Button-02-tap", "component": "Button", "assert": "onTap fires when enabled" },
+    { "id": "TC-CONTRACT-Switch-02-toggle", "component": "Switch", "assert": "onChange toggles checked" },
+    { "id": "TC-CONTRACT-Checkbox-02-toggle", "component": "Checkbox", "assert": "onChange toggles checked" },
+    { "id": "TC-CONTRACT-Radio-02-select", "component": "Radio", "assert": "onChange selects" },
+    { "id": "TC-CONTRACT-SegmentedControl-02-select", "component": "SegmentedControl", "assert": "onSelect index" },
+    { "id": "TC-CONTRACT-StarRating-02-change", "component": "StarRating", "assert": "onChange value" },
+    { "id": "TC-CONTRACT-SearchBar-02-change", "component": "SearchBar", "assert": "onChange text" },
+    { "id": "TC-CONTRACT-Slider-02-change", "component": "Slider", "assert": "onChange numeric" },
+    { "id": "TC-CONTRACT-InputNumber-02-step", "component": "InputNumber", "assert": "inc/dec clamp" },
+    { "id": "TC-CONTRACT-Tag-02-close", "component": "Tag", "assert": "closable onClose" },
+    { "id": "TC-CONTRACT-Fab-02-tap", "component": "Fab", "assert": "onTap fires" },
+    { "id": "TC-CONTRACT-Drawer-02-close", "component": "Drawer", "assert": "onClose via mask/close" },
+    { "id": "TC-CONTRACT-Cascader-02-leaf", "component": "Cascader", "assert": "expand parent then leaf path" },
+    { "id": "TC-CONTRACT-Tree-02-expand-select", "component": "Tree", "assert": "expand and select" },
+    { "id": "TC-CONTRACT-Upload-02-remove", "component": "Upload", "assert": "remove emits list" },
+    { "id": "TC-CONTRACT-Table-02-rows", "component": "Table", "assert": "renders headers/rows" },
+    { "id": "TC-CONTRACT-TimePicker-02-change", "component": "TimePicker", "assert": "emits HH:mm" },
+    { "id": "TC-CONTRACT-Avatar-02-initials", "component": "Avatar", "assert": "shows initials" },
+    { "id": "TC-CONTRACT-Skeleton-02-rows", "component": "Skeleton", "assert": "renders rows" },
+    { "id": "TC-CONTRACT-Modal-02-actions", "component": "Modal", "assert": "confirm/cancel present" }
+  ]
+}

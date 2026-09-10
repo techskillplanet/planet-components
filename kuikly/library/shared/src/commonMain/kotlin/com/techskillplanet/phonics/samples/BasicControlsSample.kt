@@ -746,7 +746,7 @@ private fun ComponentPreview(name: String, theme: PhonicsColors, bottomInset: Fl
             files = uploadFiles.value,
             onChange = { uploadFiles.value = it },
             onPickRequest = {
-                val next = uploadFiles.value + TspUploadFile(System.currentTimeMillis().toString(), "mock.txt")
+                val next = uploadFiles.value + TspUploadFile("mock-${uploadFiles.value.size + 1}", "mock.txt")
                 uploadFiles.value = next
             },
         )

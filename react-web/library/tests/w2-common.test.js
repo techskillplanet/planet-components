@@ -169,7 +169,7 @@ describe('TspAvatar / Skeleton / Drawer / TimePicker / Upload / Table / Tree', (
 
   it('Drawer opens body and closes via mask', () => {
     const onClose = vi.fn();
-    const { rerender } = render(
+    const { container, rerender } = render(
       React.createElement(TspDrawer, {
         visible: true,
         title: 'Drawer',
@@ -178,7 +178,7 @@ describe('TspAvatar / Skeleton / Drawer / TimePicker / Upload / Table / Tree', (
       }, 'body')
     );
     expect(screen.getByRole('dialog')).toHaveTextContent('body');
-    fireEvent.click(screen.getByLabelText('Close'));
+    fireEvent.click(container.querySelector('.bc-drawer__mask'));
     expect(onClose).toHaveBeenCalled();
     rerender(React.createElement(TspDrawer, { visible: false, theme: starPlanetTheme }, 'body'));
     expect(screen.queryByRole('dialog')).toBeNull();
