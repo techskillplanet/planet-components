@@ -47,8 +47,8 @@ const GITHUB_REPO = "techskillplanet/planet-components";
   }
 
   // homeLocales.js
-  const LOCALE_STORAGE_KEY = "planet-home-locale";
-  const THEME_STORAGE_KEY = "planet-home-theme";
+  const LOCALE_STORAGE_KEY = "planet-home-locale-v2";
+  const THEME_STORAGE_KEY = "planet-home-theme-v2";
   const LANGUAGE_OPTIONS = [
     { key: "zh-CN", title: "\u7B80\u4F53\u4E2D\u6587" },
     { key: "zh-TW", title: "\u7E41\u9AD4\u4E2D\u6587" },
@@ -59,10 +59,99 @@ const GITHUB_REPO = "techskillplanet/planet-components";
     { key: "fr", title: "Fran\xE7ais" },
     { key: "de", title: "Deutsch" }
   ];
-  const INSTALL_COMMAND = "npm i @techskillplanet/planet-components-react";
-  const SKILL_INSTALL_COMMAND = "./tools/install-ai-plugin.sh";
-  const SKILL_PROJECT_COMMAND = "./tools/install-ai-plugin.sh --project /path/to/your-app";
-  const HOME_PLATFORMS = ["Android", "React Native", "React Web", "Vue", "Flutter", "iOS", "Mini Program", "Kuikly"];
+  const SKILL_INSTALL_COMMAND = "npx skills add techskillplanet/planet-components";
+  const SKILL_PROJECT_COMMAND = "./tools/install-ai-plugin.sh";
+  const STACK_INSTALLS = [
+    {
+      id: "android",
+      name: "Android View",
+      registry: "Maven Central",
+      package: `io.github.techskillplanet:planet-components-android:${PACKAGE_VERSION}`,
+      command: `implementation "io.github.techskillplanet:planet-components-android:${PACKAGE_VERSION}"`
+    },
+    {
+      id: "ios",
+      name: "iOS SwiftUI",
+      registry: "SPM · CocoaPods",
+      package: `PlanetComponents ${PACKAGE_VERSION}`,
+      command: `.package(url: "https://github.com/techskillplanet/planet-components", from: "${PACKAGE_VERSION}")\n// CocoaPods: pod 'PlanetComponents', '~> ${PACKAGE_VERSION}'`
+    },
+    {
+      id: "react-web",
+      name: "React Web",
+      registry: "npm",
+      package: `@techskillplanet/planet-components-react@${PACKAGE_VERSION}`,
+      command: `npm i @techskillplanet/planet-components-react@${PACKAGE_VERSION}`
+    },
+    {
+      id: "vue-web",
+      name: "Vue Web",
+      registry: "npm",
+      package: `@techskillplanet/planet-components-vue@${PACKAGE_VERSION}`,
+      command: `npm i @techskillplanet/planet-components-vue@${PACKAGE_VERSION}`
+    },
+    {
+      id: "react-native",
+      name: "React Native",
+      registry: "npm",
+      package: `@techskillplanet/planet-components-react-native@${PACKAGE_VERSION}`,
+      command: `npm i @techskillplanet/planet-components-react-native@${PACKAGE_VERSION}`
+    },
+    {
+      id: "flutter",
+      name: "Flutter",
+      registry: "pub.dev",
+      package: `tech_skill_planet_components: ^${PACKAGE_VERSION}`,
+      command: `flutter pub add tech_skill_planet_components`
+    },
+    {
+      id: "miniprogram",
+      name: "Mini Program",
+      registry: "npm",
+      package: `@techskillplanet/planet-components-miniprogram@${PACKAGE_VERSION}`,
+      command: `npm i @techskillplanet/planet-components-miniprogram@${PACKAGE_VERSION}`
+    },
+    {
+      id: "kuikly",
+      name: "Kuikly",
+      registry: "Maven Central",
+      package: `io.github.techskillplanet:planet-components-kuikly:${PACKAGE_VERSION}`,
+      command: `implementation("io.github.techskillplanet:planet-components-kuikly:${PACKAGE_VERSION}")`
+    }
+  ];
+  const HOME_PLATFORMS = STACK_INSTALLS.map((item) => item.name);
+  const INTEGRATE_SKILLS = {
+    "zh-CN": [
+      { name: "integrate-android-view", when: "Android View 接入", body: "Maven Central 安装 planet-components-android，初始化 BasicThemeManager。" },
+      { name: "integrate-ios-swiftui", when: "iOS SwiftUI 接入", body: "通过 SPM 或 CocoaPods 引入 PlanetComponents，使用 Tsp* 控件。" },
+      { name: "integrate-react-components", when: "React Web 接入", body: "安装 npm 包，引入 styles.css，并注入 starPlanetThemes。" },
+      { name: "integrate-vue-components", when: "Vue Web 接入", body: "安装 Vue 包并引入样式，按契约传入 theme。" },
+      { name: "integrate-react-native-components", when: "React Native 接入", body: "安装 RN 包，使用 resolveTheme / starPlanetThemes。" },
+      { name: "integrate-flutter-components", when: "Flutter 接入", body: "pub.dev 添加 tech_skill_planet_components，使用 StarPlanetTheme。" },
+      { name: "integrate-miniprogram", when: "微信小程序接入", body: "安装 miniprogram 包，使用 bc-* 组件对齐 Tsp* 契约。" },
+      { name: "integrate-kuikly", when: "Kuikly 接入", body: "Maven Central 引入 planet-components-kuikly，按 KMP 坐标消费。" }
+    ],
+    "zh-TW": [
+      { name: "integrate-android-view", when: "Android View 接入", body: "Maven Central 安裝 planet-components-android，初始化 BasicThemeManager。" },
+      { name: "integrate-ios-swiftui", when: "iOS SwiftUI 接入", body: "透過 SPM 或 CocoaPods 引入 PlanetComponents，使用 Tsp* 控件。" },
+      { name: "integrate-react-components", when: "React Web 接入", body: "安裝 npm 套件，引入 styles.css，並注入 starPlanetThemes。" },
+      { name: "integrate-vue-components", when: "Vue Web 接入", body: "安裝 Vue 套件並引入樣式，依契約傳入 theme。" },
+      { name: "integrate-react-native-components", when: "React Native 接入", body: "安裝 RN 套件，使用 resolveTheme / starPlanetThemes。" },
+      { name: "integrate-flutter-components", when: "Flutter 接入", body: "pub.dev 新增 tech_skill_planet_components，使用 StarPlanetTheme。" },
+      { name: "integrate-miniprogram", when: "微信小程序接入", body: "安裝 miniprogram 套件，使用 bc-* 元件對齊 Tsp* 契約。" },
+      { name: "integrate-kuikly", when: "Kuikly 接入", body: "Maven Central 引入 planet-components-kuikly，依 KMP 座標消費。" }
+    ],
+    en: [
+      { name: "integrate-android-view", when: "Android View", body: "Add planet-components-android from Maven Central and init BasicThemeManager." },
+      { name: "integrate-ios-swiftui", when: "iOS SwiftUI", body: "Add PlanetComponents via SPM or CocoaPods and use Tsp* controls." },
+      { name: "integrate-react-components", when: "React Web", body: "Install the npm package, import styles.css, and inject starPlanetThemes." },
+      { name: "integrate-vue-components", when: "Vue Web", body: "Install the Vue package, import styles, and pass theme." },
+      { name: "integrate-react-native-components", when: "React Native", body: "Install the RN package and use resolveTheme / starPlanetThemes." },
+      { name: "integrate-flutter-components", when: "Flutter", body: "Add tech_skill_planet_components from pub.dev with StarPlanetTheme." },
+      { name: "integrate-miniprogram", when: "WeChat Mini Program", body: "Install the miniprogram package and use bc-* aligned to Tsp*." },
+      { name: "integrate-kuikly", when: "Kuikly", body: "Consume planet-components-kuikly from Maven Central in your KMP app." }
+    ]
+  };
   const HOME_LOCALES = {
     "zh-CN": {
       htmlLang: "zh-CN",
@@ -119,9 +208,9 @@ const GITHUB_REPO = "techskillplanet/planet-components";
       skillInstallLead: "\u5728\u4ED3\u5E93\u6839\u76EE\u5F55\u6267\u884C\u5B89\u88C5\u811A\u672C\uFF0C\u5C06 Skill \u94FE\u5230\u672C\u673A Cursor / Claude / Codex\u3002\u4E1A\u52A1\u9879\u76EE\u53EF\u7528 --project \u53EA\u94FE\u6D88\u8D39\u6280\u80FD\u3002",
       skillCursorHint: "Cursor\uFF1ASettings \u2192 Plugins\uFF0C\u6DFB\u52A0\u672C\u4ED3\u5E93\u6839\u76EE\u5F55\u3002\u65B0\u5F00 Agent \u5BF9\u8BDD\u540E\uFF0C\u63D0\u5230\u6280\u8DA3\u661F\u7403\u6216 Tsp \u7EC4\u4EF6\u5373\u4F1A\u52A0\u8F7D\u3002",
       skillDocs: "\u67E5\u770B\u5B8C\u6574\u8BF4\u660E",
-      installEyebrow: "React Web",
-      installTitle: "\u4ECE React \u6837\u54C1\u5F00\u59CB",
-      installLead: "\u5B89\u88C5\u4F9D\u8D56\u5E76\u5F15\u5165\u6837\u5F0F\u540E\uFF0C\u5C06 theme \u4F20\u5165\u7EC4\u4EF6\u5373\u53EF\u3002\u53F3\u4FA7\u9884\u89C8\u4F7F\u7528\u7684\u662F\u672C\u5730 library\u3002",
+      installEyebrow: "八栈接入",
+      installTitle: "全平台安装与集成",
+      installLead: "以下为八个技术栈的公开包坐标与最短安装命令（v0.2.1）。首页手机预览为 React Web 样品；其他栈请用对应包接入。",
       footer: "MIT License \xB7 \u6280\u8DA3\u661F\u7403"
     },
     "zh-TW": {
@@ -179,9 +268,9 @@ const GITHUB_REPO = "techskillplanet/planet-components";
       skillInstallLead: "\u5728\u5009\u5EAB\u6839\u76EE\u9304\u57F7\u884C\u5B89\u88DD\u6307\u4EE4\u78BC\uFF0C\u5C07 Skill \u9023\u7D50\u5230\u672C\u6A5F Cursor / Claude / Codex\u3002\u696D\u52D9\u5C08\u6848\u53EF\u7528 --project \u53EA\u9023\u7D50\u6D88\u8CBB\u6280\u80FD\u3002",
       skillCursorHint: "Cursor\uFF1ASettings \u2192 Plugins\uFF0C\u65B0\u589E\u672C\u5009\u5EAB\u6839\u76EE\u9304\u3002\u65B0\u958B Agent \u5C0D\u8A71\u5F8C\uFF0C\u63D0\u5230\u6280\u8DA3\u661F\u7403\u6216 Tsp \u5143\u4EF6\u5373\u6703\u8F09\u5165\u3002",
       skillDocs: "\u67E5\u770B\u5B8C\u6574\u8AAA\u660E",
-      installEyebrow: "React Web",
-      installTitle: "\u5F9E React \u6A23\u54C1\u958B\u59CB",
-      installLead: "\u5B89\u88DD\u4F9D\u8CF4\u4E26\u5F15\u5165\u6A23\u5F0F\u5F8C\uFF0C\u5C07 theme \u50B3\u5165\u5143\u4EF6\u5373\u53EF\u3002\u53F3\u5074\u9810\u89BD\u4F7F\u7528\u7684\u662F\u672C\u5730 library\u3002",
+      installEyebrow: "八棧接入",
+      installTitle: "全平台安裝與整合",
+      installLead: "以下為八個技術棧的公開套件座標與最短安裝指令（v0.2.1）。右側手機預覽仍為 React Web 樣品；其他棧請用對應套件接入。",
       footer: "MIT License \xB7 \u6280\u8DA3\u661F\u7403"
     },
     en: {
@@ -239,9 +328,9 @@ const GITHUB_REPO = "techskillplanet/planet-components";
       skillInstallLead: "Run the installer from the repository root to link skills into local Cursor, Claude, or Codex. Use --project to attach only the consume skill to an application.",
       skillCursorHint: "Cursor: Settings \u2192 Plugins, add this repository root. Start a new agent chat and mention TechSkillPlanet or a Tsp control.",
       skillDocs: "Read the full guide",
-      installEyebrow: "React Web",
-      installTitle: "Start with the React sample",
-      installLead: "Install the package, import styles, and pass a theme. The preview uses the local library.",
+      installEyebrow: "All stacks",
+      installTitle: "Install across eight platforms",
+      installLead: "Public package coordinates and shortest install commands for all eight stacks (v0.2.1). The phone preview stays React Web; use the matching package for other stacks.",
       footer: "MIT License \xB7 TechSkillPlanet"
     },
     ja: {
@@ -299,9 +388,9 @@ const GITHUB_REPO = "techskillplanet/planet-components";
       skillInstallLead: "\u30EA\u30DD\u30B8\u30C8\u30EA\u76F4\u4E0B\u3067\u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u30B9\u30AF\u30EA\u30D7\u30C8\u3092\u5B9F\u884C\u3057\u3001\u672C\u6A5F\u306E Cursor / Claude / Codex \u306B Skill \u3092\u30EA\u30F3\u30AF\u3057\u307E\u3059\u3002\u696D\u52D9\u30A2\u30D7\u30EA\u306B\u306F --project \u3067\u6D88\u8CBB\u7528 Skill \u3060\u3051\u3092\u4ED8\u3051\u3089\u308C\u307E\u3059\u3002",
       skillCursorHint: "Cursor\uFF1ASettings \u2192 Plugins \u3067\u3053\u306E\u30EA\u30DD\u30B8\u30C8\u30EA\u306E\u30EB\u30FC\u30C8\u3092\u8FFD\u52A0\u3002\u65B0\u3057\u3044 Agent \u4F1A\u8A71\u3067\u6280\u8DA3\u661F\u7403\u3084 Tsp \u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8\u306B\u8A00\u53CA\u3059\u308B\u3068\u8AAD\u307F\u8FBC\u307E\u308C\u307E\u3059\u3002",
       skillDocs: "\u8A73\u7D30\u30AC\u30A4\u30C9\u3092\u898B\u308B",
-      installEyebrow: "React Web",
-      installTitle: "React \u30B5\u30F3\u30D7\u30EB\u304B\u3089\u59CB\u3081\u308B",
-      installLead: "\u30D1\u30C3\u30B1\u30FC\u30B8\u3092\u5165\u308C\u3001\u30B9\u30BF\u30A4\u30EB\u3092\u8AAD\u307F\u8FBC\u307F\u3001theme \u3092\u6E21\u3057\u307E\u3059\u3002\u30D7\u30EC\u30D3\u30E5\u30FC\u306F\u30ED\u30FC\u30AB\u30EB\u30E9\u30A4\u30D6\u30E9\u30EA\u3092\u4F7F\u7528\u3057\u307E\u3059\u3002",
+      installEyebrow: "8スタック接続",
+      installTitle: "全プラットフォーム導入",
+      installLead: "8つの技術スタックそれぞれの公開パッケージ座標と最短インストールコマンドです（v0.2.1）。右側のプレビューは React Web のままです。",
       footer: "MIT License \xB7 \u6280\u8DA3\u661F\u7403"
     },
     ko: {
@@ -359,9 +448,9 @@ const GITHUB_REPO = "techskillplanet/planet-components";
       skillInstallLead: "\uC800\uC7A5\uC18C \uB8E8\uD2B8\uC5D0\uC11C \uC124\uCE58 \uC2A4\uD06C\uB9BD\uD2B8\uB97C \uC2E4\uD589\uD574 \uB85C\uCEEC Cursor / Claude / Codex\uC5D0 Skill\uC744 \uC5F0\uACB0\uD569\uB2C8\uB2E4. \uC5C5\uBB34 \uC571\uC5D0\uB294 --project\uB85C \uC18C\uBE44\uC6A9 Skill\uB9CC \uC5F0\uACB0\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.",
       skillCursorHint: "Cursor: Settings \u2192 Plugins\uC5D0\uC11C \uC774 \uC800\uC7A5\uC18C \uB8E8\uD2B8\uB97C \uCD94\uAC00\uD558\uC138\uC694. \uC0C8 Agent \uB300\uD654\uC5D0\uC11C \u6280\u8DA3\u661F\u7403 \uB610\uB294 Tsp \uCEF4\uD3EC\uB10C\uD2B8\uB97C \uC5B8\uAE09\uD558\uBA74 \uB85C\uB4DC\uB429\uB2C8\uB2E4.",
       skillDocs: "\uC804\uCCB4 \uAC00\uC774\uB4DC \uBCF4\uAE30",
-      installEyebrow: "React Web",
-      installTitle: "React \uC0D8\uD50C\uBD80\uD130 \uC2DC\uC791",
-      installLead: "\uD328\uD0A4\uC9C0\uB97C \uC124\uCE58\uD558\uACE0 \uC2A4\uD0C0\uC77C\uC744 \uAC00\uC838\uC628 \uB4A4 theme\uB97C \uC804\uB2EC\uD558\uC138\uC694. \uBBF8\uB9AC\uBCF4\uAE30\uB294 \uB85C\uCEEC library\uB97C \uC0AC\uC6A9\uD569\uB2C8\uB2E4.",
+      installEyebrow: "8스택 연동",
+      installTitle: "전 플랫폼 설치",
+      installLead: "8개 기술 스택의 공개 패키지 좌표와 최소 설치 명령입니다(v0.2.1). 오른쪽 미리보기는 React Web 샘플입니다.",
       footer: "MIT License \xB7 \u6280\u8DA3\u661F\u7403"
     },
     es: {
@@ -419,9 +508,9 @@ const GITHUB_REPO = "techskillplanet/planet-components";
       skillInstallLead: "Ejecuta el instalador en la ra\xEDz del repositorio para enlazar las skills en Cursor, Claude o Codex locales. Con --project puedes adjuntar solo la skill de consumo a una aplicaci\xF3n.",
       skillCursorHint: "Cursor: Settings \u2192 Plugins, a\xF1ade la ra\xEDz de este repositorio. Abre un nuevo chat de agente y menciona TechSkillPlanet o un control Tsp.",
       skillDocs: "Ver la gu\xEDa completa",
-      installEyebrow: "React Web",
-      installTitle: "Empieza con el sample de React",
-      installLead: "Instala el paquete, importa los estilos y pasa un theme. La vista previa usa la library local.",
+      installEyebrow: "Ocho stacks",
+      installTitle: "Instalación multiplataforma",
+      installLead: "Coordenadas públicas y comandos mínimos de instalación para los ocho stacks (v0.2.1). La vista previa del teléfono sigue siendo React Web.",
       footer: "Licencia MIT \u00b7 TechSkillPlanet"
     },
     fr: {
@@ -479,9 +568,9 @@ const GITHUB_REPO = "techskillplanet/planet-components";
       skillInstallLead: "Ex\xE9cutez l\u2019installateur \xE0 la racine du d\xE9p\xF4t pour lier les skills \xE0 Cursor, Claude ou Codex en local. --project n\u2019attache que la skill de consommation \xE0 une application.",
       skillCursorHint: "Cursor : Settings \u2192 Plugins, ajoutez la racine de ce d\xE9p\xF4t. D\xE9marrez un nouveau chat agent et mentionnez TechSkillPlanet ou un contr\xF4le Tsp.",
       skillDocs: "Lire le guide complet",
-      installEyebrow: "React Web",
-      installTitle: "Commencer par le sample React",
-      installLead: "Installez le paquet, importez les styles et passez un theme. L\u2019aper\xE7u utilise la library locale.",
+      installEyebrow: "Huit stacks",
+      installTitle: "Installation multiplateforme",
+      installLead: "Coordonnées publiques et commandes d’installation minimales pour les huit stacks (v0.2.1). L’aperçu téléphone reste React Web.",
       footer: "Licence MIT \u00b7 TechSkillPlanet"
     },
     de: {
@@ -539,9 +628,9 @@ const GITHUB_REPO = "techskillplanet/planet-components";
       skillInstallLead: "F\xFChren Sie das Installationsskript im Repository-Root aus, um Skills mit lokalem Cursor, Claude oder Codex zu verkn\xFCpfen. Mit --project binden Sie nur den Verbrauch-Skill an eine Anwendung.",
       skillCursorHint: "Cursor: Settings \u2192 Plugins, f\xFCgen Sie diesen Repository-Root hinzu. Starten Sie einen neuen Agent-Chat und erw\xE4hnen Sie TechSkillPlanet oder ein Tsp-Control.",
       skillDocs: "Vollst\xE4ndige Anleitung lesen",
-      installEyebrow: "React Web",
-      installTitle: "Mit dem React-Sample starten",
-      installLead: "Paket installieren, Styles importieren und ein theme \xFCbergeben. Die Vorschau nutzt die lokale library.",
+      installEyebrow: "Acht Stacks",
+      installTitle: "Installation über alle Plattformen",
+      installLead: "Öffentliche Paketkoordinaten und kürzeste Installationsbefehle für alle acht Stacks (v0.2.1). Die Telefonvorschau bleibt React Web.",
       footer: "MIT-Lizenz \u00b7 TechSkillPlanet"
     }
   };
@@ -557,7 +646,7 @@ const GITHUB_REPO = "techskillplanet/planet-components";
     if (lower.startsWith("fr")) return "fr";
     if (lower.startsWith("de")) return "de";
     if (lower.startsWith("en")) return "en";
-    return "zh-CN";
+    return "en";
   }
   function readPreference(key, fallback) {
     try {
@@ -573,7 +662,15 @@ const GITHUB_REPO = "techskillplanet/planet-components";
     }
   }
   function homeCopy(locale) {
-    return HOME_LOCALES[locale] || HOME_LOCALES["zh-CN"];
+    const base = HOME_LOCALES[locale] || HOME_LOCALES.en;
+    const integrate = INTEGRATE_SKILLS[locale] || INTEGRATE_SKILLS.en;
+    const coreSkills = (base.skills || []).filter((item) => !String(item.name || "").startsWith("integrate-"));
+    return {
+      ...base,
+      platforms: HOME_PLATFORMS,
+      stackInstalls: STACK_INSTALLS,
+      skills: [...coreSkills, ...integrate]
+    };
   }
   function normalizeAppearance(key) {
     return key === "night" ? "night" : "sky";
@@ -692,13 +789,15 @@ const GITHUB_REPO = "techskillplanet/planet-components";
     if (explicit) return explicit;
     const stored = readPreference(LOCALE_STORAGE_KEY);
     if (stored && LANGUAGE_OPTIONS.some((item) => item.key === stored)) return stored;
-    const language = typeof navigator !== "undefined" ? navigator.language : "zh-CN";
-    return detectHomeLocale(language);
+    // Public marketing home defaults to English (browser language is still available via the picker).
+    return "en";
   }
   function initialThemeKey(explicit) {
     if (explicit) return explicit;
     const stored = readPreference(THEME_STORAGE_KEY);
-    return normalizeAppearance(stored);
+    if (stored === "night" || stored === "sky") return stored;
+    // Public marketing home defaults to dark mode.
+    return "night";
   }
   function HomePage({
     loadGithubStats = fetchGithubStats,
@@ -920,7 +1019,13 @@ const GITHUB_REPO = "techskillplanet/planet-components";
             h(
               "ul",
               { className: "tsp-home__platforms" },
-              copy.platforms.map((name) => h("li", { key: name, className: "tsp-home__stack" }, name))
+              (copy.stackInstalls || STACK_INSTALLS).map((stack) => h(
+                "li",
+                { key: stack.id, className: "tsp-home__stack tsp-home__stack--detail" },
+                h("strong", { className: "tsp-home__stack-name" }, stack.name),
+                h("span", { className: "tsp-home__stack-registry" }, stack.registry),
+                h("code", { className: "tsp-home__stack-package" }, stack.package)
+              ))
             )
           )
         ),
@@ -1004,7 +1109,7 @@ const GITHUB_REPO = "techskillplanet/planet-components";
           { className: "tsp-home__section tsp-home__section--install", id: "install" },
           h(
             "div",
-            { className: "tsp-home__install" },
+            { className: "tsp-home__install tsp-home__install--multi" },
             h(
               "div",
               { className: "tsp-home__install-copy" },
@@ -1012,7 +1117,19 @@ const GITHUB_REPO = "techskillplanet/planet-components";
               h("h2", null, copy.installTitle),
               h("p", { className: "tsp-home__section-lead" }, copy.installLead)
             ),
-            h(CodeFrame, { command: INSTALL_COMMAND })
+            h(
+              "div",
+              { className: "tsp-home__install-grid" },
+              (copy.stackInstalls || STACK_INSTALLS).map((stack) => h(
+                "article",
+                { key: stack.id, className: "tsp-home__install-card" },
+                h("div", { className: "tsp-home__install-card-head" },
+                  h("h3", null, stack.name),
+                  h("span", null, stack.registry)
+                ),
+                h(CodeFrame, { command: stack.command })
+              ))
+            )
           )
         )
       ),
@@ -1034,4 +1151,4 @@ const GITHUB_REPO = "techskillplanet/planet-components";
     );
   }
 
-export { HomePage, LANGUAGE_OPTIONS, HOME_LOCALES, HOME_PLATFORMS, PACKAGE_VERSION };
+export { HomePage, LANGUAGE_OPTIONS, HOME_LOCALES, HOME_PLATFORMS, STACK_INSTALLS, PACKAGE_VERSION };

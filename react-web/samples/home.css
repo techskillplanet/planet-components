@@ -659,6 +659,41 @@ body,
   text-align: center;
 }
 
+.tsp-home__stack--detail {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 6px;
+  min-height: 108px;
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.tsp-home__stack-name {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.tsp-home__stack-registry {
+  color: var(--bc-brand-dark, #1479D6);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tsp-home__stack-package {
+  display: block;
+  width: 100%;
+  overflow-wrap: anywhere;
+  color: var(--bc-text-secondary, #365D82);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
 .tsp-home__feature-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -779,6 +814,55 @@ body,
   box-shadow: var(--tsp-shadow-soft);
 }
 
+.tsp-home__install--multi {
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+.tsp-home__install-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tsp-home__install-card {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--bc-border-default, #C8EAFF) 85%, transparent);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--bc-surface-raised, #FFFFFF) 88%, transparent);
+}
+
+.tsp-home__install-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tsp-home__install-card-head h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.tsp-home__install-card-head span {
+  flex: 0 0 auto;
+  color: var(--bc-brand-dark, #1479D6);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tsp-home__install-card .tsp-home__code {
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
 .tsp-home__code-shell {
   overflow: hidden;
   border-radius: 14px;
@@ -852,6 +936,10 @@ body,
     grid-template-columns: 1fr;
   }
 
+  .tsp-home__platforms {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .tsp-home__preview {
     order: 2;
   }
@@ -871,12 +959,13 @@ body,
   }
 
   .tsp-home__stats,
-  .tsp-home__feature-grid {
+  .tsp-home__feature-grid,
+  .tsp-home__install-grid {
     grid-template-columns: 1fr;
   }
 
   .tsp-home__platforms {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .tsp-home__actions .bc-button,
