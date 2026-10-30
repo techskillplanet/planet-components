@@ -57,5 +57,7 @@
 | ID | 规则 |
 |----|------|
 | C1/L18 | 勾选兄弟层 |
-| L5 | 无 label 不撑满 |
+| L5 | 无 label 不撑满（Checkbox / Switch / Radio） |
 | N-13 | InlineNotice 外层铺底 + lineHeight=字号 |
+| N-14 | **定高面内单行标签**：父级 Center + `lineHeight==fontSize` + `TextAlign.Center` + `maxLines=1`；共用 `TspFaceLabel` / Web `line-height: 1` |
+| N-15 | 符号热区（× / ✓）：固定方盒 + Center，禁止把 `size` 直接打在裸 Text 上 |

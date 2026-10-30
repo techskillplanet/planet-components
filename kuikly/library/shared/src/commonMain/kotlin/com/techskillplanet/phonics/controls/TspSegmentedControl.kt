@@ -11,12 +11,10 @@ import com.tencent.kuikly.compose.foundation.layout.fillMaxWidth
 import com.tencent.kuikly.compose.foundation.layout.height
 import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
-import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
-import com.tencent.kuikly.compose.ui.text.style.TextAlign
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.tencent.kuikly.compose.ui.unit.sp
 import com.techskillplanet.phonics.theme.PhonicsColors
@@ -76,21 +74,18 @@ fun TspSegmentedControl(
                             .matchParentSize()
                             .background(Color(bg), shape),
                     )
-                    Text(
+                    TspFaceLabel(
                         text = label,
                         color = Color(fg),
                         fontSize = 14.sp,
-                        lineHeight = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center,
-                        maxLines = 1,
-                        softWrap = false,
                     )
                 }
             }
         }
         return
     }
+    // Solid：定高段钮 + Center（禁 Text 自带 padding 当面，易偏上）
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -102,30 +97,31 @@ fun TspSegmentedControl(
     ) {
         options.forEachIndexed { index, label ->
             val selected = index == selectedIndex
-            Text(
-                text = label,
-                color = when {
-                    disabled -> Color(theme.textTertiary)
-                    selected -> Color.White
-                    else -> Color(theme.textSecondary)
-                },
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
+            val shape = RoundedCornerShape(999.dp)
+            val bg = when {
+                selected && !disabled -> theme.brandPrimary
+                else -> theme.surfaceSubtle
+            }
+            val fg = when {
+                disabled -> theme.textTertiary
+                selected -> 0xFFFFFFFF
+                else -> theme.textSecondary
+            }
+            Box(
                 modifier = Modifier
                     .weight(1f)
-                    .background(
-                        Color(
-                            when {
-                                selected && !disabled -> theme.brandPrimary
-                                else -> theme.surfaceSubtle
-                            },
-                        ),
-                        RoundedCornerShape(999.dp),
-                    )
-                    .clickable(enabled = !disabled) { onSelect(index, label) }
-                    .padding(vertical = 8.dp)
-                    .fillMaxWidth(),
-            )
+                    .height(36.dp)
+                    .background(Color(bg), shape)
+                    .clickable(enabled = !disabled) { onSelect(index, label) },
+                contentAlignment = Alignment.Center,
+            ) {
+                TspFaceLabel(
+                    text = label,
+                    color = Color(fg),
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
         }
     }
 }

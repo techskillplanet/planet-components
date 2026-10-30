@@ -7,13 +7,11 @@ import com.tencent.kuikly.compose.foundation.layout.Box
 import com.tencent.kuikly.compose.foundation.layout.height
 import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
-import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.draw.clip
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
-import com.tencent.kuikly.compose.ui.text.style.TextAlign
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.tencent.kuikly.compose.ui.unit.sp
 import com.techskillplanet.phonics.theme.PhonicsColors
@@ -79,13 +77,11 @@ fun TspBadge(
             ),
         contentAlignment = Alignment.Center,
     ) {
-        Text(
+        TspFaceLabel(
             text = text,
             color = if (disabled) Color(theme.textTertiary) else fg,
             fontSize = if (soft) 12.sp else 13.sp,
             fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            maxLines = 1,
         )
     }
 }

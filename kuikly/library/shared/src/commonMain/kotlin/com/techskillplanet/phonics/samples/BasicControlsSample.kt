@@ -526,9 +526,10 @@ private fun ComponentPreview(name: String, theme: PhonicsColors, bottomInset: Fl
         }
         "SearchBar" -> TspSearchBar(
             value = searchValue.value,
-            placeholder = "Search…",
+            placeholder = "搜索",
             theme = theme,
-        ) { searchValue.value = it }
+            onChange = { searchValue.value = it },
+        )
         "SegmentedControl" -> TspSegmentedControl(
             options = listOf("Day", "Week", "Month"),
             selectedIndex = segmentIndex.value,

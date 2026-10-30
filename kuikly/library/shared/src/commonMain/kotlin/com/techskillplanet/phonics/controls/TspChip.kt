@@ -11,12 +11,10 @@ import com.tencent.kuikly.compose.foundation.layout.height
 import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.layout.wrapContentWidth
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
-import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
-import com.tencent.kuikly.compose.ui.text.style.TextAlign
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.tencent.kuikly.compose.ui.unit.sp
 import com.techskillplanet.phonics.theme.PhonicsColors
@@ -101,15 +99,11 @@ fun TspChip(
                 .matchParentSize()
                 .background(fillColor, shape),
         )
-        Text(
+        TspFaceLabel(
             text = text,
             color = textColor,
             fontSize = fontSz,
-            lineHeight = fontSz,
             fontWeight = if (selected) FontWeight.Black else FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            maxLines = 1,
-            softWrap = false,
             modifier = Modifier.padding(horizontal = padH),
         )
     }

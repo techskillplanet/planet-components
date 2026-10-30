@@ -19,7 +19,6 @@ import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.TextStyle
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
-import com.tencent.kuikly.compose.ui.text.style.TextAlign
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.tencent.kuikly.compose.ui.unit.sp
 import com.techskillplanet.phonics.theme.PhonicsColors
@@ -82,13 +81,10 @@ fun TspSearchBar(
                     },
                 contentAlignment = Alignment.Center,
             ) {
-                Text(
-                    text = "×",
+                TspGlyphMark(
+                    glyph = "×",
                     color = Color(theme.textTertiary),
                     fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                    lineHeight = 18.sp,
                 )
             }
         }

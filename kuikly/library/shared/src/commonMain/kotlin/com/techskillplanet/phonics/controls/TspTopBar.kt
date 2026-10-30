@@ -11,12 +11,10 @@ import com.tencent.kuikly.compose.foundation.layout.fillMaxWidth
 import com.tencent.kuikly.compose.foundation.layout.height
 import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.layout.size
-import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
-import com.tencent.kuikly.compose.ui.text.style.TextAlign
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.tencent.kuikly.compose.ui.unit.sp
 import com.techskillplanet.phonics.theme.PhonicsColors
@@ -64,16 +62,15 @@ fun TspTopBar(
                 Spacer(modifier = Modifier.weight(1f))
                 Spacer(modifier = Modifier.size(48.dp))
             }
-            Text(
+            TspFaceLabel(
                 text = title,
+                color = Color(theme.textPrimary),
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .align(Alignment.Center)
                     .padding(horizontal = 52.dp)
                     .fillMaxWidth(),
-                color = Color(theme.textPrimary),
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
-                textAlign = TextAlign.Center,
             )
         }
         Box(

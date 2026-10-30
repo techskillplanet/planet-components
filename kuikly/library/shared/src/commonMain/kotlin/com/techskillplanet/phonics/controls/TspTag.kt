@@ -5,11 +5,12 @@ import com.tencent.kuikly.compose.foundation.background
 import com.tencent.kuikly.compose.foundation.border
 import com.tencent.kuikly.compose.foundation.clickable
 import com.tencent.kuikly.compose.foundation.layout.Arrangement
+import com.tencent.kuikly.compose.foundation.layout.Box
 import com.tencent.kuikly.compose.foundation.layout.Row
+import com.tencent.kuikly.compose.foundation.layout.height
 import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.layout.size
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
-import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
@@ -31,35 +32,40 @@ fun TspTag(
     onTap: () -> Unit = {},
 ) {
     val (bg, fg, border) = tagColors(theme, variant)
+    val shape = RoundedCornerShape(999.dp)
     Row(
         modifier = modifier
-            .background(Color(bg), RoundedCornerShape(999.dp))
+            .height(28.dp)
+            .background(Color(bg), shape)
             .border(
                 if (selected) 2.dp else 1.dp,
                 Color(if (selected) theme.selectedBorder else border),
-                RoundedCornerShape(999.dp),
+                shape,
             )
             .clickable(enabled = !disabled) { onTap() }
-            .padding(horizontal = 12.dp, vertical = 6.dp),
+            .padding(horizontal = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        Text(
+        TspFaceLabel(
             text = text,
             color = Color(if (disabled) theme.textTertiary else fg),
-            fontWeight = FontWeight.Bold,
             fontSize = 13.sp,
+            fontWeight = FontWeight.Bold,
         )
         if (closable) {
-            Text(
-                text = "×",
-                color = Color(if (disabled) theme.textTertiary else fg),
-                fontWeight = FontWeight.Bold,
-                fontSize = 16.sp,
+            Box(
                 modifier = Modifier
                     .size(20.dp)
                     .clickable(enabled = !disabled) { onClose() },
-            )
+                contentAlignment = Alignment.Center,
+            ) {
+                TspGlyphMark(
+                    glyph = "×",
+                    color = Color(if (disabled) theme.textTertiary else fg),
+                    fontSize = 14.sp,
+                )
+            }
         }
     }
 }

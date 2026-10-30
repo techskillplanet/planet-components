@@ -43,14 +43,16 @@ fun TspSwitch(
     val travel = width - handle - inset * 2
     val blocked = disabled || loading
     val trackColor = if (checked) theme.switchOnBackground else theme.switchOffBackground
+    // L5：无 label 不撑满，便于嵌工具栏/表单行（跨项目）
+    val hasLabel = text.isNotEmpty()
     Row(
         modifier = modifier
-            .fillMaxWidth()
+            .then(if (hasLabel) Modifier.fillMaxWidth() else Modifier)
             .clickable(enabled = !blocked) { onChange(!checked) },
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalArrangement = Arrangement.spacedBy(if (hasLabel) 12.dp else 0.dp),
     ) {
-        if (text.isNotEmpty()) {
+        if (hasLabel) {
             Text(
                 text = text,
                 color = Color(theme.textPrimary),

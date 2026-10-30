@@ -12,7 +12,6 @@ import com.tencent.kuikly.compose.foundation.layout.fillMaxWidth
 import com.tencent.kuikly.compose.foundation.layout.height
 import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
-import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
@@ -56,14 +55,11 @@ fun TspTabs(
                     .padding(horizontal = 16.dp),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(
+                TspFaceLabel(
                     text = tab,
                     color = if (selected) Color.White else Color(theme.textSecondary),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.W800,
-                    lineHeight = 22.sp,
-                    maxLines = 1,
-                    softWrap = false,
                 )
             }
         }

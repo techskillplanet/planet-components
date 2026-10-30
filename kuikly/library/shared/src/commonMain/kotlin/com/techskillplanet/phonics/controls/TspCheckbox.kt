@@ -17,7 +17,6 @@ import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.draw.clip
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
-import com.tencent.kuikly.compose.ui.text.style.TextAlign
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.tencent.kuikly.compose.ui.unit.sp
 import com.techskillplanet.phonics.theme.PhonicsColors
@@ -86,14 +85,11 @@ fun TspCheckbox(
                     .border(borderW, stroke, shape),
             )
             if (checked) {
-                Text(
+                TspFaceLabel(
                     text = "✓",
                     color = Color.White,
                     fontSize = (inner.value * 0.72f).sp,
                     fontWeight = FontWeight.Black,
-                    textAlign = TextAlign.Center,
-                    maxLines = 1,
-                    softWrap = false,
                 )
             }
         }

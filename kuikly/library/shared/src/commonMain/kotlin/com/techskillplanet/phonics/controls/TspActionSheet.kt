@@ -6,7 +6,6 @@ import com.tencent.kuikly.compose.foundation.clickable
 import com.tencent.kuikly.compose.foundation.layout.Arrangement
 import com.tencent.kuikly.compose.foundation.layout.Box
 import com.tencent.kuikly.compose.foundation.layout.Column
-import com.tencent.kuikly.compose.foundation.layout.defaultMinSize
 import com.tencent.kuikly.compose.foundation.layout.fillMaxSize
 import com.tencent.kuikly.compose.foundation.layout.fillMaxWidth
 import com.tencent.kuikly.compose.foundation.layout.height
@@ -82,17 +81,16 @@ fun TspActionSheetPanel(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .defaultMinSize(minHeight = 52.dp)
+                        .height(52.dp)
                         .clickable(enabled = item.enabled) { onSelect(item.id) }
-                        .padding(horizontal = 16.dp, vertical = 14.dp),
+                        .padding(horizontal = 16.dp),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text(
+                    TspFaceLabel(
                         text = item.label,
                         color = labelColor,
                         fontSize = 17.sp,
                         fontWeight = FontWeight.Medium,
-                        textAlign = TextAlign.Center,
                     )
                 }
             }
@@ -100,19 +98,18 @@ fun TspActionSheetPanel(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .defaultMinSize(minHeight = 52.dp)
+                .height(52.dp)
                 .background(Color(theme.surfaceRaised), RoundedCornerShape(14.dp))
                 .clip(RoundedCornerShape(14.dp))
                 .clickable(onClick = onDismiss)
-                .padding(horizontal = 16.dp, vertical = 14.dp),
+                .padding(horizontal = 16.dp),
             contentAlignment = Alignment.Center,
         ) {
-            Text(
+            TspFaceLabel(
                 text = cancelText,
                 color = Color(theme.brandDark),
                 fontSize = 17.sp,
                 fontWeight = FontWeight.SemiBold,
-                textAlign = TextAlign.Center,
             )
         }
     }

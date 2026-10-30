@@ -13,12 +13,10 @@ import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.layout.size
 import com.tencent.kuikly.compose.foundation.layout.wrapContentWidth
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
-import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
-import com.tencent.kuikly.compose.ui.text.style.TextAlign
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.tencent.kuikly.compose.ui.unit.sp
 import com.techskillplanet.phonics.theme.PhonicsColors
@@ -56,15 +54,11 @@ fun TspButton(
             ?: size.buttonFaceHeightDp(style.buttonFaceHeight)
     ).dp
     val corner = (cornerRadiusDp ?: 999f).dp
+    // N-14：定高面内 lineHeight=字号，避免 H5/CJK 光学偏上
     val labelSp = when (size) {
         TspControlSize.Sm -> 14.sp
         TspControlSize.Md -> 16.sp
         TspControlSize.Lg -> 17.sp
-    }
-    val labelLh = when (size) {
-        TspControlSize.Sm -> 18.sp
-        TspControlSize.Md -> 22.sp
-        TspControlSize.Lg -> 24.sp
     }
     val lift = if (raised) style.shadowControlIslandLiftY.dp else 0.dp
     val faceColor = when {
@@ -137,15 +131,11 @@ fun TspButton(
                             .border(2.dp, textColor, RoundedCornerShape(999.dp)),
                     )
                 }
-                Text(
+                TspFaceLabel(
                     text = text,
                     color = textColor,
                     fontSize = labelSp,
-                    lineHeight = labelLh,
                     fontWeight = FontWeight.W800,
-                    textAlign = TextAlign.Center,
-                    maxLines = 1,
-                    softWrap = false,
                 )
             }
         }

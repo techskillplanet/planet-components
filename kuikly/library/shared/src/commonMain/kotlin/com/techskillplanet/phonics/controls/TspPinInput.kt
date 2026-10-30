@@ -15,12 +15,12 @@ import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.layout.size
 import com.tencent.kuikly.compose.foundation.layout.width
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
-import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
 import com.tencent.kuikly.compose.ui.unit.dp
+import com.tencent.kuikly.compose.ui.unit.sp
 import com.techskillplanet.phonics.theme.PhonicsColors
 
 @Suppress("UNUSED_PARAMETER")
@@ -47,9 +47,10 @@ fun TspPinInput(
                 contentAlignment = Alignment.Center,
             ) {
                 val char = value.getOrNull(index)?.toString().orEmpty()
-                Text(
+                TspFaceLabel(
                     text = if (secure && char.isNotEmpty()) "•" else char,
                     color = Color(theme.textPrimary),
+                    fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                 )
             }

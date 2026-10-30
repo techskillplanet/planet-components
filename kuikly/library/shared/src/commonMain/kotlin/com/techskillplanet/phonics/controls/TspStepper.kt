@@ -15,12 +15,12 @@ import com.tencent.kuikly.compose.foundation.layout.padding
 import com.tencent.kuikly.compose.foundation.layout.size
 import com.tencent.kuikly.compose.foundation.layout.width
 import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
-import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
 import com.tencent.kuikly.compose.ui.unit.dp
+import com.tencent.kuikly.compose.ui.unit.sp
 import com.techskillplanet.phonics.theme.PhonicsColors
 
 @Composable
@@ -56,9 +56,10 @@ fun TspStepper(
                     .border(1.dp, Color(if (active) theme.brandPrimary else theme.borderDefault), RoundedCornerShape(999.dp)),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(
+                TspFaceLabel(
                     text = "$step",
                     color = Color(if (done || active) 0xFFFFFFFF else theme.textTertiary),
+                    fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                 )
             }
