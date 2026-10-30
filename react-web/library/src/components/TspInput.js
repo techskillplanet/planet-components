@@ -19,14 +19,16 @@ export function TspInput({
   value = '',
   placeholder = '',
   variant = 'default',
+  size = 'md',
   disabled = false,
   type = 'text',
   autoComplete,
   theme = starPlanetTheme,
   onChange
 }) {
+  const sizeKey = ['sm', 'md', 'lg'].includes(size) ? size : 'md';
   return h('input', {
-    className: cx('bc-input', `bc-input--${variant}`),
+    className: cx('bc-input', `bc-input--${variant}`, `bc-input--size-${sizeKey}`),
     style: themed(theme),
     type,
     autoComplete,

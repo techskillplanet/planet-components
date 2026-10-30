@@ -21,6 +21,7 @@ import { React, h, cx, clamp, optionText, themed, starPlanetTheme } from './_sha
 export function TspButton({
   text,
   variant = 'default',
+  size = 'md',
   disabled = false,
   loading = false,
   fullWidth = true,
@@ -31,6 +32,7 @@ export function TspButton({
   const busy = Boolean(loading);
   const inert = disabled || busy;
   const label = children ?? text;
+  const sizeKey = ['sm', 'md', 'lg'].includes(size) ? size : 'md';
   return h(
     'button',
     {
@@ -40,6 +42,7 @@ export function TspButton({
       className: cx(
         'bc-button',
         `bc-button--${variant}`,
+        `bc-button--size-${sizeKey}`,
         fullWidth && 'bc-full',
         inert && 'bc-disabled',
         busy && 'bc-button--loading',

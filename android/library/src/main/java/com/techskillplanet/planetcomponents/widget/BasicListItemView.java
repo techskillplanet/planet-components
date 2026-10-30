@@ -27,6 +27,8 @@ public class BasicListItemView extends LinearLayout {
     private final TextView trailingView;
     private String variant = "default";
     private boolean basicDisabled;
+    /** 嵌在分组卡内时去掉独立卡面，只保留行内文字（对齐 Web me-nav-row）。 */
+    private boolean embedded;
 
     public BasicListItemView(Context context) {
         this(context, null);
@@ -94,6 +96,12 @@ public class BasicListItemView extends LinearLayout {
         refreshTheme();
     }
 
+    /** 分组卡内嵌行：无独立圆角底/描边。 */
+    public void setEmbedded(boolean embedded) {
+        this.embedded = embedded;
+        refreshTheme();
+    }
+
     /** 刷新列表项背景、文字和布局。 */
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
@@ -106,8 +114,14 @@ public class BasicListItemView extends LinearLayout {
         int trailing = basicDisabled || !isEnabled() ? colors.textDisabled : colors.textTertiary;
 
         setMinimumHeight(dp(64));
-        setBackground(BasicDrawableFactory.roundedFillStroke(fill, stroke, style.borderHairline, dp(18)));
-        setPadding(Math.round(style.spaceMd), Math.round(style.spaceMd), Math.round(style.spaceMd), Math.round(style.spaceMd));
+        if (embedded && !selected) {
+            setBackground(null);
+            setPadding(Math.round(style.spaceSm), Math.round(style.spaceSm + 2),
+                    Math.round(style.spaceSm), Math.round(style.spaceSm + 2));
+        } else {
+            setBackground(BasicDrawableFactory.roundedFillStroke(fill, stroke, style.borderHairline, dp(18)));
+            setPadding(Math.round(style.spaceMd), Math.round(style.spaceMd), Math.round(style.spaceMd), Math.round(style.spaceMd));
+        }
         setAlpha(basicDisabled || !isEnabled() ? 0.45f : 1f);
         titleView.setTextColor(title);
         titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.textMd);

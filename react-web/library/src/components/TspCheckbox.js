@@ -6,26 +6,33 @@ export function TspCheckbox({
   checked = false,
   disabled = false,
   variant = 'default',
+  size = 'md',
+  interactive = true,
   theme = starPlanetTheme,
   onChange,
 }) {
+  const sizeKey = ['sm', 'md', 'lg'].includes(size) ? size : 'md';
+  const hasLabel = Boolean(text);
+  const Tag = interactive ? 'button' : 'span';
   return h(
-    'button',
+    Tag,
     {
-      type: 'button',
+      type: interactive ? 'button' : undefined,
       role: 'checkbox',
       'aria-checked': checked,
-      disabled,
+      disabled: interactive ? disabled : undefined,
       className: cx(
         'bc-checkbox',
         `bc-checkbox--${variant}`,
+        `bc-checkbox--size-${sizeKey}`,
+        !hasLabel && 'bc-checkbox--box-only',
         checked && 'bc-checked',
         disabled && 'bc-disabled'
       ),
       style: themed(theme),
-      onClick: disabled ? undefined : () => onChange?.(!checked),
+      onClick: interactive && !disabled ? () => onChange?.(!checked) : undefined,
     },
     h('span', { className: 'bc-checkbox__box', 'aria-hidden': true }, checked ? '✓' : ''),
-    text ? h('span', { className: 'bc-checkbox__label' }, text) : null
+    hasLabel ? h('span', { className: 'bc-checkbox__label' }, text) : null
   );
 }

@@ -266,16 +266,20 @@ public class BasicButton extends FrameLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         BasicStyle style = BasicThemeManager.style();
-        int minWidth = Math.round(TypedValue.applyDimension(
+        boolean flatVariant = VARIANT_TEXT.equals(variant) || VARIANT_LINK.equals(variant);
+        // 扁平/链接按钮不得强制 88dp 最小宽，否则挤爆列表行（计划任务、词条操作等）
+        int minWidth = flatVariant ? 0 : Math.round(TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 88,
                 getResources().getDisplayMetrics()
         ));
-        boolean flatVariant = VARIANT_TEXT.equals(variant) || VARIANT_LINK.equals(variant);
         int lift = style.buttonRaisedShadowEnabled && !flatVariant
                 ? Math.round(style.shadowControlIslandLiftY)
                 : 0;
-        int desiredHeight = Math.round(style.controlHeightButtonMedium + lift);
+        int desiredHeight = flatVariant
+                ? Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 44, getResources().getDisplayMetrics()))
+                : Math.round(style.controlHeightButtonMedium + lift);
         int width = resolveSize(Math.max(minWidth, getSuggestedMinimumWidth()), widthMeasureSpec);
         int height = resolveSize(desiredHeight, heightMeasureSpec);
         int childHeight = Math.max(0, height - lift);

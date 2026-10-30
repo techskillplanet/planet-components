@@ -14,11 +14,18 @@ import com.tencent.kuikly.compose.foundation.shape.RoundedCornerShape
 import com.tencent.kuikly.compose.material3.Text
 import com.tencent.kuikly.compose.ui.Alignment
 import com.tencent.kuikly.compose.ui.Modifier
+import com.tencent.kuikly.compose.ui.draw.clip
 import com.tencent.kuikly.compose.ui.graphics.Color
 import com.tencent.kuikly.compose.ui.text.font.FontWeight
+import com.tencent.kuikly.compose.ui.text.style.TextAlign
 import com.tencent.kuikly.compose.ui.unit.dp
+import com.tencent.kuikly.compose.ui.unit.sp
 import com.techskillplanet.phonics.theme.PhonicsColors
 
+/**
+ * 勾选：装饰层与对钩**兄弟**（勿把对钩画在 bordered 父级上 — 防 C1/L18 首帧糊偏）。
+ * 无 [text] 时不撑满宽（防 L5 协议行左侧大空白热区）。
+ */
 @Composable
 fun TspCheckbox(
     theme: PhonicsColors,
@@ -27,41 +34,70 @@ fun TspCheckbox(
     checked: Boolean = false,
     disabled: Boolean = false,
     variant: String = "default",
+    size: TspControlSize = TspControlSize.Md,
+    /** 覆盖盒边长（dp）；优先于 [size] */
+    boxSizeDp: Float? = null,
+    /** false：纯展示，由外层处理点击（如登录协议行） */
+    interactive: Boolean = true,
     onChange: (Boolean) -> Unit = {},
 ) {
     @Suppress("UNUSED_VARIABLE")
     val unusedVariant = variant
+    val box = (boxSizeDp ?: size.checkboxBoxDp()).dp
+    val borderW = if (box.value <= 16f) 1.5.dp else 2.dp
+    val shape = RoundedCornerShape(if (box.value <= 16f) 3.dp else 4.dp)
+    val stroke = when {
+        disabled -> Color(theme.borderDefault)
+        checked -> Color(theme.brandPrimary)
+        else -> Color(theme.textSecondary)
+    }
+    val fill = when {
+        disabled && checked -> Color(theme.surfaceMuted)
+        checked -> Color(theme.brandPrimary)
+        else -> Color.White
+    }
+    val inner = ((box.value - 2f * borderW.value).coerceAtLeast(8f)).dp
+    val hasLabel = text.isNotEmpty()
+    val rowModifier = modifier
+        .then(if (hasLabel) Modifier.fillMaxWidth() else Modifier)
+        .then(
+            if (interactive && !disabled) {
+                Modifier.clickable { onChange(!checked) }
+            } else {
+                Modifier
+            },
+        )
+        .then(if (hasLabel) Modifier.padding(vertical = 4.dp) else Modifier)
+
     Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable(enabled = !disabled) { onChange(!checked) }
-            .padding(vertical = 4.dp),
+        modifier = rowModifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        horizontalArrangement = Arrangement.spacedBy(if (hasLabel) 10.dp else 0.dp),
     ) {
         Box(
-            modifier = Modifier
-                .size(22.dp)
-                .background(
-                    Color(if (checked) theme.brandPrimary else theme.surfaceRaised),
-                    RoundedCornerShape(6.dp),
-                )
-                .border(
-                    2.dp,
-                    Color(if (checked) theme.brandPrimary else theme.borderDefault),
-                    RoundedCornerShape(6.dp),
-                ),
+            modifier = Modifier.size(box),
             contentAlignment = Alignment.Center,
         ) {
+            Box(
+                modifier = Modifier
+                    .matchParentSize()
+                    .clip(shape)
+                    .background(fill, shape)
+                    .border(borderW, stroke, shape),
+            )
             if (checked) {
                 Text(
                     text = "✓",
                     color = Color.White,
-                    fontWeight = FontWeight.Bold,
+                    fontSize = (inner.value * 0.72f).sp,
+                    fontWeight = FontWeight.Black,
+                    textAlign = TextAlign.Center,
+                    maxLines = 1,
+                    softWrap = false,
                 )
             }
         }
-        if (text.isNotEmpty()) {
+        if (hasLabel) {
             Text(
                 text = text,
                 color = Color(if (disabled) theme.textTertiary else theme.textPrimary),

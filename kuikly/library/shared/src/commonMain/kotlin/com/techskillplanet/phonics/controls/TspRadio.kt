@@ -28,13 +28,14 @@ fun TspRadio(
     disabled: Boolean = false,
     onChange: (Boolean) -> Unit = {},
 ) {
+    val hasLabel = text.isNotEmpty()
     Row(
         modifier = modifier
-            .fillMaxWidth()
+            .then(if (hasLabel) Modifier.fillMaxWidth() else Modifier)
             .clickable(enabled = !disabled) { onChange(true) }
             .padding(vertical = 4.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        horizontalArrangement = Arrangement.spacedBy(if (hasLabel) 10.dp else 0.dp),
     ) {
         Box(
             modifier = Modifier

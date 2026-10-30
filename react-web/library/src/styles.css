@@ -273,6 +273,27 @@ body {
   height: var(--bc-button-face-height, 46px);
 }
 
+/* size ladder (Sm/Md/Lg) — Md = 现网默认 */
+.bc-button--size-sm {
+  --bc-button-face-height: 36px;
+  --bc-button-height: 41px;
+  font-size: 14px;
+}
+.bc-button--size-md {
+  --bc-button-face-height: 46px;
+  --bc-button-height: 51px;
+}
+.bc-button--size-lg {
+  --bc-button-face-height: 52px;
+  --bc-button-height: 57px;
+  font-size: 17px;
+}
+.bc-button--size-sm.bc-button--flat,
+.bc-button--size-md.bc-button--flat,
+.bc-button--size-lg.bc-button--flat {
+  height: var(--bc-button-face-height);
+}
+
 .bc-button__shadow,
 .bc-button__face {
   position: absolute;
@@ -297,6 +318,9 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  /* 非满宽缩字时须有水平垫；满宽居中文案亦不贴边 */
+  padding: 0 18px;
+  box-sizing: border-box;
   border: 1px solid var(--bc-border-default);
   background: var(--bc-surface-raised);
   font-weight: 800;
@@ -306,6 +330,23 @@ body {
     border-color var(--bc-motion-fast, 150ms) var(--bc-ease-std, ease),
     color var(--bc-motion-fast, 150ms) var(--bc-ease-std, ease),
     box-shadow var(--bc-motion-fast, 150ms) var(--bc-ease-out, ease);
+}
+
+/* 非满宽：按文案+垫宽撑开（绝对定位 face 不贡献宽，须改参与流） */
+.bc-button:not(.bc-full) {
+  width: max-content;
+  max-width: 100%;
+}
+.bc-button:not(.bc-full) .bc-button__face {
+  position: relative;
+  left: auto;
+  right: auto;
+  width: auto;
+  min-width: 80px;
+}
+.bc-button:not(.bc-full) .bc-button__shadow {
+  /* 跟相对定位后的 face 同宽：铺满按钮盒 */
+  width: 100%;
 }
 
 .bc-button:hover:not(.bc-disabled):not(.bc-button--flat) .bc-button__face {
@@ -560,6 +601,68 @@ body {
 
 .bc-chip.bc-selected:hover:not(:disabled):not(.bc-disabled) {
   background: var(--bc-brand-dark);
+}
+
+.bc-input--size-sm {
+  min-height: 40px;
+  font-size: 14px;
+}
+.bc-input--size-md {
+  min-height: 48px;
+  font-size: 16px;
+}
+.bc-input--size-lg {
+  min-height: 56px;
+  font-size: 17px;
+}
+
+.bc-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+.bc-form-field__label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--bc-text-primary);
+  line-height: 20px;
+}
+.bc-form-field__required {
+  color: var(--bc-danger);
+}
+.bc-form-field__hint {
+  padding-left: 2px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--bc-text-tertiary);
+}
+.bc-form-field__hint--error {
+  color: var(--bc-danger);
+}
+
+.bc-checkbox--box-only {
+  width: auto;
+  padding-inline: 0;
+  gap: 0;
+}
+.bc-checkbox--size-sm .bc-checkbox__box {
+  width: 14px;
+  height: 14px;
+  border-width: 1.5px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+.bc-checkbox--size-md .bc-checkbox__box {
+  width: 20px;
+  height: 20px;
+}
+.bc-checkbox--size-lg .bc-checkbox__box {
+  width: 22px;
+  height: 22px;
 }
 
 .bc-input,
@@ -2090,6 +2193,28 @@ body {
   font-weight: 600;
   min-width: 0;
 }
+.bc-search-bar__input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+.bc-search-bar__clear {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--bc-text-tertiary);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+.bc-search-bar__clear:hover {
+  color: var(--bc-text-secondary);
+}
 
 .bc-segmented {
   display: flex;
@@ -2102,6 +2227,32 @@ body {
   box-sizing: border-box;
 }
 .bc-segmented.bc-disabled { opacity: 0.45; }
+
+.bc-segmented-soft {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  box-sizing: border-box;
+}
+.bc-segmented-soft.bc-disabled { opacity: 0.45; }
+.bc-segmented-soft__item {
+  flex: 1;
+  min-height: 44px;
+  margin: 0;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--bc-border-default);
+  background: var(--bc-surface-raised);
+  color: var(--bc-text-primary);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.bc-segmented-soft__item.bc-selected {
+  border-color: var(--bc-brand-primary);
+  background: var(--bc-brand-subtle, var(--bc-brand-soft));
+  color: var(--bc-brand-dark);
+}
 .bc-segmented__item {
   flex: 1;
   border: 0;
@@ -2787,3 +2938,96 @@ body {
   .bc-cascader__panel { animation: none; }
 }
 
+
+/* —— P5 enrich: InlineNotice / ActionSheet / SheetActions / RadioGroup —— */
+.bc-inline-notice {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  text-align: left;
+  font: inherit;
+  cursor: inherit;
+}
+.bc-inline-notice--warning { background: #fff4df; color: #9a6700; }
+.bc-inline-notice--error { background: #ffe8f2; color: #b42318; }
+.bc-inline-notice--info { background: #d9f0ff; color: #173a62; }
+.bc-inline-notice__text {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+}
+button.bc-inline-notice { cursor: pointer; }
+
+.bc-action-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.bc-action-sheet__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.53);
+}
+.bc-action-sheet__panel {
+  position: relative;
+  width: min(100%, 420px);
+  padding: 0 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bc-action-sheet__card,
+.bc-action-sheet__cancel {
+  background: var(--bc-surface-raised, #fff);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.bc-action-sheet__title {
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--bc-text-tertiary);
+  border-bottom: 1px solid color-mix(in srgb, var(--bc-border-default) 35%, transparent);
+}
+.bc-action-sheet__item,
+.bc-action-sheet__cancel {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  border: none;
+  background: var(--bc-surface-raised, #fff);
+  font: inherit;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--bc-text-primary);
+  cursor: pointer;
+}
+.bc-action-sheet__item + .bc-action-sheet__item {
+  border-top: 1px solid color-mix(in srgb, var(--bc-border-default) 35%, transparent);
+}
+.bc-action-sheet__item--danger { color: var(--bc-danger); }
+.bc-action-sheet__item:disabled { color: var(--bc-text-tertiary); cursor: not-allowed; }
+.bc-action-sheet__cancel {
+  font-weight: 600;
+  color: var(--bc-brand-dark, var(--bc-brand-primary));
+}
+
+.bc-sheet-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  padding-top: 8px;
+}
+.bc-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}

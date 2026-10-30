@@ -27,12 +27,17 @@ Core semantic colors:
 
 | Component | Required variants | Core props |
 | --- | --- | --- |
-| Button | `primary`, `default`, `danger`, `text`, `link` | `text`, `variant`, `disabled`, `fullWidth`, `loading`, `onTap` |
+| Button | `primary`, `default`, `danger`, `text`, `link` · size `sm`\|`md`\|`lg` | `text`, `variant`, `size`, `disabled`, `fullWidth`, `loading`, `onTap` |
+| FormField | `default` | `label`, `required`, `helper`, `error`, `children` / content 槽 |
+| InlineNotice | `warning`, `error`, `info` | `message`, `tone`, `onClick` |
+| ActionSheet | `default` | `title`, `items[{id,label,enabled,destructive}]`, `cancelText`, `visible`, `onSelect`, `onDismiss` |
+| SheetActions | `default` | `cancelText`, `confirmText`, `confirmEnabled`, `confirmLoading`, `onCancel`, `onConfirm` |
+| RadioGroup | `default` | `options[{id,label,enabled}]`, `selectedId`, `onChange` |
 | Card | `default`, `subtle`, `selected`, `disabled` | `variant`, `selected`, `disabled`, `content` |
 | Alert | `info`, `success`, `warning`, `error` | `title`, `message`, `variant` |
-| Badge | `default`, `primary`, `success`, `warning`, `danger` | `text`, `variant`, `disabled` |
-| Chip | `default`, `primary`, `success`, `warning`, `danger` | `text`, `variant`, `selected`, `disabled`, `onTap` |
-| Input | `default`, `error`, `disabled` | `value`, `placeholder`, `variant`, `disabled`, `onChange` |
+| Badge | `default`, `primary`, `success`, `warning`, `danger`, `softPrimary`, `softSuccess`, `softNeutral` | `text`, `variant`, `disabled` |
+| Chip | `default`, `primary`, `success`, `warning`, `danger` | `text`, `variant`, `selected`, `solidSelected`, `compact`, `expand`, `disabled`, `onTap` |
+| Input | `default`, `error`, `disabled` · size `sm`\|`md`\|`lg` | `value`, `placeholder`, `variant`, `size`, `disabled`, `onChange` |
 | Select | `default`, `disabled` | `options`, `selectedIndex`, `disabled`, `onSelect` |
 | OptionSheet | `default`, `mobile` | `title`, `options`, `selectedIndex`, `visible`, `onSelect`, `onCancel` |
 | Switch | `md`, `sm`, `loading`, `disabled` | `text`, `checked`, `checkedText`, `uncheckedText`, `loading`, `disabled`, `variant`, `onChange`（**扁平常规 UI**，见 `docs/prds/cross-platform-ui-parity/specs/05-switch-contract.md`；禁止系统 Switch / 岛屿轨内字） |
@@ -62,7 +67,7 @@ Core semantic colors:
 | PrintSheet | `pinyin`, `meaning` | `title`, `items`, `columns`, `footerFields` |
 | BalanceHero | `default`, `compact` | `total`, `breakdown`, `suffix` |
 | CheckInStreakCard | `default` | `streakDays`, `totalDays`, `weekProgress`, `onOpen`, `disabled` |
-| Checkbox | `default`, `disabled` | `text`, `variant`, `checked`, `disabled`, `onChange` |
+| Checkbox | `default`, `disabled` · size `sm`\|`md`\|`lg` | `text`, `variant`, `size`, `checked`, `disabled`, `interactive`, `onChange`；无 text 时不撑满宽；对钩与装饰层兄弟结构 |
 | Collapse | `default`, `disabled` | `title`, `message`, `expanded`, `disabled`, `onChange` |
 | Divider | `default`, `disabled` | `variant`, `text`, `disabled` |
 | Radio | `default`, `disabled` | `text`, `checked`, `disabled`, `onChange` |
@@ -90,6 +95,11 @@ Core semantic colors:
 | Contract | RN / Web / Flutter / iOS | Android View | WeChat Mini Program tag |
 | --- | --- | --- | --- |
 | Button | `TspButton` | `BasicButton` | `bc-button` |
+| FormField | `TspFormField` | （待对齐） | `bc-form-field` |
+| InlineNotice | `TspInlineNotice` | （待对齐） | `bc-inline-notice` |
+| ActionSheet | `TspActionSheet` | （待对齐） | `bc-action-sheet` |
+| SheetActions | `TspSheetActions` | （待对齐） | `bc-sheet-actions` |
+| RadioGroup | `TspRadioGroup` | （待对齐） | `bc-radio-group` |
 | Card | `TspCard` | `BasicCardView` | `bc-card` |
 | Alert | `TspAlert` | `BasicAlertView` | `bc-alert` |
 | Badge | `TspBadge` | `BasicBadgeView` | `bc-badge` |

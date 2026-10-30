@@ -29,16 +29,18 @@ fun TspModal(
     confirmText: String = "确定",
     cancelText: String = "取消",
     visible: Boolean = false,
+    /** 确认钮忙态：防连点重复提交 */
+    confirmLoading: Boolean = false,
     onConfirm: () -> Unit = {},
     onCancel: () -> Unit = {},
 ) {
     if (!visible) return
-    Dialog(onDismissRequest = onCancel) {
+    Dialog(onDismissRequest = { if (!confirmLoading) onCancel() }) {
     Box(
         modifier = modifier
             .fillMaxSize()
             .background(Color(0x66000000))
-            .clickable { onCancel() }
+            .clickable(enabled = !confirmLoading) { onCancel() }
             .padding(18.dp),
         contentAlignment = Alignment.Center,
     ) {
@@ -61,6 +63,8 @@ fun TspModal(
                     theme = theme,
                     modifier = Modifier.weight(1f),
                     fullWidth = true,
+                    size = TspControlSize.Md,
+                    disabled = confirmLoading,
                     onClick = onCancel,
                 )
                 TspButton(
@@ -68,7 +72,9 @@ fun TspModal(
                     theme = theme,
                     modifier = Modifier.weight(1f),
                     fullWidth = true,
+                    size = TspControlSize.Md,
                     variant = TspButtonVariant.Primary,
+                    loading = confirmLoading,
                     onClick = onConfirm,
                 )
             }

@@ -24,6 +24,8 @@ fun TspToast(
     variant: TspToastVariant = TspToastVariant.Info,
     duration: Int = 1600,
 ) {
+    val text = message.trim()
+    if (text.isEmpty()) return
     val fill = when (variant) {
         TspToastVariant.Success -> theme.success
         TspToastVariant.Warning -> theme.warning
@@ -37,6 +39,6 @@ fun TspToast(
             .padding(horizontal = 16.dp, vertical = 10.dp),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text = message, color = color, fontWeight = FontWeight.Bold)
+        Text(text = text, color = color, fontWeight = FontWeight.Bold, maxLines = 3)
     }
 }

@@ -47,10 +47,13 @@ fun TspEmpty(
         Text(text = title, color = Color(theme.textPrimary), fontWeight = FontWeight.Bold)
         Text(text = message, color = Color(theme.textSecondary))
         if (actionText.isNotEmpty()) {
+            // 空态 CTA：Sm + 非满宽，避免整卡一条「压扁」大钮（常见 UI Bug）
             TspButton(
                 text = actionText,
                 theme = theme,
                 variant = TspButtonVariant.Primary,
+                size = TspControlSize.Sm,
+                fullWidth = false,
                 onClick = onAction,
             )
         }

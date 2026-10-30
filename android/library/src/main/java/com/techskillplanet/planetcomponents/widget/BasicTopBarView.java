@@ -51,7 +51,7 @@ public class BasicTopBarView extends LinearLayout {
         backView = new ImageView(context);
         backView.setImageResource(com.techskillplanet.planetcomponents.R.drawable.ic_basic_back);
         backView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        backView.setContentDescription("Back");
+        backView.setContentDescription("返回");
         backView.setClickable(true);
         backView.setFocusable(true);
         addView(backView);
@@ -176,6 +176,11 @@ public class BasicTopBarView extends LinearLayout {
 
     public void setOnBackClickListener(OnClickListener listener) {
         backView.setOnClickListener(listener);
+    }
+
+    /** 返回按钮无障碍文案（默认「返回」）。 */
+    public void setBackContentDescription(CharSequence description) {
+        backView.setContentDescription(description == null ? "返回" : description);
     }
 
     public void setActionVisible(boolean visible) {

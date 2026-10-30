@@ -17,7 +17,7 @@ import com.techskillplanet.planetcomponents.theme.BasicThemeManager;
  * 技趣星球主题胶囊标签。
  *
  * <p>Chip 常用于筛选条件、兴趣标签、步骤状态和轻量分类。选中态对齐 RN starPlanet：
- * selectedFill 底 + success 边 + textPrimary，而非品牌实心白字。</p>
+ * selectedFill 底 + brand 边 + brandDark 字（selected ≠ success；success 仅反馈态）。
  */
 public class BasicChipView extends android.widget.TextView {
     private String variant = "default";
@@ -51,7 +51,7 @@ public class BasicChipView extends android.widget.TextView {
         setText(text);
     }
 
-    /** 设置选中态，选中时使用 selectedFill + success 边框。 */
+    /** 设置选中态：selectedFill 底 + brandPrimary 边 + brandDark 字。 */
     public void setSelectedState(boolean selected) {
         setSelected(selected);
         refreshTheme();
@@ -64,7 +64,10 @@ public class BasicChipView extends android.widget.TextView {
         refreshTheme();
     }
 
-    /** 根据 token 刷新 Chip 的背景、边框、字号和内边距。 */
+    /**
+     * 根据 token 刷新 Chip 的背景、边框、字号和内边距。
+     * 选中态：selectedFill + brand 边（禁止用 statusSuccess 青描边，否则孩子主题会「选粉显蓝」）。
+     */
     public void refreshTheme() {
         BasicColors colors = BasicThemeManager.colors();
         BasicStyle style = BasicThemeManager.style();
@@ -73,8 +76,8 @@ public class BasicChipView extends android.widget.TextView {
         int text = colors.textPrimary;
         if (isSelected()) {
             fill = colors.selectedFill;
-            stroke = colors.statusSuccess;
-            text = colors.textPrimary;
+            stroke = colors.brandPrimary;
+            text = colors.brandDark;
         } else if ("primary".equals(variant)) {
             fill = colors.brandPrimary;
             stroke = colors.brandPrimary;
